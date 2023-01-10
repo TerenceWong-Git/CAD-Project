@@ -8,7 +8,7 @@ https://www.figma.com/file/R91JHKhMPCxYQ7CBvH27f5/CAD-Wireframe?t=mrnErZegY94j81
 
 ### 2. ERD
 
-https://drawsql.app/teams/jeffrey-pangs-team/diagrams/cad-proj-application-db
+https://drawsql.app/teams/jeffrey-pangs-team/diagrams/cas-proj-application-db
 
 ### 3. WSP Tools
 

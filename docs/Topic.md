@@ -1,4 +1,4 @@
-# CAD Project Topic Idea
+# CAS Project Topic Idea
 
 ## 1. 格價網 (PriceSPY)
 

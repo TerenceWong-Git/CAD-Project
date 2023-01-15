@@ -1,0 +1,10 @@
+FROM node:latest
+
+WORKDIR /app
+
+COPY . .
+
+RUN yarn
+RUN mkdir uploads
+
+CMD yarn migrate:dev && yarn start 

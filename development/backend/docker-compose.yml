@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  todo-server:
+    environment:
+      NODE_ENV: production
+      PORT: 80
+      POSTGRES_HOST: todo-db
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: todo-app
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    depends_on:
+      - postgres
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    image: 'teckyio/todo-server:latest'
+    ports:
+      - '8080:80'
+  todo-db:
+    image: 'postgres:13'
+    environment:
+      POSTGRES_PORT: 5432
+    env_file:
+      - docker.env
+    ports:
+      - '25432:5432'
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data

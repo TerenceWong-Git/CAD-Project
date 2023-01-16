@@ -11,13 +11,288 @@ datasource db {
 }
 
 model User {
-  id           Int      @id @default(autoincrement())
-  email        String   @unique
-  username     String
-  password     String
-  phone_number Int
-  createdAt    DateTime @default(now()) @map("created_at")
-  updatedAt    DateTime @default(now()) @updatedAt @map("updated_at")
+  id          Int       @id @default(autoincrement())
+  email       String    @unique
+  username    String    @unique
+  password    String
+  phoneNumber Int       @unique @map("phone_number")
+  gender      Gender
+  district    District
+  yearBirth   Int?      @map("year_birth")
+  monthBirth  Int?      @map("month_birth")
+  IsWriter    Boolean   @default(false) @map("is_writer")
+  joinDate    DateTime  @map("join_date")
+  Pet         Pet[]
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @default(now()) @updatedAt @map("updated_at")
+  Comment     Comment[]
+  Event       Event[]
+  Exp         Exp[]
+  ExpLike     ExpLike[]
 
   @@map("users")
+}
+
+model Map {
+  id          Int           @id @default(autoincrement())
+  tag         String
+  chiName     String        @map("chinese_name")
+  engName     String        @map("english_name")
+  email       String?
+  phoneNumber Int?          @map("phone_number")
+  chiAddress  String        @unique @map("chinese_address")
+  engAddress  String        @unique @map("english_address")
+  district    District
+  latitude    Decimal       @db.Decimal(11, 8)
+  longitude   Decimal       @db.Decimal(11, 8)
+  profileImg  String        @unique @map("profile_img")
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @default(now()) @updatedAt @map("updated_at")
+  workingHour WorkingHour[]
+  Comment     Comment[]
+  Exp         Exp[]
+
+  @@unique([latitude, longitude])
+  @@map("maps")
+}
+
+model WorkingHour {
+  id        Int      @id @default(autoincrement())
+  map       Map      @relation(fields: [mapId], references: [id])
+  mapId     Int
+  weekday   Weekday
+  hours     String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("working_hours")
+}
+
+model MapTag {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  tagCount  Int      @default(0) @map("tag_count")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("map_tags")
+}
+
+model PetImgTag {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  tagCount  Int      @default(0) @map("tag_count")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("pet_img_tags")
+}
+
+model ExpTag {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  tagCount  Int      @default(0) @map("tag_count")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("exp_tags")
+}
+
+model EventTag {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  tagCount  Int      @default(0) @map("tag_count")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("event_tags")
+}
+
+model Species {
+  id         Int       @id @default(autoincrement())
+  familyId   Int?
+  family     Species?  @relation("FamilyGenus", fields: [familyId], references: [id])
+  genus      Species[] @relation("FamilyGenus")
+  chiSpecies String    @map("chinese_species")
+  engSpecies String    @map("english_species")
+  Pet        Pet[]
+
+  @@unique([chiSpecies, engSpecies])
+  @@map("species")
+}
+
+model Pet {
+  id         Int          @id @default(autoincrement())
+  user       User         @relation(fields: [userId], references: [id])
+  userId     Int          @map("user_id")
+  name       String
+  species    Species      @relation(fields: [speciesId], references: [id])
+  speciesId  Int          @map("species_id")
+  gender     Gender?
+  profileImg String       @unique @map("profile_img")
+  dateBirth  DateTime?
+  createdAt  DateTime     @default(now()) @map("created_at")
+  updatedAt  DateTime     @default(now()) @updatedAt @map("updated_at")
+  PetWeight  PetWeight[]
+  PetImg     PetImg[]
+  PetVaccine PetVaccine[]
+
+  @@unique([userId, name])
+  @@map("pets")
+}
+
+model PetWeight {
+  id        Int      @id @default(autoincrement())
+  pet       Pet      @relation(fields: [petId], references: [id])
+  petId     Int      @map("pet_id")
+  weight    Decimal  @db.Decimal(6, 2)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("pets_weight")
+}
+
+model PetImg {
+  id        Int      @id @default(autoincrement())
+  pet       Pet      @relation(fields: [petId], references: [id])
+  petId     Int      @map("pet_id")
+  tag       String?
+  albumName String?  @map("album_name")
+  isPrivate Boolean  @map("is_private")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("pets_img")
+}
+
+model PetVaccine {
+  id        Int      @id @default(autoincrement())
+  pet       Pet      @relation(fields: [petId], references: [id])
+  petId     Int      @map("pet_id")
+  name      String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("pets_vaccine")
+}
+
+model Comment {
+  id         Int          @id @default(autoincrement())
+  user       User         @relation(fields: [userId], references: [id])
+  userId     Int          @map("user_id")
+  map        Map          @relation(fields: [mapId], references: [id])
+  mapId      Int          @map("map_id")
+  title      String       @db.VarChar(255)
+  content    String
+  isThumb    Boolean      @map("is_thumb")
+  createdAt  DateTime     @default(now()) @map("created_at")
+  updatedAt  DateTime     @default(now()) @updatedAt @map("updated_at")
+  CommentImg CommentImg[]
+
+  @@unique([userId, mapId])
+  @@map("comments")
+}
+
+model CommentImg {
+  id        Int     @id @default(autoincrement())
+  comment   Comment @relation(fields: [commentId], references: [id])
+  commentId Int     @map("comment_id")
+  name      String  @db.VarChar(255)
+
+  @@map("comments_img")
+}
+
+model Event {
+  id         Int        @id @default(autoincrement())
+  host       User       @relation(fields: [hostId], references: [id])
+  hostId     Int        @map("host_id")
+  location   String     @db.VarChar(255)
+  tag        String?
+  animalType AnimalType @map("animal_type")
+  title      String     @db.VarChar(255)
+  content    String
+  date       DateTime   @db.Date
+  time       DateTime   @db.Time(6)
+  createdAt  DateTime   @default(now()) @map("created_at")
+  updatedAt  DateTime   @default(now()) @updatedAt @map("updated_at")
+
+  @@unique([hostId, date, time])
+  @@map("events")
+}
+
+model Exp {
+  id            Int       @id @default(autoincrement())
+  poster        User      @relation(fields: [posterId], references: [id])
+  posterId      Int       @map("poster_id")
+  title         String    @db.VarChar(255)
+  tag           String?
+  content       String
+  map           Map       @relation(fields: [mapId], references: [id])
+  mapId         Int       @map("map_id")
+  numThumbsUp   Int       @map("num_thumbs_up")
+  numThumbsDown Int       @map("num_thumbs_down")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")
+  ExpLike       ExpLike[]
+
+  @@map("experience")
+}
+
+model ExpLike {
+  id          Int       @id @default(autoincrement())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      Int       @map("user_id")
+  exp         Exp       @relation(fields: [expId], references: [id])
+  expId       Int       @map("exp_id")
+  thumbStatus ThumbStat @map("thumb_status")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  @@unique([userId, expId])
+  @@map("experience_like")
+}
+
+enum Gender {
+  Male
+  Female
+}
+
+enum District {
+  Islands
+  Kwai_tsing
+  North
+  Sai_kung
+  Sha_tin
+  Tai_po
+  Tsuen_wan
+  Tuen_mun
+  Yuen_long
+  Kowloon_city
+  Kwun_tong
+  Sham_shui_po
+  Wong_tai_sin
+  Yau_tsim_mong
+  Central_and_western
+  Eastern
+  Southern
+  Wan_chai
+}
+
+enum Weekday {
+  Monday
+  Tuesday
+  Wednesday
+  Thursday
+  Friday
+  Saturday
+  Sunday
+}
+
+enum AnimalType {
+  Cat
+  Dog
+  Others
+}
+
+enum ThumbStat {
+  Up
+  Down
+  Removed
 }

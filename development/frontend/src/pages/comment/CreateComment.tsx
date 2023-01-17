@@ -2,7 +2,7 @@ import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router';
 
-function CommentPage() {
+function CreateComment() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
   
 
@@ -40,4 +40,4 @@ function CommentPage() {
   )
 }
 
-export default CommentPage
+export default CreateComment

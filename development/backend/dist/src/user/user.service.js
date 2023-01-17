@@ -12,6 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
+const bcrypt = require("bcryptjs");
+const SALT_ROUNDS = 10;
+async function hashPassword(plainPassword) {
+    const hash = await bcrypt.hash(plainPassword, SALT_ROUNDS);
+    return hash;
+}
 let UserService = class UserService {
     constructor(prismaService) {
         this.prismaService = prismaService;
@@ -19,9 +25,50 @@ let UserService = class UserService {
     async getSelfInfo(userId) {
         const foundUser = await this.prismaService.user.findUnique({
             where: { id: userId },
-            select: { id: true, email: true },
         });
+        console.log(foundUser);
         return foundUser;
+    }
+    async register(registerDto) {
+        console.log('registerDto: ' + registerDto);
+        const findUserEmail = await this.prismaService.user.findUnique({
+            where: {
+                email: registerDto.email,
+            },
+        });
+        console.log('findUserEmail: ' + findUserEmail);
+        const findUserName = await this.prismaService.user.findUnique({
+            where: {
+                username: registerDto.username,
+            },
+        });
+        const findUserPhone = await this.prismaService.user.findUnique({
+            where: {
+                phoneNumber: registerDto.phoneNumber,
+            },
+        });
+        if (findUserEmail) {
+            throw new common_1.HttpException('Email already registered', common_1.HttpStatus.BAD_REQUEST);
+        }
+        else if (findUserName) {
+            throw new common_1.HttpException('Username already registered', common_1.HttpStatus.BAD_REQUEST);
+        }
+        else if (findUserPhone) {
+            throw new common_1.HttpException('Phone number already registered', common_1.HttpStatus.BAD_REQUEST);
+        }
+        await this.prismaService.user.create({
+            data: {
+                email: registerDto.email,
+                username: registerDto.username,
+                password: await hashPassword(registerDto.password),
+                phoneNumber: registerDto.phoneNumber,
+                gender: registerDto.gender,
+                district: registerDto.district,
+                yearBirth: registerDto.yearBirth,
+                monthBirth: registerDto.monthBirth,
+                IsWriter: registerDto.IsWriter,
+            },
+        });
     }
 };
 UserService = __decorate([

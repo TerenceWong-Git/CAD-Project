@@ -14,8 +14,10 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
+const route_params_decorator_1 = require("@nestjs/common/decorators/http/route-params.decorator");
 const decorator_1 = require("../auth/decorator");
 const guard_1 = require("../auth/guard");
+const dto_1 = require("./dto");
 const user_service_1 = require("./user.service");
 let UserController = class UserController {
     constructor(userService) {
@@ -23,6 +25,9 @@ let UserController = class UserController {
     }
     async getSelfInfo(userId) {
         return await this.userService.getSelfInfo(userId);
+    }
+    async register(registerDto) {
+        return await this.userService.register(registerDto);
     }
 };
 __decorate([
@@ -33,6 +38,13 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "getSelfInfo", null);
+__decorate([
+    (0, common_1.Post)('register'),
+    __param(0, (0, route_params_decorator_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [dto_1.RegisterDto]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "register", null);
 UserController = __decorate([
     (0, common_1.Controller)('user'),
     __metadata("design:paramtypes", [user_service_1.UserService])

@@ -16,24 +16,30 @@ const jwt_1 = require("@nestjs/jwt");
 const prisma_service_1 = require("../prisma/prisma.service");
 const hash_1 = require("./hash");
 let AuthService = class AuthService {
-    constructor(prisma, jwt, config) {
-        this.prisma = prisma;
+    constructor(prismaService, jwt, config) {
+        this.prismaService = prismaService;
         this.jwt = jwt;
         this.config = config;
     }
     async login(loginDto) {
-        const user = await this.prisma.user.findUnique({
+        console.log(loginDto);
+        console.log(loginDto.email);
+        const user = await this.prismaService.user.findUnique({
             where: { email: loginDto.email },
             select: { id: true, password: true },
         });
+        console.log(user);
         if (!user || !(await (0, hash_1.checkPassword)(loginDto.password, user.password))) {
             throw new common_1.UnauthorizedException();
         }
+        console.log('Token: ' + this.signToken);
+        console.log('user_id: ' + user.id);
         return this.signToken(user.id);
     }
     async signToken(userId) {
         const payload = { sub: userId };
-        console.log(this.config.get('JWT_SECRET'));
+        console.log('Payload: ' + payload.sub);
+        console.log('JWT_SECRET: ' + this.config.get('JWT_SECRET'));
         return {
             access_token: await this.jwt.signAsync(payload, {
                 expiresIn: '1d',

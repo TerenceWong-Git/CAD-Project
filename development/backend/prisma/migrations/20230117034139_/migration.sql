@@ -1,13 +1,3 @@
-/*
-  Warnings:
-
-  - A unique constraint covering the columns `[username]` on the table `users` will be added. If there are existing duplicate values, this will fail.
-  - A unique constraint covering the columns `[phone_number]` on the table `users` will be added. If there are existing duplicate values, this will fail.
-  - Added the required column `district` to the `users` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `gender` to the `users` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `join_date` to the `users` table without a default value. This is not possible if the table is not empty.
-
-*/
 -- CreateEnum
 CREATE TYPE "Gender" AS ENUM ('Male', 'Female');
 
@@ -23,13 +13,24 @@ CREATE TYPE "AnimalType" AS ENUM ('Cat', 'Dog', 'Others');
 -- CreateEnum
 CREATE TYPE "ThumbStat" AS ENUM ('Up', 'Down', 'Removed');
 
--- AlterTable
-ALTER TABLE "users" ADD COLUMN     "district" "District" NOT NULL,
-ADD COLUMN     "gender" "Gender" NOT NULL,
-ADD COLUMN     "is_writer" BOOLEAN NOT NULL DEFAULT false,
-ADD COLUMN     "join_date" TIMESTAMP(3) NOT NULL,
-ADD COLUMN     "month_birth" INTEGER,
-ADD COLUMN     "year_birth" INTEGER;
+-- CreateTable
+CREATE TABLE "users" (
+    "id" SERIAL NOT NULL,
+    "email" TEXT NOT NULL,
+    "username" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "phone_number" INTEGER NOT NULL,
+    "gender" "Gender" NOT NULL,
+    "district" "District" NOT NULL,
+    "year_birth" INTEGER,
+    "month_birth" INTEGER,
+    "is_writer" BOOLEAN NOT NULL DEFAULT false,
+    "join_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "users_pkey" PRIMARY KEY ("id")
+);
 
 -- CreateTable
 CREATE TABLE "maps" (
@@ -233,6 +234,15 @@ CREATE TABLE "experience_like" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_username_key" ON "users"("username");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_phone_number_key" ON "users"("phone_number");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "maps_chinese_address_key" ON "maps"("chinese_address");
 
 -- CreateIndex
@@ -273,12 +283,6 @@ CREATE UNIQUE INDEX "events_host_id_date_time_key" ON "events"("host_id", "date"
 
 -- CreateIndex
 CREATE UNIQUE INDEX "experience_like_user_id_exp_id_key" ON "experience_like"("user_id", "exp_id");
-
--- CreateIndex
-CREATE UNIQUE INDEX "users_username_key" ON "users"("username");
-
--- CreateIndex
-CREATE UNIQUE INDEX "users_phone_number_key" ON "users"("phone_number");
 
 -- AddForeignKey
 ALTER TABLE "working_hours" ADD CONSTRAINT "working_hours_mapId_fkey" FOREIGN KEY ("mapId") REFERENCES "maps"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

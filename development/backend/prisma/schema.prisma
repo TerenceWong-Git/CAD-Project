@@ -21,7 +21,7 @@ model User {
   yearBirth   Int?      @map("year_birth")
   monthBirth  Int?      @map("month_birth")
   IsWriter    Boolean   @default(false) @map("is_writer")
-  joinDate    DateTime  @map("join_date")
+  joinDate    DateTime  @default(now()) @map("join_date")
   Pet         Pet[]
   createdAt   DateTime  @default(now()) @map("created_at")
   updatedAt   DateTime  @default(now()) @updatedAt @map("updated_at")

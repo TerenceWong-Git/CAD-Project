@@ -10,10 +10,15 @@ async function hashPassword(plainPassword) {
 async function main() {
     const prisma = new client_1.PrismaClient();
     const insertUser = {
-        email: 'jason@tecky.io',
-        username: 'Jason',
-        phone_number: 12345678,
-        password: await hashPassword('1234'),
+        email: 'terence@tecky.io',
+        username: 'Terence',
+        password: await hashPassword('@Tecky1234'),
+        phoneNumber: 12345678,
+        gender: client_1.Gender['Male'],
+        district: client_1.District['Sha_tin'],
+        yearBirth: 1998,
+        monthBirth: 10,
+        IsWriter: false,
     };
     await prisma.user.upsert({
         where: { email: insertUser.email },

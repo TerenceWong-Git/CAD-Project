@@ -3,7 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@googlemaps/react-wrapper": "^1.1.35",
+    "@mantine/core": "^5.10.1",
+    "@mantine/form": "^5.10.1",
+    "@mantine/hooks": "^5.10.1",
+    "@mui/material": "^5.11.4",
     "@react-google-maps/api": "^2.17.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

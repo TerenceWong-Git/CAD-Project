@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Route, Routes } from "react-router";
-import Map from "./pages/Map";
+import Map from "./pages/Map/Map";
 
 function App() {
   return (

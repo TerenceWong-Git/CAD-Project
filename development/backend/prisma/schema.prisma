@@ -33,9 +33,21 @@ model User {
   @@map("users")
 }
 
-model Map {
+model MapType {
+  id        Int    @id @default(autoincrement())
+  chiType   String @map("chinese_type") @db.VarChar(255)
+  engType   String @map("english_type") @db.VarChar(255)
+  typeCount Int    @map("type_count")
+  map       Maps[]
+
+  @@unique([chiType, engType])
+  @@map("map_type")
+}
+
+model Maps {
   id          Int           @id @default(autoincrement())
-  tag         String
+  mapType     MapType       @relation(fields: [mapTypeId], references: [id])
+  mapTypeId   Int           @map("map_type_id")
   chiName     String        @map("chinese_name")
   engName     String        @map("english_name")
   email       String?
@@ -58,24 +70,14 @@ model Map {
 
 model WorkingHour {
   id        Int      @id @default(autoincrement())
-  map       Map      @relation(fields: [mapId], references: [id])
-  mapId     Int
+  map       Maps     @relation(fields: [mapId], references: [id])
+  mapId     Int      @map("map_id")
   weekday   Weekday
   hours     String
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
 
   @@map("working_hours")
-}
-
-model MapTag {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique
-  tagCount  Int      @default(0) @map("tag_count")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-
-  @@map("map_tags")
 }
 
 model PetImgTag {
@@ -110,7 +112,7 @@ model EventTag {
 
 model Species {
   id         Int       @id @default(autoincrement())
-  familyId   Int?
+  familyId   Int?      @map("family_id")
   family     Species?  @relation("FamilyGenus", fields: [familyId], references: [id])
   genus      Species[] @relation("FamilyGenus")
   chiSpecies String    @map("chinese_species")
@@ -130,7 +132,7 @@ model Pet {
   speciesId  Int          @map("species_id")
   gender     Gender?
   profileImg String       @unique @map("profile_img")
-  dateBirth  DateTime?
+  dateBirth  DateTime?    @map("date_birth")
   createdAt  DateTime     @default(now()) @map("created_at")
   updatedAt  DateTime     @default(now()) @updatedAt @map("updated_at")
   PetWeight  PetWeight[]
@@ -156,7 +158,6 @@ model PetImg {
   pet       Pet      @relation(fields: [petId], references: [id])
   petId     Int      @map("pet_id")
   tag       String?
-  albumName String?  @map("album_name")
   isPrivate Boolean  @map("is_private")
   createdAt DateTime @default(now()) @map("created_at")
 
@@ -177,7 +178,7 @@ model Comment {
   id         Int          @id @default(autoincrement())
   user       User         @relation(fields: [userId], references: [id])
   userId     Int          @map("user_id")
-  map        Map          @relation(fields: [mapId], references: [id])
+  map        Maps         @relation(fields: [mapId], references: [id])
   mapId      Int          @map("map_id")
   title      String       @db.VarChar(255)
   content    String
@@ -224,7 +225,7 @@ model Exp {
   title         String    @db.VarChar(255)
   tag           String?
   content       String
-  map           Map       @relation(fields: [mapId], references: [id])
+  map           Maps      @relation(fields: [mapId], references: [id])
   mapId         Int       @map("map_id")
   numThumbsUp   Int       @map("num_thumbs_up")
   numThumbsDown Int       @map("num_thumbs_down")

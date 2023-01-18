@@ -1,76 +1,48 @@
-import React, { useState } from "react";
-import "./css/Login.css";
+import { useForm, isEmail, isInRange, hasLength, matches } from "@mantine/form";
+import { Button, Group, TextInput, NumberInput, Box, Select } from "@mantine/core";
+import React from "react";
 
 export default function Login() {
-  // React States
-  const [unameError, setUnameError] = useState(false);
-  const [passError, setPassError] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  // User Login info
-  const database = [
-    {
-      username: "user1",
-      password: "pass1",
+  const form = useForm({
+    initialValues: {
+      email: "",
+      password: "",
     },
-    {
-      username: "user2",
-      password: "pass2",
-    },
-  ];
+  });
 
-  const handleSubmit = (event: { preventDefault: () => void }) => {
-    //Prevent page reload
-    event.preventDefault();
+  const handleSubmit = async (values: typeof form.values) => {
+    const registrationInfo = {
+      email: values.email,
+      password: values.password,
+    };
 
-    let { uname, pass } = document.forms[0];
+    // const path = process.env.REACT_APP_BACKEND_URL;
+    // const res = await fetch(`${path}/user/register`, {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json; charset=utf-8",
+    //   },
+    //   body: JSON.stringify(registrationInfo),
+    // });
 
-    // Find user login info
-    const userData = database.find((user) => user.username === uname.value);
-
-    // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
-        // Invalid password
-        return setPassError(true);
-      } else {
-        setIsSubmitted(true);
-      }
-    } else {
-      // Username not found
-      return setUnameError(true);
-    }
+    // const result = await res.json();
+    // if (result.status == 201) {
+    //   console.log("You create account successfully");
+    //   navigate("/");
+    // } else {
+    //   console.log(`${result.message}`);
+    // }
   };
 
-  // Generate JSX code for error message
-
-  // JSX code for login form
-  const renderForm = (
-    <div className="form">
-      <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <label>Username </label>
-          <input type="text" name="uname" required />
-          {unameError ? <div>Username is wrong</div> : <div></div>}
-        </div>
-        <div className="input-container">
-          <label>Password </label>
-          <input type="password" name="pass" required />
-          {passError ? <div>Password is wrong</div> : <div></div>}
-        </div>
-        <div className="button-container">
-          <input type="submit" />
-        </div>
-      </form>
-    </div>
-  );
-
   return (
-    <div className="app">
-      <div className="login-form">
-        <div className="title">Sign In</div>
-        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
-      </div>
-    </div>
+    <Box component="form" maw={400} mx="auto" onSubmit={form.onSubmit(handleSubmit)}>
+      <TextInput id="email" label="Email" placeholder="Email" withAsterisk mt="md" {...form.getInputProps("email")} />
+      {/* <TextInput id="username" label="Username" placeholder="Username" withAsterisk mt="md" {...form.getInputProps("username")} /> */}
+      <TextInput id="password" label="Password" placeholder="Password" withAsterisk mt="md" {...form.getInputProps("password")} />
+
+      <Group position="right" mt="md">
+        <Button type="submit">Submit</Button>
+      </Group>
+    </Box>
   );
 }

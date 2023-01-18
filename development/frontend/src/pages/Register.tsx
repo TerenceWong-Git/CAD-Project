@@ -1,49 +1,65 @@
-import { useForm, isNotEmpty, isEmail, isInRange, hasLength, matches } from "@mantine/form";
-import { Button, Group, TextInput, NumberInput, Box, Select, PasswordInput } from "@mantine/core";
+import { useForm, isEmail, isInRange, hasLength, matches } from "@mantine/form";
+import { Button, Group, TextInput, NumberInput, Box, Select } from "@mantine/core";
+import { useNavigate } from "react-router";
 
 export default function Register() {
+  const navigate = useNavigate();
   const form = useForm({
     initialValues: {
-      email: "",
-      username: "",
-      password: "",
-      phoneNumber: "",
-      gender: "",
-      district: "",
-      yearBirth: "",
-      monthBirth: "",
+      email: "testpost2@gmail.com",
+      username: "testpost2",
+      password: "@Tecky1234",
+      phoneNumber: 11223344,
+      gender: "Male",
+      district: "Sha_tin",
+      yearBirth: 1991,
+      monthBirth: 1,
     },
 
     validate: {
       email: isEmail("Invalid email"),
-      // username: hasLength({ min: 8, max: 16 }, "Username must be 8-16 characters long"),
-      // password: (value) =>
-      //   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(value)
-      //     ? null
-      //     : "Password must include at least one capital letter, one small letter, number and special character",
-      // phoneNumber: isInRange({ min: 10000000, max: 99999999 }, "Phone number must be 8 numbers long"),
-      // yearBirth: isInRange({ min: 1000, max: 9999 }, "Birth Year must be 4 numbers long"),
-      // monthBirth: isInRange({ min: 1, max: 12 }, "Birth Month must be 1 to 12"),
+      username: hasLength({ min: 8, max: 16 }, "Username must be 8-16 characters long"),
+      password: matches(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        "Password must include at least one capital letter, one small letter, number and special character"
+      ),
+      phoneNumber: isInRange({ min: 10000000, max: 99999999 }, "Phone number must be 8 numbers long"),
+      yearBirth: isInRange({ min: 1000, max: 9999 }, "Birth Year must be 4 numbers long"),
+      monthBirth: isInRange({ min: 1, max: 12 }, "Birth Month must be 1 to 12"),
     },
   });
 
   const handleSubmit = async (values: typeof form.values) => {
-    console.log("You clicked submit.", values);
+    console.log("handleSubmit");
+    const registrationInfo = {
+      email: values.email,
+      username: values.username,
+      password: values.password,
+      phoneNumber: values.phoneNumber,
+      gender: values.gender,
+      district: values.district,
+      yearBirth: values.yearBirth,
+      monthBirth: values.monthBirth,
+    };
 
-    // const data = {
-    //   email: values.email,
-    //   username: values.username,
-    //   password: values.password,
-    //   phoneNumber: values.phoneNumber,
-    //   gender: values.gender,
-    //   district: values.district,
-    //   yearBirth: values.yearBirth,
-    //   monthBirth: values.monthBirth,
-    // };
-    // await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/register`, {
-    //   method: "POST",
-    //   body: JSON.stringify(data),
-    // });
+    const path = process.env.REACT_APP_BACKEND_URL;
+    const res = await fetch(`${path}/user/register`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify(registrationInfo),
+    });
+
+    console.log(res.status);
+    const result = await res.json();
+    console.log(result);
+    if (res.status == 201) {
+      console.log("You create account successfully");
+      navigate("/");
+    } else {
+      console.log(`${result.message}`);
+    }
   };
 
   return (
@@ -51,7 +67,15 @@ export default function Register() {
       <TextInput id="email" label="Email" placeholder="Email" withAsterisk mt="md" {...form.getInputProps("email")} />
       <TextInput id="username" label="Username" placeholder="Username" withAsterisk mt="md" {...form.getInputProps("username")} />
       <TextInput id="password" label="Password" placeholder="Password" withAsterisk mt="md" {...form.getInputProps("password")} />
-      <TextInput id="phoneNumber" label="Phone Number" placeholder="Phone Number" withAsterisk mt="md" {...form.getInputProps("phoneNumber")} />
+      <NumberInput
+        hideControls
+        id="phoneNumber"
+        label="Phone Number"
+        placeholder="Phone Number"
+        withAsterisk
+        mt="md"
+        {...form.getInputProps("phoneNumber")}
+      />
       <Select id="gender" data={["Male", "Female"]} placeholder="Gender" label="Gender" withAsterisk mt="md" {...form.getInputProps("gender")} />
       <Select
         id="district"
@@ -81,8 +105,24 @@ export default function Register() {
         mt="md"
         {...form.getInputProps("district")}
       />
-      <TextInput id="yearBirth" label="Birth Year" placeholder="Birth Year" withAsterisk mt="md" {...form.getInputProps("yearBirth")} />
-      <TextInput id="monthBirth" label="Birth Month" placeholder="Birth Month" withAsterisk mt="md" {...form.getInputProps("monthBirth")} />
+      <NumberInput
+        hideControls
+        id="yearBirth"
+        label="Birth Year"
+        placeholder="Birth Year"
+        withAsterisk
+        mt="md"
+        {...form.getInputProps("yearBirth")}
+      />
+      <NumberInput
+        hideControls
+        id="monthBirth"
+        label="Birth Month"
+        placeholder="Birth Month"
+        withAsterisk
+        mt="md"
+        {...form.getInputProps("monthBirth")}
+      />
 
       <Group position="right" mt="md">
         <Button type="submit">Submit</Button>

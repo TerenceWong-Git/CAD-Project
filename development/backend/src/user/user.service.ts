@@ -15,22 +15,19 @@ export class UserService {
   constructor(private readonly prismaService: PrismaService) {}
 
   async getSelfInfo(userId: number) {
-    const foundUser = await this.prismaService.user.findUnique({
+    const foundUser = await this.prismaService.user.findMany({
+      // where: {},
       where: { id: userId },
     });
-    console.log('district type: ', typeof foundUser.district);
-    return typeof foundUser.district;
+    return foundUser;
   }
 
   async register(registerDto: RegisterDto) {
-    console.log('registerDto: ' + registerDto);
-
     const findUserEmail = await this.prismaService.user.findUnique({
       where: {
         email: registerDto.email,
       },
     });
-    console.log('findUserEmail: ' + findUserEmail);
 
     const findUserName = await this.prismaService.user.findUnique({
       where: {
@@ -73,5 +70,6 @@ export class UserService {
         monthBirth: registerDto.monthBirth,
       },
     });
+    return HttpStatus.CREATED;
   }
 }

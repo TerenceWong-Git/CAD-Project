@@ -3,20 +3,38 @@ import "./App.css";
 import { Route, Routes } from "react-router";
 import Login from "./pages/Login";
 import Map from "./pages/Map/Map";
-import { Link } from "react-router-dom";
 import CommentPage from "./pages/comment/CommentPage";
+import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
+import Register from "./pages/Register";
 
-function App() {
+export default function App() {
   return (
     <div className="App">
-      <Link to={"/login"}>Login</Link>
+      <div>
+        <Button variant="contained" style={{ marginRight: "2vmin" }}>
+          <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
+            Back
+          </Link>
+        </Button>
+        <Button variant="contained" style={{ marginRight: "2vmin" }}>
+          <Link to={"/login"} style={{ textDecoration: "none", color: "white" }}>
+            Login
+          </Link>
+        </Button>
+        <Button variant="contained">
+          <Link to={"/register"} style={{ textDecoration: "none", color: "white" }}>
+            Register
+          </Link>
+        </Button>
+      </div>
+
       <Routes>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/register" element={<Register />}></Route>
         <Route path="/map" element={<Map />}></Route>
         <Route path="/comments" element={<CommentPage />}></Route>
       </Routes>
     </div>
   );
 }
-
-export default App;

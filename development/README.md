@@ -15,7 +15,8 @@ yarn create react-app {Project Name} --template cra-template-pwa-typescript
 ## 3. Install React package
 
 ```
-yarn add sass react-hook-form @reduxjs/toolkit react-redux @types/react-redux react-router-dom @types/react-router-dom react-router @types/react-router redux-logger @types/redux-logger redux-thunk @types/redux-thunk @testing-library/react @testing-library/jest-dom --dev fetch-mock redux-mock-store @types/fetch-mock @types/redux-mock-store node-fetch@2
+yarn add sass react-hook-form @reduxjs/toolkit react-redux @types/react-redux react-router-dom @types/react-router-dom react-router @types/react-router redux-logger @types/redux-logger redux-thunk @types/redux-thunk @testing-library/react @testing-library/jest-dom --dev fetch-mock redux-mock-store @types/fetch-mock @types/redux-mock-store node-fetch@2 @mui/material @emotion/react @emotion/styled @mantine/core @mantine/hooks @mantine/form @emotion/react
+
 ```
 
 ## 4. Create Nest.js & Install Prisma

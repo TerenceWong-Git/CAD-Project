@@ -5,6 +5,7 @@ import {
   IsNotEmpty,
   IsNumber,
   IsString,
+  IsStrongPassword,
   Max,
   MaxLength,
   Min,
@@ -24,12 +25,13 @@ export class RegisterDto {
 
   @IsString()
   @IsNotEmpty()
-  @MinLength(8)
-  @MaxLength(16)
+  @MinLength(6)
+  @MaxLength(14)
   username: string;
 
   @IsString()
   @IsNotEmpty()
+  @IsStrongPassword()
   password: string;
 
   @IsNumber()
@@ -55,7 +57,4 @@ export class RegisterDto {
   @Min(1)
   @Max(12)
   monthBirth: number;
-
-  @IsBoolean()
-  IsWriter: false;
 }

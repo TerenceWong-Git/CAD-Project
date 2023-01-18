@@ -23,6 +23,7 @@ const circleSettings = {
 function MapHook() {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
+    // googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     googleMapsApiKey: "AIzaSyCD0Ddx6UPdWGsBUUBR711rCZQYRboSSrw",
   });
 

@@ -26,8 +26,8 @@ let UserService = class UserService {
         const foundUser = await this.prismaService.user.findUnique({
             where: { id: userId },
         });
-        console.log(foundUser);
-        return foundUser;
+        console.log('district type: ', typeof foundUser.district);
+        return typeof foundUser.district;
     }
     async register(registerDto) {
         console.log('registerDto: ' + registerDto);
@@ -66,7 +66,6 @@ let UserService = class UserService {
                 district: registerDto.district,
                 yearBirth: registerDto.yearBirth,
                 monthBirth: registerDto.monthBirth,
-                IsWriter: registerDto.IsWriter,
             },
         });
     }

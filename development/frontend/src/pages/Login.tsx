@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./css/Login.css";
 
-export default function App() {
+export default function Login() {
   // React States
   const [unameError, setUnameError] = useState(false);
   const [passError, setPassError] = useState(false);

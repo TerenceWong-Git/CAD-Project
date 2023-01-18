@@ -70,6 +70,5 @@ export class UserService {
         monthBirth: registerDto.monthBirth,
       },
     });
-    return HttpStatus.CREATED;
   }
 }

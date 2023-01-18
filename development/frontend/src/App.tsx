@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
 import { Route, Routes } from "react-router";
-import Login from "./pages/Login";
-import Map from "./pages/Map/Map";
+import Login from "./pages/auth/Login";
+import Map from "./pages/map/Map";
 import CommentPage from "./pages/comment/CommentPage";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
-import Register from "./pages/Register";
+import Register from "./pages/auth/Register";
 
 export default function App() {
   return (
@@ -32,8 +32,11 @@ export default function App() {
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
-        <Route path="/map" element={<Map />}></Route>
-        <Route path="/comments" element={<CommentPage />}></Route>
+
+        <Route path="/" element={<PrivateRoute />}>
+          <Route path="/map" element={<Map />}></Route>
+          <Route path="/comments" element={<CommentPage />}></Route>
+        </Route>
       </Routes>
     </div>
   );

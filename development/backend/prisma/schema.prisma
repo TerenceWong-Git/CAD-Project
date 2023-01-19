@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL_DEV")
 }
 
 model User {
@@ -21,7 +21,6 @@ model User {
   yearBirth   Int?      @map("year_birth")
   monthBirth  Int?      @map("month_birth")
   IsWriter    Boolean   @default(false) @map("is_writer")
-  joinDate    DateTime  @default(now()) @map("join_date")
   Pet         Pet[]
   createdAt   DateTime  @default(now()) @map("created_at")
   updatedAt   DateTime  @default(now()) @updatedAt @map("updated_at")
@@ -34,11 +33,10 @@ model User {
 }
 
 model MapType {
-  id        Int    @id @default(autoincrement())
-  chiType   String @map("chinese_type") @db.VarChar(255)
-  engType   String @map("english_type") @db.VarChar(255)
-  typeCount Int    @map("type_count")
-  map       Maps[]
+  id      Int    @id @default(autoincrement())
+  chiType String @map("chinese_type") @db.VarChar(255)
+  engType String @map("english_type") @db.VarChar(255)
+  map     Maps[]
 
   @@unique([chiType, engType])
   @@map("map_type")
@@ -57,7 +55,7 @@ model Maps {
   district    District
   latitude    Decimal       @db.Decimal(11, 8)
   longitude   Decimal       @db.Decimal(11, 8)
-  profileImg  String        @unique @map("profile_img")
+  profileImg  String?       @unique @map("profile_img")
   createdAt   DateTime      @default(now()) @map("created_at")
   updatedAt   DateTime      @default(now()) @updatedAt @map("updated_at")
   workingHour WorkingHour[]
@@ -131,8 +129,8 @@ model Pet {
   species    Species      @relation(fields: [speciesId], references: [id])
   speciesId  Int          @map("species_id")
   gender     Gender?
-  profileImg String       @unique @map("profile_img")
-  dateBirth  DateTime?    @map("date_birth")
+  profileImg String?      @unique @map("profile_img")
+  dateBirth  DateTime?    @map("date_birth") @db.Date()
   createdAt  DateTime     @default(now()) @map("created_at")
   updatedAt  DateTime     @default(now()) @updatedAt @map("updated_at")
   PetWeight  PetWeight[]
@@ -158,6 +156,7 @@ model PetImg {
   pet       Pet      @relation(fields: [petId], references: [id])
   petId     Int      @map("pet_id")
   tag       String?
+  name      String   @unique
   isPrivate Boolean  @map("is_private")
   createdAt DateTime @default(now()) @map("created_at")
 
@@ -227,8 +226,8 @@ model Exp {
   content       String
   map           Maps      @relation(fields: [mapId], references: [id])
   mapId         Int       @map("map_id")
-  numThumbsUp   Int       @map("num_thumbs_up")
-  numThumbsDown Int       @map("num_thumbs_down")
+  numThumbsUp   Int       @default(0) @map("num_thumbs_up")
+  numThumbsDown Int       @default(0) @map("num_thumbs_down")
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")
   ExpLike       ExpLike[]

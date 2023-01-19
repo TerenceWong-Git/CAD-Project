@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import SimpleBottomNavigation from "../../components/FunctionBar";
 
 function CommentPage() {
   const comments = [
@@ -48,11 +49,6 @@ function CommentPage() {
         <button>篩選</button>
         <button>排序</button>
         <button
-          onClick={() => setFilter((filter) => ({ ...filter, title: "bad" }))}
-        >
-          好評
-        </button>
-        <button
           onClick={() => setFilter((filter) => ({ ...filter, is_thumb: true }))}
         >
           好評
@@ -72,6 +68,7 @@ function CommentPage() {
           <p>{comment.username}</p>
         </div>
       ))}
+      <SimpleBottomNavigation />
     </div>
   );
 }

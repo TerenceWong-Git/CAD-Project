@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -20,10 +20,15 @@ export class AuthService {
       where: { email: loginDto.email },
       select: { id: true, password: true },
     });
-    console.log(user);
+    console.log('User: ', user);
 
-    if (!user || !(await checkPassword(loginDto.password, user.password))) {
-      throw new UnauthorizedException();
+    if (!user) {
+      throw new HttpException('Email does not existed', HttpStatus.BAD_REQUEST);
+    } else if (!(await checkPassword(loginDto.password, user.password))) {
+      throw new HttpException(
+        'Password does not match to this registered email',
+        HttpStatus.BAD_REQUEST,
+      );
     }
 
     console.log('Token: ' + this.signToken);

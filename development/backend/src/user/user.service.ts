@@ -58,7 +58,7 @@ export class UserService {
       );
     }
 
-    await this.prismaService.user.create({
+    const register = await this.prismaService.user.create({
       data: {
         email: registerDto.email,
         username: registerDto.username,
@@ -70,5 +70,7 @@ export class UserService {
         monthBirth: registerDto.monthBirth,
       },
     });
+    console.log('Register id from server: ', register.id);
+    return register.id;
   }
 }

@@ -30,7 +30,6 @@ export default function Register() {
   });
 
   const handleSubmit = async (values: typeof form.values) => {
-    console.log("handleSubmit");
     const registrationInfo = {
       email: values.email,
       username: values.username,
@@ -41,7 +40,7 @@ export default function Register() {
       yearBirth: values.yearBirth,
       monthBirth: values.monthBirth,
     };
-
+    console.log(values.gender);
     const path = process.env.REACT_APP_BACKEND_URL;
     const res = await fetch(`${path}/user/register`, {
       method: "POST",

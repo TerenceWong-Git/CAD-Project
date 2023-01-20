@@ -1,6 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CommentDto } from './dto/comment.dto';
+import { Comment, Prisma } from '@prisma/client';
+import { CreateCommentDto } from './dto/create-comment.dto';
+import { UpdateCommentDto } from './dto/update-comment.dto';
 
 @Injectable()
 export class CommentService {
@@ -19,15 +21,40 @@ export class CommentService {
     return commentData;
   }
 
-  async createComment(userId: number,commentDto:CommentDto) {
+  async createComment(userId: number, commentDto: CreateCommentDto) {
     const insertResult = await this.prismaService.comment.create({
-        data: {
-            userId: userId,
-            mapId:commentDto.mapId,
-            title:commentDto.title,
-            content:commentDto.content,
-            isThumb:commentDto.is_thumb
-        }
+      data: {
+        userId: userId,
+        mapId: commentDto.mapId,
+        title: commentDto.title,
+        content: commentDto.content,
+        isThumb: commentDto.is_thumb,
+      },
+    });
+  }
+
+  async editCommentById(
+    userId: number,
+    commentId: number,
+    commentDto: UpdateCommentDto,
+  ) {
+    const selectedComment = await this.prismaService.comment.findUnique({
+      where: {
+        id: commentId,
+      },
+    });
+
+    if (!selectedComment || selectedComment.userId !== userId) {
+      throw new ForbiddenException('Failed to update comment');
+    }
+
+    return this.prismaService.comment.update({
+      where: {
+        id:commentId,
+      },
+      data:{
+        ...commentDto
+      }
     })
   }
 }

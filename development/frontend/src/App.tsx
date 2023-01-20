@@ -7,7 +7,7 @@ import CommentPage from "./pages/comment/CommentPage";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Register from "./pages/auth/Register";
-import PrivateRoute from "./pages/auth/PrivateRoute";
+import PrivateRoute from "./redux/PrivateRoute";
 
 export default function App() {
   return (
@@ -31,10 +31,11 @@ export default function App() {
       </div>
 
       <Routes>
-        {/* <Route path="/" element={<PrivateRoute />}> */}
-        <Route path="/map" element={<Map />}></Route>
-        <Route path="/comments" element={<CommentPage />}></Route>
-        {/* </Route> */}
+        <Route path="/" element={<PrivateRoute />}>
+          <Route path="/map" element={<Map />}></Route>
+          <Route path="/comments" element={<CommentPage />}></Route>
+        </Route>
+
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
       </Routes>

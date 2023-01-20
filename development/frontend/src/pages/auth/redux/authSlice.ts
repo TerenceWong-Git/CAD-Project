@@ -10,7 +10,7 @@ interface AuthState {
 }
 
 interface JWTPayload {
-  sub: string;
+  access_token: string;
 }
 
 const { REACT_APP_BACKEND_URL } = process.env;
@@ -30,19 +30,29 @@ export const loginThunk = createAsyncThunk<string, { email: string; password: st
   "@auth/login",
   async ({ email, password }, thunkAPI) => {
     try {
+      console.log("yeah");
       const res = await fetch(`${REACT_APP_BACKEND_URL}/auth/login`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "content-type": "application/json; charset=utf-8",
         },
         body: JSON.stringify({
           email: email,
           password: password,
         }),
       });
+      console.log("yeah2");
 
       const JWT_token = await res.json();
-      return JWT_token.data;
+      console.log(JWT_token);
+
+      if (res.status == 200) {
+        console.log("You login successfully");
+      } else {
+        console.log(`${JWT_token}`);
+      }
+
+      return JWT_token.access_token;
     } catch (error) {
       return thunkAPI.rejectWithValue("AUTH Login failed");
     }
@@ -56,14 +66,7 @@ export const loginThunk = createAsyncThunk<string, { email: string; password: st
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    login: (state, action: PayloadAction<string>) => {
-      state.isAuth = true;
-      state.email = action.payload;
-      console.log("check action payload", action.payload);
-      localStorage.setItem("auth", JSON.stringify(state));
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(loginThunk.pending, (state) => {
@@ -71,10 +74,11 @@ export const authSlice = createSlice({
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
         state.loading = false;
+        console.log("action: ", state.email);
         console.log("check jwt", action.payload);
         let decoded: JWTPayload = jwt_decode(action.payload);
         console.log("check decoded", decoded);
-        state.email = decoded.sub;
+        state.email = decoded.access_token;
         state.isAuth = true;
 
         localStorage.setItem("token", action.payload);
@@ -85,7 +89,5 @@ export const authSlice = createSlice({
       });
   },
 });
-
-export const { login } = authSlice.actions;
 
 export default authSlice.reducer;

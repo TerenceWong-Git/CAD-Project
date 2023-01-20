@@ -41,11 +41,12 @@ export class AuthService {
 
     console.log('Payload: ' + payload.sub);
     console.log('JWT_SECRET: ' + this.config.get('JWT_SECRET'));
+
     return {
       access_token: await this.jwt.signAsync(payload, {
         expiresIn: '1d',
         secret: this.config.get('JWT_SECRET'),
       }),
-    };
+    }; // }.access_token;
   }
 }

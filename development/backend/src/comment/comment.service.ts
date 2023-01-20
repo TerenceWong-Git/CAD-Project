@@ -21,14 +21,20 @@ export class CommentService {
     return commentData;
   }
 
+  async getUserComment(userId: number){
+    const userCommentData = await this.prismaService.comment.findMany({
+      where:{
+        userId: userId,
+      }
+    })
+    return userCommentData;
+  }
+
   async createComment(userId: number, commentDto: CreateCommentDto) {
     const insertResult = await this.prismaService.comment.create({
       data: {
         userId: userId,
-        mapId: commentDto.mapId,
-        title: commentDto.title,
-        content: commentDto.content,
-        isThumb: commentDto.is_thumb,
+        ...commentDto
       },
     });
   }
@@ -37,7 +43,7 @@ export class CommentService {
     userId: number,
     commentId: number,
     commentDto: UpdateCommentDto,
-  ) {
+  ) {    
     const selectedComment = await this.prismaService.comment.findUnique({
       where: {
         id: commentId,

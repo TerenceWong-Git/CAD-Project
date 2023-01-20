@@ -1,12 +1,15 @@
-import { IsBoolean, IsNumber, IsString } from 'class-validator';
+import { IsBoolean, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateCommentDto {
   @IsString()
-  title: string;
+  @IsOptional()
+  title?: string;
 
   @IsString()
-  content: string;
+  @IsOptional()
+  content?: string;
 
   @IsBoolean()
-  is_thumb: boolean;
+  @IsOptional()
+  isThumb?: boolean;
 }

@@ -1,6 +1,6 @@
 import { IsBoolean, IsNumber, IsString } from 'class-validator';
 
-export class CommentDto {
+export class CreateCommentDto {
   @IsNumber()
   mapId: number;
 

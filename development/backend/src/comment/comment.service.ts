@@ -3,6 +3,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { Comment, Prisma } from '@prisma/client';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
+import { stringify } from 'querystring';
 
 @Injectable()
 export class CommentService {
@@ -21,20 +22,39 @@ export class CommentService {
     return commentData;
   }
 
-  async getUserComment(userId: number){
+  async getUserComment(userId: number) {
     const userCommentData = await this.prismaService.comment.findMany({
-      where:{
+      where: {
         userId: userId,
-      }
-    })
+      },
+      include: {
+        user: {
+          select: {
+            username: true,
+          },
+        },
+      },
+    });
     return userCommentData;
   }
 
-  async createComment(userId: number, commentDto: CreateCommentDto) {
+  async createComment(
+    userId: number,
+    commentDto: CreateCommentDto,
+    files: Express.Multer.File[],
+  ) {
+    // const file = files.map(file => file)
     const insertResult = await this.prismaService.comment.create({
       data: {
         userId: userId,
-        ...commentDto
+        ...commentDto,
+        CommentImg: {
+          createMany: {
+            data: [
+            
+            ],
+          },
+        },
       },
     });
   }
@@ -43,7 +63,7 @@ export class CommentService {
     userId: number,
     commentId: number,
     commentDto: UpdateCommentDto,
-  ) {    
+  ) {
     const selectedComment = await this.prismaService.comment.findUnique({
       where: {
         id: commentId,
@@ -56,11 +76,11 @@ export class CommentService {
 
     return this.prismaService.comment.update({
       where: {
-        id:commentId,
+        id: commentId,
       },
-      data:{
-        ...commentDto
-      }
-    })
+      data: {
+        ...commentDto,
+      },
+    });
   }
 }

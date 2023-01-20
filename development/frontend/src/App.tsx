@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { Route, Routes } from "react-router";
 import Login from "./pages/auth/Login";
-import Map from "./pages/map/Map";
+import Map from "./pages/Map/Map";
 import CommentPage from "./pages/comment/CommentPage";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";

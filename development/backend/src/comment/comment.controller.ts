@@ -8,6 +8,7 @@ import {
   Param,
   Patch,
   ParseIntPipe,
+  Delete,
 } from '@nestjs/common';
 import { JwtGuard } from 'src/auth/guard';
 import { CommentService } from './comment.service';
@@ -21,31 +22,41 @@ export class CommentController {
 
   @Get()
   async getComment() {
-    return await this.commentService.getComment();
+    const result = await this.commentService.getComment();
+    return result;
   }
 
-  @Post()
+  @Get('myComment')
+  @UseGuards(JwtGuard)
+  async getUserComment(@GetUser('id') userId: number){
+    const result = await this.commentService.getUserComment(userId);
+    return result;
+  }
+
+  @Post('create')
   @UseGuards(JwtGuard)
   async createComment(
     @GetUser('id') userId: number,
     @Body() commentDto: CreateCommentDto,
   ) {
-    const result = await this.commentService.createComment(userId, commentDto);
-    return result;
+    await this.commentService.createComment(userId, commentDto);
+    return { message: 'success' };
   }
 
-  @Patch(':commentId')
+  @Patch('update/:id')
   @UseGuards(JwtGuard)
   async editCommentById(
     @GetUser('id') userId: number,
-    @Param('id') commentId: number,
+    @Param('id', ParseIntPipe) commentId: number,
     @Body() commentDto: UpdateCommentDto,
   ) {
-    const result = await this.commentService.editCommentById(
+    await this.commentService.editCommentById(
       userId,
       commentId,
       commentDto,
     );
-    return result;
+    return { message: 'success' };
   }
+
+  
 }

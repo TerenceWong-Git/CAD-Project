@@ -11,5 +11,5 @@ export class CreateCommentDto {
   content: string;
 
   @IsBoolean()
-  is_thumb: boolean;
+  isThumb: boolean;
 }

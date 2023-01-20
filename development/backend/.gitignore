@@ -6,6 +6,7 @@
 .pnp.js
 .vscode
 /pg
+/pgdata
 
 # testing
 /coverage
@@ -16,6 +17,7 @@
 
 # misc
 .DS_Store
+docker.env
 .env
 .env.local
 .env.development.local

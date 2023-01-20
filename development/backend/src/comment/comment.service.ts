@@ -23,16 +23,10 @@ export class CommentService {
   }
 
   async getUserComment(userId: number) {
+  async getUserComment(userId: number) {
     const userCommentData = await this.prismaService.comment.findMany({
       where: {
         userId: userId,
-      },
-      include: {
-        user: {
-          select: {
-            username: true,
-          },
-        },
       },
     });
     return userCommentData;
@@ -48,13 +42,6 @@ export class CommentService {
       data: {
         userId: userId,
         ...commentDto,
-        CommentImg: {
-          createMany: {
-            data: [
-            
-            ],
-          },
-        },
       },
     });
   }
@@ -63,6 +50,7 @@ export class CommentService {
     userId: number,
     commentId: number,
     commentDto: UpdateCommentDto,
+  ) {
   ) {
     const selectedComment = await this.prismaService.comment.findUnique({
       where: {
@@ -76,6 +64,10 @@ export class CommentService {
 
     return this.prismaService.comment.update({
       where: {
+        id: commentId,
+      },
+      data: {
+        ...commentDto,
         id: commentId,
       },
       data: {

@@ -1,30 +1,40 @@
 version: '3'
 
 services:
-  todo-server:
+  cas-server:
     environment:
-      NODE_ENV: production
       PORT: 80
-      POSTGRES_HOST: todo-db
-      POSTGRES_PORT: 5432
-      POSTGRES_DB: todo-app
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
+      DATABASE_URL: postgresql://admin:aMTZsXCXMyoR7D2HXH@172.1.0.10:5432/wikipetiadev?schema=public
+      JWT_SECRET: wolemachawolemachawolemacha
+      FRONTEND_URL: http://localhost:3000
+    networks:
+      cas:
+        ipv4_address: 172.1.0.2
     depends_on:
-      - postgres
+      - database
     build:
       context: ./
-      dockerfile: ./Dockerfile
-    image: 'teckyio/todo-server:latest'
+      dockerfile: ./dockerfile
+    image: 'cas-server'
     ports:
       - '8080:80'
-  todo-db:
-    image: 'postgres:13'
+  database:
+    image: 'postgres:latest'
     environment:
-      POSTGRES_PORT: 5432
-    env_file:
-      - docker.env
+      POSTGRES_DB: wikipetiadev
+      POSTGRES_PASSWORD: aMTZsXCXMyoR7D2HXH
+      POSTGRES_USER: admin
     ports:
-      - '25432:5432'
+      - '5432:5432'
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
+      - ./pg/data:/var/lib/postgresql/data
+    networks:
+      cas:
+        ipv4_address: 172.1.0.10
+networks:
+  cas:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.1.0.0/24

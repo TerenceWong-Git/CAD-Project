@@ -53,7 +53,7 @@ export default function Register() {
     console.log(res.status);
     const result = await res.json();
     console.log(result);
-    if (res.status == 201) {
+    if (res.status === 201) {
       console.log("You create account successfully");
       navigate("/");
     } else {

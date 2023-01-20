@@ -32,6 +32,7 @@ export class RegisterDto {
   @IsString()
   @IsNotEmpty()
   @IsStrongPassword()
+  @MinLength(8)
   password: string;
 
   @IsNumber()

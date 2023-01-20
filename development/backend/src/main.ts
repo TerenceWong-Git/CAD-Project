@@ -5,7 +5,7 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const options = {
-    origin: ['http://localhost:3000'],
+    origin: process.env.FRONTEND_URL,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 200,
@@ -18,6 +18,8 @@ async function bootstrap() {
       whitelist: true,
     }),
   );
-  await app.listen(8080);
+
+  const PORT = process.env.PORT ?? 8080;
+  await app.listen(PORT);
 }
 bootstrap();

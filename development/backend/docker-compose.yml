@@ -1,30 +1,34 @@
 version: '3'
 
 services:
-  todo-server:
+  cas-server:
     environment:
       NODE_ENV: production
       PORT: 80
-      POSTGRES_HOST: todo-db
+      POSTGRES_HOST: database
       POSTGRES_PORT: 5432
-      POSTGRES_DB: todo-app
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
+      POSTGRES_DB: wikipetiadev
+      POSTGRES_PASSWORD: aMTZsX~CXMy#oR7D2HXH
+      POSTGRES_USER: admin
+      DATABASE_URL: postgresql://admin:aMTZsX~CXMy#oR7D2HXH@localhost:5432/wikipetiadev?schema=public
+      JWT_SERCET: wolemachawolemachawolemacha
+      FRONTEND_URL: https://www.wikipedtia.me
+    links:
+      - database
     depends_on:
-      - postgres
+      - database
     build:
       context: ./
       dockerfile: ./Dockerfile
-    image: 'teckyio/todo-server:latest'
+    image: 'cas-server'
     ports:
       - '8080:80'
-  todo-db:
-    image: 'postgres:13'
+  database:
+    image: 'postgres:latest'
     environment:
-      POSTGRES_PORT: 5432
-    env_file:
-      - docker.env
+      POSTGRES_PASSWORD: aMTZsX~CXMy#oR7D2HXH
+      POSTGRES_USER: admin
     ports:
-      - '25432:5432'
+      - '5432:5432'
     volumes:
       - ./pgdata:/var/lib/postgresql/data

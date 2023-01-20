@@ -7,4 +7,4 @@ COPY . .
 RUN yarn
 RUN mkdir uploads
 
-CMD yarn migrate:dev && yarn start 
+CMD yarn migrate:dev && yarn seed:dev && yarn start

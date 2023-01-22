@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { Circle, GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import Mall from "../../uploads/clinic.png";
 
 const containerStyle = {
   width: "600px",
@@ -136,7 +137,7 @@ export default function Map() {
             {places.map((place) => {
               return (
                 <div key={place.engName}>
-                  <Marker position={{ lat: place.latitude, lng: place.longitude }} />
+                  <Marker position={{ lat: place.latitude, lng: place.longitude }} options={{ icon: Mall }} />
                 </div>
               );
             })}

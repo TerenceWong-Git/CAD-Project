@@ -37,17 +37,17 @@ export class CommentController {
     return result;
   }
 
-  @Post('create')
-  @UseGuards(JwtGuard)
-  @UseInterceptors(FileInterceptor('file'))
-  async createComment(
-    @GetUser('id') userId: number,
-    @Body() commentDto: CreateCommentDto,
-    @UploadedFiles() files: Express.Multer.File[]
-  ) {
-    await this.commentService.createComment(userId, commentDto,files);
-    return { message: 'success' };
-  }
+  // @Post('create')
+  // @UseGuards(JwtGuard)
+  // @UseInterceptors(FileInterceptor('file'))
+  // async createComment(
+  //   @GetUser('id') userId: number,
+  //   @Body() commentDto: CreateCommentDto,
+  //   @UploadedFiles() files: Express.Multer.File[]
+  // ) {
+  //   await this.commentService.createComment(userId, commentDto,files);
+  //   return { message: 'success' };
+  // }
 
   @Patch('update/:id')
   @UseGuards(JwtGuard)

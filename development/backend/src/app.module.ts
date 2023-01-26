@@ -4,7 +4,8 @@ import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { CommentModule } from './comment/comment.module';
-import { PetModule } from './pet/pet.module'
+import { PetModule } from './pet/pet.module';
+import { MapModule } from './map/map.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { PetModule } from './pet/pet.module'
     UserModule,
     PrismaModule,
     AuthModule,
+    MapModule,
     CommentModule,
     PetModule,
   ],

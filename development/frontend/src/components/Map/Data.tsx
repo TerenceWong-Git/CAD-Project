@@ -62,3 +62,22 @@ const places = [
 ];
 
 export default places;
+
+// import { useEffect, useState } from "react";
+
+// const differentPlaces = function loadPlacesData() {
+//   const [loadPlacesData, setLoadPlacesData] = useState<any[]>([]);
+
+//   useEffect(() => {
+//     async function loadData() {
+//       const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/map`);
+//       const json = await res.json();
+
+//       setLoadPlacesData(json);
+//     }
+//     loadData();
+//   }, []);
+//   return loadPlacesData;
+// };
+
+// export default differentPlaces;

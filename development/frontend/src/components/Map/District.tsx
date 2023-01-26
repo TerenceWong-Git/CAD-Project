@@ -1,5 +1,26 @@
 const districts = [
   "Islands",
+  "Kwai Tsing",
+  "North",
+  "Sai Kung",
+  "Sha Tin",
+  "Tai Po",
+  "Tsuen Wan",
+  "Tuen Mun",
+  "Yuen Long",
+  "Kowloon City",
+  "Kwun Tong",
+  "Sham Shui Po",
+  "Wong Tai Sin",
+  "Yau Tsim Mong",
+  "Central And Western",
+  "Eastern",
+  "Southern",
+  "Wan Chai",
+];
+
+const Type = [
+  "Islands",
   "Kwai_tsing",
   "North",
   "Sai_kung",
@@ -19,6 +40,4 @@ const districts = [
   "Wan_chai",
 ];
 
-const mapTypeId = [{ 1: "Shop" }, { 2: "Clinic" }];
-
-export { districts, mapTypeId };
+export { districts, Type };

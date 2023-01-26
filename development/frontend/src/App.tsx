@@ -8,6 +8,7 @@ import Register from "./pages/auth/Register";
 import PrivateRoute from "./redux/PrivateRoute";
 import Map from "./pages/Map/Map";
 import CommentPage from "./pages/comment/CommentPage";
+import Data from "./components/Map/Data";
 
 export default function App() {
   return (

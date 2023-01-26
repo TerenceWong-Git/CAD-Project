@@ -43,18 +43,16 @@ export class CommentService {
     commentDto: CreateCommentDto,
     files: Express.Multer.File[],
   ) {
-    // const file = files.map(file => file)
+    const newFiles = files.map((file) => ({ name: file.filename }));
+    console.log("userid:",userId);
+    console.log("files:",files);
+    
+    
     const insertResult = await this.prismaService.comment.create({
       data: {
         userId: userId,
         ...commentDto,
-        CommentImg: {
-          createMany: {
-            data: [
-            
-            ],
-          },
-        },
+        CommentImg: { createMany: { data: newFiles } },
       },
     });
   }

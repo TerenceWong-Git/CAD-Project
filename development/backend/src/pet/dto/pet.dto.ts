@@ -1,4 +1,5 @@
 import { Gender } from '@prisma/client';
+import { Type } from 'class-transformer';
 import {
   IsNotEmpty,
   IsNumber,
@@ -9,14 +10,15 @@ import {
 } from 'class-validator';
 
 export class PetDto {
+  
   @IsNotEmpty() id: string;
   @IsNotEmpty() petname: string;
 }
 
 export class AddPetDto {
-  @IsString()
-  @IsOptional()
-  profileImg?: string;
+  // @IsString()
+  // @IsOptional()
+  // profileImg?: string;
 
   @IsString()
   @IsNotEmpty()
@@ -26,6 +28,7 @@ export class AddPetDto {
   @IsOptional()
   date_birth?: Date;
 
+  @Type(() => Number)
   @IsNumber()
   speciesId: number;
 

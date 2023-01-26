@@ -1,0 +1,9 @@
+DATABASE_URL=postgresql://admin:EErNxpM1VojE815EttGCbKhq3M7FCusccEmy7FQz@database:5432/wikipetiadev?schema=schema
+JWT_SECRET=1234
+FRONTEND_URL=https://www.wikipetia.me
+
+
+
+POSTGRES_DB=wikipetiadev
+POSTGRES_PASSWORD=EErNxpM1VojE815EttGCbKhq3M7FCusccEmy7FQz
+POSTGRES_USER=admin

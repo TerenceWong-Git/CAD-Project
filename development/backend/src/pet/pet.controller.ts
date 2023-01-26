@@ -1,13 +1,20 @@
-import { Controller, Post, Get, UseGuards } from '@nestjs/common';
+import { Controller, Post, Get, UseGuards, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { Body } from '@nestjs/common/decorators/http/route-params.decorator';
 import { GetUser } from 'src/auth/decorator';
 import { JwtGuard } from 'src/auth/guard';
 import { AddPetDto } from './dto';
 import { PetService } from './pet.service';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('pet')
 export class PetController {
   constructor(private readonly petService: PetService) {}
+
+  @Get("species")
+  async getSpecies(){
+
+    return await this.petService.getSpecies();
+  }
 
   @Get("me")
   @UseGuards(JwtGuard)
@@ -18,7 +25,8 @@ export class PetController {
   }
   @Post('addPet')
   @UseGuards(JwtGuard)
-  async addPet(@GetUser('id') userId: number, @Body() addPetDto: AddPetDto,) {
-    return await this.petService.addPet(userId, addPetDto);
+  @UseInterceptors(FileInterceptor('file'))
+  async addPet(@GetUser('id') userId: number, @Body() addPetDto: AddPetDto,@UploadedFile() file:Express.Multer.File) {
+    return await this.petService.addPet(userId, addPetDto, file);
   }
 }

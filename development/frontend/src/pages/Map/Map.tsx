@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Circle, GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import places from "../../components/Map/Data";
 import Mall from "../../uploads/clinic.png";
@@ -32,28 +32,39 @@ export default function Map() {
 
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
-  const [userlocation, setUserlocation] = useState({ lat: 0, lng: 0 });
+  const [userLocation, setUserLocation] = useState({ lat: 0, lng: 0 });
   const [status, setStatus] = useState("");
 
-  console.log("lat: ", lat);
-  console.log("lng: ", lng);
+  ////////////////////////////////////   Load Data   /////////////////////////////////////
+  const [loadPlacesData, setLoadPlacesData] = useState<any[]>([]);
+  const [items, setItems] = useState<any[]>([]);
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/map`);
+      const json = await res.json();
+
+      setLoadPlacesData(json);
+      setItems(json);
+    }
+    fetchData();
+  }, []);
+
+  ////////////////////////////////////   Load Data   /////////////////////////////////////
 
   ///////////////////////////////////   Initial Map   ////////////////////////////////////
   navigator.geolocation.watchPosition((position) => {
-    // setLat(position.coords.latitude);
-    // setLng(position.coords.longitude);
-    setUserlocation({ lat: position.coords.latitude, lng: position.coords.longitude });
+    setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
   });
-  console.log("Userlocation: ", userlocation);
+  console.log("UserLocation: ", userLocation);
   ///////////////////////////////////   Initial Map   ////////////////////////////////////
 
-  ////////////////////////////////////   Relocate   ////////////////////////////////////
+  /////////////////////////////////////   Relocate   /////////////////////////////////////
   const getLocation = () => {
     if (!navigator.geolocation) {
       setStatus("Geolocation is not supported by your browser");
     } else {
       setStatus("Locating...");
-      navigator.geolocation.getCurrentPosition(
+      navigator.geolocation.watchPosition(
         (position) => {
           setStatus("");
           setLat(position.coords.latitude);
@@ -68,20 +79,16 @@ export default function Map() {
   ////////////////////////////////////   Relocate   ////////////////////////////////////
 
   ////////////////////////////////////   Category   ////////////////////////////////////
-  const [items, setItems] = useState(places);
 
-  console.log("item: ", items);
-
-  const filterItem = (category: string | number) => {
+  const filterItem = (category: string) => {
     console.log("Category: ", category);
-    const newItems = places.filter((place) => {
-      return place.district === category || place.mapTypeId === category;
+    const newItems = loadPlacesData.filter((place) => {
+      return place.district === category || place.mapType.engType === category;
     });
     setItems(newItems);
   };
 
-  //(place.district || place.mapTypeId)
-
+  console.log("item: ", items);
   ////////////////////////////////////   Category   ////////////////////////////////////
 
   ///////////////////////////////////   Search Bar   ///////////////////////////////////
@@ -106,13 +113,15 @@ export default function Map() {
 
       <div>
         {isLoaded && (
-          <GoogleMap mapContainerStyle={containerStyle} center={userlocation} zoom={18} options={{ disableDefaultUI: true }}>
-            <Circle center={userlocation} options={circleSettings} />
-            <Marker position={userlocation} />
+          <GoogleMap mapContainerStyle={containerStyle} center={userLocation} zoom={12} options={{ disableDefaultUI: true }}>
+            <Circle center={userLocation} options={circleSettings} />
+            <Marker position={userLocation} />
             {items.map((item) => {
+              const latitudeToFloat = parseFloat(item.latitude);
+              const longitudeToFloat = parseFloat(item.longitude);
               return (
                 <div key={item.engName}>
-                  <Marker position={{ lat: item.latitude, lng: item.longitude }} options={{ icon: Mall }} />
+                  <Marker position={{ lat: latitudeToFloat, lng: longitudeToFloat }} options={{ icon: Mall }} />
                 </div>
               );
             })}

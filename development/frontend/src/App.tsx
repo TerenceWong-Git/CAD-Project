@@ -8,6 +8,8 @@ import Register from "./pages/auth/Register";
 import PrivateRoute from "./redux/PrivateRoute";
 import CommentPage from "./pages/comment/CommentPage";
 import Map from "./pages/Map/Map";
+import PetProfile from "./pages/pet/PetProfile";
+import CreatePetProfile from "./pages/pet/CreatePetProfile";
 import CreateComment from "./pages/comment/CreateComment";
 
 export default function App() {
@@ -40,6 +42,9 @@ export default function App() {
         <Route path="/map" element={<Map />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
+        <Route path="/petprofile" element={<PetProfile />}></Route>
+        <Route path="/createpetprofile" element={<CreatePetProfile />}></Route>
+        
       </Routes>
     </div>
   );

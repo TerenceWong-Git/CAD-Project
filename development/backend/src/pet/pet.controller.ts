@@ -17,7 +17,8 @@ export class PetController {
     return await this.petService.getPet(userId);
   }
   @Post('addPet')
-  async addPet(@GetUser('id') userId: number, @Body() addPetDto: AddPetDto) {
+  @UseGuards(JwtGuard)
+  async addPet(@GetUser('id') userId: number, @Body() addPetDto: AddPetDto,) {
     return await this.petService.addPet(userId, addPetDto);
   }
 }

@@ -25,12 +25,14 @@ export class PetService {
     // }
     
     async addPet(userId: number, addPetDto: AddPetDto) {
+        
         await this.prismaService.pet.create({
             data: {
                 userId: userId,
                 name: addPetDto.name,
                 dateBirth: addPetDto.date_birth,
-                gender: addPetDto.gender
+                gender: addPetDto.gender,
+                speciesId: addPetDto.speciesId
             }
         })
     }

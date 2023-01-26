@@ -2,6 +2,7 @@ import { Gender } from '@prisma/client';
 import {
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
   MaxLength,
   
@@ -13,24 +14,23 @@ export class PetDto {
 }
 
 export class AddPetDto {
-  @IsNumber()
-  userId: number;
-
   @IsString()
-  profileImg: string|undefined;
+  @IsOptional()
+  profileImg?: string;
 
   @IsString()
   @IsNotEmpty()
   @MaxLength(14)
   name: string;
 
-  date_birth: Date;
+  @IsOptional()
+  date_birth?: Date;
 
   @IsNumber()
-  species: Number|undefined;
+  speciesId: number;
 
   @IsNotEmpty()
   gender: Gender;
 
-
+  
 }

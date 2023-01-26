@@ -2,12 +2,12 @@ import React from "react";
 import "./App.css";
 import { Route, Routes } from "react-router";
 import Login from "./pages/auth/Login";
-import Map from "./pages/map/Map";
 import CommentPage from "./pages/comment/CommentPage";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Register from "./pages/auth/Register";
 import PrivateRoute from "./redux/PrivateRoute";
+import Map from "./pages/Map/Map";
 
 export default function App() {
   return (

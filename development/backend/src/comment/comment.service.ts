@@ -3,6 +3,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { Comment, Prisma } from '@prisma/client';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
+import { stringify } from 'querystring';
 
 @Injectable()
 export class CommentService {
@@ -21,14 +22,25 @@ export class CommentService {
     return commentData;
   }
 
-  async createComment(userId: number, commentDto: CreateCommentDto) {
+  async getUserComment(userId: number) {
+    const userCommentData = await this.prismaService.comment.findMany({
+      where: {
+        userId: userId,
+      },
+    });
+    return userCommentData;
+  }
+
+  async createComment(
+    userId: number,
+    commentDto: CreateCommentDto,
+    files: Express.Multer.File[],
+  ) {
+    // const file = files.map(file => file)
     const insertResult = await this.prismaService.comment.create({
       data: {
         userId: userId,
-        mapId: commentDto.mapId,
-        title: commentDto.title,
-        content: commentDto.content,
-        isThumb: commentDto.is_thumb,
+        ...commentDto,
       },
     });
   }
@@ -50,11 +62,12 @@ export class CommentService {
 
     return this.prismaService.comment.update({
       where: {
-        id:commentId,
+        id: commentId,
       },
-      data:{
-        ...commentDto
-      }
-    })
+      data: {
+        ...commentDto,
+        id: commentId,
+      },
+    });
   }
 }

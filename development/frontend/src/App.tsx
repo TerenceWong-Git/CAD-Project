@@ -6,6 +6,8 @@ import { Route, Routes } from "react-router";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import PrivateRoute from "./redux/PrivateRoute";
+import Map from "./pages/Map/Map";
+import CommentPage from "./pages/comment/CommentPage";
 
 export default function App() {
   return (

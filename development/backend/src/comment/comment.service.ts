@@ -31,19 +31,19 @@ export class CommentService {
     return userCommentData;
   }
 
-  async createComment(
-    userId: number,
-    commentDto: CreateCommentDto,
-    files: Express.Multer.File[],
-  ) {
-    // const file = files.map(file => file)
-    const insertResult = await this.prismaService.comment.create({
-      data: {
-        userId: userId,
-        ...commentDto,
-      },
-    });
-  }
+  // async createComment(
+  //   userId: number,
+  //   commentDto: CreateCommentDto,
+  //   files: Express.Multer.File[],
+  // ) {
+  //   // const file = files.map(file => file)
+  //   const insertResult = await this.prismaService.comment.create({
+  //     data: {
+  //       userId: userId,
+  //       ...commentDto,
+  //     },
+  //   });
+  // }
 
   async editCommentById(
     userId: number,

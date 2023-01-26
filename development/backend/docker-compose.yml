@@ -4,9 +4,8 @@ services:
   cas-server:
     environment:
       PORT: 80
-      DATABASE_URL: postgresql://admin:aMTZsXCXMyoR7D2HXH@172.1.0.10:5432/wikipetiadev?schema=public
-      JWT_SECRET: wolemachawolemachawolemacha
-      FRONTEND_URL: http://localhost:3000
+    env_file:
+      - docker.env
     networks:
       cas:
         ipv4_address: 172.1.0.2
@@ -18,12 +17,11 @@ services:
     image: 'cas-server'
     ports:
       - '8080:80'
+      - '5555:5555'
   database:
     image: 'postgres:latest'
-    environment:
-      POSTGRES_DB: wikipetiadev
-      POSTGRES_PASSWORD: aMTZsXCXMyoR7D2HXH
-      POSTGRES_USER: admin
+    env_file:
+      - docker.env
     ports:
       - '5432:5432'
     volumes:

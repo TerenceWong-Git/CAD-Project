@@ -27,13 +27,6 @@ export class CommentService {
       where: {
         userId: userId,
       },
-      include: {
-        user: {
-          select: {
-            username: true,
-          },
-        },
-      },
     });
     return userCommentData;
   }
@@ -78,6 +71,7 @@ export class CommentService {
       },
       data: {
         ...commentDto,
+        id: commentId,
       },
     });
   }

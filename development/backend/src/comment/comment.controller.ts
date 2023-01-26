@@ -18,11 +18,21 @@ import { CommentService } from './comment.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { GetUser } from 'src/auth/decorator';
 import { UpdateCommentDto } from './dto/update-comment.dto';
-import { FileInterceptor } from '@nestjs/platform-express/multer';
+import {
+  AnyFilesInterceptor,
+  FileFieldsInterceptor,
+  FileInterceptor,
+} from '@nestjs/platform-express/multer';
 
 @Controller('comment')
 export class CommentController {
   constructor(private readonly commentService: CommentService) {}
+  
+  @Get('/map')
+  async getMap () {
+    const result = await this.commentService.getMap();
+    return result;
+  }
 
   @Get()
   async getComment() {
@@ -39,15 +49,27 @@ export class CommentController {
 
   @Post('create')
   @UseGuards(JwtGuard)
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(AnyFilesInterceptor())
   async createComment(
     @GetUser('id') userId: number,
     @Body() commentDto: CreateCommentDto,
-    @UploadedFiles() files: Express.Multer.File[]
+    @UploadedFiles() files: Express.Multer.File[],
   ) {
-    await this.commentService.createComment(userId, commentDto,files);
+    console.log('check multer ', files);
+    console.log(`Comment creating`);
+    await this.commentService.createComment(userId, commentDto, files);
     return { message: 'success' };
   }
+
+  //   @UseInterceptors(FileFieldsInterceptor([
+  //     {name:'images',maxCount:2}
+  //   ]))
+  //   @Post('create')
+  //   async createComment(@UploadedFiles() files:{images?:Express.Multer.File[]}) {
+  //     console.log('check multer ', files);
+  //     // await this.commentService.createComment(userId, commentDto, files);
+  //     return { message: 'success' };
+  //   }
 
   @Patch('update/:id')
   @UseGuards(JwtGuard)

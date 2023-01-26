@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import SimpleBottomNavigation from "../../components/FunctionBar";
 
 function CommentPage() {
@@ -46,6 +47,7 @@ function CommentPage() {
     <div>
       CommentPage
       <div>
+        <button><Link to={'/createComments'}>建立</Link></button>
         <button>篩選</button>
         <button>排序</button>
         <button
@@ -68,7 +70,6 @@ function CommentPage() {
           <p>{comment.username}</p>
         </div>
       ))}
-      <SimpleBottomNavigation />
     </div>
   );
 }

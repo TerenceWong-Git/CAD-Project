@@ -6,6 +6,9 @@ import { Route, Routes } from "react-router";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import PrivateRoute from "./redux/PrivateRoute";
+import CommentPage from "./pages/comment/CommentPage";
+import Map from "./pages/Map/Map";
+import CreateComment from "./pages/comment/CreateComment";
 
 export default function App() {
   return (
@@ -31,6 +34,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/comments" element={<CommentPage />}></Route>
+          <Route path="/createComments" element={<CreateComment />}></Route>
         </Route>
 
         <Route path="/map" element={<Map />}></Route>

@@ -8,6 +8,16 @@ import { stringify } from 'querystring';
 @Injectable()
 export class CommentService {
   constructor(private readonly prismaService: PrismaService) {}
+  
+  async getMap() {
+    const mapData = await this.prismaService.maps.findMany({
+      select:{
+        id:true,
+        chiName:true,
+      }
+    });
+    return mapData;
+  }
 
   async getComment() {
     const commentData = await this.prismaService.comment.findMany({
@@ -36,16 +46,18 @@ export class CommentService {
     commentDto: CreateCommentDto,
     files: Express.Multer.File[],
   ) {
-    const newFiles = files.map((file) => ({ name: file.filename }));
-    console.log("userid:",userId);
-    console.log("files:",files);
-    
-    
+    console.log(`service:creating comment`);
+    console.log(`check files`, files);
+    // const newFiles = files.map((file) => ({ name: file.filename }));
+    const fieldFiles = files.map((file) => ({name:file.originalname}))
+    console.log('userid:', userId);
+    console.log('files:', fieldFiles);
+
     const insertResult = await this.prismaService.comment.create({
       data: {
         userId: userId,
         ...commentDto,
-        CommentImg: { createMany: { data: newFiles } },
+        CommentImg: { createMany: { data: fieldFiles } },
       },
     });
   }

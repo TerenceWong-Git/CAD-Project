@@ -19,4 +19,6 @@ const districts = [
   "Wan_chai",
 ];
 
-export default districts;
+const mapTypeId = [{ 1: "Shop" }, { 2: "Clinic" }];
+
+export { districts, mapTypeId };

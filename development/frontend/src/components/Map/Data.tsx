@@ -1,5 +1,6 @@
 const places = [
   {
+    mapTypeId: 1,
     chiName: "龍貓仔專門店",
     engName: "CHINCHILLA AND PETS SHOP",
     chiAddress: "香港渣華道3-5號永光閣4號鋪",
@@ -11,6 +12,7 @@ const places = [
     profileImg: "123",
   },
   {
+    mapTypeId: 1,
     chiName: "BABY FAT PET SHOP",
     engName: "BABY FAT PET SHOP",
     chiAddress: "香港西營盤皇后大道西330號-336號新昇大廈C號鋪",
@@ -22,6 +24,7 @@ const places = [
     profileImg: "124",
   },
   {
+    mapTypeId: 2,
     chiName: "夏利維動物醫院",
     engName: "Chris & Nicola's Animal Hospital",
     chiAddress: "香港天后永興街37號地鋪",
@@ -33,6 +36,7 @@ const places = [
     profileImg: "125",
   },
   {
+    mapTypeId: 2,
     chiName: "中環貓醫院 ",
     engName: "Central Cat Hospital ",
     chiAddress: "香港中環鴨巴甸街37號地舖",
@@ -44,6 +48,7 @@ const places = [
     profileImg: "126",
   },
   {
+    mapTypeId: 2,
     chiName: "Pets Central 流動診所 (荃灣)",
     engName: "Pets Central Mobile Clinic (Tsuen Wan)",
     chiAddress: "新界荃灣馬灣珀麗路8號",

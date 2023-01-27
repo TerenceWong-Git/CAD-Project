@@ -5,15 +5,26 @@ import { AddPetDto, AddWeightDto, PetDto } from './dto';
 
 @Injectable()
 export class PetService {
-    constructor(private readonly prismaService: PrismaService) {}
+  constructor(private readonly prismaService: PrismaService) {}
 
-    async getPet(Id:number){
-        const foundPet = await this.prismaService.pet.findMany({
-            where:{ userId: Id},
-        })
+  async getPet(Id: number) {
+    const foundPet = await this.prismaService.pet.findMany({
+      where: { userId: Id },
+      select: {
+        name: true,
+        species: {
+          select: {
+            id: true,
+            chiSpecies: true,
+            engSpecies: true,
+          },
+        },
+        PetWeight: true,
+      },
+    });
 
-        return foundPet;
-    }
+    return foundPet;
+  }
 
     async getSpecies() {
         const foundSpecies = await this.prismaService.species.findMany()

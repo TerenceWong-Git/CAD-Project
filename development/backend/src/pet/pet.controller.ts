@@ -10,17 +10,16 @@ import { FileInterceptor } from '@nestjs/platform-express';
 export class PetController {
   constructor(private readonly petService: PetService) {}
 
-  @Get("species")
-  async getSpecies(){
-
+  @Get('species')
+  async getSpecies() {
     return await this.petService.getSpecies();
   }
 
-  @Get("me")
+  @Get('me')
   @UseGuards(JwtGuard)
   async getPet(@GetUser('id') userId: number) {
     console.log(userId);
-    
+
     return await this.petService.getPet(userId);
   }
   @Post('addPet')

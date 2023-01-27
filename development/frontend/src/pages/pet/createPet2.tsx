@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 export default function CreatePetProfile2() {
-  const navigate = useNavigate();
-
   const [loadPetSpecies, setLoadPetSpecies] = useState<any[]>([]);
   const [isTriggered, setIsTriggered] = useState<number>(0);
   const [value, setValue] = useState<any>(null);
@@ -30,12 +28,19 @@ export default function CreatePetProfile2() {
   const catFilter = loadPetSpecies.filter((item) => {
     return item.id === 1;
   });
+  console.log("catFilter: ", catFilter);
   const catIdFilter = catFilter.map((item) => item.id);
+  console.log("catIdFilter: ", catIdFilter);
   const catNameFilter = catFilter.map((item) => item.chiSpecies);
+  console.log("catNameFilter: ", catNameFilter);
+
   const catSpeciesFilter = loadPetSpecies.filter((item) => {
     return item.familyId === 1;
   });
+
+  console.log("catSpeciesFilter: ", catSpeciesFilter);
   const catSubSpeciesFilter = catSpeciesFilter.map((item) => item.chiSpecies);
+  console.log("catSubSpeciesFilter: ", catSubSpeciesFilter);
   ///////////////////////   Cat Species   ///////////////////////
 
   ///////////////////////   Dog Species   ///////////////////////

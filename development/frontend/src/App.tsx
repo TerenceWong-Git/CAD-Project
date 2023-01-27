@@ -46,7 +46,8 @@ export default function App() {
         <Route path="/register" element={<Register />}></Route>
         <Route path="/petprofile" element={<PetProfile />}></Route>
         <Route path="/createpetprofile" element={<CreatePetProfile />}></Route>
-        <Route path="/weight" element={<WeightRecord />}></Route><Route path="/createpetprofile2" element={<CreatePetProfile2 />}></Route>
+        <Route path="/weight" element={<WeightRecord />}></Route>
+        <Route path="/createpetprofile2" element={<CreatePetProfile2 />}></Route>
       </Routes>
     </div>
   );

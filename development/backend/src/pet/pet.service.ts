@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UserDto } from 'src/user/dto';
-import { AddPetDto, PetDto } from './dto';
+import { AddPetDto, AddWeightDto, PetDto } from './dto';
 
 @Injectable()
 export class PetService {
@@ -18,6 +18,16 @@ export class PetService {
     async getSpecies() {
         const foundSpecies = await this.prismaService.species.findMany()
         return foundSpecies
+    }
+
+    async addWeight(addWeightDto:AddWeightDto, petId: number){
+        const data = await this.prismaService.petWeight.create({
+            data:{
+                petId: petId,
+                ...addWeightDto
+            }
+        })
+        return data
     }
     
     async addPet(userId: number, addPetDto: AddPetDto, file:Express.Multer.File) {

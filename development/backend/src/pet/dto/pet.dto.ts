@@ -9,6 +9,13 @@ import {
   
 } from 'class-validator';
 
+export class AddWeightDto {
+  @Type(() => Number)
+  @IsNumber()
+  @IsNotEmpty()
+  weight: number;
+
+}
 export class PetDto {
   
   @IsNotEmpty() id: string;

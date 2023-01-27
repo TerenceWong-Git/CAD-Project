@@ -10,6 +10,7 @@ import CommentPage from "./pages/comment/CommentPage";
 import Map from "./pages/Map/Map";
 import PetProfile from "./pages/pet/PetProfile";
 import CreatePetProfile from "./pages/pet/CreatePetProfile";
+import WeightRecord from "./pages/pet/WeightRecord";
 
 
 
@@ -44,7 +45,7 @@ export default function App() {
         <Route path="/register" element={<Register />}></Route>
         <Route path="/petprofile" element={<PetProfile />}></Route>
         <Route path="/createpetprofile" element={<CreatePetProfile />}></Route>
-        
+        <Route path="/weight" element={<WeightRecord />}></Route>
       </Routes>
     </div>
   );

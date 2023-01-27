@@ -20,7 +20,7 @@ function CreatePetProfile() {
         loadSpecies()
     },[])
     
-    const [family, setFamily] = useState<{familyId?:number}>({})
+    const [family, setFamily] = useState<number| null>(0)
     // const familyIdNull = species.filter((specie)=> specie.familyId === null)
     
   return (
@@ -76,7 +76,7 @@ function CreatePetProfile() {
                 species
                 <select {...register('speciesId')}>
                 
-                {species.filter((specie)=> specie.familyId === null).map(specie =>(<option value={specie.id}>{specie.chiSpecies}</option>))}
+                
             
                 </select>
 

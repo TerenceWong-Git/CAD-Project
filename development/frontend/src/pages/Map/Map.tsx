@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Circle, GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import places from "../../components/Map/Data";
-import Mall from "../../../public/clinic.png";
+import Mall from "../../components/Map/icons/clinic.png";
 import CategoryButtons from "../../components/Map/Category";
 import { Autocomplete } from "@mantine/core";
 

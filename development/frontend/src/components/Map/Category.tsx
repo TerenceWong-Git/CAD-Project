@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import places from "./Data";
-import districts from "./District";
+import { districts, types } from "./District";
 
-const CategoryButtons = ({ filterItem, setItems }: any) => {
+const CategoryButtons = ({ filterItem, setItem }: any) => {
   const [catergoryPageItems, setCatergoryPageItems] = useState<any[]>([]);
+
   ////////////////////////////////////   Load Data   /////////////////////////////////////
 
   useEffect(() => {
@@ -22,7 +23,7 @@ const CategoryButtons = ({ filterItem, setItems }: any) => {
   return (
     <>
       <div>
-        <button onClick={() => setItems(catergoryPageItems)}>All</button>
+        <button onClick={() => setItem(catergoryPageItems)}>All</button>
         {districts.map((district, id) => {
           return (
             <button onClick={() => filterItem(district)} key={id}>
@@ -33,8 +34,8 @@ const CategoryButtons = ({ filterItem, setItems }: any) => {
       </div>
       <br></br>
       <div>
-        <button onClick={() => setItems(catergoryPageItems)}>All</button>
-        {catergoryPageItems
+        <button onClick={() => setItem(catergoryPageItems)}>All</button>
+        {/* {catergoryPageItems
           .reduce((pv: any[], cv) => {
             if (pv.includes(cv.mapType.engType)) {
               return pv;
@@ -48,7 +49,14 @@ const CategoryButtons = ({ filterItem, setItems }: any) => {
                 {place}
               </button>
             );
-          })}
+          })} */}
+        {types.map((type, id) => {
+          return (
+            <button onClick={() => filterItem(type)} key={id}>
+              {type}
+            </button>
+          );
+        })}
       </div>
     </>
   );

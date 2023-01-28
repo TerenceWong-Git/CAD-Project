@@ -30,105 +30,145 @@ export default function Map() {
     googleMapsApiKey: "AIzaSyCD0Ddx6UPdWGsBUUBR711rCZQYRboSSrw",
   });
 
+  const [userLocation, setUserLocation] = useState({ lat: 0, lng: 0 });
+  const [targetLocation, setTargetLocation] = useState({ lat: 0, lng: 0 });
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
-  const [userLocation, setUserLocation] = useState({ lat: 0, lng: 0 });
-  const [status, setStatus] = useState("");
 
-  ////////////////////////////////////   Load Data   /////////////////////////////////////
+  const [isTriggered, setIsTriggered] = useState(false);
+
   const [loadPlacesData, setLoadPlacesData] = useState<any[]>([]);
   const [items, setItems] = useState<any[]>([]);
+  const [searchItems, setSearchItems] = useState<any[]>([]);
+
+  const [value, setValue] = useState("");
+
+  ////////////////////////////////////   Load Data   /////////////////////////////////////
+
   useEffect(() => {
     async function fetchData() {
       const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/map`);
       const json = await res.json();
 
-      setLoadPlacesData(json);
       setItems(json);
+      setLoadPlacesData(json);
+      setSearchItems(json);
     }
     fetchData();
   }, []);
 
+  // useEffect(() => {
+  //   setTargetLocation({ lat: parseFloat(loadPlacesData[0].latitude), lng: parseFloat(loadPlacesData[0].longitude) });
+  // }, []);
+
   ////////////////////////////////////   Load Data   /////////////////////////////////////
 
-  ///////////////////////////////////   Initial Map   ////////////////////////////////////
+  ////////////////////////////////////   Initial Map   ///////////////////////////////////
+
   navigator.geolocation.watchPosition((position) => {
+    // setLat(position.coords.latitude);
+    // setLng(position.coords.longitude);
     setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
+    setTargetLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
   });
-  console.log("UserLocation: ", userLocation);
-  ///////////////////////////////////   Initial Map   ////////////////////////////////////
+  console.log(targetLocation);
+
+  ////////////////////////////////////   Initial Map   ///////////////////////////////////
 
   /////////////////////////////////////   Relocate   /////////////////////////////////////
-  const getLocation = () => {
-    if (!navigator.geolocation) {
-      setStatus("Geolocation is not supported by your browser");
-    } else {
-      setStatus("Locating...");
-      navigator.geolocation.watchPosition(
-        (position) => {
-          setStatus("");
-          setLat(position.coords.latitude);
-          setLng(position.coords.longitude);
-        },
-        () => {
-          setStatus("Unable to retrieve your location");
-        }
-      );
-    }
+  const getLocation = (e: any) => {
+    e.preventDefault();
+    navigator.geolocation.watchPosition((position) => {
+      // setLat(position.coords.latitude);
+      // setLng(position.coords.longitude);
+      setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
+      setTargetLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
+    });
+    console.log(targetLocation);
   };
-  ////////////////////////////////////   Relocate   ////////////////////////////////////
+  /////////////////////////////////////   Relocate   /////////////////////////////////////
 
-  ////////////////////////////////////   Category   ////////////////////////////////////
-
+  /////////////////////////////////////   Category   /////////////////////////////////////
   const filterItem = (category: string) => {
-    console.log("Category: ", category);
     const newItems = loadPlacesData.filter((place) => {
-      return place.district === category || place.mapType.engType === category;
+      const districtName = place.district.replaceAll("_", " ");
+      const mapType = place.mapType.engType.replaceAll("_", " ");
+
+      return districtName === category || mapType === category;
     });
     setItems(newItems);
+    setSearchItems(newItems);
   };
 
   console.log("item: ", items);
-  ////////////////////////////////////   Category   ////////////////////////////////////
 
-  ///////////////////////////////////   Search Bar   ///////////////////////////////////
-  const [value, setValue] = useState("");
-  console.log("value: ", value);
+  /////////////////////////////////////   Category   /////////////////////////////////////
+
+  ////////////////////////////////////   Search Bar   ////////////////////////////////////
 
   const filterPlaceName = items.map((item) => {
     return item.engName;
   });
-  console.log("filterPlaceName: ", filterPlaceName);
-  ///////////////////////////////////   Search Bar   ///////////////////////////////////
+
+  const getPlaceLocation = (category: string) => {
+    const newItems = loadPlacesData.filter((place) => {
+      const engName = place.engName;
+
+      return engName === category;
+    });
+
+    setSearchItems(newItems);
+    console.log("searchItems: ", searchItems);
+    setTargetLocation({ lat: parseFloat(searchItems[0].latitude), lng: parseFloat(searchItems[0].longitude) });
+    console.log("targetLocation: ", targetLocation);
+  };
+  console.log("value: ", value);
+  console.log("targetLocation: ", targetLocation);
+  console.log("searchItems: ", searchItems);
+  ////////////////////////////////////   Search Bar   ////////////////////////////////////
 
   return (
     <div>
-      <div>
-        <CategoryButtons filterItem={filterItem} setItem={setItems} />
-      </div>
+      {isTriggered ? (
+        <div>
+          <div>
+            <button onClick={() => setIsTriggered(false)}>Back</button>
+            <CategoryButtons filterItem={filterItem} setItem={setItems} />
+          </div>
+        </div>
+      ) : (
+        <div>
+          <div>
+            <Autocomplete value={value} onChange={setValue} data={filterPlaceName} />
+            <button onClick={() => getPlaceLocation(value)}>Search</button>
+          </div>
 
-      <div>
-        <Autocomplete value={value} onChange={setValue} data={filterPlaceName} />
-      </div>
+          <div>
+            <button onClick={() => setIsTriggered(true)}>Category</button>
+          </div>
 
-      <div>
-        {isLoaded && (
-          <GoogleMap mapContainerStyle={containerStyle} center={userLocation} zoom={12} options={{ disableDefaultUI: true }}>
-            <Circle center={userLocation} options={circleSettings} />
-            <Marker position={userLocation} />
-            {items.map((item) => {
-              const latitudeToFloat = parseFloat(item.latitude);
-              const longitudeToFloat = parseFloat(item.longitude);
-              return (
-                <div key={item.engName}>
-                  <Marker position={{ lat: latitudeToFloat, lng: longitudeToFloat }} options={{ icon: Mall }} />
-                </div>
-              );
-            })}
-          </GoogleMap>
-        )}
-        <button onClick={getLocation}>Get Location</button>
-      </div>
+          <div>
+            {/* userLocation */}
+            {/* { lat: lat, lng: lng } */}
+            {isLoaded && (
+              <GoogleMap mapContainerStyle={containerStyle} center={targetLocation} zoom={12} options={{ disableDefaultUI: true }}>
+                <Circle center={userLocation} options={circleSettings} />
+                <Marker position={userLocation} />
+                {searchItems.map((item) => {
+                  const latitudeToFloat = parseFloat(item.latitude);
+                  const longitudeToFloat = parseFloat(item.longitude);
+                  return (
+                    <div key={item.engName}>
+                      <Marker position={{ lat: latitudeToFloat, lng: longitudeToFloat }} options={{ icon: Mall }} />
+                    </div>
+                  );
+                })}
+              </GoogleMap>
+            )}
+            <button onClick={getLocation}>Get Location</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

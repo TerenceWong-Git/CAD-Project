@@ -13,6 +13,7 @@ import CreatePetProfile from "./pages/pet/CreatePetProfile";
 import CreateComment from "./pages/comment/CreateComment";
 import CreatePetProfile2 from "./pages/pet/createPet2";
 import Map2 from "./pages/Map/Map2";
+import LandingPage from "./pages/LandingPage";
 
 export default function App() {
   return (
@@ -35,12 +36,15 @@ export default function App() {
         </Button>
       </div>
 
+      <br></br>
+
       <Routes>
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/comments" element={<CommentPage />}></Route>
           <Route path="/createComments" element={<CreateComment />}></Route>
         </Route>
 
+        <Route path="/landing" element={<LandingPage />}></Route>
         <Route path="/map2" element={<Map2 />}></Route>
         <Route path="/map" element={<Map />}></Route>
         <Route path="/login" element={<Login />}></Route>

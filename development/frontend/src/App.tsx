@@ -7,13 +7,13 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import PrivateRoute from "./redux/PrivateRoute";
 import CommentPage from "./pages/comment/CommentPage";
-import Map from "./pages/Map/Map";
+import Map from "./pages/place/Map";
 import PetProfile from "./pages/pet/PetProfile";
 import CreatePetProfile from "./pages/pet/CreatePetProfile";
 import CreateComment from "./pages/comment/CreateComment";
 import CreatePetProfile2 from "./pages/pet/createPet2";
-import Map2 from "./pages/Map/Map2";
 import LandingPage from "./pages/LandingPage";
+import List from "./pages/place/List";
 
 export default function App() {
   return (
@@ -45,8 +45,9 @@ export default function App() {
         </Route>
 
         <Route path="/landing" element={<LandingPage />}></Route>
-        <Route path="/map2" element={<Map2 />}></Route>
+        {/* <Route path="/map2" element={<Map2 />}></Route> */}
         <Route path="/map" element={<Map />}></Route>
+        <Route path="/list" element={<List />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/petprofile" element={<PetProfile />}></Route>

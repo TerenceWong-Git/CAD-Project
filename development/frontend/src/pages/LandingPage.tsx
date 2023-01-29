@@ -87,7 +87,9 @@ export default function LandingPage() {
           return (
             //<Link to={`/matching/${data.id}`} > </Link>
             <div key={item.id}>
-              <img width="400" src={`${item.img}`} />
+              <p>
+                <img width="400" src={`${item.img}`} />
+              </p>
             </div>
           );
         })}

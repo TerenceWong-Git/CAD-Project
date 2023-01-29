@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Circle, GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
-import places from "../../components/Map/Data";
-import Mall from "../../components/Map/icons/clinic.png";
-import CategoryButtons from "../../components/Map/Category";
 import { Autocomplete } from "@mantine/core";
+import CategoryButtons from "../../components/place/map/Category";
+import Mall from "../../components/place/map/icons/mall.png";
 
 const containerStyle = {
   width: "600px",
@@ -133,7 +132,7 @@ export default function Map() {
         <div>
           <div>
             <button onClick={() => setIsTriggered(false)}>Back</button>
-            <CategoryButtons filterItem={filterItem} setItem={setItems} />
+            <CategoryButtons filterItem={filterItem} setItems={setItems} />
           </div>
         </div>
       ) : (

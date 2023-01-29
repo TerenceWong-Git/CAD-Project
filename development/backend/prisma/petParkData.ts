@@ -4064,13 +4064,13 @@ function filter2() {
       engName: info.NAME_EN,
       chiAddress: info.ADDRESS_TC,
       engAddress: info.ADDRESS_EN,
-      phoneNumber: info.NSEARCH02_EN,
-      district: info.SEARCH01_EN,
+      phoneNumber: parseInt(info.NSEARCH03_EN.replace(' ', '')),
+      district: info.SEARCH01_EN.toLowerCase().replace(' ', '_'),
       latitude: parseFloat(info.LATITUDE),
       longitude: parseFloat(info.LONGITUDE),
-      profileImg: '127',
+      profileImg: info.NSEARCH03_EN,
     });
   });
 }
 filter2();
-console.log(data3.slice(0, 9));
+console.log(data3.slice(90, 99));

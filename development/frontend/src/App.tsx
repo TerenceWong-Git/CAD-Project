@@ -16,6 +16,7 @@ import LandingPage from "./pages/LandingPage";
 import List from "./pages/place/List";
 import Multiple from "./components/place/list/multiple";
 import Map3 from "./pages/place/Map3";
+import CommentDetail from "./pages/comment/CommentDetail";
 
 export default function App() {
   return (
@@ -43,7 +44,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/comments" element={<CommentPage />}></Route>
-          <Route path="/createComments" element={<CreateComment />}></Route>
+          <Route path="/createComment" element={<CreateComment />}></Route>
+          <Route path="/commentDetail/:id" element={<CommentDetail />}></Route>
         </Route>
 
         <Route path="/landing" element={<LandingPage />}></Route>

@@ -8,13 +8,13 @@ import { stringify } from 'querystring';
 @Injectable()
 export class CommentService {
   constructor(private readonly prismaService: PrismaService) {}
-  
+
   async getMap() {
     const mapData = await this.prismaService.maps.findMany({
-      select:{
-        id:true,
-        chiName:true,
-      }
+      select: {
+        id: true,
+        chiName: true,
+      },
     });
     return mapData;
   }
@@ -25,6 +25,32 @@ export class CommentService {
         user: {
           select: {
             username: true,
+          },
+        },
+        map: {
+          select: {
+            chiName: true,
+          },
+        },
+      },
+    });
+    return commentData;
+  }
+
+  async getCommentDetailById(commentId: number) {
+    const commentData = await this.prismaService.comment.findUnique({
+      where: {
+        id: commentId,
+      },
+      include: {
+        user: {
+          select: {
+            username: true,
+          },
+        },
+        map: {
+          select: {
+            chiName: true,
           },
         },
       },
@@ -46,12 +72,10 @@ export class CommentService {
     commentDto: CreateCommentDto,
     files: Express.Multer.File[],
   ) {
-    console.log(`service:creating comment`);
-    console.log(`check files`, files);
     // const newFiles = files.map((file) => ({ name: file.filename }));
-    const fieldFiles = files.map((file) => ({name:file.originalname}))
-    console.log('userid:', userId);
-    console.log('files:', fieldFiles);
+    console.log('check files', files, 'length:', files.length);
+
+    const fieldFiles = files.map((file) => ({ name: file.originalname }));
 
     const insertResult = await this.prismaService.comment.create({
       data: {
@@ -60,6 +84,7 @@ export class CommentService {
         CommentImg: { createMany: { data: fieldFiles } },
       },
     });
+    return insertResult;
   }
 
   async editCommentById(

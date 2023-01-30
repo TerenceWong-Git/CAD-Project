@@ -18,18 +18,14 @@ import { CommentService } from './comment.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { GetUser } from 'src/auth/decorator';
 import { UpdateCommentDto } from './dto/update-comment.dto';
-import {
-  AnyFilesInterceptor,
-  FileFieldsInterceptor,
-  FileInterceptor,
-} from '@nestjs/platform-express/multer';
+import { FilesInterceptor } from '@nestjs/platform-express/multer';
 
 @Controller('comment')
 export class CommentController {
   constructor(private readonly commentService: CommentService) {}
-  
+
   @Get('/map')
-  async getMap () {
+  async getMap() {
     const result = await this.commentService.getMap();
     return result;
   }
@@ -37,6 +33,12 @@ export class CommentController {
   @Get()
   async getComment() {
     const result = await this.commentService.getComment();
+    return result;
+  }
+
+  @Get('/:id')
+  async getCommentDetailById(@Param('id', ParseIntPipe) commentId: number) {
+    const result = await this.commentService.getCommentDetailById(commentId);
     return result;
   }
 
@@ -49,16 +51,14 @@ export class CommentController {
 
   @Post('create')
   @UseGuards(JwtGuard)
-  @UseInterceptors(AnyFilesInterceptor())
+  @UseInterceptors(FilesInterceptor('files'))
   async createComment(
     @GetUser('id') userId: number,
     @Body() commentDto: CreateCommentDto,
     @UploadedFiles() files: Express.Multer.File[],
   ) {
-    console.log('check multer ', files);
-    console.log(`Comment creating`);
-    await this.commentService.createComment(userId, commentDto, files);
-    return { message: 'success' };
+    console.log('controller inspect', files);
+    return await this.commentService.createComment(userId, commentDto, files);
   }
 
   //   @UseInterceptors(FileFieldsInterceptor([
@@ -78,7 +78,10 @@ export class CommentController {
     @Param('id', ParseIntPipe) commentId: number,
     @Body() commentDto: UpdateCommentDto,
   ) {
-    await this.commentService.editCommentById(userId, commentId, commentDto);
-    return { message: 'success' };
+    return await this.commentService.editCommentById(
+      userId,
+      commentId,
+      commentDto,
+    );
   }
 }

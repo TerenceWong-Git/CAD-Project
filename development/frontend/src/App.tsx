@@ -11,6 +11,7 @@ import Map from "./pages/Map/Map";
 import PetProfile from "./pages/pet/PetProfile";
 import CreatePetProfile from "./pages/pet/CreatePetProfile";
 import CreateComment from "./pages/comment/CreateComment";
+import CommentDetail from "./pages/comment/CommentDetail";
 
 export default function App() {
   return (
@@ -36,7 +37,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/comments" element={<CommentPage />}></Route>
-          <Route path="/createComments" element={<CreateComment />}></Route>
+          <Route path="/createComment" element={<CreateComment />}></Route>
+          <Route path="/commentDetail/:id" element={<CommentDetail />}></Route>
         </Route>
 
         <Route path="/map" element={<Map />}></Route>

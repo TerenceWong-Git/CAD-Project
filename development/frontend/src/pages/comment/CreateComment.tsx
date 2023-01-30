@@ -1,5 +1,6 @@
+import { log } from "console";
 import React, { useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import logger from "redux-logger";
 
@@ -11,7 +12,7 @@ function CreateComment() {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  const pictures = watch("pictures");
+  // const files = watch("files");
 
   const [maps, setMaps] = useState<any[]>([]);
 
@@ -28,33 +29,55 @@ function CreateComment() {
     loadData();
   }, []);
 
+  const [file, setFile] = useState<any>([]);
+
+  function uploadFiles(e: any) {
+    const selectedFiles = e.target.files;
+    const selectedFilesArray = Array.from(selectedFiles);
+    setFile(selectedFilesArray)
+  }
+
+  function deleteFile(e: any) {
+    const newFile = file.filter((item: any, index: any) => index !== e);
+    setFile(newFile);
+  }
+
+  console.log("file: ",file)
+
   return (
     <div>
       CommentPage
       <form
         onSubmit={handleSubmit(async (data) => {
+          const jwt = localStorage.getItem("token");
           const formData = new FormData();
-          formData.append("map", data.map);
+          formData.append("mapId", data.mapId);
           formData.append("title", data.title);
           formData.append("content", data.content);
           formData.append("isThumb", data.isThumb);
-          formData.append("picture", data.picture);
-          console.log(data);
+          for (let i = 0; i < file.length; i++) {
+            formData.append("files", file[i]);
+          }
 
           await fetch(`${process.env.REACT_APP_BACKEND_URL}/comment/create`, {
             method: "POST",
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
             body: formData,
           });
 
-          navigate("/createComments");
+          navigate("/comments");
         })}
       >
         <p>
           <label>
             地點：
-            <select  {...register("map")}>
-              {maps.map((map,i) => (
-                <option key={i} value={map.id}>{map.chiName}</option>
+            <select {...register("mapId")}>
+              {maps.map((map, i) => (
+                <option key={i} value={map.id}>
+                  {map.chiName}
+                </option>
               ))}
             </select>
           </label>
@@ -74,12 +97,32 @@ function CreateComment() {
           </label>
         </p>
 
-        <p>
+        <div>
           <label>
             相：
-            <input type="file" multiple {...register("picture")} ></input>
+            <input
+              type="file"
+              multiple
+              accept="image/png , image/jpg, image/jpeg"
+              {...register("files")}
+              onChange={uploadFiles}
+            ></input>
           </label>
-        </p>
+          <br></br>
+          <div className="images">
+            {file.length > 0 &&
+              file.map((image: any, index: any) => {
+                return (
+                  <div key={index} className="image">
+                    <img src={URL.createObjectURL(image)} height="200" alt="" />
+                    <button onClick={() => deleteFile(index)}>
+                      delete image
+                    </button>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
 
         <p>
           <input type="radio" value="true" {...register("isThumb")} />

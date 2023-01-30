@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import places from "./Data";
-import districts from "./District";
+import { districts, types } from "./District";
 
 const CategoryButtons = ({ filterItem, setItems }: any) => {
   const [catergoryPageItems, setCatergoryPageItems] = useState<any[]>([]);
+
   ////////////////////////////////////   Load Data   /////////////////////////////////////
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const CategoryButtons = ({ filterItem, setItems }: any) => {
       <br></br>
       <div>
         <button onClick={() => setItems(catergoryPageItems)}>All</button>
-        {catergoryPageItems
+        {/* {catergoryPageItems
           .reduce((pv: any[], cv) => {
             if (pv.includes(cv.mapType.engType)) {
               return pv;
@@ -48,7 +48,14 @@ const CategoryButtons = ({ filterItem, setItems }: any) => {
                 {place}
               </button>
             );
-          })}
+          })} */}
+        {types.map((type, id) => {
+          return (
+            <button onClick={() => filterItem(type)} key={id}>
+              {type}
+            </button>
+          );
+        })}
       </div>
     </>
   );

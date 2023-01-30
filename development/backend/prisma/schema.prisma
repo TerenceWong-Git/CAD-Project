@@ -256,23 +256,23 @@ enum Gender {
 
 enum District {
   Islands
-  Kwai_tsing
+  Kwai_Tsing
   North
-  Sai_kung
-  Sha_tin
-  Tai_po
-  Tsuen_wan
-  Tuen_mun
-  Yuen_long
-  Kowloon_city
-  Kwun_tong
-  Sham_shui_po
-  Wong_tai_sin
-  Yau_tsim_mong
-  Central_and_western
+  Sai_Kung
+  Sha_Tin
+  Tai_Po
+  Tsuen_Wan
+  Tuen_Mun
+  Yuen_Long
+  Kowloon_City
+  Kwun_Tong
+  Sham_Shui_Po
+  Wong_Tai_Sin
+  Yau_Tsim_Mong
+  Central_and_Western
   Eastern
   Southern
-  Wan_chai
+  Wan_Chai
 }
 
 enum Weekday {

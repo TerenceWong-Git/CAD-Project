@@ -1,0 +1,37 @@
+.pageContainer {
+  border: 3px solid black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 170vmin;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.categoryContainer {
+  border: 3px solid rgb(255, 204, 0);
+  width: 20%;
+  height: 100%;
+}
+
+.placeContainer {
+  border: 3px solid rgb(0, 183, 255);
+  width: 75%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.orderContainer {
+  border: 3px solid rgb(255, 213, 0);
+  height: 10%;
+}
+
+.CardContainer {
+  border: 3px solid rgb(255, 0, 0);
+  height: 85%;
+  overflow: scroll;
+}

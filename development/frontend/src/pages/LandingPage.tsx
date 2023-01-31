@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Masonry from "react-masonry-css";
+import Header from "../components/Header";
+import "./LandingPage.css";
 
 const data1 = [
   { id: 1, name: "1", img: "/uploads/pictures/1.jpg" },
@@ -40,8 +43,8 @@ export default function LandingPage() {
 
   const [hasMore, sethasMore] = useState(true);
 
-  const [indexOne, setIndexOne] = useState(3);
-  const [indexTwo, setIndexTwo] = useState(4);
+  const [indexOne, setIndexOne] = useState(2);
+  const [indexTwo, setIndexTwo] = useState(3);
   const [indexThree, setIndexThree] = useState(5);
 
   console.log("data no: ", data1.length);
@@ -50,50 +53,65 @@ export default function LandingPage() {
 
   useEffect(() => {
     const getComments = async () => {
-      setItems(data1.slice(0, 3));
+      setItems(data1);
     };
 
     getComments();
   }, []);
 
   const fetchData = async () => {
-    setItems([...items, data1[indexOne], data1[indexTwo], data1[indexThree]]);
+    setItems([...items, data1[indexOne], data1[indexTwo]]);
     if (data1.length - items.length === 0 || data1.length - items.length < 4) {
       sethasMore(false);
     }
-    setIndexOne(indexOne + 3);
-    setIndexTwo(indexTwo + 3);
-    setIndexThree(indexThree + 3);
+    setIndexOne(indexOne + 2);
+    setIndexTwo(indexTwo + 2);
   };
+
   // console.log(indexOne);
   // console.log(indexTwo);
   // console.log(indexThree);
 
   console.log("items: ", items);
+
+  const breakpointColumnsObj = {
+    default: 2,
+    200: 1,
+  };
+
   return (
     <>
-      <InfiniteScroll
-        dataLength={items.length}
-        next={fetchData}
-        hasMore={hasMore}
-        loader={<h4>Loading...</h4>}
-        endMessage={
-          <p style={{ textAlign: "center" }}>
-            <b>Yay! You have seen it all</b>
-          </p>
-        }
-      >
-        {items.map((item: any) => {
-          return (
-            //<Link to={`/matching/${data.id}`} > </Link>
-            <div key={item.id}>
-              <p>
-                <img width="400" src={`${item.img}`} />
+      <div className="homeContainer">
+        <div className="header">
+          <Header />
+        </div>
+
+        <div className="abc">
+          <InfiniteScroll
+            dataLength={items.length}
+            next={fetchData}
+            hasMore={hasMore}
+            loader={<h4>Loading...</h4>}
+            endMessage={
+              <p style={{ textAlign: "center" }}>
+                <b>Yay! You have seen it all</b>
               </p>
-            </div>
-          );
-        })}
-      </InfiniteScroll>
+            }
+          >
+            <Masonry breakpointCols={breakpointColumnsObj} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
+              {items.map((item: any) => {
+                return (
+                  <div key={item.id}>
+                    <img width={190} src={`${item.img}`} />
+                  </div>
+                );
+              })}
+            </Masonry>
+          </InfiniteScroll>
+        </div>
+
+        <div className="navbar"></div>
+      </div>
     </>
   );
 }

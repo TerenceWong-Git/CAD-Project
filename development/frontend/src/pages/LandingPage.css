@@ -1,0 +1,92 @@
+.homeContainer {
+  border: 3px solid rgb(255, 208, 0);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 99vh;
+}
+
+.header {
+  border: 3px solid rgb(0, 221, 255);
+  height: 6%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar {
+  border: 3px solid rgb(0, 221, 255);
+  height: 10%;
+}
+
+.abc {
+  /* border: 3px solid rgb(0, 0, 0); */
+  height: 80%;
+  overflow: scroll;
+  justify-content: center;
+}
+
+.my-masonry-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 0px;
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 0px; /* gutter size */
+  background-clip: padding-box;
+}
+
+/* .leftPart {
+  border: 3px solid black;
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  justify-content: center;
+}
+
+.rightPart {
+  border: 3px solid rgb(255, 200, 0);
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  justify-content: center;
+} */
+
+/* .pluralPageAlbum {
+  border: 3px solid rgb(255, 0, 0);
+  display: flex;
+  justify-content: space-between;
+} */
+
+/* .singlePartA {
+  border: 3px solid rgb(125, 225, 66);
+  border-radius: 70px 0 0 70px;
+  height: 99%;
+}
+
+.singlePartB {
+  border: 3px solid rgb(0, 213, 255);
+  border-radius: 0 70px 0 0;
+  height: 48.5%;
+}
+
+.singlePartC {
+  border: 3px solid rgb(255, 43, 106);
+  border-radius: 0 0 70px 0;
+  height: 48.5%;
+} */
+
+/* .album {
+  border: 3px solid black;
+  display: flex;
+  height: 90vh;
+}
+
+.left .right {
+  border: 3px solid rgb(255, 217, 0);
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+} */

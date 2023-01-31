@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import axios from "axios";
 import { Select } from "@mantine/core";
+
 
 function CreatePetProfile() {
   const path = process.env.REACT_APP_BACKEND_URL;
@@ -28,35 +28,35 @@ function CreatePetProfile() {
   return (
     <div>
       CreatePetProfile
-      <form
-      // onSubmit={handleSubmit(async (data) => {
-      //   const formData = new FormData();
-      //   formData.append("name", data.name);
-      //   formData.append("gender", data.gender);
-      //   formData.append("speciesId", data.speciesId);
-      //   formData.append("profileImg", data.profileImg[0]);
+      <form 
+      onSubmit={handleSubmit(async data => {
+        const jwt = localStorage.getItem('token');
+        const formData = new FormData();
+        formData.append("name", data.name);
+        formData.append("gender", data.gender);
+        formData.append("speciesId", data.speciesId);
+        formData.append("dateBirth",data.dateBirth)
+        formData.append("file", data.file[0]);
 
-      //   console.log(data.gender);
-      //   console.log(data);
+        console.log(data);
+        console.log(jwt)
+        console.log(path)
 
-      //   const result = await axios.post(`${path}/pet/addPet`, formData, { headers: { "Content-Type": "multipart/form-data" } });
-
-      //   console.log(result);
-
-      //   // await fetch(`${path}/pet/addPet`,{
-      //   //     method: "POST",
-      //   //     body: formData,
-      //   //     headers:{
-      //   //         'content-type':'multipart/form-data'
-      //   //     }
-      //   // })
-      //   navigate("/");
-      // })}
+        await fetch(`${path}/pet/addPet`,{
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+            body: formData,
+        }).then(
+          () => navigate("/")  
+        )
+      })}
       >
         <div>
           <label id="profileImg">
             profile img
-            <input type="file" {...register("profileImg")} />
+            <input type="file" {...register("file")} />
           </label>
         </div>
 
@@ -77,24 +77,22 @@ function CreatePetProfile() {
         <div>
           <label id="species">
             species
-            <Select value={value} onChange={setValue} data={species} />;
+            {/* <Select value={value} onChange={setValue} data={species} /> */}
+
+            <input type="radio" value="1" {...register("speciesId")} />
+            唐貓
+            <input type="radio" value="2" {...register("speciesId")} />
+            唐狗
           </label>
         </div>
 
         <div>
           <label id="gender">
             gender
-            <input type="radio" value="male" {...register("gender")} />
+            <input type="radio" value="Male" {...register("gender")} />
             Male
-            <input type="radio" value="female" {...register("gender")} />
+            <input type="radio" value="Female" {...register("gender")} />
             Female
-          </label>
-        </div>
-
-        <div>
-          <label id="weight">
-            weight
-            <input type="text" {...register("weight")} />
           </label>
         </div>
 

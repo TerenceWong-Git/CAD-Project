@@ -4,6 +4,7 @@ import { Modal, Button, Group } from '@mantine/core';
 import { useForm } from 'react-hook-form';
 
 function WeightRecord() {
+    const path = process.env.REACT_APP_BACKEND_URL;
     const [opened, setOpened] = useState(false);
     const {register, handleSubmit } = useForm();
     // const [isLoading, setIsLoading] = useState(false);
@@ -39,11 +40,26 @@ function WeightRecord() {
             title="輸入體重"
             
         >
-        {<form onSubmit={handleSubmit(data => console.log(data))}>
-            <label>
-                date of birth
-                <input type="date" {...register('date_birth')}/>
-            </label>
+        {<form onSubmit={handleSubmit(async data => {
+            const formData = new FormData();
+            formData.append('weight',data.weight)
+
+            console.log(data)
+            
+            const res = await fetch(`${path}/pet/addWeight/1`,{
+                    method: "POST",
+                    // headers: {
+                    //     "content-type": "application/json; charset=utf-8",
+                    //   },
+                    // body: JSON.stringify(data)
+                    body: formData
+                })
+            
+            // console.log(res);
+            
+        }
+            
+            )}>
             <label>
                 weight
                 <input type="text" {...register('weight')}/>

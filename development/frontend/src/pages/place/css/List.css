@@ -12,10 +12,18 @@
 
 .categoryContainer {
   border: 3px solid rgb(255, 204, 0);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   position: sticky;
   top: 5vmin;
   width: 20%;
   height: 70vmin;
+}
+
+.districtCategory .typeCategory {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .placeContainer {

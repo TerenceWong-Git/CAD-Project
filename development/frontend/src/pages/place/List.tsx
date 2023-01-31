@@ -3,7 +3,7 @@ import "../../components/place/list/placeCard.css";
 import "../../components/place/list/placeCard.css";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { districts } from "../../components/place/map/District";
+import { districts, types } from "../../components/place/map/District";
 import { Checkbox } from "@mantine/core";
 
 export default function List() {
@@ -34,7 +34,7 @@ export default function List() {
   console.log("values: ", values);
 
   const activateFilter = async () => {
-    if (values.length > 1) {
+    if (values.length > 0) {
       setInitialHasMore(false);
       setHasMore(true);
       setIsFiltered(true);
@@ -53,12 +53,14 @@ export default function List() {
   const filterItem = (input: any) => {
     const newItems = allPlaceItems.filter((item) => {
       const inputValue = input;
-      const districtName = item.district.replaceAll("_", " ");
+      const districtName = item.district;
+      const typeName = item.mapType.engType;
 
-      console.log("inputValue: ", inputValue);
-      console.log("districtName: ", districtName);
-
-      return inputValue.includes(districtName);
+      if (values.length < 2) {
+        return inputValue.includes(districtName) || inputValue.includes(typeName);
+      } else {
+        return inputValue.includes(districtName) && inputValue.includes(typeName);
+      }
     });
     setFilteredPlaceCard(newItems);
     setIsShownFilteredPlaceCard(newItems.slice(0, 3));
@@ -84,7 +86,7 @@ export default function List() {
   };
 
   const filteredInfiniteScroll = async () => {
-    if (isFiltered) {
+    if (isFiltered && (filteredPlaceCard.length > 3 || filteredPlaceCard.length <= 2 || filteredPlaceCard.length === 0)) {
       setIsShownFilteredPlaceCard([...isShownFilteredPlaceCard, filteredPlaceCard[filteredDataIndex]]);
       if (filteredPlaceCard.length - isShownFilteredPlaceCard.length === 0 || filteredPlaceCard.length - isShownFilteredPlaceCard.length < 2) {
         setHasMore(false);
@@ -140,25 +142,38 @@ export default function List() {
   // console.log("allPlaceItems: ", allPlaceItems);
   // console.log("notYetFilteredPlaceCard: ", notYetFilteredPlaceCard);
   // console.log("length difference: ", allPlaceItems.length - notYetFilteredPlaceCard.length);
-  console.log("===============");
-  console.log("filteredPlaceCard: ", filteredPlaceCard);
-  console.log("isShownFilteredPlaceCard: ", isShownFilteredPlaceCard);
-  console.log("length difference: ", filteredPlaceCard.length - isShownFilteredPlaceCard.length);
-  console.log("===============");
+  // console.log("===============");
+  // console.log("filteredPlaceCard: ", filteredPlaceCard);
+  // console.log("isShownFilteredPlaceCard: ", isShownFilteredPlaceCard);
+  // console.log("length difference: ", filteredPlaceCard.length - isShownFilteredPlaceCard.length);
   console.log("initialHasMore: ", initialHasMore);
   console.log("hasMore: ", hasMore);
+  console.log("===============");
 
   return (
     <>
       <div className="pageContainer">
         <div className="categoryContainer">
-          {districts.map((district: any) => {
-            return (
-              <Checkbox.Group key={district} value={values} onChange={setValues}>
-                <Checkbox value={district} label={district} />
-              </Checkbox.Group>
-            );
-          })}
+          <div className="districtCategory">
+            {districts.map((district: any) => {
+              return (
+                <Checkbox.Group key={district.engDistrict} value={values} onChange={setValues}>
+                  <Checkbox value={district.engDistrict} label={district.chiDistrict} />
+                </Checkbox.Group>
+              );
+            })}
+          </div>
+
+          <div className="typeCategory">
+            {types.map((type: any) => {
+              return (
+                <Checkbox.Group key={type.engType} value={values} onChange={setValues}>
+                  <Checkbox value={type.engType} label={type.chiType} />
+                </Checkbox.Group>
+              );
+            })}
+          </div>
+
           <button onClick={activateFilter}>Filter</button>
           <button onClick={deactivateFilter}>Clear</button>
         </div>
@@ -170,7 +185,7 @@ export default function List() {
                 dataLength={isShownFilteredPlaceCard.length}
                 next={filteredInfiniteScroll}
                 hasMore={hasMore}
-                loader={<h4>Loading...</h4>}
+                loader={<h4></h4>}
                 endMessage={
                   <p style={{ textAlign: "center" }}>
                     <b>Yay! You have seen it all</b>
@@ -184,7 +199,7 @@ export default function List() {
                 dataLength={notYetFilteredPlaceCard.length}
                 next={notYetFilteredInfiniteScroll}
                 hasMore={initialHasMore}
-                loader={<h4>Loading...</h4>}
+                loader={<h4></h4>}
                 endMessage={
                   <p style={{ textAlign: "center" }}>
                     <b>Yay! You have seen it all</b>

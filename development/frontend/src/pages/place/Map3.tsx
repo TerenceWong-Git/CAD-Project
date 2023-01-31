@@ -158,6 +158,7 @@ export default function Map3() {
                 <Card.Section className="cardSection">{selectedMarker.chiName}</Card.Section>
                 <Card.Section className="cardSection">{selectedMarker.mapType.chiType}</Card.Section>
                 <button
+                  className="closeCardButton"
                   onClick={() => {
                     setIsCardShown(false);
                   }}

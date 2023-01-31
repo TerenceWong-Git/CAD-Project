@@ -90,36 +90,6 @@ model MapToWorkingHour {
   @@map("map_to_working_hours")
 }
 
-model PetImgTag {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique
-  tagCount  Int      @default(0) @map("tag_count")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-
-  @@map("pet_img_tags")
-}
-
-model ExpTag {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique
-  tagCount  Int      @default(0) @map("tag_count")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-
-  @@map("exp_tags")
-}
-
-model EventTag {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique
-  tagCount  Int      @default(0) @map("tag_count")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-
-  @@map("event_tags")
-}
-
 model Species {
   id         Int       @id @default(autoincrement())
   familyId   Int?      @map("family_id")
@@ -207,6 +177,7 @@ model CommentImg {
   comment   Comment @relation(fields: [commentId], references: [id])
   commentId Int     @map("comment_id")
   name      String  @db.VarChar(255)
+  isDeleted Boolean @map("is_deleted")
 
   @@map("comments_img")
 }
@@ -231,19 +202,17 @@ model Event {
 }
 
 model Exp {
-  id            Int       @id @default(autoincrement())
-  poster        User      @relation(fields: [posterId], references: [id])
-  posterId      Int       @map("poster_id")
-  title         String    @db.VarChar(255)
-  tag           String?
-  content       String
-  map           Maps      @relation(fields: [mapId], references: [id])
-  mapId         Int       @map("map_id")
-  numThumbsUp   Int       @default(0) @map("num_thumbs_up")
-  numThumbsDown Int       @default(0) @map("num_thumbs_down")
-  createdAt     DateTime  @default(now()) @map("created_at")
-  updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")
-  ExpLike       ExpLike[]
+  id        Int       @id @default(autoincrement())
+  poster    User      @relation(fields: [posterId], references: [id])
+  posterId  Int       @map("poster_id")
+  title     String    @db.VarChar(255)
+  tag       String?
+  content   String
+  map       Maps?     @relation(fields: [mapId], references: [id])
+  mapId     Int?      @map("map_id")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
+  ExpLike   ExpLike[]
 
   @@map("experience")
 }

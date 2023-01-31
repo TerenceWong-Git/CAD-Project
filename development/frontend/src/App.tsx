@@ -13,6 +13,7 @@ import CreatePetProfile from "./pages/pet/CreatePetProfile";
 import WeightRecord from "./pages/pet/WeightRecord";
 import CreateComment from "./pages/comment/CreateComment";
 import CreatePetProfile2 from "./pages/pet/createPet2";
+import UserProfile from "./pages/user/UserProfile";
 
 export default function App() {
   return (
@@ -44,10 +45,11 @@ export default function App() {
         <Route path="/map" element={<Map />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
-        <Route path="/petprofile" element={<PetProfile />}></Route>
+        <Route path="/petprofile/:id" element={<PetProfile />}></Route>
         <Route path="/createpetprofile" element={<CreatePetProfile />}></Route>
-        <Route path="/weight" element={<WeightRecord />}></Route>
+        <Route path="/weight/:id" element={<WeightRecord />}></Route>
         <Route path="/createpetprofile2" element={<CreatePetProfile2 />}></Route>
+        <Route path="/userprofile" element={<UserProfile />}></Route>
       </Routes>
     </div>
   );

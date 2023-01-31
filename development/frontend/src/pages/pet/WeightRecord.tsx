@@ -46,11 +46,17 @@ function WeightRecord() {
 
             console.log(data)
             
-            await fetch(`${path}/addWeight/1`,{
+            const res = await fetch(`${path}/pet/addWeight/1`,{
                     method: "POST",
+                    // headers: {
+                    //     "content-type": "application/json; charset=utf-8",
+                    //   },
+                    // body: JSON.stringify(data)
                     body: formData
                 })
-        
+            
+            // console.log(res);
+            
         }
             
             )}>

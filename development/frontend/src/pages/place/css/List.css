@@ -1,0 +1,47 @@
+.pageContainer {
+  border: 3px solid black;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: 100%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.categoryContainer {
+  border: 3px solid rgb(255, 204, 0);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: sticky;
+  top: 5vmin;
+  width: 20%;
+  height: 70vmin;
+}
+
+.districtCategory .typeCategory {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.placeContainer {
+  border: 3px solid rgb(0, 183, 255);
+  width: 75%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.searchBarContainer {
+  border: 3px solid rgb(255, 213, 0);
+  height: 10%;
+}
+
+.CardContainer {
+  border: 3px solid rgb(255, 0, 0);
+  height: 85%;
+  overflow: scroll;
+}

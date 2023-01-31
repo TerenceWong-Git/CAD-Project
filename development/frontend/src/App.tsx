@@ -7,12 +7,17 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import PrivateRoute from "./redux/PrivateRoute";
 import CommentPage from "./pages/comment/CommentPage";
-import Map from "./pages/Map/Map";
+// import Map from "./pages/place/Map";
 import PetProfile from "./pages/pet/PetProfile";
 import CreatePetProfile from "./pages/pet/CreatePetProfile";
 import WeightRecord from "./pages/pet/WeightRecord";
 import CreateComment from "./pages/comment/CreateComment";
 import CreatePetProfile2 from "./pages/pet/createPet2";
+import LandingPage from "./pages/LandingPage";
+import List from "./pages/place/List";
+import Multiple from "./components/place/list/multiple";
+import Map3 from "./pages/place/Map3";
+import CommentDetail from "./pages/comment/CommentDetail";
 import UserProfile from "./pages/user/UserProfile";
 
 export default function App() {
@@ -36,13 +41,20 @@ export default function App() {
         </Button>
       </div>
 
+      <br></br>
+
       <Routes>
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/comments" element={<CommentPage />}></Route>
-          <Route path="/createComments" element={<CreateComment />}></Route>
+          <Route path="/createComment" element={<CreateComment />}></Route>
+          <Route path="/commentDetail/:id" element={<CommentDetail />}></Route>
         </Route>
 
-        <Route path="/map" element={<Map />}></Route>
+        <Route path="/landing" element={<LandingPage />}></Route>
+        {/* <Route path="/multiple" element={<Multiple />}></Route> */}
+        <Route path="/map3" element={<Map3 />}></Route>
+        {/* <Route path="/map" element={<Map />}></Route> */}
+        <Route path="/list" element={<List />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/petprofile/:id" element={<PetProfile />}></Route>

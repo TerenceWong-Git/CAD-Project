@@ -1,35 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SimpleBottomNavigation from "../../components/FunctionBar";
 
 function CommentPage() {
-  const comments = [
-    {
-      id: 1,
-      title: "good",
-      service: "baby shop",
-      username: "tom",
-      is_thumb: true,
-    },
-    {
-      id: 2,
-      title: "bad",
-      service: "food shop",
-      username: "peter",
-      is_thumb: false,
-    },
-    {
-      id: 3,
-      title: "bad 123",
-      service: "food shop",
-      username: "peter 123",
-      is_thumb: false,
-    },
-  ];
+  const [comments, setComments] = useState<any[]>([]);
+  useEffect(() => {
+    async function loadData() {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/comment`);
+      const json = await res.json();
+      console.log(json);
+
+      setComments(json);
+    }
+    loadData();
+  }, []);
 
   const [filter, setFilter] = useState<{
-    is_thumb?: boolean;
-    title?: string;
+    isThumb?: boolean;
   }>({});
   const filteredComments = comments.filter((comment) => {
     let isFiltered = true;
@@ -47,29 +34,35 @@ function CommentPage() {
     <div>
       CommentPage
       <div>
-        <button><Link to={'/createComments'}>建立</Link></button>
-        <button>篩選</button>
-        <button>排序</button>
+        <button>
+          <Link to={"/createComment"}>建立</Link>
+        </button>
+
+        <button onClick={() => setFilter((filter) => ({}))}>全部</button>
+
         <button
-          onClick={() => setFilter((filter) => ({ ...filter, is_thumb: true }))}
+          onClick={() => setFilter((filter) => ({ ...filter, isThumb: true }))}
         >
           好評
         </button>
+
         <button
-          onClick={() =>
-            setFilter((filter) => ({ ...filter, is_thumb: false }))
-          }
+          onClick={() => setFilter((filter) => ({ ...filter, isThumb: false }))}
         >
           差評
         </button>
       </div>
-      {filteredComments.map((comment) => (
-        <div key={comment.id}>
-          <p>{comment.title}</p>
-          <p>{comment.service}</p>
-          <p>{comment.username}</p>
-        </div>
-      ))}
+      <div>
+        {filteredComments.map((comment) => (
+          <div key={comment.id}>
+            <Link to={`/commentDetail/${comment.id}`}>
+              <p>{comment.title}</p>
+              <p>{comment.map.chiName}</p>
+              <p>{comment.user.username}</p>
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

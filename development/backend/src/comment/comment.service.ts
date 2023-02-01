@@ -86,7 +86,10 @@ export class CommentService {
   ) {
     console.log('check files', files, 'length:', files.length);
 
-    const fieldFiles = files.map((file) => ({ name: file.filename }));
+    const fieldFiles = files.map((file) => ({
+      name: file.filename,
+      isDeleted: false,
+    }));
     console.log('file', fieldFiles);
 
     const insertResult = await this.prismaService.comment.create({

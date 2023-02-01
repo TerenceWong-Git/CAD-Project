@@ -1,6 +1,6 @@
 import { Autocomplete, Card, Checkbox } from "@mantine/core";
-import { border } from "@mui/system";
-import { Circle, GoogleMap, InfoWindow, LoadScript, Marker } from "@react-google-maps/api";
+
+import { Circle, GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
 import { districts, types } from "../../components/place/map/District";
 import { circleSettings, containerStyle } from "../../components/place/map/MapSetting";
@@ -153,7 +153,7 @@ export default function Map3() {
             <div>
               <Card className="previewPlaceCard">
                 <Card.Section className="cardSection">
-                  <img className="previewPicture2" src="/uploads/pictures/3.jpg" />
+                  <img className="previewPicture2" src="/uploads/pictures/3.jpg" alt={selectedMarker.engName} />
                 </Card.Section>
                 <Card.Section className="cardSection">{selectedMarker.chiName}</Card.Section>
                 <Card.Section className="cardSection">{selectedMarker.mapType.chiType}</Card.Section>

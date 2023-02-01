@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   height: 99vh;
 }
 
@@ -22,20 +23,29 @@
 .abc {
   /* border: 3px solid rgb(0, 0, 0); */
   height: 80%;
+  width: 50%;
   overflow: scroll;
   justify-content: center;
 }
 
 .my-masonry-grid {
+  border: 3px solid rgb(0, 0, 0);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-left: 0px;
+  justify-content: space-around;
+  /* margin: 0 6vmin 0 6vmin; */
   width: auto;
 }
+
 .my-masonry-grid_column {
-  padding-left: 0px; /* gutter size */
   background-clip: padding-box;
+}
+
+.my-masonry-grid_column img {
+  width: 30vmin;
+  margin: 2vmin 0 1vmin 0;
+  border-radius: 10px;
 }
 
 /* .leftPart {

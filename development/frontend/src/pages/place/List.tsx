@@ -103,7 +103,7 @@ export default function List() {
         <div key={data.chiName}>
           <div className="card">
             <div className="picture">
-              <img className="previewPicture" src="/uploads/pictures/3.jpg" />
+              <img className="previewPicture" src="/uploads/pictures/3.jpg" alt={data.engName} />
             </div>
             <div className="info">
               <div className="chiName">{data.chiName}</div>
@@ -123,7 +123,7 @@ export default function List() {
         <div key={data.chiName}>
           <div className="card">
             <div className="picture">
-              <img className="previewPicture" src="/uploads/pictures/3.jpg" />
+              <img className="previewPicture" src="/uploads/pictures/3.jpg" alt={data.engName} />
             </div>
             <div className="info">
               <div className="chiName">{data.chiName}</div>
@@ -185,7 +185,7 @@ export default function List() {
                 dataLength={isShownFilteredPlaceCard.length}
                 next={filteredInfiniteScroll}
                 hasMore={hasMore}
-                loader={<h4></h4>}
+                loader={<div></div>}
                 endMessage={
                   <p style={{ textAlign: "center" }}>
                     <b>Yay! You have seen it all</b>
@@ -199,7 +199,7 @@ export default function List() {
                 dataLength={notYetFilteredPlaceCard.length}
                 next={notYetFilteredInfiniteScroll}
                 hasMore={initialHasMore}
-                loader={<h4></h4>}
+                loader={<div></div>}
                 endMessage={
                   <p style={{ textAlign: "center" }}>
                     <b>Yay! You have seen it all</b>

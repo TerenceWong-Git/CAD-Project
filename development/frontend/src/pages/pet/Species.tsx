@@ -3,7 +3,7 @@ import { useForm } from "@mantine/form";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
-export default function CreatePetProfile2() {
+export default function Species() {
   const [loadPetSpecies, setLoadPetSpecies] = useState<any[]>([]);
   const [isTriggered, setIsTriggered] = useState<number>(0);
   const [value, setValue] = useState<any>(null);
@@ -97,7 +97,8 @@ export default function CreatePetProfile2() {
         component="form"
         maw={400}
         mx="auto"
-        onSubmit={form.onSubmit((values) => console.log(values))}>
+        // onSubmit={form.onSubmit((values) => console.log(values))}
+        >
         <div>
           <Radio.Group value={value} onChange={setValue}>
             {/* <Radio value={catIdFilter} label={catNameFilter} onClick={() => setIsTriggered(1)} />
@@ -141,7 +142,7 @@ export default function CreatePetProfile2() {
 
         <div>
           <Group position="right" mt="md">
-            <Button type="submit">Submit</Button>
+            {/* <Button type="submit">Submit</Button> */}
           </Group>
         </div>
       </Box>

@@ -6,11 +6,9 @@ import {
   IsOptional,
   IsString,
   MaxLength,
-  
 } from 'class-validator';
 
 export class PetDto {
-  
   @IsNotEmpty() id: string;
   @IsNotEmpty() petname: string;
 }
@@ -34,6 +32,4 @@ export class AddPetDto {
 
   @IsNotEmpty()
   gender: Gender;
-
-  
 }

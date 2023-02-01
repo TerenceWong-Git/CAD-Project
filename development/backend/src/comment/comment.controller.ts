@@ -4,13 +4,11 @@ import {
   Get,
   Post,
   UseGuards,
-  Put,
   Param,
   Patch,
   ParseIntPipe,
   Delete,
   UseInterceptors,
-  UploadedFile,
   UploadedFiles,
 } from '@nestjs/common';
 import { JwtGuard } from 'src/auth/guard';
@@ -24,7 +22,7 @@ import { FilesInterceptor } from '@nestjs/platform-express/multer';
 export class CommentController {
   constructor(private readonly commentService: CommentService) {}
 
-  @Get('/map')
+  @Get('map')
   async getMap() {
     const result = await this.commentService.getMap();
     return result;
@@ -36,16 +34,16 @@ export class CommentController {
     return result;
   }
 
-  @Get('/:id')
-  async getCommentDetailById(@Param('id', ParseIntPipe) commentId: number) {
-    const result = await this.commentService.getCommentDetailById(commentId);
+  @Get('myComment')
+  @UseGuards(JwtGuard)
+  async getUserCommentByUserId(@GetUser('id') userId: number) {
+    const result = await this.commentService.getUserCommentByUserId(userId);
     return result;
   }
 
-  @Get('myComment')
-  @UseGuards(JwtGuard)
-  async getUserComment(@GetUser('id') userId: number) {
-    const result = await this.commentService.getUserComment(userId);
+  @Get('/:id')
+  async getCommentDetailById(@Param('id', ParseIntPipe) commentId: number) {
+    const result = await this.commentService.getCommentDetailById(commentId);
     return result;
   }
 
@@ -61,16 +59,6 @@ export class CommentController {
     return await this.commentService.createComment(userId, commentDto, files);
   }
 
-  //   @UseInterceptors(FileFieldsInterceptor([
-  //     {name:'images',maxCount:2}
-  //   ]))
-  //   @Post('create')
-  //   async createComment(@UploadedFiles() files:{images?:Express.Multer.File[]}) {
-  //     console.log('check multer ', files);
-  //     // await this.commentService.createComment(userId, commentDto, files);
-  //     return { message: 'success' };
-  //   }
-
   @Patch('update/:id')
   @UseGuards(JwtGuard)
   async editCommentById(
@@ -83,5 +71,14 @@ export class CommentController {
       commentId,
       commentDto,
     );
+  }
+
+  @Delete('delete/:id')
+  @UseGuards(JwtGuard)
+  async deleteCommentById(
+    @GetUser('id') userId: number,
+    @Param('id', ParseIntPipe) commentId: number,
+  ) {
+    return this.commentService.deleteCommentById(userId, commentId);
   }
 }

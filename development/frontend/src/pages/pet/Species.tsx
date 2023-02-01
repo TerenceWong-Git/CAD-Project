@@ -1,9 +1,9 @@
 import { Box, Button, Group, Radio, Select } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useEffect, useState } from "react";
-// import { useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
-export default function CreatePetProfile2() {
+export default function Species() {
   const [loadPetSpecies, setLoadPetSpecies] = useState<any[]>([]);
   const [isTriggered, setIsTriggered] = useState<number>(0);
   const [value, setValue] = useState<any>(null);
@@ -16,7 +16,9 @@ export default function CreatePetProfile2() {
 
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/pet/species`);
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/pet/species`
+      );
       const json = await res.json();
 
       setLoadPetSpecies(json);
@@ -47,7 +49,7 @@ export default function CreatePetProfile2() {
   const dogFilter = loadPetSpecies.filter((item) => {
     return item.id === 2;
   });
-  // const dogIdFilter = dogFilter.map((item) => item.id);
+  const dogIdFilter = dogFilter.map((item) => item.id);
   const dogNameFilter = dogFilter.map((item) => item.chiSpecies);
   const dogSpeciesFilter = loadPetSpecies.filter((item) => {
     return item.familyId === 2;
@@ -91,13 +93,26 @@ export default function CreatePetProfile2() {
 
   return (
     <div>
-      <Box component="form" maw={400} mx="auto" onSubmit={form.onSubmit((values) => console.log(values))}>
+      <Box
+        component="form"
+        maw={400}
+        mx="auto"
+        // onSubmit={form.onSubmit((values) => console.log(values))}
+        >
         <div>
           <Radio.Group value={value} onChange={setValue}>
             {/* <Radio value={catIdFilter} label={catNameFilter} onClick={() => setIsTriggered(1)} />
             <Radio value={dogIdFilter} label={dogNameFilter} onClick={() => setIsTriggered(2)} /> */}
-            <Radio value={"1"} label={catNameFilter} onClick={() => setIsTriggered(1)} />
-            <Radio value={"2"} label={dogNameFilter} onClick={() => setIsTriggered(2)} />
+            <Radio
+              value={'1'}
+              label={catNameFilter}
+              onClick={() => setIsTriggered(1)}
+            />
+            <Radio
+              value={'2'}
+              label={dogNameFilter}
+              onClick={() => setIsTriggered(2)}
+            />
           </Radio.Group>
         </div>
 
@@ -106,7 +121,10 @@ export default function CreatePetProfile2() {
         <div>
           {isTriggered === 1 && (
             <div>
-              <Select data={catSubSpeciesFilter} {...form.getInputProps("species")} />
+              <Select
+                data={catSubSpeciesFilter}
+                {...form.getInputProps("species")}
+              />
             </div>
           )}
         </div>
@@ -114,14 +132,17 @@ export default function CreatePetProfile2() {
         <div>
           {isTriggered === 2 && (
             <div>
-              <Select data={dogSubSpeciesFilter} {...form.getInputProps("species")} />
+              <Select
+                data={dogSubSpeciesFilter}
+                {...form.getInputProps("species")}
+              />
             </div>
           )}
         </div>
 
         <div>
           <Group position="right" mt="md">
-            <Button type="submit">Submit</Button>
+            {/* <Button type="submit">Submit</Button> */}
           </Group>
         </div>
       </Box>

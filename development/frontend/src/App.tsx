@@ -9,7 +9,6 @@ import PetProfile from "./pages/pet/PetProfile";
 import CreatePetProfile from "./pages/pet/CreatePetProfile";
 import WeightRecord from "./pages/pet/WeightRecord";
 import CreateComment from "./pages/comment/CreateComment";
-import CreatePetProfile2 from "./pages/pet/createPet2";
 import LandingPage from "./pages/LandingPage";
 import List from "./pages/place/List";
 import Map3 from "./pages/place/Map3";
@@ -18,6 +17,8 @@ import UserProfile from "./pages/user/UserProfile";
 import GrowTree from "./pages/pet/GrowTree";
 import Vaccine from "./pages/pet/Vaccine";
 import UserComment from "./pages/comment/UserComment";
+import UploadGrowTree from "./pages/pet/UploadGrowTree";
+import Species from "./pages/pet/Species";
 
 export default function App() {
   return (
@@ -40,10 +41,11 @@ export default function App() {
         <Route path="/petprofile/:id" element={<PetProfile />}></Route>
         <Route path="/createpetprofile" element={<CreatePetProfile />}></Route>
         <Route path="/weight/:id" element={<WeightRecord />}></Route>
-        <Route path="/createpetprofile2" element={<CreatePetProfile2 />}></Route>
+        <Route path="/species" element={<Species />}></Route>
         <Route path="/userprofile" element={<UserProfile />}></Route>
         <Route path="/growtree/:id" element={<GrowTree />}></Route>
         <Route path="/vaccine/:id" element={<Vaccine />}></Route>
+        <Route path="/uploadgrowtree/:id" element={<UploadGrowTree />}></Route>
       </Routes>
     </div>
   );

@@ -5,15 +5,23 @@ function UserProfile() {
   const path = process.env.REACT_APP_BACKEND_URL;
   const jwt = localStorage.getItem("token");
   const [pets, setPets] = useState<any[]>([]);
+  const [name, setName] = useState<any>([]);
 
   useEffect(() => {
     async function loadData() {
-      const res = await fetch(`${path}/pet/me`, { headers: { Authorization: `Bearer ${jwt}` } });
+      const res = await fetch(`${path}/pet/me`,{headers: {Authorization: `Bearer ${jwt}`}});
       const json = await res.json();
-      console.log(json);
-
+      
       setPets(json);
     }
+    async function loadName(){
+      const userRes = await fetch(`${path}/pet/username`,{headers: {Authorization: `Bearer ${jwt}`}});
+      const userJson = await userRes.json();
+      
+      setName(userJson);
+
+    }
+    loadName();
     loadData();
   }, []);
   const age = (dob1: any) => {
@@ -27,12 +35,16 @@ function UserProfile() {
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
       age_now--;
     }
-    console.log(age_now);
     return age_now;
   };
   return (
     <div>
       UserProfile
+
+      <div>
+        {name.username}
+      </div>
+      
       <div>
         {pets.map((pet) => (
           <Link to={`/petprofile/${pet.id}`} key={pet.id}>

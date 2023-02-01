@@ -1,5 +1,5 @@
 import { Gender } from '@prisma/client';
-import { Type } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
 import {
   IsNotEmpty,
   IsNumber,
@@ -19,6 +19,21 @@ export class PetDto {
   @IsNotEmpty() petname: string;
 }
 
+// export class uploadVaccineDto{
+  
+
+// }
+export class uploadPetImgDto{
+
+
+  @IsString()
+  @MaxLength(20)
+  tag?: string;
+
+  @Transform(({value})=> value ==='true')
+  @IsNotEmpty()
+  isPrivate: boolean;
+}
 export class AddPetDto {
   // @IsString()
   // @IsOptional()
@@ -29,8 +44,9 @@ export class AddPetDto {
   @MaxLength(14)
   name: string;
 
+  @Type(() => Date)
   @IsOptional()
-  date_birth?: Date;
+  dateBirth?: Date;
 
   @Type(() => Number)
   @IsNumber()

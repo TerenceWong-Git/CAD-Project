@@ -388,7 +388,7 @@ const mapData = [
     chiName: '海港城',
     engName: 'Harbour City',
     chiAddress: '香港九龍尖沙咀廣東道3-27號',
-    engAddress: '3 – 27 Canton Road, Tsim Sha Tsui, Kowloon, Hong Kong',
+    engAddress: '3 - 27 Canton Road, Tsim Sha Tsui, Kowloon, Hong Kong',
     phoneNumber: 21188666,
     district: District['Yau_Tsim_Mong'],
     latitude: 22.29624261892706,

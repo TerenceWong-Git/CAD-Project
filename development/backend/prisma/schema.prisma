@@ -43,69 +43,51 @@ model MapType {
 }
 
 model Maps {
-  id          Int           @id @default(autoincrement())
-  mapType     MapType       @relation(fields: [mapTypeId], references: [id])
-  mapTypeId   Int           @map("map_type_id")
-  chiName     String        @map("chinese_name")
-  engName     String        @map("english_name")
-  email       String?
-  phoneNumber Int?          @map("phone_number")
-  chiAddress  String        @unique @map("chinese_address")
-  engAddress  String        @unique @map("english_address")
-  district    District
-  latitude    Decimal       @db.Decimal(11, 8)
-  longitude   Decimal       @db.Decimal(11, 8)
-  profileImg  String?       @unique @map("profile_img")
-  createdAt   DateTime      @default(now()) @map("created_at")
-  updatedAt   DateTime      @default(now()) @updatedAt @map("updated_at")
-  workingHour WorkingHour[]
-  Comment     Comment[]
-  Exp         Exp[]
+  id               Int                @id @default(autoincrement())
+  mapType          MapType            @relation(fields: [mapTypeId], references: [id])
+  mapTypeId        Int                @map("map_type_id")
+  chiName          String             @map("chinese_name")
+  engName          String             @map("english_name")
+  email            String?
+  phoneNumber      Int?               @map("phone_number")
+  chiAddress       String             @unique @map("chinese_address")
+  engAddress       String             @unique @map("english_address")
+  district         District
+  latitude         Decimal            @db.Decimal(11, 8)
+  longitude        Decimal            @db.Decimal(11, 8)
+  profileImg       String?            @unique @map("profile_img")
+  createdAt        DateTime           @default(now()) @map("created_at")
+  updatedAt        DateTime           @default(now()) @updatedAt @map("updated_at")
+  Comment          Comment[]
+  Exp              Exp[]
+  MapToWorkingHour MapToWorkingHour[]
 
   @@unique([latitude, longitude])
   @@map("maps")
 }
 
 model WorkingHour {
-  id        Int      @id @default(autoincrement())
-  map       Maps     @relation(fields: [mapId], references: [id])
-  mapId     Int      @map("map_id")
-  weekday   Weekday
-  hours     String
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  id               Int                @id @default(autoincrement())
+  weekday          Weekday
+  hours            String
+  createdAt        DateTime           @default(now()) @map("created_at")
+  updatedAt        DateTime           @default(now()) @updatedAt @map("updated_at")
+  MapToWorkingHour MapToWorkingHour[]
 
   @@map("working_hours")
 }
 
-model PetImgTag {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique
-  tagCount  Int      @default(0) @map("tag_count")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+model MapToWorkingHour {
+  id            Int         @id @default(autoincrement())
+  map           Maps        @relation(fields: [mapId], references: [id])
+  mapId         Int         @map("map_id")
+  workingHour   WorkingHour @relation(fields: [workingHourId], references: [id])
+  workingHourId Int         @map("working_hour_id")
+  createdAt     DateTime    @default(now()) @map("created_at")
+  updatedAt     DateTime    @default(now()) @updatedAt @map("updated_at")
 
-  @@map("pet_img_tags")
-}
-
-model ExpTag {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique
-  tagCount  Int      @default(0) @map("tag_count")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-
-  @@map("exp_tags")
-}
-
-model EventTag {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique
-  tagCount  Int      @default(0) @map("tag_count")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-
-  @@map("event_tags")
+  @@unique([mapId, workingHourId])
+  @@map("map_to_working_hours")
 }
 
 model Species {
@@ -152,13 +134,14 @@ model PetWeight {
 }
 
 model PetImg {
-  id        Int      @id @default(autoincrement())
-  pet       Pet      @relation(fields: [petId], references: [id])
-  petId     Int      @map("pet_id")
-  tag       String?
-  name      String   @unique
-  isPrivate Boolean  @map("is_private")
-  createdAt DateTime @default(now()) @map("created_at")
+  id         Int       @id @default(autoincrement())
+  pet        Pet       @relation(fields: [petId], references: [id])
+  petId      Int       @map("pet_id")
+  tag        String?
+  name       String    @unique
+  isPrivate  Boolean   @map("is_private")
+  modifiedAt DateTime? @map("modified_at")
+  createdAt  DateTime  @default(now()) @map("created_at")
 
   @@map("pets_img")
 }
@@ -186,7 +169,6 @@ model Comment {
   updatedAt  DateTime     @default(now()) @updatedAt @map("updated_at")
   CommentImg CommentImg[]
 
-  @@unique([userId, mapId])
   @@map("comments")
 }
 
@@ -195,6 +177,7 @@ model CommentImg {
   comment   Comment @relation(fields: [commentId], references: [id])
   commentId Int     @map("comment_id")
   name      String  @db.VarChar(255)
+  isDeleted Boolean @map("is_deleted")
 
   @@map("comments_img")
 }
@@ -204,6 +187,7 @@ model Event {
   host       User       @relation(fields: [hostId], references: [id])
   hostId     Int        @map("host_id")
   location   String     @db.VarChar(255)
+  district   District
   tag        String?
   animalType AnimalType @map("animal_type")
   title      String     @db.VarChar(255)
@@ -218,19 +202,17 @@ model Event {
 }
 
 model Exp {
-  id            Int       @id @default(autoincrement())
-  poster        User      @relation(fields: [posterId], references: [id])
-  posterId      Int       @map("poster_id")
-  title         String    @db.VarChar(255)
-  tag           String?
-  content       String
-  map           Maps      @relation(fields: [mapId], references: [id])
-  mapId         Int       @map("map_id")
-  numThumbsUp   Int       @default(0) @map("num_thumbs_up")
-  numThumbsDown Int       @default(0) @map("num_thumbs_down")
-  createdAt     DateTime  @default(now()) @map("created_at")
-  updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")
-  ExpLike       ExpLike[]
+  id        Int       @id @default(autoincrement())
+  poster    User      @relation(fields: [posterId], references: [id])
+  posterId  Int       @map("poster_id")
+  title     String    @db.VarChar(255)
+  tag       String?
+  content   String
+  map       Maps?     @relation(fields: [mapId], references: [id])
+  mapId     Int?      @map("map_id")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
+  ExpLike   ExpLike[]
 
   @@map("experience")
 }

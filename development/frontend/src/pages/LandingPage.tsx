@@ -43,9 +43,10 @@ export default function LandingPage() {
 
   const [hasMore, sethasMore] = useState(true);
 
-  const [indexOne, setIndexOne] = useState(2);
-  const [indexTwo, setIndexTwo] = useState(3);
-  // const [indexThree, setIndexThree] = useState(5);
+  const [indexA, setIndexA] = useState(6);
+  const [indexB, setIndexB] = useState(9);
+  const [indexC, setIndexC] = useState(10);
+  // const [indexD, setIndexD] = useState(9);
 
   console.log("data no: ", data1.length);
   console.log("item no: ", items.length);
@@ -53,19 +54,23 @@ export default function LandingPage() {
 
   useEffect(() => {
     const getComments = async () => {
-      setItems(data1);
+      setItems(data1.slice(0, 6));
     };
 
     getComments();
   }, []);
 
   const fetchData = async () => {
-    setItems([...items, data1[indexOne], data1[indexTwo]]);
+    //  data1[indexB], data1[indexC];
+    setItems([...items, data1[indexA]]);
     if (data1.length - items.length === 0 || data1.length - items.length < 4) {
       sethasMore(false);
     }
-    setIndexOne(indexOne + 2);
-    setIndexTwo(indexTwo + 2);
+    setIndexA(indexA + 1);
+    // setIndexB(indexB + 1);
+    // setIndexC(indexC + 1);
+    // setIndexD(indexD + 1);
+    // setIndexTwo(indexTwo + 2);
   };
 
   // console.log(indexOne);
@@ -75,8 +80,10 @@ export default function LandingPage() {
   console.log("items: ", items);
 
   const breakpointColumnsObj = {
-    default: 2,
-    200: 1,
+    default: 3,
+    1300: 3,
+    1000: 2,
+    290: 1,
   };
 
   return (
@@ -102,7 +109,7 @@ export default function LandingPage() {
               {items.map((item: any) => {
                 return (
                   <div key={item.id}>
-                    <img width={190} src={`${item.img}`} alt={item.name} />
+                    <img src={`${item.img}`} alt={item.name} />
                   </div>
                 );
               })}

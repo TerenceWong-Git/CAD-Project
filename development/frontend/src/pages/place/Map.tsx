@@ -1,32 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Circle, GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import { Autocomplete } from "@mantine/core";
-import CategoryButtons from "../../components/place/map/Category";
-import Mall from "../../components/place/map/icons/mall.png";
-
-const containerStyle = {
-  width: "600px",
-  height: "700px",
-};
-
-const circleSettings = {
-  strokeColor: "#FF0000",
-  strokeOpacity: 0.8,
-  strokeWeight: 2,
-  fillColor: "#FF0000",
-  fillOpacity: 0.1,
-  clickable: false,
-  draggable: false,
-  editable: false,
-  visible: true,
-  radius: 150,
-  zIndex: 1,
-};
+import Mall from "../../components/place/map/icons/clinic.png";
+import { circleSettings, containerStyle } from "../../components/place/map/MapSetting";
 
 export default function Map() {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyCD0Ddx6UPdWGsBUUBR711rCZQYRboSSrw",
+    googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`,
   });
 
   const [userLocation, setUserLocation] = useState({ lat: 0, lng: 0 });
@@ -56,17 +37,11 @@ export default function Map() {
     fetchData();
   }, []);
 
-  // useEffect(() => {
-  //   setTargetLocation({ lat: parseFloat(loadPlacesData[0].latitude), lng: parseFloat(loadPlacesData[0].longitude) });
-  // }, []);
-
   ////////////////////////////////////   Load Data   /////////////////////////////////////
 
   ////////////////////////////////////   Initial Map   ///////////////////////////////////
 
   navigator.geolocation.watchPosition((position) => {
-    // setLat(position.coords.latitude);
-    // setLng(position.coords.longitude);
     setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
     setTargetLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
   });
@@ -78,8 +53,6 @@ export default function Map() {
   const getLocation = (e: any) => {
     e.preventDefault();
     navigator.geolocation.watchPosition((position) => {
-      // setLat(position.coords.latitude);
-      // setLng(position.coords.longitude);
       setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
       setTargetLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
     });
@@ -117,9 +90,7 @@ export default function Map() {
     });
 
     setSearchItems(newItems);
-    console.log("searchItems: ", searchItems);
-    setTargetLocation({ lat: parseFloat(searchItems[0].latitude), lng: parseFloat(searchItems[0].longitude) });
-    console.log("targetLocation: ", targetLocation);
+    setTargetLocation({ lat: parseFloat(newItems[0].latitude), lng: parseFloat(newItems[0].longitude) });
   };
   console.log("value: ", value);
   console.log("targetLocation: ", targetLocation);
@@ -129,12 +100,7 @@ export default function Map() {
   return (
     <div>
       {isTriggered ? (
-        <div>
-          <div>
-            <button onClick={() => setIsTriggered(false)}>Back</button>
-            <CategoryButtons filterItem={filterItem} setItems={setItems} />
-          </div>
-        </div>
+        <div></div>
       ) : (
         <div>
           <div>
@@ -151,9 +117,9 @@ export default function Map() {
             {/* { lat: lat, lng: lng } */}
             {isLoaded && (
               <GoogleMap mapContainerStyle={containerStyle} center={targetLocation} zoom={12} options={{ disableDefaultUI: true }}>
-                <Circle center={userLocation} options={circleSettings} />
-                <Marker position={userLocation} />
-                {searchItems.map((item) => {
+                <Circle center={targetLocation} options={circleSettings} />
+                <Marker position={targetLocation} />
+                {items.map((item) => {
                   const latitudeToFloat = parseFloat(item.latitude);
                   const longitudeToFloat = parseFloat(item.longitude);
                   return (

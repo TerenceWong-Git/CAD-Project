@@ -1,1 +1,65 @@
+.pageContainer {
+  border: 3px solid black;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: 100%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
 
+.categoryContainer {
+  border: 3px solid rgb(255, 204, 0);
+  display: flex;
+  justify-content: space-evenly;
+  top: 5vmin;
+  width: 20%;
+  height: 70vmin;
+}
+
+.districtCategory .typeCategory {
+  border: 3px solid black;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mapContainer {
+  display: flex;
+  justify-content: center;
+  border: 3px solid rgb(255, 204, 0);
+}
+
+.previewPlaceCard {
+  border: 3px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 20px;
+  position: absolute;
+  width: 300px;
+  height: 33vmin;
+  left: 3%;
+  z-index: 10000;
+}
+
+.cardSection {
+  border: 2px solid black;
+  border-radius: 20px;
+}
+
+.previewPicture2 {
+  border-radius: 20px;
+  height: 21vmin;
+}
+
+.closeCardButton {
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 10%;
+  left: 97%;
+  width: 2vmin;
+}

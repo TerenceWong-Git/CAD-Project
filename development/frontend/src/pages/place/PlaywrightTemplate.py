@@ -35,14 +35,20 @@ with sync_playwright() as p:
             const allData = []
             allRes.forEach(res => {
                 const data = {}
-                data['restaurant_name'] = res.querySelector('.title-name').innerText
-                data['likes'] = res.querySelector('.smile-face').querySelector('.score').innerText
-                data['dislikes'] = res.querySelector('.sad-face').querySelector('.score').innerText
-                data['address'] = res.querySelector('.address').innerText.substring(1)
-                data['price_range'] = res.querySelector('.icon-info-food-price').innerText.substring(1)
+                data['restaurant_name'] = res.querySelector(
+                    '.title-name').innerText
+                data['likes'] = res.querySelector(
+                    '.smile-face').querySelector('.score').innerText
+                data['dislikes'] = res.querySelector(
+                    '.sad-face').querySelector('.score').innerText
+                data['address'] = res.querySelector(
+                    '.address').innerText.substring(1)
+                data['price_range'] = res.querySelector(
+                    '.icon-info-food-price').innerText.substring(1)
                 data['genres'] = []
                 res.querySelector('.pois-categoryui-list').querySelectorAll('li').forEach(elem => data["genres"].push(elem.innerText))
-                data['restaurant_url'] = res.querySelector('.title-name').querySelector('a').href
+                data['restaurant_url'] = res.querySelector(
+                    '.title-name').querySelector('a').href
                 allData.push(data)
             })
             return allData
@@ -54,3 +60,20 @@ with sync_playwright() as p:
         db.openricedb.insert_many(restaurant_texts)
 
     browser.close()
+
+
+#   {catergoryPageItems
+#   .reduce((pv: any[], cv) => {
+#     if (pv.includes(cv.mapType.engType)) {
+#       return pv;
+#     } else {
+#       return [...pv, cv.mapType.engType];
+#     }
+#   }, [])
+#   .map((place, id) => {
+#     return (
+#       <button onClick={() => filterItem(place)} key={place}>
+#         {place}
+#       </button>
+#     );
+#   })}

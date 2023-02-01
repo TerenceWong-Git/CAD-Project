@@ -1,14 +1,12 @@
-import { log } from "console";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import logger from "redux-logger";
+// import logger from "redux-logger";
 
 function CreateComment() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
@@ -18,9 +16,7 @@ function CreateComment() {
 
   useEffect(() => {
     async function loadData() {
-      const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/comment/map`
-      );
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/comment/map`);
       const json = await res.json();
       console.log(json);
 
@@ -34,7 +30,7 @@ function CreateComment() {
   function uploadFiles(e: any) {
     const selectedFiles = e.target.files;
     const selectedFilesArray = Array.from(selectedFiles);
-    setFile(selectedFilesArray)
+    setFile(selectedFilesArray);
   }
 
   function deleteFile(e: any) {
@@ -42,7 +38,8 @@ function CreateComment() {
     setFile(newFile);
   }
 
-  console.log("file: ",file)
+  console.log("file: ", file);
+  console.log("errors: ", errors);
 
   return (
     <div>
@@ -100,13 +97,7 @@ function CreateComment() {
         <div>
           <label>
             相：
-            <input
-              type="file"
-              multiple
-              accept="image/png , image/jpg, image/jpeg"
-              {...register("files")}
-              onChange={uploadFiles}
-            ></input>
+            <input type="file" multiple accept="image/png , image/jpg, image/jpeg" {...register("files")} onChange={uploadFiles}></input>
           </label>
           <br></br>
           <div className="images">
@@ -115,9 +106,7 @@ function CreateComment() {
                 return (
                   <div key={index} className="image">
                     <img src={URL.createObjectURL(image)} height="200" alt="" />
-                    <button onClick={() => deleteFile(index)}>
-                      delete image
-                    </button>
+                    <button onClick={() => deleteFile(index)}>delete image</button>
                   </div>
                 );
               })}

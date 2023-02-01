@@ -16,7 +16,9 @@ export default function CreatePetProfile2() {
 
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/pet/species`);
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/pet/species`
+      );
       const json = await res.json();
 
       setLoadPetSpecies(json);
@@ -91,11 +93,25 @@ export default function CreatePetProfile2() {
 
   return (
     <div>
-      <Box component="form" maw={400} mx="auto" onSubmit={form.onSubmit((values) => console.log(values))}>
+      <Box
+        component="form"
+        maw={400}
+        mx="auto"
+        onSubmit={form.onSubmit((values) => console.log(values))}>
         <div>
           <Radio.Group value={value} onChange={setValue}>
-            <Radio value={catIdFilter} label={catNameFilter} onClick={() => setIsTriggered(1)} />
-            <Radio value={dogIdFilter} label={dogNameFilter} onClick={() => setIsTriggered(2)} />
+            {/* <Radio value={catIdFilter} label={catNameFilter} onClick={() => setIsTriggered(1)} />
+            <Radio value={dogIdFilter} label={dogNameFilter} onClick={() => setIsTriggered(2)} /> */}
+            <Radio
+              value={'1'}
+              label={catNameFilter}
+              onClick={() => setIsTriggered(1)}
+            />
+            <Radio
+              value={'2'}
+              label={dogNameFilter}
+              onClick={() => setIsTriggered(2)}
+            />
           </Radio.Group>
         </div>
 
@@ -104,7 +120,10 @@ export default function CreatePetProfile2() {
         <div>
           {isTriggered === 1 && (
             <div>
-              <Select data={catSubSpeciesFilter} {...form.getInputProps("species")} />
+              <Select
+                data={catSubSpeciesFilter}
+                {...form.getInputProps("species")}
+              />
             </div>
           )}
         </div>
@@ -112,7 +131,10 @@ export default function CreatePetProfile2() {
         <div>
           {isTriggered === 2 && (
             <div>
-              <Select data={dogSubSpeciesFilter} {...form.getInputProps("species")} />
+              <Select
+                data={dogSubSpeciesFilter}
+                {...form.getInputProps("species")}
+              />
             </div>
           )}
         </div>

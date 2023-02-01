@@ -433,6 +433,50 @@ console.log(mapData.length);
 const workingHourData = [
   {
     weekday: Weekday['Monday'],
+    hours: '24小時開放',
+  },
+  {
+    weekday: Weekday['Monday'],
+    hours: '10:00am - 8:00pm',
+  },
+  {
+    weekday: Weekday['Monday'],
+    hours: '10:00am - 8:00pm',
+  },
+  {
+    weekday: Weekday['Monday'],
+    hours: '10:00am - 8:00pm',
+  },
+  {
+    weekday: Weekday['Monday'],
+    hours: '10:00am - 8:00pm',
+  },
+  {
+    weekday: Weekday['Monday'],
+    hours: '10:00am - 8:00pm',
+  },
+  {
+    weekday: Weekday['Monday'],
+    hours: '10:00am - 8:00pm',
+  },
+  {
+    weekday: Weekday['Monday'],
+    hours: '10:00am - 8:00pm',
+  },
+  {
+    weekday: Weekday['Monday'],
+    hours: '10:00am - 8:00pm',
+  },
+  {
+    weekday: Weekday['Monday'],
+    hours: '10:00am - 8:00pm',
+  },
+  {
+    weekday: Weekday['Monday'],
+    hours: '10:00am - 8:00pm',
+  },
+  {
+    weekday: Weekday['Monday'],
     hours: '10:00am - 8:00pm',
   },
   {
@@ -792,67 +836,67 @@ async function main() {
     skipDuplicates: true,
   });
   const mapRes = await prisma.maps.findMany({ select: { id: true } });
-  await prisma.workingHour.createMany({
-    data: [
-      {
-        mapId: mapRes[0].id,
-        ...workingHourData[0],
-      },
-      {
-        mapId: mapRes[0].id,
-        ...workingHourData[1],
-      },
-      {
-        mapId: mapRes[0].id,
-        ...workingHourData[2],
-      },
-      {
-        mapId: mapRes[0].id,
-        ...workingHourData[3],
-      },
-      {
-        mapId: mapRes[0].id,
-        ...workingHourData[4],
-      },
-      {
-        mapId: mapRes[0].id,
-        ...workingHourData[5],
-      },
-      {
-        mapId: mapRes[0].id,
-        ...workingHourData[6],
-      },
-      {
-        mapId: mapRes[1].id,
-        ...workingHourData[7],
-      },
-      {
-        mapId: mapRes[1].id,
-        ...workingHourData[8],
-      },
-      {
-        mapId: mapRes[1].id,
-        ...workingHourData[9],
-      },
-      {
-        mapId: mapRes[1].id,
-        ...workingHourData[10],
-      },
-      {
-        mapId: mapRes[1].id,
-        ...workingHourData[11],
-      },
-      {
-        mapId: mapRes[1].id,
-        ...workingHourData[12],
-      },
-      {
-        mapId: mapRes[1].id,
-        ...workingHourData[13],
-      },
-    ],
-    skipDuplicates: true,
-  });
+  // await prisma.workingHour.createMany({
+  //   data: [
+  //     {
+  //       mapId: mapRes[0].id,
+  //       ...workingHourData[0],
+  //     },
+  //     {
+  //       mapId: mapRes[0].id,
+  //       ...workingHourData[1],
+  //     },
+  //     {
+  //       mapId: mapRes[0].id,
+  //       ...workingHourData[2],
+  //     },
+  //     {
+  //       mapId: mapRes[0].id,
+  //       ...workingHourData[3],
+  //     },
+  //     {
+  //       mapId: mapRes[0].id,
+  //       ...workingHourData[4],
+  //     },
+  //     {
+  //       mapId: mapRes[0].id,
+  //       ...workingHourData[5],
+  //     },
+  //     {
+  //       mapId: mapRes[0].id,
+  //       ...workingHourData[6],
+  //     },
+  //     {
+  //       mapId: mapRes[1].id,
+  //       ...workingHourData[7],
+  //     },
+  //     {
+  //       mapId: mapRes[1].id,
+  //       ...workingHourData[8],
+  //     },
+  //     {
+  //       mapId: mapRes[1].id,
+  //       ...workingHourData[9],
+  //     },
+  //     {
+  //       mapId: mapRes[1].id,
+  //       ...workingHourData[10],
+  //     },
+  //     {
+  //       mapId: mapRes[1].id,
+  //       ...workingHourData[11],
+  //     },
+  //     {
+  //       mapId: mapRes[1].id,
+  //       ...workingHourData[12],
+  //     },
+  //     {
+  //       mapId: mapRes[1].id,
+  //       ...workingHourData[13],
+  //     },
+  //   ],
+  //   skipDuplicates: true,
+  // });
   await prisma.species.createMany({
     data: famSpeciesData,
     skipDuplicates: true,

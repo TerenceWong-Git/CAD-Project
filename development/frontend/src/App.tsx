@@ -17,6 +17,7 @@ import CommentDetail from "./pages/comment/CommentDetail";
 import UserProfile from "./pages/user/UserProfile";
 import GrowTree from "./pages/pet/GrowTree";
 import Vaccine from "./pages/pet/Vaccine";
+import UserComment from "./pages/comment/UserComment";
 
 export default function App() {
   return (
@@ -24,8 +25,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/comments" element={<CommentPage />}></Route>
-          <Route path="/createComment" element={<CreateComment />}></Route>
-          <Route path="/commentDetail/:id" element={<CommentDetail />}></Route>
+          <Route path="comments/createComment" element={<CreateComment />}></Route>
+          <Route path="comments/commentDetail/:id" element={<CommentDetail />}></Route>
+          <Route path="comments/myComments" element={<UserComment />}></Route>
         </Route>
 
         <Route path="/landing" element={<LandingPage />}></Route>

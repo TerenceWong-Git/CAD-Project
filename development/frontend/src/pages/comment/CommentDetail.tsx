@@ -23,7 +23,6 @@ function CommentDetail() {
     <p>{comments.content}</p>
     <p>{comments.map?.chiName}</p>
     <p>{comments.user?.username}</p>
-  
   </div>
   );
 }

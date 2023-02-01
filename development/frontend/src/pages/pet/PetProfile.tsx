@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
 function PetProfile() {
+  const jwt = localStorage.getItem('token');
   const petId = useParams();
   console.log("petpetid", petId);
   const path = process.env.REACT_APP_BACKEND_URL;
@@ -23,11 +24,11 @@ function PetProfile() {
 
   useEffect(() => {
     async function loadData() {
-      const res = await fetch(`${path}/pet/petProfile/${petId.id}`);
+      const res = await fetch(`${path}/pet/petProfile/${petId.id}`,{headers: {Authorization: `Bearer ${jwt}`}});
       const json = await res.json();
       console.log(json);
 
-      setPets(json);
+      setPets(json[0]);
     }
     loadData();
   }, []);

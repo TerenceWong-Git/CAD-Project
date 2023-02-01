@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import "./WeightRecord.css";
+import "./css/WeightRecord.css";
 import { Modal, Button, Group } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 
 function WeightRecord() {
   const petId = useParams();
-  const navigate = useNavigate();
+  const jwt = localStorage.getItem('token');
   const path = process.env.REACT_APP_BACKEND_URL;
   const [opened, setOpened] = useState(false);
   const { register, handleSubmit } = useForm();
@@ -18,17 +18,21 @@ function WeightRecord() {
   // };
   useEffect(() => {
     async function loadData() {
-      const res = await fetch(`${path}/pet/petProfile/${petId.id}`);
+      const res = await fetch(`${path}/pet/petProfile/${petId.id}`,{headers: {Authorization: `Bearer ${jwt}`}});
       const json = await res.json();
       console.log(json);
 
-      setPets(json);
+      setPets(json[0]);
+      console.log("what is pet",pets);
+      
     }
     loadData();
   }, []);
   if (pets) {
+    
     console.log("weight12321", pets.PetWeight);
-    const petWeight = pets.PetWeight;
+    
+
   }
   const age = (dob1: any) => {
     if (typeof dob1 === null) {
@@ -90,10 +94,10 @@ function WeightRecord() {
                 })
 
                 if (res.ok) {
-                    const getRes = await fetch(`${path}/pet/petProfile/${petId.id}`);
+                    const getRes = await fetch(`${path}/pet/petProfile/${petId.id}`,{headers: {Authorization: `Bearer ${jwt}`}});
                     const json = await getRes.json();
                     console.log(json);
-                    setPets(json);
+                    setPets(json[0]);
                     setOpened(false)
                 }
 

@@ -5,17 +5,25 @@ function UserProfile() {
   const path = process.env.REACT_APP_BACKEND_URL;
   const jwt = localStorage.getItem('token');
   const [pets, setPets] = useState<any[]>([]);
+  const [name, setName] = useState<any>([]);
 
   useEffect(() => {
     async function loadData() {
-      const res = await fetch(`${path}/pet/me`,{headers: {Authorization: `Bearer ${jwt}`}})
+      const res = await fetch(`${path}/pet/me`,{headers: {Authorization: `Bearer ${jwt}`}});
       const json = await res.json();
-      console.log(json);
       
       setPets(json);
     }
+    async function loadName(){
+      const userRes = await fetch(`${path}/pet/username`,{headers: {Authorization: `Bearer ${jwt}`}});
+      const userJson = await userRes.json();
+      
+      setName(userJson);
+
+    }
+    loadName();
     loadData();
-  }, [])
+  },[])
   const age = (dob1:any) => {
     if (typeof dob1 === null){
       return
@@ -28,18 +36,23 @@ function UserProfile() {
     {
         age_now--;
     }
-    console.log(age_now);
     return age_now;
   }
+  console.log("HIHI",name);
+  
   return (
     <div>
       UserProfile
+
+      <div>
+        {name.username}
+      </div>
       
       <div>
         {pets.map(pet => (
           <Link to={`/petprofile/${pet.id}`} key={pet.id}>
             <div>
-              <img width="100" src={`${path}/S3條route`} />
+              {/* <img width="100" src={`${path}/S3條route`} /> */}
               <p>{pet.name}</p>
               {
                 pet.dateBirth&&

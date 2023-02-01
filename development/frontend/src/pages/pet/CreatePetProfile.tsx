@@ -118,24 +118,27 @@ function CreatePetProfile() {
     loadSpecies();
   }, []);
   console.log("species: ", species);
+
+  // const familyIdNull = species.filter((specie)=> specie.familyId === null)
+
   return (
     <div>
       CreatePetProfile
-      <form 
-      onSubmit={handleSubmit(async data => {
-        const jwt = localStorage.getItem('token');
-        const formData = new FormData();
-        formData.append("name", data.name);
-        formData.append("gender", data.gender);
-        formData.append("speciesId", data.speciesId);
-        formData.append("dateBirth",data.dateBirth)
-        formData.append("file", data.file[0]);
+      <form
+        onSubmit={handleSubmit(async (data) => {
+          const jwt = localStorage.getItem("token");
+          const formData = new FormData();
+          formData.append("name", data.name);
+          formData.append("gender", data.gender);
+          formData.append("speciesId", data.speciesId);
+          formData.append("dateBirth", data.dateBirth);
+          formData.append("file", data.file[0]);
 
-        console.log(data);
-        console.log(jwt)
-        console.log(path)
+          console.log(data);
+          console.log(jwt);
+          console.log(path);
 
-        await fetch(`${path}/pet/addPet`,{
+          await fetch(`${path}/pet/addPet`, {
             method: "POST",
             headers: {
               Authorization: `Bearer ${jwt}`,
@@ -171,7 +174,6 @@ function CreatePetProfile() {
           <label id="species">
             species
             {/* <Select value={value} onChange={setValue} data={species} /> */}
-
             <input type="radio" value="1" {...register("speciesId")} />
             唐貓
             <input type="radio" value="2" {...register("speciesId")} />

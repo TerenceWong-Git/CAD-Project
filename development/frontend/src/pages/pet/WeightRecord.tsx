@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./css/WeightRecord.css";
 import { Modal, Button, Group } from "@mantine/core";
 import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 
 function WeightRecord() {
   const petId = useParams();
@@ -35,7 +35,7 @@ function WeightRecord() {
 
   }
   const age = (dob1: any) => {
-    if (typeof dob1 === null) {
+    if (dob1 === null) {
       return;
     }
     let today = new Date();
@@ -72,10 +72,7 @@ function WeightRecord() {
       <div>
         {/* <button onClick={inputWeight}>+</button>
             {isLoading && <div className='toggleBox'>輸入體重</div>} */}
-        <Modal
-          opened={opened}
-          onClose={() => setOpened(false)}
-          title="輸入體重">
+        <Modal opened={opened} onClose={() => setOpened(false)} title="輸入體重">
           {
             <form
               onSubmit={handleSubmit(async (data) => {
@@ -91,7 +88,7 @@ function WeightRecord() {
                   },
                   body: JSON.stringify(data),
                   // body: formData
-                })
+                });
 
                 if (res.ok) {
                     const getRes = await fetch(`${path}/pet/petProfile/${petId.id}`,{headers: {Authorization: `Bearer ${jwt}`}});
@@ -102,7 +99,8 @@ function WeightRecord() {
                 }
 
                 // console.log(res);
-              })}>
+              })}
+            >
               <label>
                 weight
                 <input type="text" {...register("weight")} />

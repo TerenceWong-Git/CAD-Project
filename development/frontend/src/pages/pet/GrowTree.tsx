@@ -33,7 +33,7 @@ function GrowTree() {
     <Link to={`/uploadgrowtree/${petId.id}`}><button>新增相片</button></Link>
     
     </div>
-    )
+  );
 }
 
-export default GrowTree
+export default GrowTree;

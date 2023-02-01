@@ -6,7 +6,6 @@ import {
   IsOptional,
   IsString,
   MaxLength,
-  
 } from 'class-validator';
 
 export class AddWeightDto {
@@ -14,10 +13,8 @@ export class AddWeightDto {
   @IsNumber()
   @IsNotEmpty()
   weight: number;
-
 }
 export class PetDto {
-  
   @IsNotEmpty() id: string;
   @IsNotEmpty() petname: string;
 }
@@ -41,6 +38,4 @@ export class AddPetDto {
 
   @IsNotEmpty()
   gender: Gender;
-
-  
 }

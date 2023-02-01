@@ -4047,8 +4047,8 @@ const data = [
   },
 ];
 
-let data2 = [];
-let data3 = [];
+const data2 = [];
+const data3 = [];
 
 function filter() {
   const filter = data.map((info) => {

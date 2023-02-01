@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./WeightRecord.css";
 import { Modal, Button, Group } from "@mantine/core";
 import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 
 function WeightRecord() {
   const petId = useParams();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const path = process.env.REACT_APP_BACKEND_URL;
   const [opened, setOpened] = useState(false);
   const { register, handleSubmit } = useForm();
@@ -28,10 +28,10 @@ function WeightRecord() {
   }, []);
   if (pets) {
     console.log("weight12321", pets.PetWeight);
-    const petWeight = pets.PetWeight;
+    // const petWeight = pets.PetWeight;
   }
   const age = (dob1: any) => {
-    if (typeof dob1 === null) {
+    if (dob1 === null) {
       return;
     }
     let today = new Date();
@@ -68,10 +68,7 @@ function WeightRecord() {
       <div>
         {/* <button onClick={inputWeight}>+</button>
             {isLoading && <div className='toggleBox'>輸入體重</div>} */}
-        <Modal
-          opened={opened}
-          onClose={() => setOpened(false)}
-          title="輸入體重">
+        <Modal opened={opened} onClose={() => setOpened(false)} title="輸入體重">
           {
             <form
               onSubmit={handleSubmit(async (data) => {
@@ -87,18 +84,19 @@ function WeightRecord() {
                   },
                   body: JSON.stringify(data),
                   // body: formData
-                })
+                });
 
                 if (res.ok) {
-                    const getRes = await fetch(`${path}/pet/petProfile/${petId.id}`);
-                    const json = await getRes.json();
-                    console.log(json);
-                    setPets(json);
-                    setOpened(false)
+                  const getRes = await fetch(`${path}/pet/petProfile/${petId.id}`);
+                  const json = await getRes.json();
+                  console.log(json);
+                  setPets(json);
+                  setOpened(false);
                 }
 
                 // console.log(res);
-              })}>
+              })}
+            >
               <label>
                 weight
                 <input type="text" {...register("weight")} />

@@ -1,5 +1,16 @@
-import { Controller, Post, Get, UseGuards, UploadedFile, UseInterceptors, ParseIntPipe } from '@nestjs/common';
-import { Body, Param } from '@nestjs/common/decorators/http/route-params.decorator';
+import {
+  Controller,
+  Post,
+  Get,
+  UseGuards,
+  UploadedFile,
+  UseInterceptors,
+  ParseIntPipe,
+} from '@nestjs/common';
+import {
+  Body,
+  Param,
+} from '@nestjs/common/decorators/http/route-params.decorator';
 import { GetUser } from 'src/auth/decorator';
 import { JwtGuard } from 'src/auth/guard';
 import { AddPetDto, AddWeightDto } from './dto';
@@ -25,15 +36,21 @@ export class PetController {
   @Post('addPet')
   @UseGuards(JwtGuard)
   @UseInterceptors(FileInterceptor('file'))
-  async addPet(@GetUser('id') userId: number, @Body() addPetDto: AddPetDto,@UploadedFile() file:Express.Multer.File) {
+  async addPet(
+    @GetUser('id') userId: number,
+    @Body() addPetDto: AddPetDto,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
     await this.petService.addPet(userId, addPetDto, file);
-    return {message:'success'}
+    return { message: 'success' };
   }
 
   @Post('addWeight/:id')
-  
-  async addWeight(@Body() addWeightDto:AddWeightDto, @Param('id',ParseIntPipe) petId: number){
+  async addWeight(
+    @Body() addWeightDto: AddWeightDto,
+    @Param('id', ParseIntPipe) petId: number,
+  ) {
     await this.petService.addWeight(addWeightDto, petId);
-    return {message:'success'}
+    return { message: 'success' };
   }
 }

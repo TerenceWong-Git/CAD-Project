@@ -26,30 +26,32 @@ export class PetService {
     return foundPet;
   }
 
-    async getSpecies() {
-        const foundSpecies = await this.prismaService.species.findMany()
-        return foundSpecies
-    }
+  async getSpecies() {
+    const foundSpecies = await this.prismaService.species.findMany();
+    return foundSpecies;
+  }
 
-    async addWeight(addWeightDto:AddWeightDto, petId: number){
-        const data = await this.prismaService.petWeight.create({
-            data:{
-                petId: petId,
-                ...addWeightDto
-            }
-        })
-        return data
-    }
-    
-    async addPet(userId: number, addPetDto: AddPetDto, file:Express.Multer.File) {
-        
-        await this.prismaService.pet.create({
-            data: {
-                userId: userId,
-                ...addPetDto,
-                profileImg: file.originalname
-            }
-            
-        })
-    }
+  async addWeight(addWeightDto: AddWeightDto, petId: number) {
+    const data = await this.prismaService.petWeight.create({
+      data: {
+        petId: petId,
+        ...addWeightDto,
+      },
+    });
+    return data;
+  }
+
+  async addPet(
+    userId: number,
+    addPetDto: AddPetDto,
+    file: Express.Multer.File,
+  ) {
+    await this.prismaService.pet.create({
+      data: {
+        userId: userId,
+        ...addPetDto,
+        profileImg: file.originalname,
+      },
+    });
+  }
 }

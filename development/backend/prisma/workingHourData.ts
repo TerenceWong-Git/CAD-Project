@@ -6,32 +6,170 @@ const workingHourData = [
     hours: '24小時開放',
   },
   {
-    weekday: Weekday['Monday'],
-    hours: '10:00am - 8:00pm',
-  },
-  {
     weekday: Weekday['Tuesday'],
-    hours: '10:00am - 8:00pm',
+    hours: '24小時開放',
   },
   {
     weekday: Weekday['Wednesday'],
-    hours: '10:00am - 8:00pm',
+    hours: '24小時開放',
   },
   {
     weekday: Weekday['Thursday'],
-    hours: 'Closed',
+    hours: '24小時開放',
   },
   {
     weekday: Weekday['Friday'],
-    hours: '10:00am - 8:00pm',
+    hours: '24小時開放',
   },
   {
     weekday: Weekday['Saturday'],
-    hours: '10:30am - 8:30pm',
+    hours: '24小時開放',
   },
   {
     weekday: Weekday['Sunday'],
-    hours: '10:00am - 8:30pm',
+    hours: '24小時開放',
+  },
+  {
+    weekday: Weekday['Monday'],
+    hours: '放假',
+  },
+  {
+    weekday: Weekday['Tuesday'],
+    hours: '放假',
+  },
+  {
+    weekday: Weekday['Wednesday'],
+    hours: '放假',
+  },
+  {
+    weekday: Weekday['Thursday'],
+    hours: '放假',
+  },
+  {
+    weekday: Weekday['Friday'],
+    hours: '放假',
+  },
+  {
+    weekday: Weekday['Saturday'],
+    hours: '放假',
+  },
+  {
+    weekday: Weekday['Sunday'],
+    hours: '放假',
+  },
+  {
+    weekday: Weekday['Monday'],
+    hours: '上什11時 - 晚上7時',
+  },
+  {
+    weekday: Weekday['Tuesday'],
+    hours: '上什11時 - 晚上7時',
+  },
+  {
+    weekday: Weekday['Wednesday'],
+    hours: '上什11時 - 晚上7時',
+  },
+  {
+    weekday: Weekday['Thursday'],
+    hours: '上什11時 - 晚上7時',
+  },
+  {
+    weekday: Weekday['Friday'],
+    hours: '上什11時 - 晚上7時',
+  },
+  {
+    weekday: Weekday['Saturday'],
+    hours: '上什11時 - 晚上7時',
+  },
+  {
+    weekday: Weekday['Sunday'],
+    hours: '上什11時 - 晚上7時',
+  },
+  {
+    weekday: Weekday['Monday'],
+    hours: '上什10時 - 晚上6時',
+  },
+  {
+    weekday: Weekday['Tuesday'],
+    hours: '上什10時 - 晚上6時',
+  },
+  {
+    weekday: Weekday['Wednesday'],
+    hours: '上什10時 - 晚上6時',
+  },
+  {
+    weekday: Weekday['Thursday'],
+    hours: '上什10時 - 晚上6時',
+  },
+  {
+    weekday: Weekday['Friday'],
+    hours: '上什10時 - 晚上6時',
+  },
+  {
+    weekday: Weekday['Saturday'],
+    hours: '上什10時 - 晚上6時',
+  },
+  {
+    weekday: Weekday['Sunday'],
+    hours: '上什10時 - 晚上6時',
+  },
+
+  {
+    weekday: Weekday['Monday'],
+    hours: '上什9時 - 晚上6時',
+  },
+  {
+    weekday: Weekday['Tuesday'],
+    hours: '上什9時 - 晚上6時',
+  },
+  {
+    weekday: Weekday['Wednesday'],
+    hours: '上什9時 - 晚上6時',
+  },
+  {
+    weekday: Weekday['Thursday'],
+    hours: '上什9時 - 晚上6時',
+  },
+  {
+    weekday: Weekday['Friday'],
+    hours: '上什9時 - 晚上6時',
+  },
+  {
+    weekday: Weekday['Saturday'],
+    hours: '上什9時 - 晚上6時',
+  },
+  {
+    weekday: Weekday['Sunday'],
+    hours: '上什9時 - 晚上6時',
+  },
+
+  {
+    weekday: Weekday['Monday'],
+    hours: '上什9時 - 晚上7時',
+  },
+  {
+    weekday: Weekday['Tuesday'],
+    hours: '上什9時 - 晚上7時',
+  },
+  {
+    weekday: Weekday['Wednesday'],
+    hours: '上什9時 - 晚上7時',
+  },
+  {
+    weekday: Weekday['Thursday'],
+    hours: '上什9時 - 晚上7時',
+  },
+  {
+    weekday: Weekday['Friday'],
+    hours: '上什9時 - 晚上7時',
+  },
+  {
+    weekday: Weekday['Saturday'],
+    hours: '上什9時 - 晚上7時',
+  },
+  {
+    weekday: Weekday['Sunday'],
+    hours: '上什9時 - 晚上7時',
   },
 ];
 

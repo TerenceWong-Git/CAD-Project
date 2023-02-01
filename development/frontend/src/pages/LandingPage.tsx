@@ -45,7 +45,7 @@ export default function LandingPage() {
 
   const [indexOne, setIndexOne] = useState(2);
   const [indexTwo, setIndexTwo] = useState(3);
-  const [indexThree, setIndexThree] = useState(5);
+  // const [indexThree, setIndexThree] = useState(5);
 
   console.log("data no: ", data1.length);
   console.log("item no: ", items.length);
@@ -102,7 +102,7 @@ export default function LandingPage() {
               {items.map((item: any) => {
                 return (
                   <div key={item.id}>
-                    <img width={190} src={`${item.img}`} />
+                    <img width={190} src={`${item.img}`} alt={item.name} />
                   </div>
                 );
               })}

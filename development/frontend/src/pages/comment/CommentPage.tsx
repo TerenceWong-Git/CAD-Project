@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import SimpleBottomNavigation from "../../components/FunctionBar";
+// import SimpleBottomNavigation from "../../components/FunctionBar";
 
 function CommentPage() {
   const [comments, setComments] = useState<any[]>([]);
@@ -40,17 +40,9 @@ function CommentPage() {
 
         <button onClick={() => setFilter((filter) => ({}))}>全部</button>
 
-        <button
-          onClick={() => setFilter((filter) => ({ ...filter, isThumb: true }))}
-        >
-          好評
-        </button>
+        <button onClick={() => setFilter((filter) => ({ ...filter, isThumb: true }))}>好評</button>
 
-        <button
-          onClick={() => setFilter((filter) => ({ ...filter, isThumb: false }))}
-        >
-          差評
-        </button>
+        <button onClick={() => setFilter((filter) => ({ ...filter, isThumb: false }))}>差評</button>
       </div>
       <div>
         {filteredComments.map((comment) => (

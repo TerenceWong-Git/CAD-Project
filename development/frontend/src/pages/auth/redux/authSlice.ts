@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
 import jwt_decode from "jwt-decode";
 
 interface AuthState {
@@ -26,39 +25,38 @@ initialState = {
 // #########
 // Thunk
 // #########
-export const loginThunk = createAsyncThunk<
-  string,
-  { email: string; password: string },
-  { rejectValue: string }
->("@auth/login", async ({ email, password }, thunkAPI) => {
-  try {
-    console.log("yeah");
-    const res = await fetch(`${REACT_APP_BACKEND_URL}/auth/login`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json; charset=utf-8",
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    });
-    console.log("yeah2");
+export const loginThunk = createAsyncThunk<string, { email: string; password: string }, { rejectValue: string }>(
+  "@auth/login",
+  async ({ email, password }, thunkAPI) => {
+    try {
+      console.log("yeah");
+      const res = await fetch(`${REACT_APP_BACKEND_URL}/auth/login`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json; charset=utf-8",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+      console.log("yeah2");
 
-    const JWT_token = await res.json();
-    console.log(JWT_token);
+      const JWT_token = await res.json();
+      console.log(JWT_token);
 
-    if (res.status === 200) {
-      console.log("You login successfully");
-    } else {
-      console.log(`${JWT_token}`);
+      if (res.status === 200) {
+        console.log("You login successfully");
+      } else {
+        console.log(`${JWT_token}`);
+      }
+
+      return JWT_token.access_token;
+    } catch (error) {
+      return thunkAPI.rejectWithValue("AUTH Login failed");
     }
-
-    return JWT_token.access_token;
-  } catch (error) {
-    return thunkAPI.rejectWithValue("AUTH Login failed");
   }
-});
+);
 
 // #########
 // authSlice

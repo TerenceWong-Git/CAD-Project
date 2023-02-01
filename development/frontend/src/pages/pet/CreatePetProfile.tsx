@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import { Select } from "@mantine/core";
-
 
 function CreatePetProfile() {
   const path = process.env.REACT_APP_BACKEND_URL;
@@ -21,37 +19,33 @@ function CreatePetProfile() {
   }, []);
   console.log("species: ", species);
 
-  const [family, setFamily] = useState<{ familyId?: number }>({});
-  const [value, setValue] = useState<string | null>(null);
   // const familyIdNull = species.filter((specie)=> specie.familyId === null)
 
   return (
     <div>
       CreatePetProfile
-      <form 
-      onSubmit={handleSubmit(async data => {
-        const jwt = localStorage.getItem('token');
-        const formData = new FormData();
-        formData.append("name", data.name);
-        formData.append("gender", data.gender);
-        formData.append("speciesId", data.speciesId);
-        formData.append("dateBirth",data.dateBirth)
-        formData.append("file", data.file[0]);
+      <form
+        onSubmit={handleSubmit(async (data) => {
+          const jwt = localStorage.getItem("token");
+          const formData = new FormData();
+          formData.append("name", data.name);
+          formData.append("gender", data.gender);
+          formData.append("speciesId", data.speciesId);
+          formData.append("dateBirth", data.dateBirth);
+          formData.append("file", data.file[0]);
 
-        console.log(data);
-        console.log(jwt)
-        console.log(path)
+          console.log(data);
+          console.log(jwt);
+          console.log(path);
 
-        await fetch(`${path}/pet/addPet`,{
+          await fetch(`${path}/pet/addPet`, {
             method: "POST",
             headers: {
               Authorization: `Bearer ${jwt}`,
             },
             body: formData,
-        }).then(
-          () => navigate("/")  
-        )
-      })}
+          }).then(() => navigate("/"));
+        })}
       >
         <div>
           <label id="profileImg">
@@ -78,7 +72,6 @@ function CreatePetProfile() {
           <label id="species">
             species
             {/* <Select value={value} onChange={setValue} data={species} /> */}
-
             <input type="radio" value="1" {...register("speciesId")} />
             唐貓
             <input type="radio" value="2" {...register("speciesId")} />

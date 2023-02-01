@@ -55,7 +55,7 @@ function CreateComment() {
           formData.append("title", data.title);
           formData.append("content", data.content);
           formData.append("isThumb", data.isThumb);
-          for (let i = 0; i < file.length; i++) {
+          for(let i = 0; i < file.length; i++) {
             formData.append("files", file[i]);
           }
 
@@ -86,14 +86,14 @@ function CreateComment() {
         <p>
           <label>
             標題：
-            <input type="text" {...register("title")}></input>
+            <input type="text" {...register("title", { required: true })}></input>
           </label>
         </p>
 
         <p>
           <label>
             內容：
-            <textarea {...register("content")}></textarea>
+            <textarea {...register("content",{ required: true })}></textarea>
           </label>
         </p>
 
@@ -125,7 +125,7 @@ function CreateComment() {
         </div>
 
         <p>
-          <input type="radio" value="true" {...register("isThumb")} />
+          <input type="radio" value="true"  {...register("isThumb")}  required />
           <label htmlFor="good">好評</label>
           <input type="radio" value="false" {...register("isThumb")} />
           <label htmlFor="bad">差評</label>

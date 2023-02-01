@@ -15,6 +15,7 @@ import CreatePetProfile2 from "./pages/pet/createPet2";
 import LandingPage from "./pages/LandingPage";
 import List from "./pages/place/List";
 import CommentDetail from "./pages/comment/CommentDetail";
+import UserComment from "./pages/comment/UserComment";
 
 export default function App() {
   return (
@@ -42,8 +43,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/comments" element={<CommentPage />}></Route>
-          <Route path="/createComment" element={<CreateComment />}></Route>
-          <Route path="/commentDetail/:id" element={<CommentDetail />}></Route>
+          <Route path="comments/createComment" element={<CreateComment />}></Route>
+          <Route path="comments/commentDetail/:id" element={<CommentDetail />}></Route>
+          <Route path="comments/myComments" element={<UserComment />}></Route>
         </Route>
 
         <Route path="/landing" element={<LandingPage />}></Route>

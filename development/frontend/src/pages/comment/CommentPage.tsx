@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import SimpleBottomNavigation from "../../components/FunctionBar";
 
 function CommentPage() {
   const [comments, setComments] = useState<any[]>([]);
@@ -35,7 +34,11 @@ function CommentPage() {
       CommentPage
       <div>
         <button>
-          <Link to={"/createComment"}>建立</Link>
+          <Link to={"createComment"}>建立</Link>
+        </button>
+
+        <button>
+          <Link to={`myComments`}>我的評論</Link>
         </button>
 
         <button onClick={() => setFilter((filter) => ({}))}>全部</button>
@@ -55,10 +58,11 @@ function CommentPage() {
       <div>
         {filteredComments.map((comment) => (
           <div key={comment.id}>
-            <Link to={`/commentDetail/${comment.id}`}>
+            <Link to={`commentDetail/${comment.id}`}>
               <p>{comment.title}</p>
               <p>{comment.map.chiName}</p>
               <p>{comment.user.username}</p>
+              <p> {<img src={comment.commentImg[0].name} alt=""></img>} </p>
             </Link>
           </div>
         ))}

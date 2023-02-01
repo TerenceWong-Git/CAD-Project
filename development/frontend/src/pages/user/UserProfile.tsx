@@ -39,7 +39,7 @@ function UserProfile() {
         {pets.map(pet => (
           <Link to={`/petprofile/${pet.id}`} key={pet.id}>
             <div>
-              <img width="100" src={`${path}/me`} />
+              <img width="100" src={`${path}/S3條route`} />
               <p>{pet.name}</p>
               {
                 pet.dateBirth&&

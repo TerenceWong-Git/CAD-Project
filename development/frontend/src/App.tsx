@@ -15,6 +15,8 @@ import List from "./pages/place/List";
 import Map3 from "./pages/place/Map3";
 import CommentDetail from "./pages/comment/CommentDetail";
 import UserProfile from "./pages/user/UserProfile";
+import GrowTree from "./pages/pet/GrowTree";
+import Vaccine from "./pages/pet/Vaccine";
 
 export default function App() {
   return (
@@ -38,6 +40,8 @@ export default function App() {
         <Route path="/weight/:id" element={<WeightRecord />}></Route>
         <Route path="/createpetprofile2" element={<CreatePetProfile2 />}></Route>
         <Route path="/userprofile" element={<UserProfile />}></Route>
+        <Route path="/growtree/:id" element={<GrowTree />}></Route>
+        <Route path="/vaccine/:id" element={<Vaccine />}></Route>
       </Routes>
     </div>
   );

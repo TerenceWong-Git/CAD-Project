@@ -95,24 +95,20 @@ export class PetService {
     petId: number,
     file: Express.Multer.File,
   ) {
-    const newFile = new Date().toJSON().slice(0) + '-' + file.originalname;
-
     const data = await this.prismaService.petImg.create({
       data: {
         petId: petId,
         ...uploadPetImgDto,
-        name: newFile,
+        name: file.originalname,
       },
     });
     return data;
   }
   async uploadVaccine(petId: number, file: Express.Multer.File) {
-    const newFile = new Date().toJSON().slice(0) + '-' + file.originalname;
-
     const data = await this.prismaService.petVaccine.create({
       data: {
         petId: petId,
-        name: newFile,
+        name: file.originalname,
       },
     });
     return data;

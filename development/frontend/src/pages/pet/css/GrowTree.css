@@ -1,0 +1,21 @@
+@media only screen and (min-width: 1000px) {
+  .treeContainer {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    padding: 10vmin 0 10vmin 0;
+  }
+
+  .eachPhoto {
+    border: 3px solid black;
+    height: 25vmin;
+    display: flex;
+  }
+
+  .left {
+    border: 3px solid rgb(255, 187, 0);
+    width: 25vmin;
+    position: sticky;
+    right: 0px;
+  }
+}

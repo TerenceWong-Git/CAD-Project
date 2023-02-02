@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./css/UserProfile.css"
+// import "./css/UserProfile.css"
 
 function UserProfile() {
   const path = process.env.REACT_APP_BACKEND_URL;
@@ -10,17 +10,16 @@ function UserProfile() {
 
   useEffect(() => {
     async function loadData() {
-      const res = await fetch(`${path}/pet/me`,{headers: {Authorization: `Bearer ${jwt}`}});
+      const res = await fetch(`${path}/pet/me`, { headers: { Authorization: `Bearer ${jwt}` } });
       const json = await res.json();
-      
+
       setPets(json);
     }
-    async function loadName(){
-      const userRes = await fetch(`${path}/pet/username`,{headers: {Authorization: `Bearer ${jwt}`}});
+    async function loadName() {
+      const userRes = await fetch(`${path}/pet/username`, { headers: { Authorization: `Bearer ${jwt}` } });
       const userJson = await userRes.json();
-      
-      setName(userJson);
 
+      setName(userJson);
     }
     loadName();
     loadData();
@@ -41,11 +40,7 @@ function UserProfile() {
   return (
     <div>
       UserProfile
-
-      <div>
-        {name.username}
-      </div>
-      
+      <div>{name.username}</div>
       <div>
         {pets.map((pet) => (
           <Link to={`/petprofile/${pet.id}`} key={pet.id}>

@@ -44,13 +44,17 @@ export class PetController {
   }
 
   @Get('petImg/:petid')
-  async getPetImg(@Param('petid',ParseIntPipe) petId: number) {
-    return await this.petService.getPetImg(petId);
+  @UseGuards(JwtGuard)
+  async getPetImg(@Param('petid',ParseIntPipe) petId: number, @GetUser('id') userId: number) {
+    return await this.petService.getPetImg(petId, userId);
   }
 
   @Get('vaccine/:id')
-  async getVaccine(@Param('id',ParseIntPipe) petId: number) {
-    return await this.petService.getVaccine(petId);
+  @UseGuards(JwtGuard)
+  async getVaccine(@Param('id', ParseIntPipe) petId: number, @GetUser('id') userId: number) {
+    console.log("getVaccine")
+    const res = await this.petService.getVaccine(petId, userId);
+    return res
   }
 
   @Post('addPet')

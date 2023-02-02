@@ -12,7 +12,6 @@ export class PetService {
     const foundPet = await this.prismaService.user.findUnique({
       where: { id: Id },
       select: {
-        
         username: true,
 
       },
@@ -41,9 +40,9 @@ export class PetService {
 
     return foundPet;
   }
-  async getPet(petId: number,userId: number) {
+  async getPet(petId: number, userId: number) {
     const foundPet = await this.prismaService.pet.findMany({
-      where: { userId : userId,id: petId },
+      where: { userId: userId, id: petId },
       select: {
         id: true,
         name: true,
@@ -54,9 +53,9 @@ export class PetService {
     return foundPet;
   }
 
-  async getPetImg(petId: number) {
-    const foundPet = await this.prismaService.petImg.findUnique({
-      where: { id: petId },
+  async getPetImg(petId: number, userId: number) {
+    const foundPet = await this.prismaService.petImg.findFirst({
+      where: { petId: petId, pet: { userId } },
       select: {
         id: true,
         name: true,
@@ -67,23 +66,22 @@ export class PetService {
     });
     return foundPet;
   }
-  async getVaccine(petId: number) {
-    const foundPet = await this.prismaService.petVaccine.findUnique({
-      where: { id: petId },
+  async getVaccine(petId: number, userId: number) {
+    const foundPet = await this.prismaService.petVaccine.findMany({
+      where: { petId: petId, pet: { userId } },
       select: {
         id: true,
         name: true,
         createdAt: true,
-
       },
     });
     return foundPet;
   }
 
-  async getSpecies() {
-    const foundSpecies = await this.prismaService.species.findMany();
-    return foundSpecies;
-  }
+    async getSpecies() {
+        const foundSpecies = await this.prismaService.species.findMany()
+        return foundSpecies
+    }
 
     async addWeight(addWeightDto:AddWeightDto, petId: number){
         const data = await this.prismaService.petWeight.create({
@@ -121,19 +119,6 @@ export class PetService {
     return data
 }
 
-//   async uploadPetImg(uploadPetImgDto:uploadPetImgDto, petId: number,files: Express.Multer.File[]){
-      
-//     const fieldFiles = files.map((file) => ({ name: file.originalname }));
-
-//     const data = await this.prismaService.petImg.createMany({
-//         data:{
-//             petId: petId,
-//             ...uploadPetImgDto,
-//             fieldFiles
-//         }
-//     })
-//     return data
-// }
     
     async addPet(userId: number, addPetDto: AddPetDto, file:Express.Multer.File) {
         

@@ -54,7 +54,7 @@ export class PetService {
   }
 
   async getPetImg(petId: number, userId: number) {
-    const foundPet = await this.prismaService.petImg.findFirst({
+    const foundPet = await this.prismaService.petImg.findMany({
       where: { petId: petId, pet: { userId } },
       select: {
         id: true,

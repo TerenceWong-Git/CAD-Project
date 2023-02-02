@@ -27,12 +27,13 @@ function UploadGrowTree() {
         onSubmit={handleSubmit(async (data) => {
           const formData = new FormData();
           formData.append("tag", data.tag);
-          formData.append("file", data.file[0]);
+          // formData.append("files", data.file[0]);
           formData.append("isPrivate", data.isPrivate);
           console.log(data)
-          //   for (let i = 0; i < file.length; i++) {
-          //     formData.append("files", file[i]);
-          //   }
+          
+            for (const item of data.file) {
+              formData.append("files", item);
+            }
 
           await fetch(`${path}/pet/uploadPetImg/${petId.id}`,{
             method: "POST",
@@ -45,7 +46,7 @@ function UploadGrowTree() {
         <div>
           <label id="file">
             upload photo
-            <input type="file" {...register("file")} />
+            <input type="file" multiple {...register("file")} />
           </label>
         </div>
 

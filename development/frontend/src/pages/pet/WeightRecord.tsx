@@ -28,12 +28,12 @@ function WeightRecord() {
     }
     loadData();
   }, []);
-  if (pets) {
+  // if (pets) {
     
-    console.log("weight12321", pets.PetWeight);
+  //   console.log("weight12321", pets.PetWeight);
     
 
-  }
+  // }
   const age = (dob1: any) => {
     if (dob1 === null) {
       return;
@@ -76,11 +76,6 @@ function WeightRecord() {
           {
             <form
               onSubmit={handleSubmit(async (data) => {
-                // const formData = new FormData();
-                // formData.append('weight',data.weight)
-
-                console.log(data);
-
                 const res = await fetch(`${path}/pet/addWeight/${petId.id}`, {
                   method: "POST",
                   headers: {
@@ -97,8 +92,6 @@ function WeightRecord() {
                     setPets(json[0]);
                     setOpened(false)
                 }
-
-                // console.log(res);
               })}
             >
               <label>

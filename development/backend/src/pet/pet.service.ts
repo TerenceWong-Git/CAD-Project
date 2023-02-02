@@ -39,9 +39,7 @@ export class PetService {
     return foundPet;
   }
   async getPet(petId: number, userId: number) {
-  async getPet(petId: number, userId: number) {
     const foundPet = await this.prismaService.pet.findMany({
-      where: { userId: userId, id: petId },
       where: { userId: userId, id: petId },
       select: {
         id: true,
@@ -77,10 +75,10 @@ export class PetService {
     return foundPet;
   }
 
-    async getSpecies() {
-        const foundSpecies = await this.prismaService.species.findMany()
-        return foundSpecies
-    }
+  async getSpecies() {
+    const foundSpecies = await this.prismaService.species.findMany();
+    return foundSpecies;
+  }
 
   async addWeight(addWeightDto: AddWeightDto, petId: number) {
     const data = await this.prismaService.petWeight.create({
@@ -112,28 +110,29 @@ export class PetService {
     const newFile = new Date().toJSON().slice(0) + '-' + file.originalname;
 
     const data = await this.prismaService.petVaccine.create({
-        data:{
-            petId: petId,
-            name: newFile
-        }
-    })
-    return data
-}
+      data: {
+        petId: petId,
+        name: newFile,
+      },
+    });
+    return data;
+  }
 
-    
-    async addPet(userId: number, addPetDto: AddPetDto, file:Express.Multer.File) {
-        
-        const newFile = new Date().toJSON().slice(0)+ "-" +file.originalname
-        
-        console.log("ori",file.originalname);
-        
-        await this.prismaService.pet.create({
-            data: {
-                userId: userId,
-                ...addPetDto,
-                profileImg: newFile
-            }
-            
-        })
-    }
+  async addPet(
+    userId: number,
+    addPetDto: AddPetDto,
+    file: Express.Multer.File,
+  ) {
+    const newFile = new Date().toJSON().slice(0) + '-' + file.originalname;
+
+    console.log('ori', file.originalname);
+
+    await this.prismaService.pet.create({
+      data: {
+        userId: userId,
+        ...addPetDto,
+        profileImg: newFile,
+      },
+    });
+  }
 }

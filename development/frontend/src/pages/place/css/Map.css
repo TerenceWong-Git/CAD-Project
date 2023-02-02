@@ -1,65 +1,94 @@
-.pageContainer {
-  border: 3px solid black;
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  height: 100%;
-  padding-top: 2%;
-  padding-bottom: 2%;
-  padding-left: 5%;
-  padding-right: 5%;
-}
+@media only screen and (min-width: 1000px) {
+  .pageContainer {
+    border: 3px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
 
-.categoryContainer {
-  border: 3px solid rgb(255, 204, 0);
-  display: flex;
-  justify-content: space-evenly;
-  top: 5vmin;
-  width: 20%;
-  height: 70vmin;
-}
+  .filterContainer {
+    border: 3px solid rgb(0, 0, 0);
+    height: 6%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.districtCategory .typeCategory {
-  border: 3px solid black;
-  display: flex;
-  flex-wrap: wrap;
-}
+  .searchContainer {
+    flex: 3;
+  }
 
-.mapContainer {
-  display: flex;
-  justify-content: center;
-  border: 3px solid rgb(255, 204, 0);
-}
+  .searchTrigger,
+  .categorTrigger {
+    flex: 1;
+  }
 
-.previewPlaceCard {
-  border: 3px solid black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 20px;
-  position: absolute;
-  width: 300px;
-  height: 33vmin;
-  left: 3%;
-  z-index: 10000;
-}
+  .categoryContainer {
+    border: 3px solid rgb(0, 208, 255);
+    display: flex;
+    justify-content: space-evenly;
+    top: 5vmin;
+    width: 100%;
+    height: 60%;
+    overflow: scroll;
+    padding: 0 1% 0 1%;
+  }
+  .districtCategory,
+  .typeCategory {
+    /* border: 3px solid black; */
+    display: flex;
+    flex-wrap: wrap;
+  }
 
-.cardSection {
-  border: 2px solid black;
-  border-radius: 20px;
-}
+  .mapContainer {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 50%;
+    height: 90%;
+    top: 0px;
+    border: 3px solid rgb(255, 204, 0);
+    overflow: hidden;
+  }
 
-.previewPicture2 {
-  border-radius: 20px;
-  height: 21vmin;
-}
+  .previewPlaceCard {
+    border: 3px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 20px;
+    position: absolute;
+    width: 300px;
+    height: 33vmin;
+    left: 3%;
+    z-index: 10000;
+  }
 
-.closeCardButton {
-  border: 2px solid black;
-  display: flex;
-  justify-content: center;
-  position: relative;
-  top: 10%;
-  left: 97%;
-  width: 2vmin;
+  .cardSection {
+    border: 2px solid black;
+    border-radius: 20px;
+  }
+
+  .previewPicture2 {
+    border-radius: 20px;
+    height: 21vmin;
+  }
+
+  .closeCardButton {
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 10%;
+    left: 97%;
+    width: 2vmin;
+  }
 }

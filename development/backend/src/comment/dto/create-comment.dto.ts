@@ -1,4 +1,4 @@
-import { Type } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
 import { IsBoolean, IsNumber, IsString } from 'class-validator';
 
 export class CreateCommentDto {
@@ -12,7 +12,11 @@ export class CreateCommentDto {
   @IsString()
   content: string;
 
-  @Type(() => Boolean)
+  // @Type(() => Boolean)
+  // @Transform(({ value }) => value === 'true')
+  @Transform(({ value }) => {
+    return [true, 'enabled', 'true', 1, '1'].indexOf(value) > -1;
+  })
   @IsBoolean()
   isThumb: boolean;
 }

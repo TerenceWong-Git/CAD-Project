@@ -19,6 +19,7 @@ import Vaccine from "./pages/pet/Vaccine";
 import UserComment from "./pages/comment/UserComment";
 import UploadGrowTree from "./pages/pet/UploadGrowTree";
 import Species from "./pages/pet/Species";
+import EditComment from "./pages/comment/EditComment";
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/comments" element={<CommentPage />}></Route>
           <Route path="comments/createComment" element={<CreateComment />}></Route>
+          <Route path="comments/editComment/:id" element={<EditComment />}></Route>
           <Route path="comments/commentDetail/:id" element={<CommentDetail />}></Route>
           <Route path="comments/myComments" element={<UserComment />}></Route>
         </Route>

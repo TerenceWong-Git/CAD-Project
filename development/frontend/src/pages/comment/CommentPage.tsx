@@ -8,12 +8,11 @@ function CommentPage() {
     async function loadData() {
       const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/comment`);
       const json = await res.json();
-      console.log(json);
-
       setComments(json);
     }
     loadData();
   }, []);
+  console.log(comments);
 
   const [filter, setFilter] = useState<{
     isThumb?: boolean;
@@ -35,7 +34,7 @@ function CommentPage() {
       CommentPage
       <div>
         <button>
-          <Link to={"createComment"}>建立</Link>
+          <Link to={"createComment"} style={{textDecoration: 'none'}} >建立</Link>
         </button>
 
         <button>
@@ -44,18 +43,35 @@ function CommentPage() {
 
         <button onClick={() => setFilter((filter) => ({}))}>全部</button>
 
-        <button onClick={() => setFilter((filter) => ({ ...filter, isThumb: true }))}>好評</button>
+        <button
+          onClick={() => setFilter((filter) => ({ ...filter, isThumb: true }))}
+        >
+          好評
+        </button>
 
-        <button onClick={() => setFilter((filter) => ({ ...filter, isThumb: false }))}>差評</button>
+        <button
+          onClick={() => setFilter((filter) => ({ ...filter, isThumb: false }))}
+        >
+          差評
+        </button>
       </div>
       <div>
         {filteredComments.map((comment) => (
           <div key={comment.id}>
             <Link to={`commentDetail/${comment.id}`}>
+            {comment.CommentImg.length > 0 ? (
+              <img
+                height="100"
+                width="100"
+                src={`${process.env.REACT_APP_BACKEND_URL}/upload/${comment.CommentImg?.[0].name}`}
+                alt=""
+              />
+            ) : (
+              <p>no image</p>
+            )}
               <p>{comment.title}</p>
               <p>{comment.map.chiName}</p>
               <p>{comment.user.username}</p>
-              <p> {<img src={comment.commentImg[0].name} alt=""></img>} </p>
             </Link>
           </div>
         ))}

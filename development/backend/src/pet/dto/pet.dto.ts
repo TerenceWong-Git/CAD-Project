@@ -30,7 +30,9 @@ export class uploadPetImgDto{
   @MaxLength(20)
   tag?: string;
 
-  @Transform(({value})=> value ==='true')
+  @Transform(({ value }) => {
+    return [true, 'enabled', 'true', 1, '1'].indexOf(value) > -1;
+  })
   @IsNotEmpty()
   isPrivate: boolean;
 }

@@ -13,7 +13,6 @@ export class PetService {
       where: { id: Id },
       select: {
         username: true,
-
       },
     });
 
@@ -25,13 +24,12 @@ export class PetService {
       select: {
         id: true,
         name: true,
-        dateBirth:true,
+        dateBirth: true,
         species: {
           select: {
             id: true,
             chiSpecies: true,
             engSpecies: true,
-            
           },
         },
         // PetWeight: true,
@@ -46,7 +44,7 @@ export class PetService {
       select: {
         id: true,
         name: true,
-        dateBirth:true,
+        dateBirth: true,
         PetWeight: true,
       },
     });
@@ -59,7 +57,7 @@ export class PetService {
       select: {
         id: true,
         name: true,
-        isPrivate:true,
+        isPrivate: true,
         tag: true,
         // modifiedAt: true
       },
@@ -78,61 +76,78 @@ export class PetService {
     return foundPet;
   }
 
-    async getSpecies() {
-        const foundSpecies = await this.prismaService.species.findMany()
-        return foundSpecies
-    }
-
-    async addWeight(addWeightDto:AddWeightDto, petId: number){
-        const data = await this.prismaService.petWeight.create({
-            data:{
-                petId: petId,
-                ...addWeightDto
-            }
-        })
-        return data
-    }
-
-    async uploadPetImg(uploadPetImgDto:uploadPetImgDto, petId: number,file: Express.Multer.File){
-      
-      const newFile = new Date().toJSON().slice(0)+ "-" +file.originalname
-
-      const data = await this.prismaService.petImg.create({
-          data:{
-              petId: petId,
-              ...uploadPetImgDto,
-              name: newFile
-          }
-      })
-      return data
+  async getSpecies() {
+    const foundSpecies = await this.prismaService.species.findMany();
+    return foundSpecies;
   }
-  async uploadVaccine(petId: number,file: Express.Multer.File){
-      
-    const newFile = new Date().toJSON().slice(0)+ "-" +file.originalname
+
+  async addWeight(addWeightDto: AddWeightDto, petId: number) {
+    const data = await this.prismaService.petWeight.create({
+      data: {
+        petId: petId,
+        ...addWeightDto,
+      },
+    });
+    return data;
+  }
+
+  //   async uploadPetImg(uploadPetImgDto:uploadPetImgDto, petId: number,file: Express.Multer.File){
+
+  //     const newFile = new Date().toJSON().slice(0)+ "-" +file.originalname
+
+  //     const data = await this.prismaService.petImg.create({
+  //         data:{
+  //             petId: petId,
+  //             ...uploadPetImgDto,
+  //             name: newFile
+  //         }
+  //     })
+  //     return data
+  // }
+
+  async uploadPetImg(
+    uploadPetImgDto: uploadPetImgDto,
+    petId: number,
+    files: Express.Multer.File[],
+  ) {
+    console.log(files);
+
+    await this.prismaService.petImg.createMany({
+      data: files.map(file => ({
+        petId: petId,
+        name: file.filename,
+        tag: uploadPetImgDto.tag,
+        isPrivate: uploadPetImgDto.isPrivate
+      }))
+    })
+  }
+
+  async uploadVaccine(petId: number, file: Express.Multer.File) {
+
 
     const data = await this.prismaService.petVaccine.create({
-        data:{
-            petId: petId,
-            name: newFile
-        }
-    })
-    return data
-}
+      data: {
+        petId: petId,
+        name: file.filename,
+      },
+    });
+    return data;
+  }
 
-    
-    async addPet(userId: number, addPetDto: AddPetDto, file:Express.Multer.File) {
-        
-        const newFile = new Date().toJSON().slice(0)+ "-" +file.originalname
-        
-        console.log("ori",file.originalname);
-        
-        await this.prismaService.pet.create({
-            data: {
-                userId: userId,
-                ...addPetDto,
-                profileImg: newFile
-            }
-            
-        })
-    }
+  async addPet(
+    userId: number,
+    addPetDto: AddPetDto,
+    file: Express.Multer.File,
+  ) {
+
+    console.log('ori', file.originalname);
+
+    await this.prismaService.pet.create({
+      data: {
+        userId: userId,
+        ...addPetDto,
+        profileImg: file.filename,
+      },
+    });
+  }
 }

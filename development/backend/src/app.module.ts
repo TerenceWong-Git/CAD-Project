@@ -6,6 +6,8 @@ import { ConfigModule } from '@nestjs/config';
 import { CommentModule } from './comment/comment.module';
 import { PetModule } from './pet/pet.module';
 import { MapModule } from './map/map.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -16,6 +18,10 @@ import { MapModule } from './map/map.module';
     MapModule,
     CommentModule,
     PetModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', '../upload'),
+      serveRoot: '/upload/',
+    }),
   ],
   controllers: [],
   providers: [],

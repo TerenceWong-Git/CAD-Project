@@ -33,6 +33,9 @@ export class CommentService {
           },
         },
         CommentImg: {
+          where: {
+            isDeleted: false,
+          },
           select: {
             name: true,
           },
@@ -51,6 +54,14 @@ export class CommentService {
         map: {
           select: {
             chiName: true,
+          },
+        },
+        CommentImg: {
+          where: {
+            isDeleted: false,
+          },
+          select: {
+            name: true,
           },
         },
       },
@@ -74,9 +85,36 @@ export class CommentService {
             chiName: true,
           },
         },
+        CommentImg: {
+          where: {
+            isDeleted: false,
+          },
+          select: {
+            name: true,
+          },
+        },
       },
     });
     return commentData;
+  }
+
+  async getUserCommentsFiles(commentId: number) {
+    return await this.prismaService.comment.findUnique({
+      where: {
+        id: commentId,
+      },
+      include: {
+        CommentImg: {
+          where: {
+            isDeleted: false,
+          },
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
   }
 
   async createComment(
@@ -90,6 +128,7 @@ export class CommentService {
       name: file.filename,
       isDeleted: false,
     }));
+
     console.log('file', fieldFiles);
 
     const insertResult = await this.prismaService.comment.create({
@@ -106,7 +145,10 @@ export class CommentService {
     userId: number,
     commentId: number,
     commentDto: UpdateCommentDto,
+    files: Express.Multer.File[],
   ) {
+    console.log(commentDto);
+
     const selectedComment = await this.prismaService.comment.findUnique({
       where: {
         id: commentId,
@@ -117,15 +159,35 @@ export class CommentService {
       throw new ForbiddenException('Failed to update comment');
     }
 
+    const fieldFiles = files.map((file) => ({
+      name: file.filename,
+      isDeleted: false,
+    }));
+
+    console.log('file', fieldFiles);
+
     return this.prismaService.comment.update({
       where: {
         id: commentId,
       },
       data: {
-        ...commentDto,
-        id: commentId,
+        CommentImg: { createMany: { data: fieldFiles } },
       },
     });
+  }
+
+  async deleteImageById(userId: number, imgId: number) {
+    const selectedComment = this.prismaService.comment.findMany({
+      where: {
+        userId: userId,
+      },
+    });
+
+    const deleteImage = this.prismaService.commentImg.delete({
+      where: { id: imgId },
+    });
+
+    return this.prismaService.$transaction([selectedComment, deleteImage]);
   }
 
   async deleteCommentById(userId: number, commentId: number) {

@@ -1,0 +1,19 @@
+.headerContainer {
+  border: 3px solid rgb(0, 0, 0);
+  background: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: sticky;
+  top: 0px;
+  height: 10vmin;
+  width: 100%;
+  z-index: 1000;
+}
+
+.username {
+  font-size: 5vmin;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+}

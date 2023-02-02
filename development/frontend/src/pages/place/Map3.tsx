@@ -135,19 +135,24 @@ export default function Map3() {
                 );
               })}
             </div>
-            <div>
-              <Autocomplete value={searchValues} onChange={setSearchValues} data={searchablePlace} />
-              <button onClick={() => searchSpecificPlace(searchValues)}>Search</button>
-            </div>
 
             <button onClick={activateFilter}>Filter</button>
             <button onClick={deactivateFilter}>Clear</button>
           </div>
         </div>
       ) : (
-        <>
-          <div>
-            <button onClick={() => setIsTriggered(true)}>Category</button>
+        <div className="pageContainer">
+          <div className="filterContainer">
+            <div className="searchContainer">
+              <Autocomplete value={searchValues} onChange={setSearchValues} data={searchablePlace} />
+            </div>
+            <div className="searchTrigger">
+              <button onClick={() => searchSpecificPlace(searchValues)}>Search</button>
+            </div>
+
+            <div className="categoryTrigger">
+              <button onClick={() => setIsTriggered(true)}>Category</button>
+            </div>
           </div>
           {isCardShown && (
             <div>
@@ -193,7 +198,7 @@ export default function Map3() {
               </GoogleMap>
             </LoadScript>
           </div>
-        </>
+        </div>
       )}
     </>
   );

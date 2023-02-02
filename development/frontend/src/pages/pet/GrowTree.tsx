@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 
 function GrowTree() {
     const petId = useParams();
+    const jwt = localStorage.getItem("token");
     const [petImg, setImg] = useState<any>({})
     useEffect(()=>{
         async function loadImg() {
-            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/pet/petImg/${petId.id}`)
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/pet/petImg/${petId.id}`,{headers: {Authorization: `Bearer ${jwt}`}})
             const json = await res.json()
 
             setImg(json)

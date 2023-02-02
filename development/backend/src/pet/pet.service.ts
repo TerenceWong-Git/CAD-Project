@@ -141,8 +141,6 @@ export class PetService {
     addPetDto: AddPetDto,
     file: Express.Multer.File,
   ) {
-    console.log('ori', file.originalname);
-
     await this.prismaService.pet.create({
       data: {
         userId: userId,

@@ -1,125 +1,75 @@
+import { Radio, Select } from "@mantine/core";
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
+import { tags } from "../../components/pet/petTag";
 import Species from "./Species";
-
-
-
-// function CreatePetProfile() {
-//   const path = process.env.REACT_APP_BACKEND_URL;
-//   const { register, handleSubmit } = useForm();
-//   const navigate = useNavigate();
-//   const [species, setSpecies] = useState<any[]>([]);
-//   useEffect(() => {
-//     async function loadSpecies() {
-//       const res = await fetch(`${path}/pet/species`);
-//       const json = await res.json();
-//       console.log(res);
-
-//       setSpecies(json);
-//     }
-//     loadSpecies();
-//   }, []);
-//   console.log("species: ", species);
-//   return (
-//     <div>
-//       CreatePetProfile
-//       <form 
-//       onSubmit={handleSubmit(async data => {
-//         const jwt = localStorage.getItem('token');
-//         const formData = new FormData();
-//         formData.append("name", data.name);
-//         formData.append("gender", data.gender);
-//         formData.append("speciesId", data.speciesId);
-//         formData.append("dateBirth",data.dateBirth)
-//         formData.append("file", data.file[0]);
-
-//         console.log(data);
-//         console.log(jwt)
-//         console.log(path)
-
-//         await fetch(`${path}/pet/addPet`,{
-//             method: "POST",
-//             headers: {
-//               Authorization: `Bearer ${jwt}`,
-//             },
-//             body: formData,
-//         }).then(
-//           () => navigate("/userprofile")  
-//         )
-//       })}
-//       >
-//         <div>
-//           <label id="profileImg">
-//             profile img
-//             <input type="file" {...register("file")} />
-//           </label>
-//         </div>
-
-//         <div>
-//           <label id="name">
-//             name
-//             <input type="text" {...register("name")} />
-//           </label>
-//         </div>
-
-//         <div>
-//           <label id="dateBirth">
-//             date of birth
-//             <input type="date" {...register("dateBirth")} />
-//           </label>
-//         </div>
-        
-//         <div>
-//           <label id="species">
-//             species
-//             {/* <Select value={value} onChange={setValue} data={species} /> */}
-
-//             <input type="radio" value="1" {...register("speciesId")} />
-//             唐貓
-//             <input type="radio" value="2" {...register("speciesId")} />
-//             唐狗
-//           </label>
-//         </div>
-
-//         <div>
-//           <label id="gender">
-//             gender
-//             <input type="radio" value="Male" {...register("gender")} />
-//             Male
-//             <input type="radio" value="Female" {...register("gender")} />
-//             Female
-//           </label>
-//         </div>
-
-//         <div>
-//           <input type="submit" value="submit" />
-//         </div>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default CreatePetProfile;
 
 function CreatePetProfile() {
   const path = process.env.REACT_APP_BACKEND_URL;
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, control, watch } = useForm();
+
   const navigate = useNavigate();
-  const [species, setSpecies] = useState<any[]>([]);
+
+  const [loadPetSpecies, setLoadPetSpecies] = useState<any[]>([]);
+  const [isTriggered, setIsTriggered] = useState<number>(0);
+  const [value, setValue] = useState<any>(null);
+
   useEffect(() => {
-    async function loadSpecies() {
-      const res = await fetch(`${path}/pet/species`);
+    async function fetchData() {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/pet/species`);
       const json = await res.json();
-      console.log(res);
 
-      setSpecies(json);
+      setLoadPetSpecies(json);
     }
-    loadSpecies();
+    fetchData();
   }, []);
-  console.log("species: ", species);
 
-  // const familyIdNull = species.filter((specie)=> specie.familyId === null)
+  ///////////////////////   Cat Species   ///////////////////////
+  const catFilter = loadPetSpecies.filter((item) => {
+    return item.id === 1;
+  });
+
+  const catSpeciesFilter = loadPetSpecies.filter((item) => {
+    return item.familyId === 1;
+  });
+
+  const catIdFilter = catFilter.map((item) => {
+    return item.id;
+  });
+  const catNameFilter = catFilter.map((item) => {
+    return item.chiSpecies;
+  });
+
+  const catSubSpeciesFilter = catSpeciesFilter.map((item) => [{ label: item.chiSpecies, value: item.id }]);
+  const newArr = catSubSpeciesFilter.flat();
+
+  console.log("catFilter: ", catFilter);
+  console.log("catSpeciesFilter: ", catSpeciesFilter);
+  console.log("catIdFilter: ", catIdFilter);
+  console.log("catNameFilter: ", catNameFilter);
+  console.log("newArr: ", newArr);
+  console.log("=================");
+  ///////////////////////   Cat Species   ///////////////////////
+
+  ///////////////////////   Dog Species   ///////////////////////
+  const dogFilter = loadPetSpecies.filter((item) => {
+    return item.id === 2;
+  });
+  const dogIdFilter = dogFilter.map((item) => item.id);
+  const dogNameFilter = dogFilter.map((item) => item.chiSpecies);
+
+  const dogSpeciesFilter = loadPetSpecies.filter((item) => {
+    return item.familyId === 2;
+  });
+  const dogSubSpeciesFilter = dogSpeciesFilter.map((item) => item.chiSpecies);
+  console.log("dogNameFilter: ", dogNameFilter);
+  console.log("dogSpeciesFilter: ", dogSpeciesFilter);
+
+  ///////////////////////   Dog Species   ///////////////////////
+
+  console.log("watch: ", watch());
+  console.log("=================");
 
   return (
     <div>
@@ -130,13 +80,9 @@ function CreatePetProfile() {
           const formData = new FormData();
           formData.append("name", data.name);
           formData.append("gender", data.gender);
-          formData.append("speciesId", data.speciesId);
+          formData.append("speciesId", data.firstName);
           formData.append("dateBirth", data.dateBirth);
           formData.append("file", data.file[0]);
-
-          console.log(data);
-          console.log(jwt);
-          console.log(path);
 
           await fetch(`${path}/pet/addPet`, {
             method: "POST",
@@ -144,11 +90,35 @@ function CreatePetProfile() {
               Authorization: `Bearer ${jwt}`,
             },
             body: formData,
-        }).then(
-          () => navigate("/userprofile")  
-        )
-      })}
+          });
+          // .then(() => navigate("/userprofile"));
+        })}
       >
+        <div>
+          <Radio.Group value={value} onChange={setValue}>
+            <Radio value={"1"} label={catNameFilter} onClick={() => setIsTriggered(1)} />
+            <Radio value={"2"} label={dogNameFilter} onClick={() => setIsTriggered(2)} />
+          </Radio.Group>
+        </div>
+
+        <div>{isTriggered === 0 && <div></div>}</div>
+
+        <div>
+          {isTriggered === 1 && (
+            <div>
+              <Controller name="firstName" control={control} render={({ field }) => <Select data={newArr} {...field} />} />
+            </div>
+          )}
+        </div>
+
+        <div>
+          {isTriggered === 2 && (
+            <div>
+              <Controller name="firstName" control={control} render={({ field }) => <Select data={dogSubSpeciesFilter} {...field} />} />
+            </div>
+          )}
+        </div>
+
         <div>
           <label id="profileImg">
             profile img
@@ -169,17 +139,8 @@ function CreatePetProfile() {
             <input type="date" {...register("dateBirth")} />
           </label>
         </div>
-        
-        <div>
-          <label id="species">
-            species
-            {/* <Select value={value} onChange={setValue} data={species} /> */}
-            <input type="radio" value="1" {...register("speciesId")} />
-            唐貓
-            <input type="radio" value="2" {...register("speciesId")} />
-            唐狗
-          </label>
-        </div>
+
+        <div></div>
 
         <div>
           <label id="gender">

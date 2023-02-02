@@ -39,17 +39,20 @@ export class PetController {
 
   @Get('petProfile/:petid')
   @UseGuards(JwtGuard)
-  async getPet(@GetUser('id') userId: number,@Param('petid',ParseIntPipe) petId: number) {
+  async getPet(
+    @GetUser('id') userId: number,
+    @Param('petid', ParseIntPipe) petId: number,
+  ) {
     return await this.petService.getPet(petId, userId);
   }
 
   @Get('petImg/:petid')
-  async getPetImg(@Param('petid',ParseIntPipe) petId: number) {
+  async getPetImg(@Param('petid', ParseIntPipe) petId: number) {
     return await this.petService.getPetImg(petId);
   }
 
   @Get('vaccine/:id')
-  async getVaccine(@Param('id',ParseIntPipe) petId: number) {
+  async getVaccine(@Param('id', ParseIntPipe) petId: number) {
     return await this.petService.getVaccine(petId);
   }
 
@@ -76,16 +79,22 @@ export class PetController {
 
   @Post('uploadPetImg/:id')
   @UseInterceptors(FileInterceptor('file'))
-  async uploadPetImg(@Body() uploadPetImgDto:uploadPetImgDto, @Param('id',ParseIntPipe) petId: number,@UploadedFile() file: Express.Multer.File){
-    await this.petService.uploadPetImg(uploadPetImgDto, petId, file);
-    return {message:'success'}
+  async uploadPetImg(
+    @Body() uploadPetImgDto: uploadPetImgDto,
+    @Param('id', ParseIntPipe) petId: number,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    return await this.petService.uploadPetImg(uploadPetImgDto, petId, file);
   }
 
   @Post('uploadVaccine/:id')
   @UseInterceptors(FileInterceptor('file'))
-  async uploadVaccine(@Param('id',ParseIntPipe) petId: number,@UploadedFile() file: Express.Multer.File){
+  async uploadVaccine(
+    @Param('id', ParseIntPipe) petId: number,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
     await this.petService.uploadVaccine(petId, file);
-    return {message:'success'}
+    return { message: 'success' };
   }
 
   // @Post('uploadPetImg/:id')

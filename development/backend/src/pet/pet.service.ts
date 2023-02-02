@@ -12,9 +12,7 @@ export class PetService {
     const foundPet = await this.prismaService.user.findUnique({
       where: { id: Id },
       select: {
-        
         username: true,
-
       },
     });
 
@@ -26,13 +24,12 @@ export class PetService {
       select: {
         id: true,
         name: true,
-        dateBirth:true,
+        dateBirth: true,
         species: {
           select: {
             id: true,
             chiSpecies: true,
             engSpecies: true,
-            
           },
         },
         // PetWeight: true,
@@ -41,13 +38,13 @@ export class PetService {
 
     return foundPet;
   }
-  async getPet(petId: number,userId: number) {
+  async getPet(petId: number, userId: number) {
     const foundPet = await this.prismaService.pet.findMany({
-      where: { userId : userId,id: petId },
+      where: { userId: userId, id: petId },
       select: {
         id: true,
         name: true,
-        dateBirth:true,
+        dateBirth: true,
         PetWeight: true,
       },
     });
@@ -55,14 +52,13 @@ export class PetService {
   }
 
   async getPetImg(petId: number) {
-    const foundPet = await this.prismaService.petImg.findUnique({
-      where: { id: petId },
+    const foundPet = await this.prismaService.petImg.findMany({
+      where: { petId: petId },
       select: {
         id: true,
         name: true,
-        isPrivate:true,
+        isPrivate: true,
         tag: true,
-        // modifiedAt: true
       },
     });
     return foundPet;
@@ -74,7 +70,6 @@ export class PetService {
         id: true,
         name: true,
         createdAt: true,
-
       },
     });
     return foundPet;
@@ -85,69 +80,73 @@ export class PetService {
     return foundSpecies;
   }
 
-    async addWeight(addWeightDto:AddWeightDto, petId: number){
-        const data = await this.prismaService.petWeight.create({
-            data:{
-                petId: petId,
-                ...addWeightDto
-            }
-        })
-        return data
-    }
-
-    async uploadPetImg(uploadPetImgDto:uploadPetImgDto, petId: number,file: Express.Multer.File){
-      
-      const newFile = new Date().toJSON().slice(0)+ "-" +file.originalname
-
-      const data = await this.prismaService.petImg.create({
-          data:{
-              petId: petId,
-              ...uploadPetImgDto,
-              name: newFile
-          }
-      })
-      return data
+  async addWeight(addWeightDto: AddWeightDto, petId: number) {
+    const data = await this.prismaService.petWeight.create({
+      data: {
+        petId: petId,
+        ...addWeightDto,
+      },
+    });
+    return data;
   }
-  async uploadVaccine(petId: number,file: Express.Multer.File){
-      
-    const newFile = new Date().toJSON().slice(0)+ "-" +file.originalname
+
+  async uploadPetImg(
+    uploadPetImgDto: uploadPetImgDto,
+    petId: number,
+    file: Express.Multer.File,
+  ) {
+    const newFile = new Date().toJSON().slice(0) + '-' + file.originalname;
+
+    const data = await this.prismaService.petImg.create({
+      data: {
+        petId: petId,
+        ...uploadPetImgDto,
+        name: newFile,
+      },
+    });
+    return data;
+  }
+  async uploadVaccine(petId: number, file: Express.Multer.File) {
+    const newFile = new Date().toJSON().slice(0) + '-' + file.originalname;
 
     const data = await this.prismaService.petVaccine.create({
-        data:{
-            petId: petId,
-            name: newFile
-        }
-    })
-    return data
-}
+      data: {
+        petId: petId,
+        name: newFile,
+      },
+    });
+    return data;
+  }
 
-//   async uploadPetImg(uploadPetImgDto:uploadPetImgDto, petId: number,files: Express.Multer.File[]){
-      
-//     const fieldFiles = files.map((file) => ({ name: file.originalname }));
+  //   async uploadPetImg(uploadPetImgDto:uploadPetImgDto, petId: number,files: Express.Multer.File[]){
 
-//     const data = await this.prismaService.petImg.createMany({
-//         data:{
-//             petId: petId,
-//             ...uploadPetImgDto,
-//             fieldFiles
-//         }
-//     })
-//     return data
-// }
-    
-    async addPet(userId: number, addPetDto: AddPetDto, file:Express.Multer.File) {
-        
-        const newFile = new Date().toJSON().slice(0)+ "-" +file.originalname
-        
-        console.log("ori",file.originalname);
-        
-        await this.prismaService.pet.create({
-            data: {
-                userId: userId,
-                ...addPetDto,
-                profileImg: newFile
-            }
-            
-        })
-    }
+  //     const fieldFiles = files.map((file) => ({ name: file.originalname }));
+
+  //     const data = await this.prismaService.petImg.createMany({
+  //         data:{
+  //             petId: petId,
+  //             ...uploadPetImgDto,
+  //             fieldFiles
+  //         }
+  //     })
+  //     return data
+  // }
+
+  async addPet(
+    userId: number,
+    addPetDto: AddPetDto,
+    file: Express.Multer.File,
+  ) {
+    const newFile = new Date().toJSON().slice(0) + '-' + file.originalname;
+
+    console.log('ori', file.originalname);
+
+    await this.prismaService.pet.create({
+      data: {
+        userId: userId,
+        ...addPetDto,
+        profileImg: newFile,
+      },
+    });
+  }
 }

@@ -4,7 +4,7 @@
   "description": "",
   "author": "",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "migrate:dev": "dotenv -e .env -- prisma migrate dev",
     "seed:dev": "dotenv -e .env -- ts-node prisma/seed.ts",

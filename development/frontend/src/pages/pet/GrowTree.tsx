@@ -27,14 +27,14 @@ export default function GrowTree() {
   console.log("petImg: ", petImg);
   console.log("imgForGrow: ", imgForGrow);
 
-  const reOrder = petImg.reduce((pv: any, cv: any) => {
-    if (pv > cv.id) {
-      return pv;
-    } else {
-      return [...pv, cv.id];
-    }
-  }, []);
-  console.log("reOrder: ", reOrder);
+  // const reOrder = petImg.reduce((pv: any, cv: any) => {
+  //   if (pv > cv.id) {
+  //     return pv;
+  //   } else {
+  //     return [...pv, cv.id];
+  //   }
+  // }, []);
+  // console.log("reOrder: ", reOrder);
 
   const [continueGrowIndex, setContinueGrowIndex] = useState(4);
   const [hasMore, setHasMore] = useState(true);
@@ -51,13 +51,13 @@ export default function GrowTree() {
     imgForGrow.map((img: any) => {
       if (!img.isPrivate && img.id % 2 === 0) {
         return (
-          <div className="eachPhoto" key={img.name}>
-            <img className="left" key={img.name} src={"/dog-cat-gfb55af861_1920.jpg"} alt={img.engName} />
+          <div className="leftPhoto" key={img.name}>
+            <img key={img.name} src={"/dog-cat-gfb55af861_1920.jpg"} alt={img.engName} />
           </div>
         );
       } else {
         return (
-          <div className="eachPhoto" key={img.name}>
+          <div className="rightPhoto" key={img.name}>
             {/* <img className="right" key={img.name} src={`${process.env.REACT_APP_BACKEND_URL}/upload/${img.name}`} alt={img.engName} /> */}
             <img className="right" key={img.name} src={"/dog-cat-gfb55af861_1920.jpg"} alt={img.engName} />
           </div>
@@ -66,18 +66,23 @@ export default function GrowTree() {
     });
 
   return (
-    <InfiniteScroll
-      dataLength={imgForGrow.length}
-      next={continueGrow}
-      hasMore={hasMore}
-      loader={<div></div>}
-      endMessage={
-        <p style={{ textAlign: "center" }}>
-          <b>Yay! You have seen it all</b>
-        </p>
-      }
-    >
-      <div className="treeContainer">{renderContinueGrow()}</div>
-    </InfiniteScroll>
+    <div className="growTreePageContainer">
+      <div className="treeContainer">
+        Our Journey Starts Here
+        <InfiniteScroll
+          dataLength={imgForGrow.length}
+          next={continueGrow}
+          hasMore={hasMore}
+          loader={<div></div>}
+          endMessage={
+            <p style={{ textAlign: "center" }}>
+              <b>To be continued ~ </b>
+            </p>
+          }
+        >
+          {renderContinueGrow()}
+        </InfiniteScroll>
+      </div>
+    </div>
   );
 }

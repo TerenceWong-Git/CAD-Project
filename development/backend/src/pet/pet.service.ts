@@ -60,6 +60,11 @@ export class PetService {
         isPrivate: true,
         tag: true,
       },
+      orderBy: [
+        {
+          id: 'asc',
+        },
+      ],
     });
     return foundPet;
   }
@@ -79,20 +84,7 @@ export class PetService {
     const foundSpecies = await this.prismaService.species.findMany();
     return foundSpecies;
   }
-  async getSpecies() {
-    const foundSpecies = await this.prismaService.species.findMany();
-    return foundSpecies;
-  }
 
-  async addWeight(addWeightDto: AddWeightDto, petId: number) {
-    const data = await this.prismaService.petWeight.create({
-      data: {
-        petId: petId,
-        ...addWeightDto,
-      },
-    });
-    return data;
-  }
   async addWeight(addWeightDto: AddWeightDto, petId: number) {
     const data = await this.prismaService.petWeight.create({
       data: {

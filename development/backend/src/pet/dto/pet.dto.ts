@@ -20,12 +20,9 @@ export class PetDto {
 }
 
 // export class uploadVaccineDto{
-  
 
 // }
-export class uploadPetImgDto{
-
-
+export class uploadPetImgDto {
   @IsString()
   @MaxLength(20)
   tag?: string;

@@ -4,7 +4,7 @@
   "description": "",
   "author": "",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "migrate:dev": "dotenv -e .env -- prisma migrate dev",
     "seed:dev": "dotenv -e .env -- ts-node prisma/seed.ts",
@@ -13,7 +13,7 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "start:prod": "node dist/src/main",
     "lint": "eslint \"{prisma,src,apps,libs,test,utils}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",

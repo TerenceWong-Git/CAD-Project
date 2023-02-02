@@ -28,7 +28,7 @@ export class uploadPetImgDto {
   tag?: string;
 
   @Transform(({ value }) => {
-    return [true, 'enabled', 'true'].indexOf(value) > -1;
+    return [true, 'enabled', 'true', 1, '1'].indexOf(value) > -1;
   })
   @IsNotEmpty()
   isPrivate: boolean;

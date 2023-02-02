@@ -48,12 +48,11 @@ function Vaccine() {
             method: "POST",
             body: formData,
         })
-        
-        if (res.ok) {
-          const res = await fetch(`${path}/pet/vaccine/${petId.id}`,{headers: {Authorization: `Bearer ${jwt}`}});
-          const json = await res.json();
-          console.log(json);
-          setVaccine(json);
+        console.log(res)
+        if (res.status === 201) {
+          const getRes = await fetch(`${path}/pet/vaccine/${petId.id}`,{headers: {Authorization: `Bearer ${jwt}`}});
+          const json = await getRes.json();
+          setVaccine(json.at(-1));
           setOpened(false)
       }
         })}

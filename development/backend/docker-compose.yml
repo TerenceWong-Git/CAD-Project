@@ -14,7 +14,7 @@ services:
     build:
       context: ./
       dockerfile: ./dockerfile
-    image: 'cas-server'
+    image: cas-server
     ports:
       - '8080:80'
       - '5555:5555'

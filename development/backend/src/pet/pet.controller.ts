@@ -10,12 +10,13 @@ import {
 import {
   Body,
   Param,
+  UploadedFiles,
 } from '@nestjs/common/decorators/http/route-params.decorator';
 import { GetUser } from 'src/auth/decorator';
 import { JwtGuard } from 'src/auth/guard';
 import { AddPetDto, AddWeightDto, uploadPetImgDto } from './dto';
 import { PetService } from './pet.service';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 
 @Controller('pet')
 export class PetController {
@@ -87,14 +88,25 @@ export class PetController {
     return { message: 'success' };
   }
 
+  // @Post('uploadPetImg/:id')
+  // @UseInterceptors(FileInterceptor('file'))
+  // async uploadPetImg(@Body() uploadPetImgDto:uploadPetImgDto, @Param('id',ParseIntPipe) petId: number,@UploadedFile() file: Express.Multer.File){
+  //   // await this.petService.uploadPetImg(uploadPetImgDto, petId, file);
+  //   console.log("DTO",uploadPetImgDto);
+  //   console.log("file",file);
+
+  //   return {message:'success'}
+  // }
+
   @Post('uploadPetImg/:id')
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(FilesInterceptor('files'))
   async uploadPetImg(
     @Body() uploadPetImgDto: uploadPetImgDto,
     @Param('id', ParseIntPipe) petId: number,
-    @UploadedFile() file: Express.Multer.File,
+    @UploadedFiles() files: Express.Multer.File[],
   ) {
-    return await this.petService.uploadPetImg(uploadPetImgDto, petId, file);
+    await this.petService.uploadPetImg(uploadPetImgDto, petId, files);
+    return { message: 'success' };
   }
 
   @Post('uploadVaccine/:id')

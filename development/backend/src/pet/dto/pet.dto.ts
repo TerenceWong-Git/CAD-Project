@@ -20,17 +20,16 @@ export class PetDto {
 }
 
 // export class uploadVaccineDto{
-  
 
 // }
-export class uploadPetImgDto{
-
-
+export class uploadPetImgDto {
   @IsString()
   @MaxLength(20)
   tag?: string;
 
-  @Transform(({value})=> value ==='true')
+  @Transform(({ value }) => {
+    return [true, 'enabled', 'true', 1, '1'].indexOf(value) > -1;
+  })
   @IsNotEmpty()
   isPrivate: boolean;
 }

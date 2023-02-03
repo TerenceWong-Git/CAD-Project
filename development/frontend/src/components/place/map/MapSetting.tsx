@@ -1,6 +1,6 @@
 const containerStyle = {
-  width: "900px",
-  height: "650px",
+  width: "1200px",
+  height: "800px",
 };
 
 const circleSettings = {

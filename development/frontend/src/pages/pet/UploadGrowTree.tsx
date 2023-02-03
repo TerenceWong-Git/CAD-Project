@@ -1,71 +1,98 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
+import ImageUploading from "react-images-uploading";
+import { tags } from "../../components/pet/petTag";
+import { MultiSelect } from "@mantine/core";
 
 function UploadGrowTree() {
   const path = process.env.REACT_APP_BACKEND_URL;
   const petId = useParams();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, control, watch } = useForm();
   const navigate = useNavigate();
-  //   const [file, setFile] = useState<any>([]);
+  const [images, setImages] = React.useState([]);
+  const [multiSelectValues, setMultiSelectValues] = useState<any>([""]);
+  const newFile = images.map((item: any) => item.file);
 
-  //   function uploadFiles(e: any) {
-  //     const selectedFiles = e.target.files;
-  //     const selectedFilesArray = Array.from(selectedFiles);
-  //     setFile(selectedFilesArray)
-  //   }
+  const onChange = (imageList: any, addUpdateIndex: any) => {
+    // data for submit
+    console.log(imageList, addUpdateIndex);
+    setImages(imageList);
+  };
 
-  //   function deleteFile(e: any) {
-  //     const newFile = file.filter((item: any, index: any) => index !== e);
-  //     setFile(newFile);
-  //   }
+  console.log("img: ", images);
 
+  console.log(watch());
   return (
     <div>
-      UploadGrowTree
+      CommentPage
       <form
-        onSubmit={handleSubmit(async (data) => {
+        onSubmit={handleSubmit((data) => {
+          const jwt = localStorage.getItem("token");
           const formData = new FormData();
-          formData.append("tag", data.tag);
-          formData.append("file", data.file[0]);
+          const tag = data.firstName.join();
+          formData.append("tag", tag);
           formData.append("isPrivate", data.isPrivate);
-          console.log(data)
-          //   for (let i = 0; i < file.length; i++) {
-          //     formData.append("files", file[i]);
-          //   }
 
-          await fetch(`${path}/pet/uploadPetImg/${petId.id}`,{
-            method: "POST",
-            body: formData,
-        }).then(
-            () => navigate(`/growtree/${petId.id}`)
-          )
+          for (const img of newFile) {
+            formData.append("files", img);
+          }
+
+          console.log(typeof tag, "tag: ", tag);
+          console.log("data: ", data);
+
+          // fetch(`${path}/pet/uploadPetImg/${petId.id}`, {
+          //   method: "POST",
+          //   headers: {
+          //     Authorization: `Bearer ${jwt}`,
+          //   },
+          //   body: formData,
+          // });
+
+          // navigate(`/growtree/${petId.id}`);
         })}
-        >
+      >
         <div>
-          <label id="file">
-            upload photo
-            <input type="file" {...register("file")} />
-          </label>
+          {/* key={tagId} */}
+          {/* <MultiSelect data={tags} value={passTagValues} {...register("tag", { required: true })} onChange={setMultiSelectValues} /> */}
+          <Controller name="firstName" control={control} render={({ field }) => <MultiSelect data={tags} {...field} />} />
         </div>
 
-        <div>
-          <label id="tag">
-            tag
-            <input type="text" {...register("tag")} />
-          </label>
-        </div>
-
-        <div>
-          <label id="isPrivate">
-            <div>
-              <input type="radio" value="true" {...register("isPrivate")} />
-              private
-              <input type="radio" value="false" {...register("isPrivate")} />
-              public
+        <ImageUploading multiple value={images} onChange={onChange} dataURLKey="data_url">
+          {({ imageList, onImageUpload, onImageRemoveAll, onImageUpdate, onImageRemove, isDragging, dragProps }) => (
+            // write your building UI
+            <div className="upload__image-wrapper">
+              <button type="button" style={isDragging ? { color: "red" } : undefined} onClick={onImageUpload} {...dragProps}>
+                Click or Drop here
+              </button>
+              &nbsp;
+              <button type="button" onClick={onImageRemoveAll}>
+                Remove all images
+              </button>
+              {imageList.map((image, index) => (
+                <div key={index} className="image-item">
+                  <img src={image["data_url"]} alt="" width="100" />
+                  <div className="image-item__btn-wrapper">
+                    <button type="button" onClick={() => onImageUpdate(index)}>
+                      Update
+                    </button>
+                    <button type="button" onClick={() => onImageRemove(index)}>
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
-          </label>
+          )}
+        </ImageUploading>
+
+        <div>
+          <input type="radio" value="true" required {...register("isPrivate")} />
+          <label>公開</label>
+          <input type="radio" value="false" {...register("isPrivate")} />
+          <label>私人</label>
         </div>
+
         <div>
           <input type="submit" value="submit" />
         </div>

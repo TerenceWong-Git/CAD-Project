@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "../pet/css/UserProfile.css";
 
 function UserProfile() {
   const path = process.env.REACT_APP_BACKEND_URL;
@@ -9,17 +10,20 @@ function UserProfile() {
 
   useEffect(() => {
     async function loadData() {
-      const res = await fetch(`${path}/pet/me`,{headers: {Authorization: `Bearer ${jwt}`}});
+      const res = await fetch(`${path}/pet/me`, {
+        headers: { Authorization: `Bearer ${jwt}` },
+      });
       const json = await res.json();
-      
+
       setPets(json);
     }
-    async function loadName(){
-      const userRes = await fetch(`${path}/pet/username`,{headers: {Authorization: `Bearer ${jwt}`}});
+    async function loadName() {
+      const userRes = await fetch(`${path}/pet/username`, {
+        headers: { Authorization: `Bearer ${jwt}` },
+      });
       const userJson = await userRes.json();
-      
-      setName(userJson);
 
+      setName(userJson);
     }
     loadName();
     loadData();
@@ -40,25 +44,33 @@ function UserProfile() {
   return (
     <div>
       UserProfile
-
-      <div>
-        {name.username}
-      </div>
-      
-      <div>
+      <div>{name.username}</div>
+      <div className="pet-profile-container">
         {pets.map((pet) => (
           <Link to={`/petprofile/${pet.id}`} key={pet.id}>
-            <div>
-              <img width="100" src={`${path}/S3條route`} alt={pet.id} />
-              <p>{pet.name}</p>
-              {pet.dateBirth && <p>{age(pet.dateBirth)}</p>}
+            <div className="pet-profile">
+              <div>
+                <img
+                  className="pet-icon"
+                  width="300"
+                  height="300"
+                  src={`${path}/S3條route`}
+                  alt={pet.id}
+                />
+              </div>
+              <div>{pet.name}</div>
+              {/* <div>{pet.dateBirth && <p>{age(pet.dateBirth)}</p>}</div> */}
+              <div>{pet.name?(<div>{age(pet.dateBirth)}</div>):(<div></div>)}</div>
             </div>
           </Link>
         ))}
-      </div>
-      <Link to={`/createpetprofile`}>
-        <button>加寵</button>
+        <Link to={`/createpetprofile`}>
+        <div className="pet-profile">
+          <button>加寵</button>
+        </div>
       </Link>
+      </div>
+      
     </div>
   );
 }

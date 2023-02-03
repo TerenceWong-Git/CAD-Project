@@ -8,7 +8,6 @@ export class MapService {
   async getPlacesInfo() {
     const foundPlaces = await this.prismaService.maps.findMany({
       select: {
-        // mapTypeId: true,
         chiName: true,
         engName: true,
         email: true,
@@ -28,6 +27,41 @@ export class MapService {
       },
     });
     console.dir(foundPlaces);
+    return foundPlaces;
+  }
+
+  async getPlaceDetailById(placeId: number) {
+    const foundPlaces = await this.prismaService.maps.findUnique({
+      where: {
+        id: placeId,
+      },
+      include: {
+        mapType: {
+          select: {
+            chiType: true,
+            engType: true,
+          },
+        },
+        Comment: {
+          select: {
+            user: true,
+            title: true,
+            content: true,
+            isThumb: true,
+            CommentImg: true,
+          },
+        },
+        MapToWorkingHour: {
+          where: {
+            mapId: placeId,
+          },
+          select: {
+            workingHour: true,
+          },
+        },
+      },
+    });
+    // console.dir(foundPlaces);
     return foundPlaces;
   }
 }

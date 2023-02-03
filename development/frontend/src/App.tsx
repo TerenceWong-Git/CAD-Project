@@ -20,6 +20,7 @@ import UserComment from "./pages/comment/UserComment";
 import UploadGrowTree from "./pages/pet/UploadGrowTree";
 import Species from "./pages/pet/Species";
 import EditComment from "./pages/comment/EditComment";
+import PlaceDetail from "./pages/place/PlaceDetail";
 
 export default function App() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
         {/* <Route path="/multiple" element={<Multiple />}></Route> */}
         <Route path="/map3" element={<Map3 />}></Route>
         {/* <Route path="/map" element={<Map />}></Route> */}
+        <Route path="/placeDetail/:id" element={<PlaceDetail />}></Route>
         <Route path="/list" element={<List />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>

@@ -1,6 +1,13 @@
-.div {
+* {
     text-decoration: none
 }
-.card {
-    border: 1px solid black;
+.comment-card { 
+    margin: 5% 10%;
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment-image {
+    
 }

@@ -45,24 +45,32 @@ function UserProfile() {
     <div>
       UserProfile
       <div>{name.username}</div>
-      <div>
+      <div className="pet-profile-container">
         {pets.map((pet) => (
           <Link to={`/petprofile/${pet.id}`} key={pet.id}>
-            <div className="petprofile">
+            <div className="pet-profile">
               <div>
-                <img className="peticon" width="300" height="300" src={`${path}/S3條route`} alt={pet.id} />
+                <img
+                  className="pet-icon"
+                  width="300"
+                  height="300"
+                  src={`${path}/S3條route`}
+                  alt={pet.id}
+                />
               </div>
               <div>{pet.name}</div>
-              <div>{pet.dateBirth && <p>{age(pet.dateBirth)}</p>}</div>
+              {/* <div>{pet.dateBirth && <p>{age(pet.dateBirth)}</p>}</div> */}
+              <div>{pet.name?(<div>{age(pet.dateBirth)}</div>):(<div></div>)}</div>
             </div>
           </Link>
         ))}
-      </div>
-      <Link to={`/createpetprofile`}>
-        <div className="petprofile">
+        <Link to={`/createpetprofile`}>
+        <div className="pet-profile">
           <button>加寵</button>
         </div>
       </Link>
+      </div>
+      
     </div>
   );
 }

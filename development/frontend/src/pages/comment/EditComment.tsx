@@ -80,7 +80,7 @@ function EditComment() {
           await fetch(
             `${process.env.REACT_APP_BACKEND_URL}/comment/update/${commentId.id}`,
             {
-              method: "PUT",
+              method: "PATCH",
               headers: {
                 Authorization: `Bearer ${jwt}`,
               },

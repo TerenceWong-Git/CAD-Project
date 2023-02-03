@@ -33,6 +33,7 @@ function CreatePetProfile() {
   const catSpeciesFilter = loadPetSpecies.filter((item) => {
     return item.familyId === 1;
   });
+  console.log(catSpeciesFilter)
 
   const catNameFilter = catFilter.map((item) => {
     return item.chiSpecies;
@@ -40,6 +41,7 @@ function CreatePetProfile() {
 
   const catSubSpeciesFilter = catSpeciesFilter.map((item) => [{ label: item.chiSpecies, value: item.id }]);
   const catSubSpeciesId = catSubSpeciesFilter.flat();
+  console.log(catSubSpeciesFilter )
 
   ///////////////////////   Cat Species   ///////////////////////
 
@@ -68,21 +70,21 @@ function CreatePetProfile() {
       <form
         onSubmit={handleSubmit(async (data) => {
           const jwt = localStorage.getItem("token");
+          
           const formData = new FormData();
           formData.append("name", data.name);
           formData.append("gender", data.gender);
           formData.append("speciesId", data.firstName);
           formData.append("dateBirth", data.dateBirth);
-          formData.append("file", data.file[0]);
-
+          formData.append("file",data.file[0]);
+          
           await fetch(`${path}/pet/addPet`, {
             method: "POST",
             headers: {
               Authorization: `Bearer ${jwt}`,
             },
             body: formData,
-          });
-          // .then(() => navigate("/userprofile"));
+          }).then(() => navigate("/userprofile"));
           console.log(data);
         })}
       >

@@ -12,7 +12,7 @@
     overflow: scroll;
     width: 100%;
 
-    background-image: url("/src/assets/256.png");
+    /* background-image: url("/src/assets/256.png"); */
     background-repeat: repeat-y;
     background-position: center;
 
@@ -38,7 +38,7 @@
     width: 35vmin;
     height: 35vmin;
 
-    background-image: url("/src/assets/dogEar.jpg");
+    /* background-image: url("/src/assets/dogEar.jpg"); */
   }
 
   .rightPhoto {

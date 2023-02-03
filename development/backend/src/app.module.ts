@@ -8,6 +8,7 @@ import { PetModule } from './pet/pet.module';
 import { MapModule } from './map/map.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { S3uploadModule } from './s3upload/s3upload.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { join } from 'path';
       rootPath: join(__dirname, '..', '../upload'),
       serveRoot: '/upload/',
     }),
+    S3uploadModule,
   ],
   controllers: [],
   providers: [],

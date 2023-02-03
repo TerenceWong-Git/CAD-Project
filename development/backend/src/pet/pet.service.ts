@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UserDto } from 'src/user/dto';
 import { AddPetDto, AddWeightDto, PetDto, uploadPetImgDto } from './dto';
@@ -50,6 +50,30 @@ export class PetService {
     });
     return foundPet;
   }
+
+  async getPetWeight(petId: number, userId: number) {
+    const selectedPet = await this.prismaService.pet.findUnique({
+      where: {
+        id: petId,
+      },
+    });
+    if (!selectedPet || selectedPet.userId !== userId) {
+      throw new ForbiddenException('Failed to update get weight');
+    }
+    const foundPet = await this.prismaService.petWeight.findMany({
+      take:5,
+      where: { petId: petId },
+      select: {
+        weight:true,
+        createdAt:true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+    return foundPet;
+  }
+
 
   async getPetImg(petId: number, userId: number) {
     const foundPet = await this.prismaService.petImg.findMany({

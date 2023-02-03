@@ -11,6 +11,7 @@ function WeightRecord() {
   const [opened, setOpened] = useState(false);
   const { register, handleSubmit } = useForm();
   const [pets, setPets] = useState<any>({});
+  const [fiveRecord, setFiveRecord] = useState<any>({});
   // const [isLoading, setIsLoading] = useState(false);
   // const inputWeight = () => {
   //     // 👇️ passed function to setState
@@ -20,16 +21,20 @@ function WeightRecord() {
     async function loadData() {
       const res = await fetch(`${path}/pet/petProfile/${petId.id}`,{headers: {Authorization: `Bearer ${jwt}`}});
       const json = await res.json();
-      console.log(json);
-
+      
+      const res2 = await fetch(`${path}/pet/petWeight/${petId.id}`,{headers: {Authorization: `Bearer ${jwt}`}});
+      const json2 = await res2.json();
       setPets(json[0]);
-      console.log("what is pet",pets);
+      setFiveRecord(json2)
+      console.log("what is pet",json[0]);
+      
       
     }
     loadData();
   }, []);
+  console.log("what is weight",fiveRecord)
   // if (pets) {
-    
+  //   const onlyFiveRecord = pets.PetWeight.slice(-5); 
   //   console.log("weight12321", pets.PetWeight);
     
 
@@ -45,7 +50,6 @@ function WeightRecord() {
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
       age_now--;
     }
-    console.log(age_now);
     return age_now;
   };
   return (
@@ -56,10 +60,10 @@ function WeightRecord() {
       <div>{pets.dateBirth && <h1>{age(pets.dateBirth)}</h1>}</div>
       <div>
         <div>record</div>
-        {pets.PetWeight ? (
+        {fiveRecord.length > 0 ? (
           <div>
-            {pets.PetWeight.map((item: any) => (
-              <div key={item.id}>
+            {fiveRecord.map((item: any,index:number) => (
+              <div key={index}>
                 <h2>{item.weight}</h2>
                 <h2>{item.createdAt.slice(0, 10)}</h2>
               </div>
@@ -88,10 +92,14 @@ function WeightRecord() {
                 if (res.ok) {
                     const getRes = await fetch(`${path}/pet/petProfile/${petId.id}`,{headers: {Authorization: `Bearer ${jwt}`}});
                     const json = await getRes.json();
-                    console.log(json);
+                    const getRes2 = await fetch(`${path}/pet/petWeight/${petId.id}`,{headers: {Authorization: `Bearer ${jwt}`}});
+                    const json2 = await getRes2.json();
+                    
                     setPets(json[0]);
+                    setFiveRecord(json2);
                     setOpened(false)
                 }
+                console.log(pets.PetWeight)
               })}
             >
               <label>

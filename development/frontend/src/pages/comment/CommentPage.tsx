@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
-import "../comment/css/comment.css";
-// import SimpleBottomNavigation from "../../components/FunctionBar";
+import "../comment/css/Comment.css";
+import { BiUser } from "react-icons/bi";
+import { GiHollowCat } from "react-icons/gi";
+import { MdOutlineThumbUpOffAlt, MdOutlineThumbDown } from "react-icons/md";
 
 function CommentPage() {
   const [comments, setComments] = useState<any[]>([]);
@@ -33,16 +34,17 @@ function CommentPage() {
 
   return (
     <div className="comment-page">
-      評論區
       <div className="comment-button-area">
         <button>
-          <Link to={"createComment"} style={{ color: '#FCFCFC' }}>
+          <Link to={"createComment"} style={{ color: "#FCFCFC" }}>
             建立
           </Link>
         </button>
 
         <button>
-          <Link to={`myComments`} style={{ color: '#FCFCFC' }}>我的評論</Link>
+          <Link to={`myComments`} style={{ color: "#FCFCFC" }}>
+            我的評論
+          </Link>
         </button>
 
         <button onClick={() => setFilter((filter) => ({}))}>全部</button>
@@ -50,19 +52,25 @@ function CommentPage() {
         <button
           onClick={() => setFilter((filter) => ({ ...filter, isThumb: true }))}
         >
+          <MdOutlineThumbUpOffAlt />
           好評
         </button>
 
         <button
           onClick={() => setFilter((filter) => ({ ...filter, isThumb: false }))}
         >
+          <MdOutlineThumbDown />
           差評
         </button>
       </div>
       <div className="comment-body">
         {filteredComments.map((comment) => (
-          <div  className="comment-card-container" key={comment.id}>
-            <Link to={`commentDetail/${comment.id}`} style={{ color: 'BLACK' }} className="comment-card">
+          <div className="comment-card-container" key={comment.id}>
+            <Link
+              to={`commentDetail/${comment.id}`}
+              style={{ color: "#262220" }}
+              className="comment-card"
+            >
               {comment.CommentImg.length > 0 ? (
                 <div className="comment-image">
                   <img
@@ -71,12 +79,29 @@ function CommentPage() {
                   />
                 </div>
               ) : (
-                <div className="comment-image">no image</div>
+                <div className="comment-image">
+                  <GiHollowCat size={70} />
+                </div>
               )}
               <div className="comment-detail">
-                <span>{comment.title}</span>
-                <span>{comment.map.chiName}</span>
-                <span>{comment.user.username}</span>
+                <div>{comment.title}</div>
+                <div>
+                  {comment.isThumb ? (
+                    <span>
+                      <MdOutlineThumbUpOffAlt />
+                      {comment.map.chiName}
+                    </span>
+                  ) : (
+                    <span>
+                      <MdOutlineThumbDown />
+                      {comment.map.chiName}
+                    </span>
+                  )}
+                  <span>
+                    <BiUser />
+                    {comment.user.username}
+                  </span>
+                </div>
               </div>
             </Link>
           </div>

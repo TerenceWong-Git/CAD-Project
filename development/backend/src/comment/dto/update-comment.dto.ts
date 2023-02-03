@@ -1,19 +1,19 @@
-import { Transform, Type } from 'class-transformer';
-import { IsBoolean, IsNumber, IsOptional, IsString } from 'class-validator';
+import { Transform } from 'class-transformer';
+import { IsBoolean, IsOptional, IsString } from 'class-validator';
 
 export class UpdateCommentDto {
   @IsString()
-  @IsOptional()
+  // @IsOptional()
   title: string;
 
   @IsString()
-  @IsOptional()
+  // @IsOptional()
   content: string;
 
   @Transform(({ value }) => {
     return [true, 'enabled', 'true', 1, '1'].indexOf(value) > -1;
   })
   @IsBoolean()
-  @IsOptional()
+  // @IsOptional()
   isThumb: boolean;
 }

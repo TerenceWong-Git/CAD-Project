@@ -66,7 +66,7 @@ export class CommentController {
     return await this.commentService.createComment(userId, commentDto, files);
   }
 
-  @Put('update/:id')
+  @Patch('update/:id')
   @UseGuards(JwtGuard)
   @UseInterceptors(FilesInterceptor('files'))
   async editCommentById(

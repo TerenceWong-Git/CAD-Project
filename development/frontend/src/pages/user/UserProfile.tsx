@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../pet/css/UserProfile.css";
+import "./css/UserProfile.css";
 
 function UserProfile() {
   const path = process.env.REACT_APP_BACKEND_URL;
@@ -53,20 +53,24 @@ function UserProfile() {
         {pets.map((pet) => (
           <Link to={`/petprofile/${pet.id}`} key={pet.id}>
             <div className="pet-profile">
-              <div>
+              <div className="pet-image">
                 <img className="pet-icon" width="300" height="300" src={`${path}/S3條route`} alt={pet.id} />
               </div>
-              <div>{pet.name}</div>
-              {/* <div>{pet.dateBirth && <p>{age(pet.dateBirth)}</p>}</div> */}
-              <div>{pet.name ? <div>{age(pet.dateBirth)}</div> : <div></div>}</div>
+              <div className="pet-detail">
+                <div>{pet.name}</div>
+                {/* <div>{pet.dateBirth && <p>{age(pet.dateBirth)}</p>}</div> */}
+                <div>{pet.name ? <div>{age(pet.dateBirth)}</div> : <div></div>}</div>
+              </div>
             </div>
           </Link>
         ))}
-        <Link to={`/createpetprofile`}>
-          <div className="pet-profile">
-            <button>加寵</button>
-          </div>
-        </Link>
+        <div className="pet-profile-container">
+          <Link to={`/createpetprofile`}>
+            <div className="pet-profile">
+              <div>+</div>
+            </div>
+          </Link>
+        </div>
       </div>
     </div>
   );

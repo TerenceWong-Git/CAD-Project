@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { GiHollowCat } from "react-icons/gi";
 
 function UserComment() {
   const [comments, setComments] = useState<any[]>([]);
@@ -29,7 +30,7 @@ function UserComment() {
                   {comment.CommentImg.length > 0 ? (
                     <img src={`${process.env.REACT_APP_BACKEND_URL}/upload/${comment.CommentImg?.[0].name}`} alt="" />
                   ) : (
-                    <div className="comment-image">no image</div>
+                    <div className="comment-image"><GiHollowCat size={70} /></div>
                   )}
                 </Link>
 

@@ -64,6 +64,12 @@ export default function PlaceDetail() {
                     <div>{"Content: " + comment.content}</div>
                     <div>{"Like?: " + comment.isThumb}</div>
                     <div>{"Like?: " + comment.CommentImg[0].name}</div>
+                    <img
+                    height="100"
+                    width="100"
+                    src={`${process.env.REACT_APP_BACKEND_URL}/upload/${comment.CommentImg[0].name}`}
+                    alt=""
+                  />
                     <br></br>
                   </div>
                 );

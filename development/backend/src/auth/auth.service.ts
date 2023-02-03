@@ -31,7 +31,6 @@ export class AuthService {
       );
     }
 
-    console.log('Token: ' + this.signToken);
     console.log('user_id: ' + user.id);
     return this.signToken(user.id);
   }

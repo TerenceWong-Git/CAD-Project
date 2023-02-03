@@ -25,7 +25,8 @@ export default function Login() {
       .unwrap()
       .then(() => navigate("/"))
       .catch((err) => {
-        alert(err.message);
+        console.log(err)
+        alert(err);
       });
   };
 

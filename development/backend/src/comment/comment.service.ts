@@ -48,6 +48,9 @@ export class CommentService {
       where: {
         userId: userId,
       },
+      orderBy: {
+        createdAt: 'desc',
+      },
       include: {
         map: {
           select: {
@@ -169,6 +172,7 @@ export class CommentService {
         id: commentId,
       },
       data: {
+        ...commentDto,
         CommentImg: { createMany: { data: fieldFiles } },
       },
     });

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "../comment/css/Comment.css";
 // import SimpleBottomNavigation from "../../components/FunctionBar";
@@ -31,17 +32,17 @@ function CommentPage() {
   });
 
   return (
-    <div>
+    <div className="comment-page">
       評論區
-      <div>
+      <div className="comment-button-area">
         <button>
-          <Link to={"createComment"} style={{ textDecoration: "none" }}>
+          <Link to={"createComment"} style={{ color: '#FCFCFC' }}>
             建立
           </Link>
         </button>
 
         <button>
-          <Link to={`myComments`}>我的評論</Link>
+          <Link to={`myComments`} style={{ color: '#FCFCFC' }}>我的評論</Link>
         </button>
 
         <button onClick={() => setFilter((filter) => ({}))}>全部</button>
@@ -58,15 +59,13 @@ function CommentPage() {
           差評
         </button>
       </div>
-      <div>
+      <div className="comment-body">
         {filteredComments.map((comment) => (
-          <div className="comment-card" key={comment.id}>
-            <Link to={`commentDetail/${comment.id}`}>
+          <div  className="comment-card-container" key={comment.id}>
+            <Link to={`commentDetail/${comment.id}`} style={{ color: 'BLACK' }} className="comment-card">
               {comment.CommentImg.length > 0 ? (
                 <div className="comment-image">
                   <img
-                    height="100"
-                    width="100"
                     src={`${process.env.REACT_APP_BACKEND_URL}/upload/${comment.CommentImg?.[0].name}`}
                     alt=""
                   />
@@ -74,10 +73,10 @@ function CommentPage() {
               ) : (
                 <div className="comment-image">no image</div>
               )}
-              <div >
-                {comment.title}
-                {comment.map.chiName}
-                {comment.user.username}
+              <div className="comment-detail">
+                <span>{comment.title}</span>
+                <span>{comment.map.chiName}</span>
+                <span>{comment.user.username}</span>
               </div>
             </Link>
           </div>

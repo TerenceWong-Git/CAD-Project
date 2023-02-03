@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import "./css/PetProfile.css";
+// import icon from "./IMG_8790.jpeg";
 
 function PetProfile() {
-  const jwt = localStorage.getItem('token');
+  const jwt = localStorage.getItem("token");
   const petId = useParams();
   console.log("petpetid", petId);
   const path = process.env.REACT_APP_BACKEND_URL;
@@ -24,7 +26,9 @@ function PetProfile() {
 
   useEffect(() => {
     async function loadData() {
-      const res = await fetch(`${path}/pet/petProfile/${petId.id}`,{headers: {Authorization: `Bearer ${jwt}`}});
+      const res = await fetch(`${path}/pet/petProfile/${petId.id}`, {
+        headers: { Authorization: `Bearer ${jwt}` },
+      });
       const json = await res.json();
       console.log(json);
 
@@ -54,38 +58,52 @@ function PetProfile() {
   };
   return (
     <>
+      <div className="pet-card">
+        <div>
+          {/* <img
+            className="pet-icon"
+            width="300"
+            height="300"
+            src={icon}
+            alt="icon"
+          /> */}
+        </div>
+        <h1>{pets.name}</h1>
+        {pets.dateBirth ? <h1>{age(pets.dateBirth)}</h1> : <div></div>}
+      </div>
       {/* <h1>{pets.name}</h1>
-            {pets.dateBirth && <h1>{age(pets.dateBirth)}</h1>}
-            {pets.PetWeight?.length > 0 && 
-            <h1>{pets.PetWeight?.at(-1).weight}
-            <Link to={`/weight/${petId.id}`} >
+      {pets.dateBirth && <h1>{age(pets.dateBirth)}</h1>} */}
+
+      <div>
+        <div className="pet-profile-container">
+          <Link to={`/weight/${petId.id}`}>
+            <div className="pet-profile">
+              {pets.PetWeight?.length > 0 ? (
+                <div>
+                  <div>體重</div>
+                  {pets.PetWeight?.at(-1).weight}&nbsp;KG
+                </div>
+              ) : (
+                <div>
+                  <div>體重</div>
+                  <div>- -&nbsp;KG</div>
+                </div>
+              )}
+            </div>
           </Link>
-            </h1>} */}
-      <h1>{pets.name}</h1>
-      {pets.dateBirth && <h1>{age(pets.dateBirth)}</h1>}
+        </div>
 
-      <div>
-        <Link to={`/weight/${petId.id}`}>
-          {pets.PetWeight?.length > 0 ? (
-            <div>
-              <div>體重</div>
-              {pets.PetWeight?.at(-1).weight}&nbsp;KG
-            </div>
-          ) : (
-            <div>
-              <div>體重</div>
-              <div>- -&nbsp;KG</div>
-            </div>
-          )}
-        </Link>
-      </div>
+        <div className="pet-profile-container">
+          <Link to={`/growtree/${petId.id}`}>
+            <div className="pet-profile">成長樹</div>
+          </Link>
+        </div>
 
-      <div>
-        <Link to={`/growtree/${petId.id}`}>成長樹</Link>
-      </div>
-
-      <div>
-        <Link to={`/vaccine/${petId.id}`}>針卡記錄</Link>
+        <div className="pet-profile-container">
+          <Link to={`/vaccine/${petId.id}`}>
+            <div className="pet-profile">針卡記錄</div>
+          </Link>
+        </div>
       </div>
     </>
   );

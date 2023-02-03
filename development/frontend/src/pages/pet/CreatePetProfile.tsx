@@ -34,37 +34,28 @@ function CreatePetProfile() {
     return item.familyId === 1;
   });
 
-  const catIdFilter = catFilter.map((item) => {
-    return item.id;
-  });
   const catNameFilter = catFilter.map((item) => {
     return item.chiSpecies;
   });
 
   const catSubSpeciesFilter = catSpeciesFilter.map((item) => [{ label: item.chiSpecies, value: item.id }]);
-  const newArr = catSubSpeciesFilter.flat();
+  const catSubSpeciesId = catSubSpeciesFilter.flat();
 
-  console.log("catFilter: ", catFilter);
-  console.log("catSpeciesFilter: ", catSpeciesFilter);
-  console.log("catIdFilter: ", catIdFilter);
-  console.log("catNameFilter: ", catNameFilter);
-  console.log("newArr: ", newArr);
-  console.log("=================");
   ///////////////////////   Cat Species   ///////////////////////
 
   ///////////////////////   Dog Species   ///////////////////////
   const dogFilter = loadPetSpecies.filter((item) => {
     return item.id === 2;
   });
-  const dogIdFilter = dogFilter.map((item) => item.id);
-  const dogNameFilter = dogFilter.map((item) => item.chiSpecies);
 
   const dogSpeciesFilter = loadPetSpecies.filter((item) => {
     return item.familyId === 2;
   });
-  const dogSubSpeciesFilter = dogSpeciesFilter.map((item) => item.chiSpecies);
-  console.log("dogNameFilter: ", dogNameFilter);
-  console.log("dogSpeciesFilter: ", dogSpeciesFilter);
+
+  const dogNameFilter = dogFilter.map((item) => item.chiSpecies);
+
+  const dogSubSpeciesFilter = dogSpeciesFilter.map((item) => [{ label: item.chiSpecies, value: item.id }]);
+  const dogSubSpeciesId = dogSubSpeciesFilter.flat();
 
   ///////////////////////   Dog Species   ///////////////////////
 
@@ -92,6 +83,7 @@ function CreatePetProfile() {
             body: formData,
           });
           // .then(() => navigate("/userprofile"));
+          console.log(data);
         })}
       >
         <div>
@@ -106,7 +98,7 @@ function CreatePetProfile() {
         <div>
           {isTriggered === 1 && (
             <div>
-              <Controller name="firstName" control={control} render={({ field }) => <Select data={newArr} {...field} />} />
+              <Controller name="firstName" control={control} render={({ field }) => <Select data={catSubSpeciesId} {...field} />} />
             </div>
           )}
         </div>
@@ -114,7 +106,7 @@ function CreatePetProfile() {
         <div>
           {isTriggered === 2 && (
             <div>
-              <Controller name="firstName" control={control} render={({ field }) => <Select data={dogSubSpeciesFilter} {...field} />} />
+              <Controller name="firstName" control={control} render={({ field }) => <Select data={dogSubSpeciesId} {...field} />} />
             </div>
           )}
         </div>

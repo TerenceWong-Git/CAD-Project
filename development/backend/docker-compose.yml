@@ -10,7 +10,8 @@ services:
       cas:
         ipv4_address: 172.1.0.2
     depends_on:
-      - database
+      database:
+        condition: service_healthy
     build:
       context: ./
       dockerfile: ./dockerfile
@@ -26,6 +27,8 @@ services:
       - '5432:5432'
     volumes:
       - ./pg/data:/var/lib/postgresql/data
+    healthcheck:
+      test: "exit 0"
     networks:
       cas:
         ipv4_address: 172.1.0.10

@@ -21,7 +21,7 @@ export default function Register() {
       username: hasLength({ min: 8, max: 16 }, "Username must be 8-16 characters long"),
       password: matches(
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-        "Password must include at least one capital letter, one small letter, number and special character"
+        "Password must include 8 characters, at least one capital letter, one small letter, number and special character"
       ),
       phoneNumber: isInRange({ min: 10000000, max: 99999999 }, "Phone number must be 8 numbers long"),
       yearBirth: isInRange({ min: 1000, max: 9999 }, "Birth Year must be 4 numbers long"),
@@ -54,15 +54,15 @@ export default function Register() {
     const result = await res.json();
     console.log(result);
     if (res.status === 201) {
-      console.log("You create account successfully");
-      navigate("/");
+      alert("You create account successfully");
+      navigate("/login");
     } else {
-      console.log(`${result.message}`);
+      alert(`${result.message}`);
     }
   };
 
   return (
-    <Box component="form" maw={400} mx="auto" onSubmit={form.onSubmit(handleSubmit)}>
+    <Box component="form" maw={400} onSubmit={form.onSubmit(handleSubmit)}>
       <TextInput id="email" label="Email" placeholder="Email" withAsterisk mt="md" {...form.getInputProps("email")} />
       <TextInput id="username" label="Username" placeholder="Username" withAsterisk mt="md" {...form.getInputProps("username")} />
       <TextInput id="password" label="Password" placeholder="Password" withAsterisk mt="md" {...form.getInputProps("password")} />
@@ -80,23 +80,23 @@ export default function Register() {
         id="district"
         data={[
           { value: "Islands", label: "Islands" },
-          { value: "Kwai_tsing", label: "Kwai Tsing" },
+          { value: "Kwai_Tsing", label: "Kwai Tsing" },
           { value: "North", label: "North" },
-          { value: "Sai_kung", label: "Sai Kung" },
-          { value: "Sha_tin", label: "Sha Tin" },
-          { value: "Tai_po", label: "Tai Po" },
-          { value: "Tsuen_wan", label: "Tsuen Wan" },
-          { value: "Tuen_mun", label: "Tuen Mun" },
-          { value: "Yuen_long", label: "Yuen Long" },
-          { value: "Kowloon_city", label: "Kowloon City" },
-          { value: "Kwun_tong", label: "Kwun Tong" },
-          { value: "Sham_shui_po", label: "Sham Shui Po" },
-          { value: "Wong_tai_sin", label: "Wong Tai Sin" },
-          { value: "Yau_tsim_mong", label: "Yau Tsim Mong" },
-          { value: "Central_and_western", label: "Central & western" },
+          { value: "Sai_Kung", label: "Sai Kung" },
+          { value: "Sha_Tin", label: "Sha Tin" },
+          { value: "Tai_Po", label: "Tai Po" },
+          { value: "Tsuen_Wan", label: "Tsuen Wan" },
+          { value: "Tuen_Mun", label: "Tuen Mun" },
+          { value: "Yuen_Long", label: "Yuen Long" },
+          { value: "Kowloon_City", label: "Kowloon City" },
+          { value: "Kwun_Tong", label: "Kwun Tong" },
+          { value: "Sham_Shui_Po", label: "Sham Shui Po" },
+          { value: "Wong_Tai_Sin", label: "Wong Tai Sin" },
+          { value: "Yau_Tsim_Mong", label: "Yau Tsim Mong" },
+          { value: "Central_and_Western", label: "Central & western" },
           { value: "Eastern", label: "Eastern" },
           { value: "Southern", label: "Southern" },
-          { value: "Wan_chai", label: "Wan Chai" },
+          { value: "Wan_Chai", label: "Wan Chai" },
         ]}
         placeholder="District"
         label="District"

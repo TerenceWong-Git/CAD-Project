@@ -6,6 +6,9 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { districts, types } from "../../components/place/map/District";
 import { Checkbox } from "@mantine/core";
 
+// 如果filter完冇野 D card會縮細曬
+// > 3間場所 要再set hasMore 條件
+// 禁card仔入去detail
 export default function List() {
   ////////////////////////////////////   Load Data   /////////////////////////////////////
 
@@ -31,16 +34,17 @@ export default function List() {
   const [values, setValues] = useState<any>([]);
   const [isFiltered, setIsFiltered] = useState(false);
 
-  console.log("values: ", values);
-
   const activateFilter = async () => {
     if (values.length > 0) {
       setInitialHasMore(false);
-      setHasMore(true);
       setIsFiltered(true);
-      setFilteredDataIndex(3);
+      // setFilteredDataIndex(3);
+      filterItem(values);
     }
-    filterItem(values);
+    if (filteredPlaceCard.length > 3) {
+      setHasMore(true);
+    }
+
     window.scrollTo(0, 0);
   };
 
@@ -73,12 +77,12 @@ export default function List() {
   const [notYetFilteredDataIndex, setNotYetFilteredDataIndex] = useState(3);
   const [filteredDataIndex, setFilteredDataIndex] = useState(3);
   const [initialHasMore, setInitialHasMore] = useState(true);
-  const [hasMore, setHasMore] = useState(true);
+  const [hasMore, setHasMore] = useState(false);
 
   const notYetFilteredInfiniteScroll = async () => {
     if (!isFiltered) {
       setNotYetFilteredPlaceCard([...notYetFilteredPlaceCard, allPlaceItems[notYetFilteredDataIndex]]);
-      if (allPlaceItems.length - notYetFilteredPlaceCard.length === 0 || allPlaceItems.length - notYetFilteredPlaceCard.length < 2) {
+      if (allPlaceItems.length - notYetFilteredPlaceCard.length === 0 || allPlaceItems.length - notYetFilteredPlaceCard.length < 1) {
         setInitialHasMore(false);
       }
       setNotYetFilteredDataIndex(notYetFilteredDataIndex + 1);
@@ -86,9 +90,9 @@ export default function List() {
   };
 
   const filteredInfiniteScroll = async () => {
-    if (isFiltered && (filteredPlaceCard.length > 3 || filteredPlaceCard.length <= 2 || filteredPlaceCard.length === 0)) {
+    if (isFiltered) {
       setIsShownFilteredPlaceCard([...isShownFilteredPlaceCard, filteredPlaceCard[filteredDataIndex]]);
-      if (filteredPlaceCard.length - isShownFilteredPlaceCard.length === 0 || filteredPlaceCard.length - isShownFilteredPlaceCard.length < 2) {
+      if (filteredPlaceCard.length - isShownFilteredPlaceCard.length === 0 || filteredPlaceCard.length - isShownFilteredPlaceCard.length < 1) {
         setHasMore(false);
       }
       setFilteredDataIndex(filteredDataIndex + 1);
@@ -146,6 +150,13 @@ export default function List() {
   // console.log("filteredPlaceCard: ", filteredPlaceCard);
   // console.log("isShownFilteredPlaceCard: ", isShownFilteredPlaceCard);
   // console.log("length difference: ", filteredPlaceCard.length - isShownFilteredPlaceCard.length);
+
+  console.log("filter簡左咩: ", values);
+  console.log("filter後埸所總數量: ", filteredPlaceCard);
+  console.log("show左幾多間場所: ", isShownFilteredPlaceCard);
+  console.log("===============");
+  console.log("filter左未: ", isFiltered);
+  console.log("===============");
   console.log("initialHasMore: ", initialHasMore);
   console.log("hasMore: ", hasMore);
   console.log("===============");
@@ -188,7 +199,7 @@ export default function List() {
                 loader={<div></div>}
                 endMessage={
                   <p style={{ textAlign: "center" }}>
-                    <b>Yay! You have seen it all</b>
+                    <b>你到底啦</b>
                   </p>
                 }
               >
@@ -202,7 +213,7 @@ export default function List() {
                 loader={<div></div>}
                 endMessage={
                   <p style={{ textAlign: "center" }}>
-                    <b>Yay! You have seen it all</b>
+                    <b>你到底啦</b>
                   </p>
                 }
               >

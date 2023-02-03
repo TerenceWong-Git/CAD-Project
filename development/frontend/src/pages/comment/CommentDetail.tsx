@@ -7,9 +7,7 @@ function CommentDetail() {
   const [comment, setComments] = useState<any>({});
   useEffect(() => {
     async function loadData() {
-      const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/comment/${commentId.id}`
-      );
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/comment/${commentId.id}`);
       const data = await res.json();
       setComments(data);
     }
@@ -23,13 +21,8 @@ function CommentDetail() {
       <p>{comment.content}</p>
       <p>{comment.map?.chiName}</p>
       <p>{comment.user?.username}</p>
-      {comment.CommentImg?.map((image:any,index:any) => (
-        <img key={index}
-          height="100"
-          width="100"
-          src={`${process.env.REACT_APP_BACKEND_URL}/upload/${image.name}`}
-          alt=""
-        />
+      {comment.CommentImg?.map((image: any, index: any) => (
+        <img key={index} height="100" width="100" src={`${process.env.REACT_APP_BACKEND_URL}/upload/${image.name}`} alt="" />
       ))}
       {/* <img height="100" width="100" src={`${process.env.REACT_APP_BACKEND_URL}/upload/${comments.CommentImg?.name}`} alt=''/> */}
     </div>

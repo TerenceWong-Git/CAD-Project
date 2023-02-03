@@ -7,7 +7,12 @@ import { districts, types } from "../../components/place/map/District";
 import { circleSettings, containerStyle } from "../../components/place/map/MapSetting";
 import "./css/Map.css";
 
-export default function Map3() {
+// change marker icon
+// 空search會爆
+// 禁完filter跳出去map
+// set多一個useState 先裝searchItems入面既野  search bar用依個state show選擇 每次search value清空  入面就重疊
+// 禁card仔入個版
+export default function Map() {
   ////////////////////////////////////   Load Data   /////////////////////////////////////
 
   const [allPlaceItems, setAllPlaceItems] = useState<any[]>([]);
@@ -36,9 +41,15 @@ export default function Map3() {
   const [userLocation, setUserLocation] = useState({ lat: 0, lng: 0 });
   const [targetLocation, setTargetLocation] = useState({ lat: 0, lng: 0 });
 
-  navigator.geolocation.watchPosition((position) => {
-    setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
-    setTargetLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
+  const [userLat, setUserLat] = useState(0);
+  const [usertLng, setUserLng] = useState(0);
+
+  navigator.geolocation.getCurrentPosition((position) => {
+    // setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
+    // setTargetLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
+
+    setUserLat(position.coords.latitude);
+    setUserLng(position.coords.longitude);
   });
   console.log(targetLocation);
 
@@ -91,6 +102,7 @@ export default function Map3() {
       const districtName = place.chiName;
 
       return inputValue.includes(districtName);
+      // if no input 直接return
     });
 
     setSearchItems(newItems);
@@ -140,7 +152,6 @@ export default function Map3() {
             <button onClick={activateFilter}>Filter</button>
             <button onClick={deactivateFilter}>Clear</button>
           </div>
-          <Footer/>
         </div>
       ) : (
         <div className="pageContainer">
@@ -177,9 +188,10 @@ export default function Map3() {
           )}
           <div className="mapContainer">
             <LoadScript googleMapsApiKey={`${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`}>
-              <GoogleMap mapContainerStyle={containerStyle} center={targetLocation} zoom={17} options={{ disableDefaultUI: true }}>
-                <Circle center={userLocation} options={circleSettings} />
-                <Marker position={userLocation} />
+              <GoogleMap mapContainerStyle={containerStyle} center={{ lat: userLat, lng: usertLng }} zoom={17} options={{ disableDefaultUI: true }}>
+                {/* <GoogleMap mapContainerStyle={containerStyle} center={targetLocation} zoom={17} options={{ disableDefaultUI: true }}> */}
+                <Circle center={{ lat: userLat, lng: usertLng }} options={circleSettings} />
+                <Marker position={{ lat: userLat, lng: usertLng }} />
                 {searchItems.map((item) => {
                   const latitudeToFloat = parseFloat(item.latitude);
                   const longitudeToFloat = parseFloat(item.longitude);
@@ -199,9 +211,7 @@ export default function Map3() {
                 <></>
               </GoogleMap>
             </LoadScript>
-            
           </div>
-          <Footer/>
         </div>
       )}
     </>

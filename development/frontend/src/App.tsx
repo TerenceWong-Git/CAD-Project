@@ -21,22 +21,25 @@ import UploadGrowTree from "./pages/pet/UploadGrowTree";
 import Species from "./pages/pet/Species";
 import EditComment from "./pages/comment/EditComment";
 import PlaceDetail from "./pages/place/PlaceDetail";
+import Footer from "./components/Footer";
+import NotyetLoginLanding from "./pages/NotyetLoginLanding";
 
 export default function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<PrivateRoute />}>
-          <Route path="/comments" element={<CommentPage />}></Route>
-          <Route path="comments/createComment" element={<CreateComment />}></Route>
-          <Route path="comments/editComment/:id" element={<EditComment />}></Route>
-          <Route path="comments/commentDetail/:id" element={<CommentDetail />}></Route>
-          <Route path="comments/myComments" element={<UserComment />}></Route>
-        </Route>
+        {/* <Route path="/" element={<PrivateRoute />}>
+        </Route> */}
 
+        <Route path="/initialLanding" element={<NotyetLoginLanding />}></Route>
+        <Route path="/comments" element={<CommentPage />}></Route>
+        <Route path="comments/createComment" element={<CreateComment />}></Route>
+        <Route path="comments/editComment/:id" element={<EditComment />}></Route>
+        <Route path="comments/commentDetail/:id" element={<CommentDetail />}></Route>
+        <Route path="comments/myComments" element={<UserComment />}></Route>
         <Route path="/landing" element={<LandingPage />}></Route>
         {/* <Route path="/multiple" element={<Multiple />}></Route> */}
-        <Route path="/map3" element={<Map3 />}></Route>
+        <Route path="/map" element={<Map3 />}></Route>
         {/* <Route path="/map" element={<Map />}></Route> */}
         <Route path="/placeDetail/:id" element={<PlaceDetail />}></Route>
         <Route path="/list" element={<List />}></Route>
@@ -51,6 +54,7 @@ export default function App() {
         <Route path="/vaccine/:id" element={<Vaccine />}></Route>
         <Route path="/uploadgrowtree/:id" element={<UploadGrowTree />}></Route>
       </Routes>
+      <Footer/>
     </div>
   );
 }

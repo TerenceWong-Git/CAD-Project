@@ -66,8 +66,8 @@ function UserComment() {
                       },
                     }
                   );
-                  const json = await res.json();
-                  setComments(json);
+                  const data = await res.json();
+                  setComments(data);
                 }
               }}
             >

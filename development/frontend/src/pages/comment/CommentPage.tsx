@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "../comment/css/Comment.css";
 // import SimpleBottomNavigation from "../../components/FunctionBar";
 
 function CommentPage() {
@@ -7,8 +8,8 @@ function CommentPage() {
   useEffect(() => {
     async function loadData() {
       const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/comment`);
-      const json = await res.json();
-      setComments(json);
+      const data = await res.json();
+      setComments(data);
     }
     loadData();
   }, []);
@@ -31,10 +32,12 @@ function CommentPage() {
 
   return (
     <div>
-      CommentPage
+      評論區
       <div>
         <button>
-          <Link to={"createComment"} style={{textDecoration: 'none'}} >建立</Link>
+          <Link to={"createComment"} style={{ textDecoration: "none" }}>
+            建立
+          </Link>
         </button>
 
         <button>
@@ -57,21 +60,25 @@ function CommentPage() {
       </div>
       <div>
         {filteredComments.map((comment) => (
-          <div key={comment.id}>
+          <div className="comment-card" key={comment.id}>
             <Link to={`commentDetail/${comment.id}`}>
-            {comment.CommentImg.length > 0 ? (
-              <img
-                height="100"
-                width="100"
-                src={`${process.env.REACT_APP_BACKEND_URL}/upload/${comment.CommentImg?.[0].name}`}
-                alt=""
-              />
-            ) : (
-              <p>no image</p>
-            )}
-              <p>{comment.title}</p>
-              <p>{comment.map.chiName}</p>
-              <p>{comment.user.username}</p>
+              {comment.CommentImg.length > 0 ? (
+                <div className="comment-image">
+                  <img
+                    height="100"
+                    width="100"
+                    src={`${process.env.REACT_APP_BACKEND_URL}/upload/${comment.CommentImg?.[0].name}`}
+                    alt=""
+                  />
+                </div>
+              ) : (
+                <div className="comment-image">no image</div>
+              )}
+              <div >
+                {comment.title}
+                {comment.map.chiName}
+                {comment.user.username}
+              </div>
             </Link>
           </div>
         ))}

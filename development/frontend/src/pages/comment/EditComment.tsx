@@ -2,42 +2,51 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
+interface FormInput {
+  title: string;
+  content: string;
+  files: File[];
+  isThumb: string;
+}
+
 function EditComment() {
+  const navigate = useNavigate();
+  let commentId = useParams();
+  const [comment, setComment] = useState<any>({});
+  const [images, setImages] = useState<any>({});
+  const [updateFile, setUpdateFile] = useState<any>([]);
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
-  } = useForm();
-  const navigate = useNavigate();
-  let commentId = useParams();
-
-  const [comments, setComments] = useState<any>({});
-  const [images, setImages] = useState<any>({});
-  const [updateFile, setUpdateFile] = useState<any>([]);
-  console.log("this is images:", images);
+  } = useForm<FormInput>();
 
   useEffect(() => {
     async function loadData() {
       const res = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/comment/${commentId.id}`
       );
-      const json = await res.json();
-      console.log(json);
-      setComments(json);
+      const data = await res.json();
+      console.log(data);
+      setComment(data);
+      setValue("title", data.title);
+      setValue("content", data.content);
+      setValue("isThumb", data.isThumb);
     }
     loadData();
-  }, []);
+  }, [commentId, setValue]);
 
   useEffect(() => {
     async function loadImage() {
       const res = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/comment/files/${commentId.id}`
       );
-      const json = await res.json();
-      setImages(json);
+      const data = await res.json();
+      setImages(data);
     }
     loadImage();
-  }, []);
+  }, [commentId]);
 
   function uploadFiles(e: any) {
     const selectedFiles = e.target.files;
@@ -62,9 +71,8 @@ function EditComment() {
           formData.append("title", data.title);
           formData.append("content", data.content);
           formData.append("isThumb", data.isThumb);
-
-          for (let i = 0; i < updateFile.length; i++) {
-            formData.append("files", updateFile[i]);
+          for (const img of updateFile) {
+            formData.append("files", img);
           }
 
           console.log("formData: ", formData);
@@ -83,7 +91,7 @@ function EditComment() {
           navigate("/comments/myComments");
         })}
       >
-        <p>地點：{comments.map?.chiName}</p>
+        <p>地點：{comment.map?.chiName}</p>
 
         <p>
           <label>
@@ -91,7 +99,6 @@ function EditComment() {
             <input
               type="text"
               {...register("title")}
-              placeholder={comments.title}
             ></input>
           </label>
         </p>
@@ -101,7 +108,6 @@ function EditComment() {
             內容：
             <textarea
               {...register("content")}
-              placeholder={comments.content}
             ></textarea>
           </label>
         </p>
@@ -151,8 +157,8 @@ function EditComment() {
                               },
                             }
                           );
-                          const json = await res.json();
-                          setImages(json);
+                          const data = await res.json();
+                          setImages(data);
                         }
                       }}
                     >

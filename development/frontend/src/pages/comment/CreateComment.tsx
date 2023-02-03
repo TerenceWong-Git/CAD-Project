@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
+import { ErrorMessage } from "@hookform/error-message";
 import ImageUploading from "react-images-uploading";
 // import logger from "redux-logger";
 
@@ -28,33 +29,16 @@ function CreateComment() {
       const res = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/comment/map`
       );
-      const json = await res.json();
-      console.log(json);
+      const data = await res.json();
+      console.log(data);
 
-      setMaps(json);
+      setMaps(data);
     }
     loadData();
   }, []);
 
-  const newFile = images.map((item:any)=>(item.file))
-  console.log("newFile: ",newFile);
-
-  // const [file, setFile] = useState<any>([]);
-
-
-  // function uploadFiles(e: any) {
-  //   const selectedFiles = e.target.files;
-  //   const selectedFilesArray = Array.from(selectedFiles);
-  //   setFile(selectedFilesArray);
-  // }
-
-  // function deleteFile(e: any) {
-  //   const newFile = file.filter((item: any, index: any) => index !== e);
-  //   setFile(newFile);
-  // }
-
-  // console.log("file: " ,file);
-  
+  const newFile = images.map((item: any) => item.file);
+  console.log("newFile: ", newFile);
   console.log("errors: ", errors);
 
   return (
@@ -69,8 +53,7 @@ function CreateComment() {
           formData.append("title", data.title);
           formData.append("content", data.content);
           formData.append("isThumb", data.isThumb);
-         
-          
+
           for (const img of newFile) {
             formData.append("files", img);
           }
@@ -105,96 +88,78 @@ function CreateComment() {
             標題：
             <input
               type="text"
-              {...register("title", { required: true })}
+              {...register("title", { required: "請填寫標題" })}
             ></input>
+            <br></br>
+            <ErrorMessage errors={errors} name="title" />
           </label>
         </p>
 
         <p>
           <label>
             內容：
-            <textarea {...register("content", { required: true })}></textarea>
+            <textarea
+              {...register("content", {
+                minLength: 5,
+              })}
+            ></textarea>
+            <br></br>
+            {errors.content && errors.content.type === "minLength" && <span>請填寫5個字以上</span> }
           </label>
         </p>
 
-        {/* <div>
-          <label>
-            相：
-            <input
-              type="file"
-              multiple
-              accept="image/png , image/jpg, image/jpeg"
-              {...register("files")}
-              onChange={uploadFiles}
-            ></input>
-          </label>
-          <br></br>
-          <div className="images">
-            {file.length >=0 &&
-              file.map((image: any, index: any) => {
-                return (
-                  <div key={index} className="image">
-                    <img src={URL.createObjectURL(image)} height="200" alt="" />
-                    <button type="button" onClick={() => deleteFile(index)}>
-                      delete image
+        <ImageUploading
+          multiple
+          value={images}
+          onChange={onChange}
+          dataURLKey="data_url"
+        >
+          {({
+            imageList,
+            onImageUpload,
+            onImageRemoveAll,
+            onImageUpdate,
+            onImageRemove,
+            isDragging,
+            dragProps,
+          }) => (
+            // write your building UI
+            <div className="upload__image-wrapper">
+              <button
+                type="button"
+                style={isDragging ? { color: "red" } : undefined}
+                onClick={onImageUpload}
+                {...dragProps}
+              >
+                Click or Drop here
+              </button>
+              &nbsp;
+              <button type="button" onClick={onImageRemoveAll}>
+                Remove all images
+              </button>
+              {imageList.map((image, index) => (
+                <div key={index} className="image-item">
+                  <img src={image["data_url"]} alt="" width="100" />
+                  <div className="image-item__btn-wrapper">
+                    <button type="button" onClick={() => onImageUpdate(index)}>
+                      Update
+                    </button>
+                    <button type="button" onClick={() => onImageRemove(index)}>
+                      Remove
                     </button>
                   </div>
-                );
-              })}
-          </div>
-        </div> */}
-
-        
-          <ImageUploading
-            multiple
-            value={images}
-            onChange={onChange}
-            dataURLKey="data_url"
-          >
-            {({
-              imageList,
-              onImageUpload,
-              onImageRemoveAll,
-              onImageUpdate,
-              onImageRemove,
-              isDragging,
-              dragProps,
-            }) => (
-              // write your building UI
-              <div className="upload__image-wrapper">
-                <button
-                  type="button"
-                  style={isDragging ? { color: "red" } : undefined}
-                  onClick={onImageUpload}
-                  {...dragProps}
-                >
-                  Click or Drop here
-                </button>
-                &nbsp;
-                <button type="button" onClick={onImageRemoveAll}>Remove all images</button>
-                {imageList.map((image, index) => (
-                  <div key={index} className="image-item">
-                    <img src={image["data_url"]} alt="" width="100" />
-                    <div className="image-item__btn-wrapper">
-                      <button type="button" onClick={() => onImageUpdate(index)}>
-                        Update
-                      </button>
-                      <button type="button" onClick={() => onImageRemove(index)}>
-                        Remove
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </ImageUploading>
-        
+                </div>
+              ))}
+            </div>
+          )}
+        </ImageUploading>
 
         <p>
-          <input type="radio" value="true" required {...register("isThumb") } />
+          <input type="radio" value="true" {...register("isThumb",{ required: "請選擇" })} />
           <label htmlFor="good">好評</label>
           <input type="radio" value="false" {...register("isThumb")} />
           <label htmlFor="bad">差評</label>
+          <br></br><ErrorMessage errors={errors} name="isThumb" />
         </p>
 
         <p>

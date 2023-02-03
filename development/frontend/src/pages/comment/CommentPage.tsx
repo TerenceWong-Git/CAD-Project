@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "../comment/css/comment.css";
 // import SimpleBottomNavigation from "../../components/FunctionBar";
 
 function CommentPage() {
@@ -7,8 +9,8 @@ function CommentPage() {
   useEffect(() => {
     async function loadData() {
       const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/comment`);
-      const json = await res.json();
-      setComments(json);
+      const data = await res.json();
+      setComments(data);
     }
     loadData();
   }, []);
@@ -30,15 +32,17 @@ function CommentPage() {
   });
 
   return (
-    <div>
-      CommentPage
-      <div>
+    <div className="comment-page">
+      評論區
+      <div className="comment-button-area">
         <button>
-          <Link to={"createComment"} style={{textDecoration: 'none'}} >建立</Link>
+          <Link to={"createComment"} style={{ color: '#FCFCFC' }}>
+            建立
+          </Link>
         </button>
 
         <button>
-          <Link to={`myComments`}>我的評論</Link>
+          <Link to={`myComments`} style={{ color: '#FCFCFC' }}>我的評論</Link>
         </button>
 
         <button onClick={() => setFilter((filter) => ({}))}>全部</button>
@@ -55,23 +59,25 @@ function CommentPage() {
           差評
         </button>
       </div>
-      <div>
+      <div className="comment-body">
         {filteredComments.map((comment) => (
-          <div key={comment.id}>
-            <Link to={`commentDetail/${comment.id}`}>
-            {comment.CommentImg.length > 0 ? (
-              <img
-                height="100"
-                width="100"
-                src={`${process.env.REACT_APP_BACKEND_URL}/upload/${comment.CommentImg?.[0].name}`}
-                alt=""
-              />
-            ) : (
-              <p>no image</p>
-            )}
-              <p>{comment.title}</p>
-              <p>{comment.map.chiName}</p>
-              <p>{comment.user.username}</p>
+          <div  className="comment-card-container" key={comment.id}>
+            <Link to={`commentDetail/${comment.id}`} style={{ color: 'BLACK' }} className="comment-card">
+              {comment.CommentImg.length > 0 ? (
+                <div className="comment-image">
+                  <img
+                    src={`${process.env.REACT_APP_BACKEND_URL}/upload/${comment.CommentImg?.[0].name}`}
+                    alt=""
+                  />
+                </div>
+              ) : (
+                <div className="comment-image">no image</div>
+              )}
+              <div className="comment-detail">
+                <span>{comment.title}</span>
+                <span>{comment.map.chiName}</span>
+                <span>{comment.user.username}</span>
+              </div>
             </Link>
           </div>
         ))}

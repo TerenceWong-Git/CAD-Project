@@ -1,0 +1,7 @@
+@media only screen and (min-width: 821px) {
+  .notyetLoginLandingContainer {
+    border: 2px solid black;
+    height: 1080px;
+    width: 820px;
+  }
+}

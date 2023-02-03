@@ -4,26 +4,26 @@ import { useParams } from "react-router";
 function CommentDetail() {
   let commentId = useParams();
 
-  const [comments, setComments] = useState<any>({});
+  const [comment, setComments] = useState<any>({});
   useEffect(() => {
     async function loadData() {
       const res = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/comment/${commentId.id}`
       );
-      const json = await res.json();
-      setComments(json);
+      const data = await res.json();
+      setComments(data);
     }
     loadData();
-  }, []);
-  console.log(comments);
+  }, [commentId]);
+  console.log(comment);
 
   return (
     <div>
-      <p>{comments.title}</p>
-      <p>{comments.content}</p>
-      <p>{comments.map?.chiName}</p>
-      <p>{comments.user?.username}</p>
-      {comments.CommentImg?.map((image:any,index:any) => (
+      <p>{comment.title}</p>
+      <p>{comment.content}</p>
+      <p>{comment.map?.chiName}</p>
+      <p>{comment.user?.username}</p>
+      {comment.CommentImg?.map((image:any,index:any) => (
         <img key={index}
           height="100"
           width="100"

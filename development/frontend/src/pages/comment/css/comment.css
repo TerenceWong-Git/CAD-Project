@@ -1,6 +1,101 @@
-.div {
-    text-decoration: none
+* {
+  text-decoration: none;
 }
-.card {
-    border: 1px solid black;
+
+body {
+  background-color: #f8f8f8;
+}
+
+.comment-button-area > button {
+  background-color: #f2968f;
+  color: #fcfcfc;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  margin: 2px;
+}
+
+.comment-button-area > button:hover {
+  background: #e4655c;
+}
+
+.comment-body {
+  height: 100%;
+  overflow: scroll;
+}
+
+.comment-card-container {
+  margin: 5% 10%;
+  height: 15vh;
+  border: 1px solid #eee;
+  box-shadow: 0px 4px 16px rgba(0, 38, 82, 0.1);
+  border-radius: 15px;
+}
+
+.comment-card {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.comment-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+}
+
+.comment-image > img {
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+}
+
+.comment-detail > span:nth-child(1) {
+  font-weight: bold;
+}
+
+.comment-detail {
+  width: 60%;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.comment-detail-user {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.comment-detail-div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.comment-detail-button {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
+.comment-edit-button {
+  background-color: #e0cdff;
+  color: #7c699b;
+  border-radius: 6px;
+  border: none;
+  margin: 2px;
+}
+
+.comment-delete-button {
+    background-color: #FFCDD6;
+    color: #9B6972;
+    border-radius: 6px;
+    border: none;
+    margin: 2px;
 }

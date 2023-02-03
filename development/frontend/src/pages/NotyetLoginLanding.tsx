@@ -5,7 +5,9 @@ export default function NotyetLoginLanding() {
 
   return (
     <div className='notyetLoginLandingContainer'>
-      <div>123</div>
+      <div className='notyetLoginLandingTextPart'></div>
+      <div className='notyetLoginLandingBackgroundPart'></div>
+      <div className='notyetLoginLandingBackgroundPart2'></div>
     </div>
   )
 }

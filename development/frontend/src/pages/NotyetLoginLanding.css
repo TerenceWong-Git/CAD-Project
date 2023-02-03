@@ -1,7 +1,36 @@
 @media only screen and (min-width: 821px) {
+  body {
+    display: flex;
+    justify-content: center;
+  }
+
   .notyetLoginLandingContainer {
     border: 2px solid black;
+    background: linear-gradient(180deg, #FF8B6A 0%, rgba(255, 139, 106, 0.54) 100%);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     height: 1080px;
     width: 820px;
+  }
+
+  .notyetLoginLandingTextPart{
+    border: 3px solid rgb(255, 255, 255);
+    height: 20%;
+  }
+
+  .notyetLoginLandingBackgroundPart{
+    border: 3px solid rgb(0, 204, 255);
+    background: white;
+    border-radius: 500px;
+    position: absolute;
+    top: 10%;
+    height: 80%;
+    width: 100%;
+  }
+
+  .notyetLoginLandingBackgroundPart2{
+
   }
 }

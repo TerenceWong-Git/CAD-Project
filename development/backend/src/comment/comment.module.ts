@@ -20,6 +20,7 @@ import { v4 as uuid } from 'uuid';
           }
           cb(null, uploadPath);
         },
+
         // File modification details
         filename: (req: any, file: any, cb: any) => {
           // Calling the callback passing the random name generated with

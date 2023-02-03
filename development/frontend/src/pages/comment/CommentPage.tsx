@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
-import "../comment/css/Comment.css";
+import "../comment/css/comment.css";
 // import SimpleBottomNavigation from "../../components/FunctionBar";
 
 function CommentPage() {

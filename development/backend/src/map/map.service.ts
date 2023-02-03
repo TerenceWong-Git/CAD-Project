@@ -56,7 +56,13 @@ export class MapService {
             mapId: placeId,
           },
           select: {
-            workingHour: true,
+            workingHour: {
+              select: {
+                id: true,
+                weekday: true,
+                hours: true,
+              },
+            },
           },
         },
       },

@@ -6,23 +6,28 @@ export default function Footer() {
   return (
     <div className="footerContainer">
       <Button className="button" variant="contained" style={{ marginRight: "2vmin" }}>
-        <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
-          Back
+        <Link to={"/landing"} style={{ textDecoration: "none", color: "white" }}>
+          Main
         </Link>
       </Button>
       <Button className="button" variant="contained" style={{ marginRight: "2vmin" }}>
-        <Link to={"/login"} style={{ textDecoration: "none", color: "white" }}>
-          Login
+        <Link to={"/comments"} style={{ textDecoration: "none", color: "white" }}>
+          Comment
         </Link>
       </Button>
       <Button className="button" variant="contained" style={{ marginRight: "2vmin" }}>
-        <Link to={"/register"} style={{ textDecoration: "none", color: "white" }}>
-          Register
+        <Link to={"/comments/createComment"} style={{ textDecoration: "none", color: "white" }}>
+          Create
+        </Link>
+      </Button>
+      <Button className="button" variant="contained" style={{ marginRight: "2vmin" }}>
+        <Link to={"/map"} style={{ textDecoration: "none", color: "white" }}>
+          Map
         </Link>
       </Button>
       <Button className="button" variant="contained">
-        <Link to={"/landing"} style={{ textDecoration: "none", color: "white" }}>
-          Home
+        <Link to={"/userprofile"} style={{ textDecoration: "none", color: "white" }}>
+          User
         </Link>
       </Button>
     </div>

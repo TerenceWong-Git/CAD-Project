@@ -100,7 +100,7 @@ const petData = [
   {
     userId: 7,
     name: 'Barri',
-    speciesId: 2,
+    speciesId: 29,
     gender: Gender['Female'],
     dateBirth: new Date('2021-10-15 03:09:37').toISOString(),
     createdAt: new Date('2020-09-05 15:59:52').toISOString(),
@@ -124,7 +124,7 @@ const petData = [
   {
     userId: 48,
     name: 'Yoshi',
-    speciesId: 2,
+    speciesId: 29,
     gender: Gender['Male'],
     dateBirth: new Date('2016-02-17 06:55:09').toISOString(),
     createdAt: new Date('2019-02-15 00:29:10').toISOString(),
@@ -708,7 +708,7 @@ const petData = [
   {
     userId: 135,
     name: 'Claresta',
-    speciesId: 2,
+    speciesId: 29,
     gender: Gender['Female'],
     dateBirth: new Date('2015-04-11 14:28:29').toISOString(),
     createdAt: new Date('2022-08-14 15:38:47').toISOString(),
@@ -1428,7 +1428,7 @@ const petData = [
   {
     userId: 148,
     name: 'Brendon',
-    speciesId: 2,
+    speciesId: 29,
     gender: Gender['Male'],
     dateBirth: new Date('2018-10-07 23:24:58').toISOString(),
     createdAt: new Date('2021-06-12 07:32:11').toISOString(),
@@ -1500,7 +1500,7 @@ const petData = [
   {
     userId: 96,
     name: 'Aurelea',
-    speciesId: 2,
+    speciesId: 29,
     gender: Gender['Female'],
     dateBirth: new Date('2020-04-20 21:47:21').toISOString(),
     createdAt: new Date('2022-12-21 14:02:34').toISOString(),
@@ -1700,7 +1700,7 @@ const petData = [
   {
     userId: 3,
     name: 'Harald',
-    speciesId: 2,
+    speciesId: 29,
     gender: Gender['Male'],
     dateBirth: new Date('2015-02-25 12:14:15').toISOString(),
     createdAt: new Date('2023-01-20 05:01:00').toISOString(),
@@ -1820,7 +1820,7 @@ const petData = [
   {
     userId: 61,
     name: 'Alyss',
-    speciesId: 2,
+    speciesId: 29,
     gender: Gender['Female'],
     dateBirth: new Date('2021-06-11 02:07:51').toISOString(),
     createdAt: new Date('2021-08-16 11:37:53').toISOString(),
@@ -1860,7 +1860,7 @@ const petData = [
   {
     userId: 40,
     name: 'Rosalinde',
-    speciesId: 2,
+    speciesId: 29,
     gender: Gender['Male'],
     dateBirth: new Date('2019-07-29 16:34:40').toISOString(),
     createdAt: new Date('2022-06-05 22:56:40').toISOString(),
@@ -2172,7 +2172,7 @@ const petData = [
   {
     userId: 113,
     name: 'Marten',
-    speciesId: 2,
+    speciesId: 29,
     gender: Gender['Female'],
     dateBirth: new Date('2020-12-06 23:43:37').toISOString(),
     createdAt: new Date('2016-08-16 14:56:25').toISOString(),
@@ -2300,7 +2300,7 @@ const petData = [
   {
     userId: 154,
     name: 'Brenda',
-    speciesId: 2,
+    speciesId: 29,
     gender: Gender['Female'],
     dateBirth: new Date('2020-01-18 17:13:09').toISOString(),
     createdAt: new Date('2020-01-24 11:50:09').toISOString(),

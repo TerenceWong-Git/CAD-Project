@@ -60,6 +60,11 @@ export class PetService {
         isPrivate: true,
         tag: true,
       },
+      orderBy: [
+        {
+          id: 'asc',
+        },
+      ],
     });
     return foundPet;
   }
@@ -112,18 +117,16 @@ export class PetService {
     console.log(files);
 
     await this.prismaService.petImg.createMany({
-      data: files.map(file => ({
+      data: files.map((file) => ({
         petId: petId,
         name: file.filename,
         tag: uploadPetImgDto.tag,
-        isPrivate: uploadPetImgDto.isPrivate
-      }))
-    })
+        isPrivate: uploadPetImgDto.isPrivate,
+      })),
+    });
   }
 
   async uploadVaccine(petId: number, file: Express.Multer.File) {
-
-
     const data = await this.prismaService.petVaccine.create({
       data: {
         petId: petId,
@@ -138,7 +141,6 @@ export class PetService {
     addPetDto: AddPetDto,
     file: Express.Multer.File,
   ) {
-
     await this.prismaService.pet.create({
       data: {
         userId: userId,

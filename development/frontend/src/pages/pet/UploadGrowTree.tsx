@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 import ImageUploading from "react-images-uploading";
 import { tags } from "../../components/pet/petTag";
@@ -8,13 +8,11 @@ import { MultiSelect } from "@mantine/core";
 function UploadGrowTree() {
   const path = process.env.REACT_APP_BACKEND_URL;
   const petId = useParams();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, control, watch } = useForm();
   const navigate = useNavigate();
   const [images, setImages] = React.useState([]);
   const [multiSelectValues, setMultiSelectValues] = useState<any>([""]);
   const newFile = images.map((item: any) => item.file);
-
-  // const passTagValues = multiSelectValues.toString();
 
   const onChange = (imageList: any, addUpdateIndex: any) => {
     // data for submit
@@ -23,23 +21,25 @@ function UploadGrowTree() {
   };
 
   console.log("img: ", images);
-  console.log("tags: ", multiSelectValues);
-  // console.log("passTagValues: ", passTagValues);
 
+  console.log(watch());
   return (
     <div>
       CommentPage
       <form
         onSubmit={handleSubmit((data) => {
-          console.log(data);
           const jwt = localStorage.getItem("token");
           const formData = new FormData();
-          formData.append("tag", data.tag.toString());
+          const tag = data.firstName.join();
+          formData.append("tag", tag);
           formData.append("isPrivate", data.isPrivate);
 
           for (const img of newFile) {
             formData.append("files", img);
           }
+
+          console.log(typeof tag, "tag: ", tag);
+          console.log("data: ", data);
 
           // fetch(`${path}/pet/uploadPetImg/${petId.id}`, {
           //   method: "POST",
@@ -54,7 +54,8 @@ function UploadGrowTree() {
       >
         <div>
           {/* key={tagId} */}
-          <MultiSelect data={tags} value={multiSelectValues} {...register("tag", { required: true })} onChange={setMultiSelectValues} />
+          {/* <MultiSelect data={tags} value={passTagValues} {...register("tag", { required: true })} onChange={setMultiSelectValues} /> */}
+          <Controller name="firstName" control={control} render={({ field }) => <MultiSelect data={tags} {...field} />} />
         </div>
 
         <ImageUploading multiple value={images} onChange={onChange} dataURLKey="data_url">

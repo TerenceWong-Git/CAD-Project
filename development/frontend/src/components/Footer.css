@@ -1,19 +1,31 @@
-
-
 @media only screen and (min-width: 821px) {
+  body {
+    display: flex;
+    justify-content: center;
+  }
+
   .footerContainer {
     background: white;
-    border-top: 3px solid rgb(0, 0, 0);
+    border: 2px solid rgb(255, 196, 0);
     display: flex;
     justify-content: space-evenly;
-
+    position: sticky;
+    bottom: 0px;
     width: 820px;
-    height: 10%;
+    height: 1%;
     padding: 2vmin 0 2vmin 0;
     z-index: 1000;
   }
-  
-  .button {
-    height: 15vmin;
+
+
+  .button, .button:hover, .button.active {
+    background-color: rgb(255, 255, 255) !important;
+    box-shadow: 0px 0px 0px 0px rgb(0 0 0 / 0%)!important;
+    font-size: 5vmin !important;
+    width: 12vmin;
+    height: 7vmin;
+    fill: none !important;
+    stroke: none !important;
+    color: white !important;
   }
 }

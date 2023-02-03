@@ -1,45 +1,40 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { Circle, GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
-import { Autocomplete } from "@mantine/core";
-import Mall from "../../components/place/map/icons/clinic.png";
+import { Autocomplete, Card, Checkbox } from "@mantine/core";
+
+import { Circle, GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { useEffect, useState } from "react";
+import Footer from "../../components/Footer";
+import { districts, types } from "../../components/place/map/District";
 import { circleSettings, containerStyle } from "../../components/place/map/MapSetting";
+import "./css/Map.css";
 
-export default function Map() {
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`,
-  });
-
-  const [userLocation, setUserLocation] = useState({ lat: 0, lng: 0 });
-  const [targetLocation, setTargetLocation] = useState({ lat: 0, lng: 0 });
-  const [lat, setLat] = useState(0);
-  const [lng, setLng] = useState(0);
-
-  const [isTriggered, setIsTriggered] = useState(false);
-
-  const [loadPlacesData, setLoadPlacesData] = useState<any[]>([]);
-  const [items, setItems] = useState<any[]>([]);
-  const [searchItems, setSearchItems] = useState<any[]>([]);
-
-  const [value, setValue] = useState("");
-
+export default function Map3() {
   ////////////////////////////////////   Load Data   /////////////////////////////////////
+
+  const [allPlaceItems, setAllPlaceItems] = useState<any[]>([]);
+  const [filteredItems, setFilteredItems] = useState<any[]>([]);
+  const [searchItems, setSearchItems] = useState<any[]>([]);
+  const [isTriggered, setIsTriggered] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/map`);
       const json = await res.json();
 
-      setItems(json);
-      setLoadPlacesData(json);
+      setAllPlaceItems(json);
+      setFilteredItems(json);
       setSearchItems(json);
     }
     fetchData();
   }, []);
 
+  //   console.log("allPlaceItems: ", allPlaceItems);
+
   ////////////////////////////////////   Load Data   /////////////////////////////////////
 
   ////////////////////////////////////   Initial Map   ///////////////////////////////////
+
+  const [userLocation, setUserLocation] = useState({ lat: 0, lng: 0 });
+  const [targetLocation, setTargetLocation] = useState({ lat: 0, lng: 0 });
 
   navigator.geolocation.watchPosition((position) => {
     setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
@@ -49,91 +44,166 @@ export default function Map() {
 
   ////////////////////////////////////   Initial Map   ///////////////////////////////////
 
-  /////////////////////////////////////   Relocate   /////////////////////////////////////
-  const getLocation = (e: any) => {
-    e.preventDefault();
-    navigator.geolocation.watchPosition((position) => {
-      setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
-      setTargetLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
-    });
-    console.log(targetLocation);
-  };
-  /////////////////////////////////////   Relocate   /////////////////////////////////////
-
   /////////////////////////////////////   Category   /////////////////////////////////////
-  const filterItem = (category: string) => {
-    const newItems = loadPlacesData.filter((place) => {
-      const districtName = place.district.replaceAll("_", " ");
-      const mapType = place.mapType.engType.replaceAll("_", " ");
 
-      return districtName === category || mapType === category;
+  const [values, setValues] = useState<any>([]);
+
+  const activateFilter = async () => {
+    filterItem(values);
+  };
+
+  const deactivateFilter = async () => {
+    setValues([]);
+  };
+
+  const filterItem = (input: any) => {
+    const newItems = allPlaceItems.filter((item) => {
+      const inputValue = input;
+      const districtName = item.district;
+      const typeName = item.mapType.engType;
+
+      console.log("inputValue: ", inputValue);
+      console.log("districtName: ", districtName);
+
+      if (values.length < 2) {
+        return inputValue.includes(districtName) || inputValue.includes(typeName);
+      } else {
+        return inputValue.includes(districtName) && inputValue.includes(typeName);
+      }
     });
-    setItems(newItems);
+    setFilteredItems(newItems);
     setSearchItems(newItems);
   };
-
-  console.log("item: ", items);
 
   /////////////////////////////////////   Category   /////////////////////////////////////
 
   ////////////////////////////////////   Search Bar   ////////////////////////////////////
 
-  const filterPlaceName = items.map((item) => {
-    return item.engName;
+  const [searchValues, setSearchValues] = useState<any>();
+
+  const searchablePlace = searchItems.map((item) => {
+    return item.chiName;
   });
 
-  const getPlaceLocation = (category: string) => {
-    const newItems = loadPlacesData.filter((place) => {
-      const engName = place.engName;
+  const searchSpecificPlace = (input: any) => {
+    const newItems = allPlaceItems.filter((place) => {
+      const inputValue = input;
+      const districtName = place.chiName;
 
-      return engName === category;
+      return inputValue.includes(districtName);
     });
 
     setSearchItems(newItems);
     setTargetLocation({ lat: parseFloat(newItems[0].latitude), lng: parseFloat(newItems[0].longitude) });
   };
-  console.log("value: ", value);
-  console.log("targetLocation: ", targetLocation);
+  console.log("searchValues: ", searchValues);
   console.log("searchItems: ", searchItems);
+  console.log("==========");
+
   ////////////////////////////////////   Search Bar   ////////////////////////////////////
 
+  ///////////////////////////////////   Click Click   ////////////////////////////////////
+
+  const [selectedMarker, setSelectedMarker] = useState<any>(null);
+  const [isCardShown, setIsCardShown] = useState(false);
+
+  ///////////////////////////////////   Click Click   ////////////////////////////////////
+
+  console.log("values: ", values);
+  console.log("filteredItems: ", filteredItems);
+
   return (
-    <div>
+    <>
       {isTriggered ? (
-        <div></div>
+        <div className="pageContainer">
+          <button onClick={() => setIsTriggered(false)}>Back</button>
+          <div className="categoryContainer">
+            <div className="districtCategory">
+              {districts.map((district) => {
+                return (
+                  <Checkbox.Group key={district.engDistrict} value={values} onChange={setValues}>
+                    <Checkbox value={district.engDistrict} label={district.chiDistrict} />
+                  </Checkbox.Group>
+                );
+              })}
+            </div>
+            <div className="typeCategory">
+              {types.map((type) => {
+                return (
+                  <Checkbox.Group key={type.engType} value={values} onChange={setValues}>
+                    <Checkbox value={type.engType} label={type.chiType} />
+                  </Checkbox.Group>
+                );
+              })}
+            </div>
+
+            <button onClick={activateFilter}>Filter</button>
+            <button onClick={deactivateFilter}>Clear</button>
+          </div>
+          <Footer/>
+        </div>
       ) : (
-        <div>
-          <div>
-            <Autocomplete value={value} onChange={setValue} data={filterPlaceName} />
-            <button onClick={() => getPlaceLocation(value)}>Search</button>
-          </div>
+        <div className="pageContainer">
+          <div className="filterContainer">
+            <div className="searchContainer">
+              <Autocomplete value={searchValues} onChange={setSearchValues} data={searchablePlace} />
+            </div>
+            <div className="searchTrigger">
+              <button onClick={() => searchSpecificPlace(searchValues)}>Search</button>
+            </div>
 
-          <div>
-            <button onClick={() => setIsTriggered(true)}>Category</button>
+            <div className="categoryTrigger">
+              <button onClick={() => setIsTriggered(true)}>Category</button>
+            </div>
           </div>
-
-          <div>
-            {/* userLocation */}
-            {/* { lat: lat, lng: lng } */}
-            {isLoaded && (
-              <GoogleMap mapContainerStyle={containerStyle} center={targetLocation} zoom={12} options={{ disableDefaultUI: true }}>
-                <Circle center={targetLocation} options={circleSettings} />
-                <Marker position={targetLocation} />
-                {items.map((item) => {
+          {isCardShown && (
+            <div>
+              <Card className="previewPlaceCard">
+                <Card.Section className="cardSection">
+                  <img className="previewPicture2" src="/uploads/pictures/3.jpg" alt={selectedMarker.engName} />
+                </Card.Section>
+                <Card.Section className="cardSection">{selectedMarker.chiName}</Card.Section>
+                <Card.Section className="cardSection">{selectedMarker.mapType.chiType}</Card.Section>
+                <button
+                  className="closeCardButton"
+                  onClick={() => {
+                    setIsCardShown(false);
+                  }}
+                >
+                  x
+                </button>
+              </Card>
+            </div>
+          )}
+          <div className="mapContainer">
+            <LoadScript googleMapsApiKey={`${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`}>
+              <GoogleMap mapContainerStyle={containerStyle} center={targetLocation} zoom={17} options={{ disableDefaultUI: true }}>
+                <Circle center={userLocation} options={circleSettings} />
+                <Marker position={userLocation} />
+                {searchItems.map((item) => {
                   const latitudeToFloat = parseFloat(item.latitude);
                   const longitudeToFloat = parseFloat(item.longitude);
                   return (
-                    <div key={item.engName}>
-                      <Marker position={{ lat: latitudeToFloat, lng: longitudeToFloat }} options={{ icon: Mall }} />
-                    </div>
+                    <Marker
+                      key={item.engName}
+                      position={{ lat: latitudeToFloat, lng: longitudeToFloat }}
+                      onClick={() => {
+                        setSelectedMarker(item);
+                        setIsCardShown(true);
+                      }}
+                    />
+
+                    // options={{ icon: Mall }}
                   );
                 })}
+                <></>
               </GoogleMap>
-            )}
-            <button onClick={getLocation}>Get Location</button>
+            </LoadScript>
+            
           </div>
+          <Footer/>
         </div>
       )}
-    </div>
+    </>
   );
 }

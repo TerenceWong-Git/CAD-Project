@@ -3,6 +3,7 @@ import * as bcrypt from 'bcryptjs';
 import mapData from './data/mapData';
 import mapToWorkingHour from './data/mapToWorkingHourData';
 import petData from './data/petData';
+import petWeightData from './data/petWeightData';
 import { famSpeciesData, mapTypeData, speciesData } from './data/typeData';
 import usersData from './data/userData';
 import workingHourData from './data/workingHourData';
@@ -324,6 +325,18 @@ async function main() {
     data: petData,
     skipDuplicates: true,
   });
+  const petRes = await prisma.pet.findMany({
+    select: { id: true },
+  });
+  console.log(`No. of pet data inserted: ${petRes.length}`);
+  await prisma.petWeight.createMany({
+    data: petWeightData,
+    skipDuplicates: true,
+  });
+  const petWeightRes = await prisma.petWeight.findMany({
+    select: { id: true },
+  });
+  console.log(`No. of pet weight data inserted: ${petWeightRes.length}`);
 }
 
 main().then(() => console.log('seed done'));

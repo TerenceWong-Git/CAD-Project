@@ -8,7 +8,7 @@ import expLikeData from './data/expLikeData';
 import mapData from './data/mapData';
 import mapToWorkingHour from './data/mapToWorkingHourData';
 import petData from './data/petData';
-import petImgData from './data/PetImgData';
+import petImgData from './data/petImgData';
 import petWeightData from './data/petWeightData';
 import { famSpeciesData, mapTypeData, speciesData } from './data/typeData';
 import usersData from './data/userData';

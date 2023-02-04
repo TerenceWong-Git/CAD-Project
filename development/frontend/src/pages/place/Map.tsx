@@ -32,26 +32,20 @@ export default function Map() {
     fetchData();
   }, []);
 
-  //   console.log("allPlaceItems: ", allPlaceItems);
-
   ////////////////////////////////////   Load Data   /////////////////////////////////////
 
   ////////////////////////////////////   Initial Map   ///////////////////////////////////
 
-  const [userLocation, setUserLocation] = useState({ lat: 0, lng: 0 });
   const [targetLocation, setTargetLocation] = useState({ lat: 0, lng: 0 });
-
   const [userLat, setUserLat] = useState(0);
   const [usertLng, setUserLng] = useState(0);
 
   navigator.geolocation.watchPosition((position) => {
-    // setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
     // setTargetLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
 
     setUserLat(position.coords.latitude);
     setUserLng(position.coords.longitude);
   });
-  console.log(targetLocation);
 
   ////////////////////////////////////   Initial Map   ///////////////////////////////////
 
@@ -110,7 +104,6 @@ export default function Map() {
       const districtName = place.chiName;
 
       return inputValue.includes(districtName);
-      // if no input 直接return
     });
 
     setSearchItems(newItems);
@@ -118,9 +111,6 @@ export default function Map() {
     setUserLat(parseFloat(newItems[0].latitude));
     setUserLng(parseFloat(newItems[0].longitude));
   };
-  console.log("searchValues: ", searchValues);
-  console.log("searchItems: ", searchItems);
-  console.log("==========");
 
   ////////////////////////////////////   Search Bar   ////////////////////////////////////
 
@@ -130,9 +120,19 @@ export default function Map() {
   const [isCardShown, setIsCardShown] = useState(false);
 
   ///////////////////////////////////   Click Click   ////////////////////////////////////
-
+  console.log("依家係邊: ", targetLocation);
+  console.log("拎到乜野: ", allPlaceItems);
+  console.log("==========");
+  console.log("係咪要用filter: ", isTriggered);
+  console.log("fil完之後有咩地方: ", filteredItems);
+  console.log("==========");
+  console.log("可以search d咩: ", searchItems);
+  console.log("入左咩落search bar: ", searchValues);
+  console.log("==========");
   console.log("values: ", values);
   console.log("filteredItems: ", filteredItems);
+  console.log("==========");
+  console.log("");
 
   return (
     <>

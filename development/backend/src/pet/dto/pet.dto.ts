@@ -14,15 +14,11 @@ export class AddWeightDto {
   @IsNotEmpty()
   weight: number;
 }
-export class PetDto {
-  @IsNotEmpty() id: string;
-  @IsNotEmpty() petname: string;
-}
 
 // export class uploadVaccineDto{
 
 // }
-export class uploadPetImgDto {
+export class UploadPetImgDto {
   @IsString()
   @MaxLength(20)
   tag?: string;
@@ -33,6 +29,12 @@ export class uploadPetImgDto {
   @IsNotEmpty()
   isPrivate: boolean;
 }
+
+export class PetDto {
+  @IsNotEmpty() id: string;
+  @IsNotEmpty() petname: string;
+}
+
 export class AddPetDto {
   // @IsString()
   // @IsOptional()

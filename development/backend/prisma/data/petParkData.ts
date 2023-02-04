@@ -4047,30 +4047,30 @@ const data = [
   },
 ];
 
-const data2 = [];
-const data3 = [];
+// const data2 = [];
+// const data3 = [];
 
-function filter() {
-  const filter = data.map((info) => {
-    data2.push(info.properties);
-  });
-}
-filter();
+// function filter() {
+//   const filter = data.map((info) => {
+//     data2.push(info.properties);
+//   });
+// }
+// filter();
 
-function filter2() {
-  const filter2 = data2.map((info) => {
-    data3.push({
-      chiName: info.NAME_TC,
-      engName: info.NAME_EN,
-      chiAddress: info.ADDRESS_TC,
-      engAddress: info.ADDRESS_EN,
-      phoneNumber: parseInt(info.NSEARCH03_EN.replace(' ', '')),
-      district: info.SEARCH01_EN.toLowerCase().replace(' ', '_'),
-      latitude: parseFloat(info.LATITUDE),
-      longitude: parseFloat(info.LONGITUDE),
-      profileImg: info.NSEARCH03_EN,
-    });
-  });
-}
-filter2();
-console.log(data3.slice(90, 99));
+// function filter2() {
+//   const filter2 = data2.map((info) => {
+//     data3.push({
+//       chiName: info.NAME_TC,
+//       engName: info.NAME_EN,
+//       chiAddress: info.ADDRESS_TC,
+//       engAddress: info.ADDRESS_EN,
+//       phoneNumber: parseInt(info.NSEARCH03_EN.replace(' ', '')),
+//       district: info.SEARCH01_EN.toLowerCase().replace(' ', '_'),
+//       latitude: parseFloat(info.LATITUDE),
+//       longitude: parseFloat(info.LONGITUDE),
+//       profileImg: info.NSEARCH03_EN,
+//     });
+//   });
+// }
+// filter2();
+// console.log(data3.slice(90, 99));

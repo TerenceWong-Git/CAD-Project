@@ -10,7 +10,6 @@ import {
   Delete,
   UseInterceptors,
   UploadedFiles,
-  Put,
 } from '@nestjs/common';
 import { JwtGuard } from 'src/auth/guard';
 import { CommentService } from './comment.service';

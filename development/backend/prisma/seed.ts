@@ -3,6 +3,8 @@ import * as bcrypt from 'bcryptjs';
 import commentData from './data/commentData';
 import commentImgData from './data/commentImgData';
 import eventData from './data/eventData';
+import expData from './data/ExpData';
+import expLikeData from './data/expLikeData';
 import mapData from './data/mapData';
 import mapToWorkingHour from './data/mapToWorkingHourData';
 import petData from './data/petData';
@@ -377,6 +379,24 @@ async function main() {
     select: { id: true },
   });
   console.log(`No. of event data inserted: ${eventRes.length}`);
+  console.log(`length of expereince array: ${expData.length}`);
+  await prisma.exp.createMany({
+    data: expData,
+    skipDuplicates: true,
+  });
+  const expRes = await prisma.exp.findMany({
+    select: { id: true },
+  });
+  console.log(`No. of experience data inserted: ${expRes.length}`);
+  console.log(`length of experience like array: ${expLikeData.length}`);
+  await prisma.expLike.createMany({
+    data: expLikeData,
+    skipDuplicates: true,
+  });
+  const expLikeRes = await prisma.expLike.findMany({
+    select: { id: true },
+  });
+  console.log(`No. of event data inserted: ${expLikeRes.length}`);
 }
 
 main().then(() => console.log('seed done'));

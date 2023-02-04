@@ -8,6 +8,4 @@ RUN yarn
 
 RUN mkdir upload
 
-RUN yarn build
-
 CMD yarn prisma generate && yarn migrate:dev && yarn seed:prod && yarn start:prod

@@ -29,6 +29,7 @@ services:
       - ./pg/data:/var/lib/postgresql/data
     healthcheck:
       test: "exit 0"
+    restart: unless-stopped
     networks:
       cas:
         ipv4_address: 172.1.0.10

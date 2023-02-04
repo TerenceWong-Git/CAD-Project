@@ -12,8 +12,6 @@ export class CreateCommentDto {
   @IsString()
   content: string;
 
-  // @Type(() => Boolean)
-  // @Transform(({ value }) => value === 'true')
   @Transform(({ value }) => {
     return [true, 'enabled', 'true', 1, '1'].indexOf(value) > -1;
   })

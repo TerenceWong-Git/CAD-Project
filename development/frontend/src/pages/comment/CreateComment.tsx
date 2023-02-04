@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import { ErrorMessage } from "@hookform/error-message";
 import ImageUploading from "react-images-uploading";
-// import logger from "redux-logger";
+import { MdOutlineThumbUpOffAlt, MdOutlineThumbDown } from "react-icons/md";
+import { RxUpdate } from "react-icons/rx";
+import { AiOutlineDelete } from "react-icons/ai";
 
 function CreateComment() {
   const {
@@ -42,9 +43,9 @@ function CreateComment() {
   console.log("errors: ", errors);
 
   return (
-    <div>
-      CommentPage
+    <div className="comment-create-page">
       <form
+        className="comment-create-form"
         onSubmit={handleSubmit(async (data) => {
           console.log(data);
           const jwt = localStorage.getItem("token");
@@ -69,44 +70,100 @@ function CreateComment() {
           navigate("/comments");
         })}
       >
-        <p>
-          <label>
-            地點：
-            <select {...register("mapId", { required: true })}>
-              <option value="">--Choose here--</option>
-              {maps.map((map, i) => (
-                <option key={i} value={map.id}>
-                  {map.chiName}
-                </option>
-              ))}
-            </select>
-          </label>
-        </p>
-
-        <p>
-          <label>
-            標題：
-            <input
-              type="text"
-              {...register("title", { required: "請填寫標題" })}
-            ></input>
+        <div className="comment-form-input">
+          <div>
+            <label>
+              地點
+              <br></br>
+              <select
+                className="comment-select"
+                {...register("mapId", { required: true })}
+              >
+                <option value=""></option>
+                {maps.map((map, i) => (
+                  <option key={i} value={map.id}>
+                    {map.chiName}
+                  </option>
+                ))}
+              </select>
+            </label>
             <br></br>
-            <ErrorMessage errors={errors} name="title" />
-          </label>
-        </p>
+            <div className="comment-error-area">
+              {errors.mapId && (
+                <span className="comment-error">請選擇地點</span>
+              )}
+            </div>
+          </div>
 
-        <p>
-          <label>
-            內容：
-            <textarea
-              {...register("content", {
-                minLength: 5,
-              })}
-            ></textarea>
-            <br></br>
-            {errors.content && errors.content.type === "minLength" && <span>請填寫5個字以上</span> }
+          <div>
+            <label>
+              標題
+              <br></br>
+              <input
+                type="text"
+                className="comment-form-text"
+                size={42}
+                {...register("title", { required: true })}
+              ></input>
+              <br></br>
+              <div className="comment-error-area">
+                {errors.title && (
+                  <span className="comment-error">請填寫標題</span>
+                )}
+              </div>
+            </label>
+          </div>
+
+          <div>
+            <label>
+              內容
+              <br></br>
+              <textarea
+                className="comment-form-text"
+                rows={10}
+                cols={35}
+                {...register("content", { required: true })}
+              ></textarea>
+              <br></br>
+              <div className="comment-error-area">
+                {errors.content && (
+                  <span className="comment-error">請填寫內容</span>
+                )}
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <input
+            type="radio"
+            value="true"
+            id="good"
+            className="comment-form-radio"
+            {...register("isThumb", { required: true })}
+          />
+          <label htmlFor="good">
+            <MdOutlineThumbUpOffAlt color="#5A5555" />
+            好評
           </label>
-        </p>
+          <input
+            type="radio"
+            value="false"
+            id="bad"
+            className="comment-form-radio"
+            {...register("isThumb")}
+          />
+          <label htmlFor="bad">
+            <MdOutlineThumbDown color="#5A5555" />
+            差評
+          </label>
+          <br></br>
+          <div className="comment-error-area">
+            {errors.isThumb && (
+              <span className="comment-error">請選擇其一選項</span>
+            )}
+          </div>
+        </div>
 
         <ImageUploading
           multiple
@@ -126,26 +183,39 @@ function CreateComment() {
             // write your building UI
             <div className="upload__image-wrapper">
               <button
+                className="comment-edit-button"
                 type="button"
                 style={isDragging ? { color: "red" } : undefined}
                 onClick={onImageUpload}
                 {...dragProps}
               >
-                Click or Drop here
+                上載圖片
               </button>
               &nbsp;
-              <button type="button" onClick={onImageRemoveAll}>
-                Remove all images
+              <button
+                className="comment-delete-button"
+                type="button"
+                onClick={onImageRemoveAll}
+              >
+                移除所有圖片
               </button>
               {imageList.map((image, index) => (
                 <div key={index} className="image-item">
                   <img src={image["data_url"]} alt="" width="100" />
                   <div className="image-item__btn-wrapper">
-                    <button type="button" onClick={() => onImageUpdate(index)}>
-                      Update
+                    <button
+                      className="comment-image-update"
+                      type="button"
+                      onClick={() => onImageUpdate(index)}
+                    >
+                      <RxUpdate color="#F2968F" />
                     </button>
-                    <button type="button" onClick={() => onImageRemove(index)}>
-                      Remove
+                    <button
+                      className="comment-image-delete"
+                      type="button"
+                      onClick={() => onImageRemove(index)}
+                    >
+                      <AiOutlineDelete color="#F2968F" />
                     </button>
                   </div>
                 </div>
@@ -153,18 +223,11 @@ function CreateComment() {
             </div>
           )}
         </ImageUploading>
+        <p></p>
 
-        <p>
-          <input type="radio" value="true" {...register("isThumb",{ required: "請選擇" })} />
-          <label htmlFor="good">好評</label>
-          <input type="radio" value="false" {...register("isThumb")} />
-          <label htmlFor="bad">差評</label>
-          <br></br><ErrorMessage errors={errors} name="isThumb" />
-        </p>
-
-        <p>
-          <input type="submit" value="submit" />
-        </p>
+        <div>
+          <input type="submit" value="提交" className="comment-submit" />
+        </div>
       </form>
     </div>
   );

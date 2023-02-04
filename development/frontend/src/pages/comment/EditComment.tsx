@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { MdOutlineThumbUpOffAlt, MdOutlineThumbDown } from "react-icons/md";
+import { BiMap } from "react-icons/bi";
+import { AiOutlineDelete } from "react-icons/ai";
 
 interface FormInput {
   title: string;
@@ -61,9 +64,9 @@ function EditComment() {
   console.log("errors: ", errors);
 
   return (
-    <div>
-      CommentPage
+    <div className="comment-create-page">
       <form
+        className="comment-create-form"
         onSubmit={handleSubmit(async (data) => {
           console.log(data);
           const jwt = localStorage.getItem("token");
@@ -91,51 +94,96 @@ function EditComment() {
           navigate("/comments/myComments");
         })}
       >
-        <p>地點：{comment.map?.chiName}</p>
+        <div className="comment-form-input">
+          <div className="comment-edit-mapName">
+            <BiMap color="#b74829" />
+            {comment.map?.chiName}
+          </div>
+          <br></br>
+          <div>
+            <label>
+              標題
+              <br></br>
+              <input
+                type="text"
+                className="comment-form-text"
+                size={42}
+                {...register("title", { required: true })}
+              ></input>
+              <br></br>
+              <div className="comment-error-area">
+                {errors.title && (
+                  <span className="comment-error">請填寫標題</span>
+                )}
+              </div>
+            </label>
+          </div>
 
-        <p>
-          <label>
-            標題：
-            <input
-              type="text"
-              {...register("title")}
-            ></input>
-          </label>
-        </p>
-
-        <p>
-          <label>
-            內容：
-            <textarea
-              {...register("content")}
-            ></textarea>
-          </label>
-        </p>
+          <div>
+            <label>
+              內容
+              <br></br>
+              <textarea
+                className="comment-form-text"
+                rows={10}
+                cols={35}
+                {...register("content", { required: true })}
+              ></textarea>
+              <br></br>
+              <div className="comment-error-area">
+                {errors.content && (
+                  <span className="comment-error">請填寫內容</span>
+                )}
+              </div>
+            </label>
+          </div>
+        </div>
 
         <div>
-          <label>
-            相：
+          <input type="radio" id="good" value="true" {...register("isThumb")} />
+          <label htmlFor="good">
+            <MdOutlineThumbUpOffAlt color="#5A5555" />
+            好評
+          </label>
+          <input type="radio" id="bad" value="false" {...register("isThumb")} />
+          <label htmlFor="bad">
+            <MdOutlineThumbDown color="#5A5555" />
+            差評
+          </label>
+        </div>
+        <br></br>
+
+        <div className="comment-edit-uploadDiv ">
+          <label htmlFor="comment-edit-uploadImage">
             <input
+              id="comment-edit-uploadImage"
               type="file"
               multiple
               accept="image/png , image/jpg, image/jpeg"
               {...register("files")}
               onChange={uploadFiles}
             ></input>
+            <div className="comment-upload-button">
+              上載圖片
+            </div>
           </label>
+
           <br></br>
-          <div className="images">
+          <div className="comment-edit-images">
             {images.CommentImg?.length > 0 &&
               images.CommentImg?.map((image: any, index: any) => {
                 return (
-                  <div key={index} className="image">
+                  <div key={index}>
                     <img
+                      className="comment-edit-oldImage"
                       src={`${process.env.REACT_APP_BACKEND_URL}/upload/${image.name}`}
-                      height="200"
+                      width="100"
                       alt=""
                     />
+                    <br></br>
                     <button
                       type="button"
+                      className="comment-image-delete"
                       onClick={async (data) => {
                         const jwt = localStorage.getItem("token");
                         const res = await fetch(
@@ -162,7 +210,7 @@ function EditComment() {
                         }
                       }}
                     >
-                      delete image
+                      <AiOutlineDelete color="#F2968F" />
                     </button>
                   </div>
                 );
@@ -170,30 +218,31 @@ function EditComment() {
             {updateFile.length > 0 &&
               updateFile.map((image: any, index: any) => {
                 return (
-                  <div key={index} className="image">
-                    <img src={URL.createObjectURL(image)} height="200" alt="" />
+                  <div key={index}>
+                    <img
+                      className="comment-edit-newImage"
+                      src={URL.createObjectURL(image)}
+                      width="100"
+                      alt=""
+                    />
+                    <br></br>
                     <button
                       type="button"
+                      className="comment-image-delete"
                       onClick={() => deleteUpdateFile(index)}
                     >
-                      delete image
+                      <AiOutlineDelete color="#F2968F" />
                     </button>
                   </div>
                 );
               })}
           </div>
         </div>
+        <p></p>
 
-        <p>
-          <input type="radio" value="true" {...register("isThumb")} />
-          <label htmlFor="good">好評</label>
-          <input type="radio" value="false" {...register("isThumb")} />
-          <label htmlFor="bad">差評</label>
-        </p>
-
-        <p>
-          <input type="submit" value="submit" />
-        </p>
+        <div>
+          <input type="submit" value="提交" className="comment-submit" />
+        </div>
       </form>
     </div>
   );

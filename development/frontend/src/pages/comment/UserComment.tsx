@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GiHollowCat } from "react-icons/gi";
+import { BiCommentDetail } from "react-icons/bi";
+import { MdOutlineThumbUpOffAlt, MdOutlineThumbDown } from "react-icons/md";
 
 function UserComment() {
   const [comments, setComments] = useState<any[]>([]);
@@ -40,15 +42,29 @@ function UserComment() {
                       alt=""
                     />
                   ) : (
-                    <div className="comment-image"><GiHollowCat size={70} /></div>
+                    <div className="comment-image">
+                      <GiHollowCat size={70} />
+                    </div>
                   )}
                 </Link>
 
                 <div className="comment-detail-user">
                   <div className="comment-detail-div">
-                    <span>{comment.title}</span>
-                    <span>{comment.content}</span>
-                    <span>{comment.map?.chiName}</span>
+                    <span>
+                      <BiCommentDetail />
+                      &nbsp;{comment.title}
+                    </span>
+                    {comment.isThumb ? (
+                    <span>
+                      <MdOutlineThumbUpOffAlt />&nbsp;
+                      {comment.map.chiName}
+                    </span>
+                  ) : (
+                    <span>
+                      <MdOutlineThumbDown />&nbsp;
+                      {comment.map.chiName}
+                    </span>
+                  )}
                   </div>
 
                   <div className="comment-detail-button">
@@ -57,11 +73,11 @@ function UserComment() {
                         to={`/comments/editComment/${comment.id}`}
                         style={{ color: "#7C699B" }}
                       >
-                        edit
+                        修改
                       </Link>
-                    </button>
+                    </button>&nbsp;&nbsp;
                     <button
-                    className="comment-delete-button"
+                      className="comment-delete-button"
                       onClick={async (data) => {
                         const jwt = localStorage.getItem("token");
                         const res = await fetch(
@@ -88,7 +104,7 @@ function UserComment() {
                         }
                       }}
                     >
-                      delete
+                      刪除
                     </button>
                   </div>
                 </div>
@@ -96,7 +112,7 @@ function UserComment() {
             </div>
           ))
         ) : (
-          <div>you don't have comment</div>
+          <div>您還沒有建立留言</div>
         )}
       </div>
     </div>

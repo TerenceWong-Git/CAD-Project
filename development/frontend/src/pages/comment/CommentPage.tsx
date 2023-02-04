@@ -89,16 +89,19 @@ function CommentPage() {
                   {comment.isThumb ? (
                     <span>
                       <MdOutlineThumbUpOffAlt />
+                      &nbsp;
                       {comment.map.chiName}
                     </span>
                   ) : (
                     <span>
                       <MdOutlineThumbDown />
+                      &nbsp;
                       {comment.map.chiName}
                     </span>
                   )}
                   <span>
                     <BiUser />
+                    &nbsp;
                     {comment.user.username}
                   </span>
                 </div>

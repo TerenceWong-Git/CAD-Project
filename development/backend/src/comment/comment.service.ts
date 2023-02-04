@@ -19,6 +19,9 @@ export class CommentService {
 
   async getComment() {
     const commentData = await this.prismaService.comment.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
       include: {
         user: {
           select: {

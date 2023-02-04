@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { Carousel } from "@mantine/carousel";
+import moment from "moment";
+import { GiHollowCat } from "react-icons/gi";
+import { BiUser, BiMap } from "react-icons/bi";
 
 function CommentDetail() {
   let commentId = useParams();
@@ -18,20 +22,40 @@ function CommentDetail() {
   console.log(comment);
 
   return (
-    <div>
-      <p>{comment.title}</p>
-      <p>{comment.content}</p>
-      <p>{comment.map?.chiName}</p>
-      <p>{comment.user?.username}</p>
-      {comment.CommentImg?.map((image:any,index:any) => (
-        <img key={index}
-          height="100"
-          width="100"
-          src={`${process.env.REACT_APP_BACKEND_URL}/upload/${image.name}`}
-          alt=""
-        />
-      ))}
-      {/* <img height="100" width="100" src={`${process.env.REACT_APP_BACKEND_URL}/upload/${comments.CommentImg?.name}`} alt=''/> */}
+    <div className="comment-detail-page">
+      {comment.CommentImg?.length > 0 ? (
+        <Carousel sx={{ maxWidth: 343 }} mx="auto">
+          {comment.CommentImg?.map((image: any, index: any) => (
+            <Carousel.Slide key={index}>
+              <img
+                key={image.id}
+                className="comment-detail-image"
+                src={`${process.env.REACT_APP_BACKEND_URL}/upload/${image.name}`}
+                alt=""
+              />
+            </Carousel.Slide>
+          ))}
+        </Carousel>
+      ) : (
+        <div className="comment-detail-noImage">
+          <GiHollowCat size={150} />
+        </div>
+      )}
+      <div className="comment-detail-body">
+        <div className="comment-detail-title">{comment.title}</div>
+        <div className="comment-detail-map-name">
+          <BiMap />
+          {comment.map?.chiName}
+        </div>
+        <div className="comment-detail-username">
+          <BiUser />
+          {comment.user?.username}
+        </div>
+        <div className="comment-detail-content">{comment.content}</div>
+        <div className="comment-detail-date">
+          最後更新日期：{moment(comment.updatedAt).format("MMM Do YY")}
+        </div>
+      </div>
     </div>
   );
 }

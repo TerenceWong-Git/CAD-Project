@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { districts, types } from "../../components/place/map/District";
 import { Checkbox } from "@mantine/core";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 // 如果filter完冇野 D card會縮細曬
 // > 3間場所 要再set hasMore 條件
@@ -34,26 +36,6 @@ export default function List() {
   const [values, setValues] = useState<any>([]);
   const [isFiltered, setIsFiltered] = useState(false);
 
-  const activateFilter = async () => {
-    if (values.length > 0) {
-      setInitialHasMore(false);
-      setIsFiltered(true);
-      // setFilteredDataIndex(3);
-      filterItem(values);
-    }
-    if (filteredPlaceCard.length > 3) {
-      setHasMore(true);
-    }
-
-    window.scrollTo(0, 0);
-  };
-
-  const deactivateFilter = async () => {
-    setIsFiltered(false);
-    setValues([]);
-    window.scrollTo(0, 0);
-  };
-
   const filterItem = (input: any) => {
     const newItems = allPlaceItems.filter((item) => {
       const inputValue = input;
@@ -82,7 +64,7 @@ export default function List() {
   const notYetFilteredInfiniteScroll = async () => {
     if (!isFiltered) {
       setNotYetFilteredPlaceCard([...notYetFilteredPlaceCard, allPlaceItems[notYetFilteredDataIndex]]);
-      if (allPlaceItems.length - notYetFilteredPlaceCard.length === 0 || allPlaceItems.length - notYetFilteredPlaceCard.length < 1) {
+      if (allPlaceItems.length - notYetFilteredPlaceCard.length < 2) {
         setInitialHasMore(false);
       }
       setNotYetFilteredDataIndex(notYetFilteredDataIndex + 1);
@@ -92,7 +74,7 @@ export default function List() {
   const filteredInfiniteScroll = async () => {
     if (isFiltered) {
       setIsShownFilteredPlaceCard([...isShownFilteredPlaceCard, filteredPlaceCard[filteredDataIndex]]);
-      if (filteredPlaceCard.length - isShownFilteredPlaceCard.length === 0 || filteredPlaceCard.length - isShownFilteredPlaceCard.length < 1) {
+      if (filteredPlaceCard.length - isShownFilteredPlaceCard.length < 2) {
         setHasMore(false);
       }
       setFilteredDataIndex(filteredDataIndex + 1);
@@ -142,86 +124,102 @@ export default function List() {
     });
   /////////////////////////////////   Render PlaceCard   /////////////////////////////////
 
-  // console.log("===============");
-  // console.log("allPlaceItems: ", allPlaceItems);
-  // console.log("notYetFilteredPlaceCard: ", notYetFilteredPlaceCard);
-  // console.log("length difference: ", allPlaceItems.length - notYetFilteredPlaceCard.length);
-  // console.log("===============");
-  // console.log("filteredPlaceCard: ", filteredPlaceCard);
-  // console.log("isShownFilteredPlaceCard: ", isShownFilteredPlaceCard);
-  // console.log("length difference: ", filteredPlaceCard.length - isShownFilteredPlaceCard.length);
+  const activateFilter = async () => {
+    if (values.length > 0) {
+      setInitialHasMore(false);
+      setIsFiltered(true);
+      setFilteredDataIndex(3);
+      filterItem(values);
+      setHasMore(true);
+      window.scrollTo(0, 0);
+    }
+  };
 
-  console.log("filter簡左咩: ", values);
-  console.log("filter後埸所總數量: ", filteredPlaceCard);
-  console.log("show左幾多間場所: ", isShownFilteredPlaceCard);
+  const deactivateFilter = async () => {
+    setIsFiltered(false);
+    setValues([]);
+    window.scrollTo(0, 0);
+  };
+
+  console.log("一開波有幾多間野: ", allPlaceItems);
+  console.log("依家show左幾多間: ", notYetFilteredPlaceCard);
+  console.log("未fil個堆仲load唔load: ", initialHasMore);
   console.log("===============");
   console.log("filter左未: ", isFiltered);
+  console.log("filter簡左咩: ", values);
   console.log("===============");
-  console.log("initialHasMore: ", initialHasMore);
-  console.log("hasMore: ", hasMore);
+  console.log("filter完總共有幾多間野: ", filteredPlaceCard);
+  console.log("依家show左幾多間: ", isShownFilteredPlaceCard);
+  console.log("fil左個堆仲load唔load: ", hasMore);
   console.log("===============");
 
   return (
     <>
-      <div className="pageContainer">
-        <div className="categoryContainer">
-          <div className="districtCategory">
-            {districts.map((district: any) => {
-              return (
-                <Checkbox.Group key={district.engDistrict} value={values} onChange={setValues}>
-                  <Checkbox value={district.engDistrict} label={district.chiDistrict} />
-                </Checkbox.Group>
-              );
-            })}
+      <div className="listPageContainer">
+        <Header />
+        <div className="listContentContainer">
+          <div className="listCategoryContainer">
+            <div className="listDistrictCategory">
+              地區
+              {districts.map((district: any) => {
+                return (
+                  <Checkbox.Group key={district.engDistrict} value={values} onChange={setValues}>
+                    <Checkbox value={district.engDistrict} label={district.chiDistrict} />
+                  </Checkbox.Group>
+                );
+              })}
+            </div>
+
+            <div className="listTypeCategory">
+              {types.map((type: any) => {
+                return (
+                  <Checkbox.Group key={type.engType} value={values} onChange={setValues}>
+                    <Checkbox value={type.engType} label={type.chiType} />
+                  </Checkbox.Group>
+                );
+              })}
+            </div>
+
+            <button onClick={activateFilter}>Filter</button>
+            <button onClick={deactivateFilter}>Clear</button>
           </div>
 
-          <div className="typeCategory">
-            {types.map((type: any) => {
-              return (
-                <Checkbox.Group key={type.engType} value={values} onChange={setValues}>
-                  <Checkbox value={type.engType} label={type.chiType} />
-                </Checkbox.Group>
-              );
-            })}
-          </div>
-
-          <button onClick={activateFilter}>Filter</button>
-          <button onClick={deactivateFilter}>Clear</button>
-        </div>
-        <div className="placeContainer">
-          <div className="searchBarContainer"></div>
-          <div className="CardContainer">
-            {isFiltered ? (
-              <InfiniteScroll
-                dataLength={isShownFilteredPlaceCard.length}
-                next={filteredInfiniteScroll}
-                hasMore={hasMore}
-                loader={<div></div>}
-                endMessage={
-                  <p style={{ textAlign: "center" }}>
-                    <b>你到底啦</b>
-                  </p>
-                }
-              >
-                {renderFilteredPlaceCard()}
-              </InfiniteScroll>
-            ) : (
-              <InfiniteScroll
-                dataLength={notYetFilteredPlaceCard.length}
-                next={notYetFilteredInfiniteScroll}
-                hasMore={initialHasMore}
-                loader={<div></div>}
-                endMessage={
-                  <p style={{ textAlign: "center" }}>
-                    <b>你到底啦</b>
-                  </p>
-                }
-              >
-                {renderNotYetFilteredPlaceCard()}
-              </InfiniteScroll>
-            )}
+          <div className="listPagePlaceContainer">
+            <div className="listSearchBarContainer"></div>
+            <div className="listPlaceCardContainer">
+              {isFiltered ? (
+                <InfiniteScroll
+                  dataLength={isShownFilteredPlaceCard.length}
+                  next={filteredInfiniteScroll}
+                  hasMore={hasMore}
+                  loader={<div></div>}
+                  endMessage={
+                    <p style={{ textAlign: "center" }}>
+                      <b>你到底啦</b>
+                    </p>
+                  }
+                >
+                  {renderFilteredPlaceCard()}
+                </InfiniteScroll>
+              ) : (
+                <InfiniteScroll
+                  dataLength={notYetFilteredPlaceCard.length}
+                  next={notYetFilteredInfiniteScroll}
+                  hasMore={initialHasMore}
+                  loader={<div></div>}
+                  endMessage={
+                    <p style={{ textAlign: "center" }}>
+                      <b>你到底啦</b>
+                    </p>
+                  }
+                >
+                  {renderNotYetFilteredPlaceCard()}
+                </InfiniteScroll>
+              )}
+            </div>
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );

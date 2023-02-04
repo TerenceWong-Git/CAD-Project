@@ -1,12 +1,7 @@
 @media only screen and (min-width: 821px) {
-  body {
-    display: flex;
-    justify-content: center;
-  }
-
   .notyetLoginLandingContainer {
     border: 2px solid black;
-    background: linear-gradient(180deg, #FF8B6A 0%, rgba(255, 139, 106, 0.54) 100%);
+    background: linear-gradient(180deg, #ff8b6a 0%, rgba(255, 139, 106, 0.54) 100%);
     border-radius: 25px;
     display: flex;
     flex-direction: column;
@@ -15,12 +10,12 @@
     width: 820px;
   }
 
-  .notyetLoginLandingTextPart{
+  .notyetLoginLandingTextPart {
     border: 3px solid rgb(255, 255, 255);
     height: 20%;
   }
 
-  .notyetLoginLandingBackgroundPart{
+  .notyetLoginLandingBackgroundPart {
     border: 3px solid rgb(0, 204, 255);
     background: white;
     border-radius: 500px;
@@ -30,7 +25,6 @@
     width: 100%;
   }
 
-  .notyetLoginLandingBackgroundPart2{
-
+  .notyetLoginLandingBackgroundPart2 {
   }
 }

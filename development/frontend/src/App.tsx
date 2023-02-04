@@ -24,35 +24,33 @@ import Vaccine from "./pages/pet/Vaccine";
 
 export default function App() {
   return (
-    <div className="App">
-      <Routes>
-        {/* <Route path="/" element={<PrivateRoute />}>
+    <Routes>
+      {/* <Route path="/" element={<PrivateRoute />}>
         </Route> */}
 
-        <Route path="/initialLanding" element={<NotyetLoginLanding />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/register" element={<Register />}></Route>
+      <Route path="/initialLanding" element={<NotyetLoginLanding />}></Route>
+      <Route path="/login" element={<Login />}></Route>
+      <Route path="/register" element={<Register />}></Route>
 
-        <Route path="/landing" element={<LandingPage />}></Route>
+      <Route path="/landing" element={<LandingPage />}></Route>
 
-        <Route path="/comments" element={<CommentPage />}></Route>
-        <Route path="comments/commentDetail/:id" element={<CommentDetail />}></Route>
-        <Route path="comments/createComment" element={<CreateComment />}></Route>
-        <Route path="comments/myComments" element={<UserComment />}></Route>
-        <Route path="comments/editComment/:id" element={<EditComment />}></Route>
+      <Route path="/comments" element={<CommentPage />}></Route>
+      <Route path="comments/commentDetail/:id" element={<CommentDetail />}></Route>
+      <Route path="comments/createComment" element={<CreateComment />}></Route>
+      <Route path="comments/myComments" element={<UserComment />}></Route>
+      <Route path="comments/editComment/:id" element={<EditComment />}></Route>
 
-        <Route path="/map" element={<Map />}></Route>
-        <Route path="/list" element={<List />}></Route>
-        <Route path="/placeDetail/:id" element={<PlaceDetail />}></Route>
+      <Route path="/map" element={<Map />}></Route>
+      <Route path="/list" element={<List />}></Route>
+      <Route path="/placeDetail/:id" element={<PlaceDetail />}></Route>
 
-        <Route path="/userprofile" element={<UserProfile />}></Route>
-        <Route path="/petprofile/:id" element={<PetProfile />}></Route>
-        <Route path="/createpetprofile" element={<CreatePetProfile />}></Route>
-        <Route path="/weight/:id" element={<WeightRecord />}></Route>
-        <Route path="/growtree/:id" element={<GrowTree />}></Route>
-        <Route path="/uploadgrowtree/:id" element={<UploadGrowTree />}></Route>
-        <Route path="/vaccine/:id" element={<Vaccine />}></Route>
-      </Routes>
-    </div>
+      <Route path="/userprofile" element={<UserProfile />}></Route>
+      <Route path="/petprofile/:id" element={<PetProfile />}></Route>
+      <Route path="/createpetprofile" element={<CreatePetProfile />}></Route>
+      <Route path="/weight/:id" element={<WeightRecord />}></Route>
+      <Route path="/growtree/:id" element={<GrowTree />}></Route>
+      <Route path="/uploadgrowtree/:id" element={<UploadGrowTree />}></Route>
+      <Route path="/vaccine/:id" element={<Vaccine />}></Route>
+    </Routes>
   );
 }

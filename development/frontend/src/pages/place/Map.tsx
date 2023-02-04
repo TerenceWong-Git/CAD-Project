@@ -3,14 +3,10 @@ import { Autocomplete, Card, Checkbox } from "@mantine/core";
 import { Circle, GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Footer from "../../components/Footer";
 import { districts, types } from "../../components/place/map/District";
 import { circleSettings, containerStyle } from "../../components/place/map/MapSetting";
 import "./css/Map.css";
 
-// change marker icon
-
-// 禁card仔入個版
 export default function Map() {
   ////////////////////////////////////   Load Data   /////////////////////////////////////
 
@@ -35,7 +31,7 @@ export default function Map() {
 
   ////////////////////////////////////   Initial Map   ///////////////////////////////////
 
-  const [targetLocation, setTargetLocation] = useState({ lat: 0, lng: 0 });
+  // const [targetLocation, setTargetLocation] = useState({ lat: 0, lng: 0 });
   const [userLat, setUserLat] = useState(0);
   const [usertLng, setUserLng] = useState(0);
 
@@ -113,7 +109,6 @@ export default function Map() {
     });
 
     setSearchItems(newItems);
-    setTargetLocation({ lat: parseFloat(newItems[0].latitude), lng: parseFloat(newItems[0].longitude) });
     setUserLat(parseFloat(newItems[0].latitude));
     setUserLng(parseFloat(newItems[0].longitude));
   };

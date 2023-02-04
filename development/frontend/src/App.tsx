@@ -1,7 +1,7 @@
 import "./App.css";
 import { Route, Routes } from "react-router";
 
-import NotyetLoginLanding from "./pages/NotyetLoginLanding";
+import InitialLanding from "./pages/InitialLanding";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import LandingPage from "./pages/LandingPage";
@@ -19,7 +19,7 @@ import CreatePetProfile from "./pages/pet/CreatePetProfile";
 import WeightRecord from "./pages/pet/WeightRecord";
 import GrowTree from "./pages/pet/GrowTree";
 import UploadGrowTree from "./pages/pet/UploadGrowTree";
-import Vaccine from "./pages/pet/Vaccine";
+import VaccinePage from "./pages/pet/Vaccine";
 
 export default function App() {
   return (
@@ -27,7 +27,7 @@ export default function App() {
       {/* <Route path="/" element={<PrivateRoute />}>
         </Route> */}
 
-      <Route path="/initialLanding" element={<NotyetLoginLanding />}></Route>
+      <Route path="/initialLanding" element={<InitialLanding />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/register" element={<Register />}></Route>
 
@@ -44,12 +44,12 @@ export default function App() {
       <Route path="/list/placeDetail/:id" element={<PlaceDetail />}></Route>
 
       <Route path="/userprofile" element={<UserProfile />}></Route>
-      <Route path="/petprofile/:id" element={<PetProfile />}></Route>
-      <Route path="/createpetprofile" element={<CreatePetProfile />}></Route>
+      <Route path="/petProfile/:id" element={<PetProfile />}></Route>
+      <Route path="/createPetProfile" element={<CreatePetProfile />}></Route>
       <Route path="/weight/:id" element={<WeightRecord />}></Route>
-      <Route path="/growtree/:id" element={<GrowTree />}></Route>
-      <Route path="/uploadgrowtree/:id" element={<UploadGrowTree />}></Route>
-      <Route path="/vaccine/:id" element={<Vaccine />}></Route>
+      <Route path="/growTree/:id" element={<GrowTree />}></Route>
+      <Route path="/uploadGrowTree/:id" element={<UploadGrowTree />}></Route>
+      <Route path="/vaccine/:id" element={<VaccinePage />}></Route>
     </Routes>
   );
 }

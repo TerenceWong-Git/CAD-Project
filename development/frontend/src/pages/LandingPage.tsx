@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Masonry from "react-masonry-css";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+// import Footer from "../components/Footer";
+// import Header from "../components/Header";
 import "./LandingPage.css";
 
 // 欠 tag handle

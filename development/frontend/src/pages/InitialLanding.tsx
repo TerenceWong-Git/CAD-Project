@@ -1,7 +1,6 @@
-import React from "react";
-import "./NotyetLoginLanding.css";
+import "./InitialLanding.css";
 
-export default function NotyetLoginLanding() {
+export default function InitialLanding() {
   return (
     <div className="notyetLoginLandingContainer">
       <div className="notyetLoginLandingTextPart"></div>

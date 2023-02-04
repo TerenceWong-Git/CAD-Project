@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 import ImageUploading from "react-images-uploading";
@@ -11,7 +11,6 @@ function UploadGrowTree() {
   const { register, handleSubmit, control, watch } = useForm();
   const navigate = useNavigate();
   const [images, setImages] = React.useState([]);
-  const [multiSelectValues, setMultiSelectValues] = useState<any>([""]);
   const newFile = images.map((item: any) => item.file);
 
   const onChange = (imageList: any, addUpdateIndex: any) => {

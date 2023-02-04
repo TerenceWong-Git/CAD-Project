@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useParams } from "react-router";
-import { Link } from "react-router-dom";
 import "./css/GrowTree.css";
 
 export default function GrowTree() {

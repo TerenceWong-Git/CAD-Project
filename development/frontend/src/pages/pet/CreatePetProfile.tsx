@@ -2,8 +2,6 @@ import { Radio, Select } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import { tags } from "../../components/pet/petTag";
-import Species from "./Species";
 
 // photo preview
 // update button + remove button

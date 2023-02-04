@@ -14,7 +14,7 @@ import {
 } from '@nestjs/common/decorators/http/route-params.decorator';
 import { GetUser } from 'src/auth/decorator';
 import { JwtGuard } from 'src/auth/guard';
-import { AddPetDto, AddWeightDto, uploadPetImgDto } from './dto';
+import { AddPetDto, AddWeightDto, UploadPetImgDto } from './dto';
 import { PetService } from './pet.service';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 
@@ -99,7 +99,7 @@ export class PetController {
   @Post('uploadPetImg/:id')
   @UseInterceptors(FilesInterceptor('files'))
   async uploadPetImg(
-    @Body() uploadPetImgDto: uploadPetImgDto,
+    @Body() uploadPetImgDto: UploadPetImgDto,
     @Param('id', ParseIntPipe) petId: number,
     @UploadedFiles() files: Express.Multer.File[],
   ) {

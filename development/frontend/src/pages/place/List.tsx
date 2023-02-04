@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { districts, types } from "../../components/place/map/District";
 import { Checkbox } from "@mantine/core";
+import { Link } from "react-router-dom";
 
 export default function List() {
   ////////////////////////////////////   Load Data   /////////////////////////////////////
@@ -31,8 +32,6 @@ export default function List() {
   const [values, setValues] = useState<any>([]);
   const [isFiltered, setIsFiltered] = useState(false);
 
-  console.log("values: ", values);
-
   const activateFilter = async () => {
     if (values.length > 0) {
       setInitialHasMore(false);
@@ -47,6 +46,11 @@ export default function List() {
   const deactivateFilter = async () => {
     setIsFiltered(false);
     setValues([]);
+    setInitialHasMore(true);
+    window.scrollTo(0, 0);
+  };
+
+  const reTag = () => {
     window.scrollTo(0, 0);
   };
 
@@ -59,7 +63,9 @@ export default function List() {
       if (values.length < 2) {
         return inputValue.includes(districtName) || inputValue.includes(typeName);
       } else {
-        return inputValue.includes(districtName) && inputValue.includes(typeName);
+        return (
+          inputValue.includes(districtName) || inputValue.includes(typeName) || (inputValue.includes(districtName) && inputValue.includes(typeName))
+        );
       }
     });
     setFilteredPlaceCard(newItems);
@@ -73,7 +79,7 @@ export default function List() {
   const [notYetFilteredDataIndex, setNotYetFilteredDataIndex] = useState(3);
   const [filteredDataIndex, setFilteredDataIndex] = useState(3);
   const [initialHasMore, setInitialHasMore] = useState(true);
-  const [hasMore, setHasMore] = useState(true);
+  const [hasMore, setHasMore] = useState(false);
 
   const notYetFilteredInfiniteScroll = async () => {
     if (!isFiltered) {
@@ -101,17 +107,19 @@ export default function List() {
     notYetFilteredPlaceCard.map((data: any) => {
       return (
         <div key={data.chiName}>
-          <div className="card">
-            <div className="picture">
-              <img className="previewPicture" src="/uploads/pictures/3.jpg" alt={data.engName} />
+          <Link to={`placeDetail/${data.id}`} style={{ color: "#262220" }}>
+            <div className="card">
+              <div className="picture">
+                <img className="previewPicture" src="/uploads/pictures/3.jpg" alt={data.engName} />
+              </div>
+              <div className="info">
+                <div className="chiName">{data.chiName}</div>
+                <div className="engName">{data.engName}</div>
+                <div className="district">{data.district}</div>
+                <div className="mapType">{data.mapType.chiType}</div>
+              </div>
             </div>
-            <div className="info">
-              <div className="chiName">{data.chiName}</div>
-              <div className="engName">{data.engName}</div>
-              <div className="district">{data.district}</div>
-              <div className="mapType">{data.mapType.chiType}</div>
-            </div>
-          </div>
+          </Link>
           <div className="cardMargin"></div>
         </div>
       );
@@ -121,43 +129,47 @@ export default function List() {
     isShownFilteredPlaceCard.map((data: any) => {
       return (
         <div key={data.chiName}>
-          <div className="card">
-            <div className="picture">
-              <img className="previewPicture" src="/uploads/pictures/3.jpg" alt={data.engName} />
+          <Link to={`placeDetail/${data.id}`} style={{ color: "#262220" }}>
+            <div className="card">
+              <div className="picture">
+                <img className="previewPicture" src="/uploads/pictures/3.jpg" alt={data.engName} />
+              </div>
+              <div className="info">
+                <div className="chiName">{data.chiName}</div>
+                <div className="engName">{data.engName}</div>
+                <div className="district">{data.district}</div>
+                <div className="mapType">{data.mapType.chiType}</div>
+              </div>
             </div>
-            <div className="info">
-              <div className="chiName">{data.chiName}</div>
-              <div className="engName">{data.engName}</div>
-              <div className="district">{data.district}</div>
-              <div className="mapType">{data.mapType.chiType}</div>
-            </div>
-          </div>
+          </Link>
           <div className="cardMargin"></div>
         </div>
       );
     });
   /////////////////////////////////   Render PlaceCard   /////////////////////////////////
 
-  // console.log("===============");
-  // console.log("allPlaceItems: ", allPlaceItems);
-  // console.log("notYetFilteredPlaceCard: ", notYetFilteredPlaceCard);
-  // console.log("length difference: ", allPlaceItems.length - notYetFilteredPlaceCard.length);
-  // console.log("===============");
-  // console.log("filteredPlaceCard: ", filteredPlaceCard);
-  // console.log("isShownFilteredPlaceCard: ", isShownFilteredPlaceCard);
-  // console.log("length difference: ", filteredPlaceCard.length - isShownFilteredPlaceCard.length);
-  console.log("initialHasMore: ", initialHasMore);
-  console.log("hasMore: ", hasMore);
+  console.log("一開波有幾多間野: ", allPlaceItems);
+  console.log("依家show左幾多間: ", notYetFilteredPlaceCard);
+  console.log("未fil個堆仲load唔load: ", initialHasMore);
   console.log("===============");
+  console.log("filter左未: ", isFiltered);
+  console.log("filter簡左咩: ", values);
+  console.log("===============");
+  console.log("filter完總共有幾多間野: ", filteredPlaceCard);
+  console.log("依家show左幾多間: ", isShownFilteredPlaceCard);
+  console.log("仲有幾多間未load: ", filteredPlaceCard.length - isShownFilteredPlaceCard.length);
+  console.log("fil左個堆仲load唔load: ", hasMore);
+  console.log("===============");
+  console.log("");
 
   return (
     <>
-      <div className="pageContainer">
+      <div className="listPageContainer">
         <div className="categoryContainer">
           <div className="districtCategory">
             {districts.map((district: any) => {
               return (
-                <Checkbox.Group key={district.engDistrict} value={values} onChange={setValues}>
+                <Checkbox.Group key={district.engDistrict} onClick={reTag} value={values} onChange={setValues}>
                   <Checkbox value={district.engDistrict} label={district.chiDistrict} />
                 </Checkbox.Group>
               );

@@ -11,9 +11,7 @@ function CommentDetail() {
   const [comment, setComments] = useState<any>({});
   useEffect(() => {
     async function loadData() {
-      const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/comment/${commentId.id}`
-      );
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/comment/${commentId.id}`);
       const data = await res.json();
       setComments(data);
     }

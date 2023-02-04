@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./css/UserProfile.css"
+import "./css/UserProfile.css";
+import { FaPlus } from "react-icons/fa";
+// import icon from "./IMG_8790.jpeg";
+// import userIcon from "./7D2555FA-F4B2-4F88-865C-326B0E7CC787_1_105_c.jpeg";
 
 function UserProfile() {
   const path = process.env.REACT_APP_BACKEND_URL;
@@ -28,6 +31,10 @@ function UserProfile() {
     loadName();
     loadData();
   }, []);
+
+  console.log(pets);
+  console.log(name);
+
   const age = (dob1: any) => {
     if (dob1 === null) {
       return;
@@ -43,40 +50,43 @@ function UserProfile() {
   };
   return (
     <div>
-      UserProfile
-      <div>{name.username}</div>
+      {/* UserProfile */}
+      <div className="user-card">
+        <div>{/* <img className="user-icon" width="300" height="300" src={userIcon} alt="icon" /> */}</div>
+        {/* <div className="user-icon">{name.userIcon}</div> */}
+        <div className="username">{name.username}</div>
+      </div>
       <div className="pet-profile-container">
         {pets.map((pet) => (
           <Link to={`/petprofile/${pet.id}`} key={pet.id}>
             <div className="pet-profile">
               <div className="pet-image">
-                <img
+                {/* <img
                   className="pet-icon"
                   width="300"
                   height="300"
-                  src={`${path}/S3條route`}
+                  src={icon}
                   alt={pet.id}
-                />
+                /> */}
               </div>
               <div className="pet-detail">
-              <div>{pet.name}</div>
-              {/* <div>{pet.dateBirth && <p>{age(pet.dateBirth)}</p>}</div> */}
-              <div>{pet.name?(<div>{age(pet.dateBirth)}</div>):(<div></div>)}</div>
-            </div>
+                <div className="pet-name">{pet.name}</div>
+                {/* <div>{pet.dateBirth && <p>{age(pet.dateBirth)}</p>}</div> */}
+                <div className="pet-age">{pet.dateBirth ? <div>{age(pet.dateBirth)}&nbsp;歲</div> : <div></div>}</div>
+              </div>
             </div>
           </Link>
         ))}
         <div className="pet-profile-container">
-        <Link to={`/createpetprofile`}>
-        <div className="pet-profile">
-          <div>
-            +
-          </div>
+          <Link to={`/createpetprofile`}>
+            <div className="add-pet">
+              <div className="plus">
+                <FaPlus />
+              </div>
+            </div>
+          </Link>
         </div>
-      </Link>
       </div>
-      </div>
-      
     </div>
   );
 }

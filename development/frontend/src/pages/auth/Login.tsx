@@ -5,6 +5,7 @@ import { loginThunk } from "./redux/authSlice";
 import { useAppDispatch } from "../../redux/hook";
 import Header from "../../components/Header";
 
+// ask ask login fail alert
 export default function Login() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -23,10 +24,10 @@ export default function Login() {
 
     dispatch(loginThunk(registrationInfo))
       .unwrap()
-      .then(() => navigate("/"))
+      .then(() => navigate("/landing"))
       .catch((err) => {
-        console.log(err)
-        alert(err);
+        console.log("err: ", err);
+        alert("Unsuccessful login, please check your email and password!");
       });
   };
 

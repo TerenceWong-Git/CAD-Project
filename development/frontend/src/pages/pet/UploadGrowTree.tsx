@@ -41,15 +41,15 @@ function UploadGrowTree() {
           console.log(typeof tag, "tag: ", tag);
           console.log("data: ", data);
 
-          // fetch(`${path}/pet/uploadPetImg/${petId.id}`, {
-          //   method: "POST",
-          //   headers: {
-          //     Authorization: `Bearer ${jwt}`,
-          //   },
-          //   body: formData,
-          // });
+          fetch(`${path}/pet/uploadPetImg/${petId.id}`, {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+            body: formData,
+          });
 
-          // navigate(`/growtree/${petId.id}`);
+          navigate(`/growtree/${petId.id}`);
         })}
       >
         <div>

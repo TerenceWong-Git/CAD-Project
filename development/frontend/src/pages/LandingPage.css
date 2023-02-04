@@ -1,40 +1,17 @@
-.homeContainer {
-  border: 3px solid rgb(255, 208, 0);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 99vh;
-}
+@media only screen and (min-width: 821px) {
 
-.header {
-  border: 3px solid rgb(0, 221, 255);
-  height: 6%;
+body {
   display: flex;
   justify-content: center;
-  align-items: center;
 }
-
-.navbar {
-  border: 3px solid rgb(0, 221, 255);
-  height: 10%;
-}
-
-.abc {
-  /* border: 3px solid rgb(0, 0, 0); */
-  height: 80%;
-  width: 50%;
-  overflow: scroll;
-  justify-content: center;
-}
-
+  
 .my-masonry-grid {
   border: 3px solid rgb(0, 0, 0);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   justify-content: space-around;
-  /* margin: 0 6vmin 0 6vmin; */
+  margin: 0 6vmin 0 6vmin;
   width: auto;
 }
 
@@ -43,60 +20,8 @@
 }
 
 .my-masonry-grid_column img {
-  width: 30vmin;
+  width: 28vmin;
   margin: 2vmin 0 1vmin 0;
   border-radius: 10px;
 }
-
-/* .leftPart {
-  border: 3px solid black;
-  display: flex;
-  flex-direction: column;
-  width: 45%;
-  justify-content: center;
 }
-
-.rightPart {
-  border: 3px solid rgb(255, 200, 0);
-  display: flex;
-  flex-direction: column;
-  width: 45%;
-  justify-content: center;
-} */
-
-/* .pluralPageAlbum {
-  border: 3px solid rgb(255, 0, 0);
-  display: flex;
-  justify-content: space-between;
-} */
-
-/* .singlePartA {
-  border: 3px solid rgb(125, 225, 66);
-  border-radius: 70px 0 0 70px;
-  height: 99%;
-}
-
-.singlePartB {
-  border: 3px solid rgb(0, 213, 255);
-  border-radius: 0 70px 0 0;
-  height: 48.5%;
-}
-
-.singlePartC {
-  border: 3px solid rgb(255, 43, 106);
-  border-radius: 0 0 70px 0;
-  height: 48.5%;
-} */
-
-/* .album {
-  border: 3px solid black;
-  display: flex;
-  height: 90vh;
-}
-
-.left .right {
-  border: 3px solid rgb(255, 217, 0);
-  display: flex;
-  flex-direction: column;
-  width: 100px;
-} */

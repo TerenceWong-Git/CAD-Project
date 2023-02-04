@@ -2,15 +2,14 @@ import { Autocomplete, Card, Checkbox } from "@mantine/core";
 
 import { Circle, GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
 import { districts, types } from "../../components/place/map/District";
 import { circleSettings, containerStyle } from "../../components/place/map/MapSetting";
 import "./css/Map.css";
 
 // change marker icon
-// 空search會爆
-// 禁完filter跳出去map
-// set多一個useState 先裝searchItems入面既野  search bar用依個state show選擇 每次search value清空  入面就重疊
+
 // 禁card仔入個版
 export default function Map() {
   ////////////////////////////////////   Load Data   /////////////////////////////////////
@@ -53,12 +52,18 @@ export default function Map() {
 
   const [values, setValues] = useState<any>([]);
 
-  const activateFilter = async () => {
+  const activateFilter = () => {
     filterItem(values);
+    setIsTriggered(false);
   };
 
-  const deactivateFilter = async () => {
+  const deactivateFilter = () => {
     setValues([]);
+  };
+
+  const wantToUseFilter = () => {
+    setValues([]);
+    setIsTriggered(true);
   };
 
   const filterItem = (input: any) => {
@@ -96,6 +101,7 @@ export default function Map() {
     if (searchValues.length > 0) {
       searchSpecificPlace(searchValues);
     }
+    setSearchItems(filteredItems);
   };
 
   const searchSpecificPlace = (input: any) => {
@@ -120,7 +126,7 @@ export default function Map() {
   const [isCardShown, setIsCardShown] = useState(false);
 
   ///////////////////////////////////   Click Click   ////////////////////////////////////
-  console.log("依家係邊: ", targetLocation);
+  console.log("依家係邊: ", userLat, usertLng);
   console.log("拎到乜野: ", allPlaceItems);
   console.log("==========");
   console.log("係咪要用filter: ", isTriggered);
@@ -136,7 +142,6 @@ export default function Map() {
     <>
       {isTriggered ? (
         <div className="pageContainer">
-          <button onClick={() => setIsTriggered(false)}>Back</button>
           <div className="categoryContainer">
             <div className="districtCategory">
               {districts.map((district) => {
@@ -172,25 +177,27 @@ export default function Map() {
             </div>
 
             <div className="categoryTrigger">
-              <button onClick={() => setIsTriggered(true)}>Category</button>
+              <button onClick={wantToUseFilter}>Category</button>
             </div>
           </div>
           {isCardShown && (
             <div>
               <Card className="previewPlaceCard">
-                <Card.Section className="cardSection">
-                  <img className="previewPicture2" src="/uploads/pictures/3.jpg" alt={selectedMarker.engName} />
-                </Card.Section>
-                <Card.Section className="cardSection">{selectedMarker.chiName}</Card.Section>
-                <Card.Section className="cardSection">{selectedMarker.mapType.chiType}</Card.Section>
-                <button
-                  className="closeCardButton"
-                  onClick={() => {
-                    setIsCardShown(false);
-                  }}
-                >
-                  x
-                </button>
+                <Link to={`/list/placeDetail/${selectedMarker.id}`} style={{ color: "#262220" }}>
+                  <Card.Section className="cardSection">
+                    <img className="previewPicture2" src="/uploads/pictures/3.jpg" alt={selectedMarker.engName} />
+                  </Card.Section>
+                  <Card.Section className="cardSection">{selectedMarker.chiName}</Card.Section>
+                  <Card.Section className="cardSection">{selectedMarker.mapType.chiType}</Card.Section>
+                  <button
+                    className="closeCardButton"
+                    onClick={() => {
+                      setIsCardShown(false);
+                    }}
+                  >
+                    x
+                  </button>
+                </Link>
               </Card>
             </div>
           )}

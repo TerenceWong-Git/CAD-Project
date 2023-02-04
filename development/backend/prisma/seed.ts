@@ -3,7 +3,7 @@ import * as bcrypt from 'bcryptjs';
 import commentData from './data/commentData';
 import commentImgData from './data/commentImgData';
 import eventData from './data/eventData';
-import expData from './data/ExpData';
+import expData from './data/expData';
 import expLikeData from './data/expLikeData';
 import mapData from './data/mapData';
 import mapToWorkingHour from './data/mapToWorkingHourData';

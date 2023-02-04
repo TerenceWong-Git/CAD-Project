@@ -5,6 +5,7 @@ import {
   ParseIntPipe,
   UseGuards,
 } from '@nestjs/common';
+import { GetUser } from 'src/auth/decorator';
 import { JwtGuard } from 'src/auth/guard';
 import { MapService } from './map.service';
 
@@ -13,7 +14,6 @@ export class MapController {
   constructor(private readonly mapService: MapService) {}
 
   @Get()
-  @UseGuards(JwtGuard)
   async getPlacesInfo() {
     return await this.mapService.getPlacesInfo();
   }

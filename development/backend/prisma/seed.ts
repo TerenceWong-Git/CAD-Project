@@ -1,8 +1,12 @@
 import { PrismaClient } from '@prisma/client';
 import * as bcrypt from 'bcryptjs';
+import commentData from './data/commentData';
+import commentImgData from './data/commentImgData';
+import eventData from './data/eventData';
 import mapData from './data/mapData';
 import mapToWorkingHour from './data/mapToWorkingHourData';
 import petData from './data/petData';
+import petImgData from './data/PetImgData';
 import petWeightData from './data/petWeightData';
 import { famSpeciesData, mapTypeData, speciesData } from './data/typeData';
 import usersData from './data/userData';
@@ -337,6 +341,42 @@ async function main() {
     select: { id: true },
   });
   console.log(`No. of pet weight data inserted: ${petWeightRes.length}`);
+  console.log(`length of pet Img array: ${petImgData.length}`);
+  await prisma.petImg.createMany({
+    data: petImgData,
+    skipDuplicates: true,
+  });
+  const petImgRes = await prisma.petImg.findMany({
+    select: { id: true },
+  });
+  console.log(`No. of pet img data inserted: ${petImgRes.length}`);
+  console.log(`length of comment array: ${commentData.length}`);
+  await prisma.comment.createMany({
+    data: commentData,
+    skipDuplicates: true,
+  });
+  const commentRes = await prisma.comment.findMany({
+    select: { id: true },
+  });
+  console.log(`No. of comment data inserted: ${commentRes.length}`);
+  console.log(`length of comment Img array: ${commentImgData.length}`);
+  await prisma.commentImg.createMany({
+    data: commentImgData,
+    skipDuplicates: true,
+  });
+  const commentImgRes = await prisma.commentImg.findMany({
+    select: { id: true },
+  });
+  console.log(`No. of comment Img data inserted: ${commentImgRes.length}`);
+  console.log(`length of event array: ${eventData.length}`);
+  await prisma.event.createMany({
+    data: eventData,
+    skipDuplicates: true,
+  });
+  const eventRes = await prisma.event.findMany({
+    select: { id: true },
+  });
+  console.log(`No. of event data inserted: ${eventRes.length}`);
 }
 
 main().then(() => console.log('seed done'));

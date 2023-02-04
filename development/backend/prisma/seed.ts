@@ -379,7 +379,7 @@ async function main() {
     select: { id: true },
   });
   console.log(`No. of event data inserted: ${eventRes.length}`);
-  console.log(`length of expereince array: ${expData.length}`);
+  console.log(`length of experience array: ${expData.length}`);
   await prisma.exp.createMany({
     data: expData,
     skipDuplicates: true,

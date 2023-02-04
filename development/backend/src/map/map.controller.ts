@@ -13,7 +13,7 @@ export class MapController {
   constructor(private readonly mapService: MapService) {}
 
   @Get()
-  // @UseGuards(JwtGuard)
+  @UseGuards(JwtGuard)
   async getPlacesInfo() {
     return await this.mapService.getPlacesInfo();
   }

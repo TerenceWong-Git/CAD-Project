@@ -124,13 +124,11 @@ export default function Map() {
   console.log("拎到乜野: ", allPlaceItems);
   console.log("==========");
   console.log("係咪要用filter: ", isTriggered);
+  console.log("入左咩落filter: ", values);
   console.log("fil完之後有咩地方: ", filteredItems);
   console.log("==========");
   console.log("可以search d咩: ", searchItems);
   console.log("入左咩落search bar: ", searchValues);
-  console.log("==========");
-  console.log("values: ", values);
-  console.log("filteredItems: ", filteredItems);
   console.log("==========");
   console.log("");
 

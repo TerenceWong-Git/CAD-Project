@@ -13,7 +13,6 @@ import EditComment from "./pages/comment/EditComment";
 import Map from "./pages/place/Map";
 import List from "./pages/place/List";
 import PlaceDetail from "./pages/place/PlaceDetail";
-
 import UserProfile from "./pages/user/UserProfile";
 import PetProfile from "./pages/pet/PetProfile";
 import CreatePetProfile from "./pages/pet/CreatePetProfile";
@@ -42,7 +41,7 @@ export default function App() {
 
       <Route path="/map" element={<Map />}></Route>
       <Route path="/list" element={<List />}></Route>
-      <Route path="/placeDetail/:id" element={<PlaceDetail />}></Route>
+      <Route path="/list/placeDetail/:id" element={<PlaceDetail />}></Route>
 
       <Route path="/userprofile" element={<UserProfile />}></Route>
       <Route path="/petprofile/:id" element={<PetProfile />}></Route>

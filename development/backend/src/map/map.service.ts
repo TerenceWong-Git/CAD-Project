@@ -8,6 +8,7 @@ export class MapService {
   async getPlacesInfo() {
     const foundPlaces = await this.prismaService.maps.findMany({
       select: {
+        id: true,
         chiName: true,
         engName: true,
         email: true,

@@ -1,104 +1,41 @@
-/* .pageContainer {
-  border: 3px solid black;
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  height: 100%;
-  padding-top: 2%;
-  padding-bottom: 2%;
-  padding-left: 5%;
-  padding-right: 5%;
-}
-
-.categoryContainer {
-  border: 3px solid rgb(255, 204, 0);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  position: sticky;
-  top: 5vmin;
-  width: 20%;
-  height: 70vmin;
-}
-
-.districtCategory .typeCategory {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.placeContainer {
-  border: 3px solid rgb(0, 183, 255);
-  width: 75%;
-  height: 70%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.searchBarContainer {
-  border: 3px solid rgb(255, 213, 0);
-  height: 10%;
-}
-
-.CardContainer {
-  border: 3px solid rgb(255, 0, 0);
-  height: 85%;
-  overflow: scroll;
-} */
 @media only screen and (min-width: 821px) {
   .listPageContainer {
-    height: 1080px;
-    width: 820px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .listContentContainer {
-    border: 2px solid rgb(0, 195, 255);
-    height: 84%;
+    border: 3px solid black;
     display: flex;
     justify-content: space-around;
-    padding: 0 2% 0 2%;
-  }
-
-  .listCategoryContainer {
-    border: 2px solid red;
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-
-  .listPagePlaceContainer {
-    border: 4px solid rgb(0, 160, 3);
+    align-items: flex-start;
     height: 100%;
-    width: 65%;
+    width: 821px;
+  }
+
+  .categoryContainer {
+    border: 3px solid rgb(255, 204, 0);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: sticky;
+    top: 5vmin;
+    width: 20%;
+    height: 70vmin;
+  }
+
+  .districtCategory .typeCategory {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .placeContainer {
+    border: 3px solid rgb(0, 183, 255);
+    width: 75%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .CardContainer {
+    border: 3px solid rgb(255, 0, 0);
+    height: 85%;
     overflow: scroll;
-  }
-
-  .listDistrictCategory {
-    border: 3px solid rgb(255, 187, 0);
-    height: 65%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 15%;
-    position: relative;
-    top: 0;
-  }
-
-  .mantine-33vjzt {
-    margin-right: 20px;
-  }
-
-  .listTypeCategory {
-    border: 3px solid rgb(0, 179, 255);
-    height: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 15%;
-    position: relative;
-    top: 0;
   }
 }

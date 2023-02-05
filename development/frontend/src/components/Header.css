@@ -1,8 +1,30 @@
 @media only screen and (min-width: 821px) {
   .header {
+    background-color: aliceblue;
     border: 2px solid rgb(255, 0, 144);
     height: 4%;
+    width: 821px;
     position: relative;
     top: 0;
+  }
+
+  .logOut {
+    border: 2px solid rgb(68, 19, 47);
+    display: flex;
+    justify-content: flex-end;
+    font-size: 3vmin;
+  }
+
+  .logoutCard {
+    background-color: aliceblue;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 15px;
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    width: 30%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
   }
 }

@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
 import "./css/PetProfile.css";
+import { TiTree } from "react-icons/ti";
+import { BsCardList } from "react-icons/bs";
 // import icon from "../../assets/img_8790.jpeg";
 
 function PetProfile() {
@@ -56,25 +60,32 @@ function PetProfile() {
     return age_now;
   };
   return (
-    <>
-      <div className="pet-card">
-        <div>
-          {pets.profileImg ? (
-            <img
-              className="pet-icon"
-              width="300"
-              height="300"
-              // src={icon}
-              src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${pets.profileImg}`}
-              alt={pets.id}
-            />
-          ) : (
-            <div className="emtpy-pet-icon"></div>
-          )}
-        </div>
-        <div className="pet-introduction">
-          <div>{pets.name}</div>
-          {pets.dateBirth ? <div>{age(pets.dateBirth)}&nbsp;歲</div> : <div></div>}
+    <div className="pet-profile-page">
+      <Header />
+      <div className="pet-card-container">
+        <div className="pet-card">
+          <div>
+            {pets.profileImg ? (
+              <img
+                className="pet-icon"
+                width="300"
+                height="300"
+                // src={icon}
+                src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${pets.profileImg}`}
+                alt={pets.id}
+              />
+            ) : (
+              <div className="empty-pet-icon"></div>
+            )}
+          </div>
+          <div className="pet-introduction">
+            <div className="pet-info-name">{pets.name}</div>
+            {pets.dateBirth ? (
+              <div className="pet-info-age">{age(pets.dateBirth)}&nbsp;歲</div>
+            ) : (
+              <div></div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -83,9 +94,9 @@ function PetProfile() {
           <Link to={`/weight/${petId.id}`}>
             <div className="pet-profile">
               {pets.PetWeight?.length > 0 ? (
-                <div>
+                <div className="pet-profile-weight-container">
                   <div>體重</div>
-                  {pets.PetWeight?.at(-1).weight}&nbsp;KG
+                  <div className="pet-profile-weight">{pets.PetWeight?.at(-1).weight}&nbsp;KG</div>
                 </div>
               ) : (
                 <div>
@@ -99,17 +110,24 @@ function PetProfile() {
 
         <div className="pet-profile-container">
           <Link to={`/growtree/${petId.id}`}>
-            <div className="pet-profile">成長樹</div>
+            <div className="pet-profile">
+              <TiTree color="#013328" />
+              &nbsp;成長樹
+            </div>
           </Link>
         </div>
 
         <div className="pet-profile-container">
           <Link to={`/vaccine/${petId.id}`}>
-            <div className="pet-profile">針卡記錄</div>
+            <div className="pet-profile">
+              <BsCardList />
+              &nbsp;針卡記錄
+            </div>
           </Link>
         </div>
       </div>
-    </>
+      <Footer />
+    </div>
   );
 }
 

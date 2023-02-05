@@ -1,3 +1,7 @@
+.vaccine-body{
+  margin: 8vmin;
+  text-align: center;
+}
 .vaccine-tittle {
   margin: 4vmin;
   font-size: 10vmin;
@@ -32,4 +36,5 @@
     width: 30vw;
     height: 4vh;
     margin-top: 5vmin;
+    background: #e4655c;
 }

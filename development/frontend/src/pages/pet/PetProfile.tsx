@@ -59,7 +59,18 @@ function PetProfile() {
     <>
       <div className="pet-card">
         <div>
-          <img className="pet-icon" width="300" height="300" src={icon} alt="icon" />
+          {pets.profileImg ? (
+            <img
+              className="pet-icon"
+              width="300"
+              height="300"
+              src={icon}
+              // src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${pets.profileImg}`}
+              alt={pets.id}
+            />
+          ) : (
+            <div className="emtpy-pet-icon"></div>
+          )}
         </div>
         <div className="pet-introduction">
           <div>{pets.name}</div>

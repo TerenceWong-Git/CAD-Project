@@ -63,12 +63,26 @@ function UserProfile() {
           <Link to={`/petprofile/${pet.id}`} key={pet.id}>
             <div className="pet-profile">
               <div className="pet-image">
-                <img className="pet-icon" width="300" height="300" src={icon} alt={pet.id} />
+                {pet.profileImg ? (
+                  <img
+                    className="user-pet-icon"
+                    width="300"
+                    height="300"
+                    src={icon}
+                    // src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${pet.profileImg}`}
+                    alt={pet.id}
+                  />
+                ) : (
+                  <div className="user-emtpy-pet-icon"></div>
+                )}
               </div>
               <div className="pet-detail">
                 <div className="pet-name">{pet.name}</div>
                 {/* <div>{pet.dateBirth && <p>{age(pet.dateBirth)}</p>}</div> */}
                 <div className="pet-age">{pet.dateBirth ? <div>{age(pet.dateBirth)}&nbsp;歲</div> : <div></div>}</div>
+                <div className="pet-species-tag-container">
+                  <div className="pet-species-tag-chi">{pet.species.chiSpecies}</div>
+                </div>
               </div>
             </div>
           </Link>

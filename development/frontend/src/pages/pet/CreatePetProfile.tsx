@@ -83,7 +83,12 @@ function CreatePetProfile() {
           formData.append("gender", data.gender);
           formData.append("speciesId", data.firstName);
           formData.append("dateBirth", data.dateBirth);
-          formData.append("file", data.file[0]);
+          // formData.append("file",newFile);
+
+          for (const img of newFile) {
+            formData.append("file", img);
+            console.log(img);
+          }
 
           const res = await fetch(`${path}/pet/addPet`, {
             method: "POST",

@@ -7,7 +7,6 @@ import "./css/PetProfile.css";
 function PetProfile() {
   const jwt = localStorage.getItem("token");
   const petId = useParams();
-  console.log("petpetid", petId);
   const path = process.env.REACT_APP_BACKEND_URL;
   // const jwt = localStorage.getItem('token');
   // const [pets, setPets] = useState<{
@@ -35,7 +34,7 @@ function PetProfile() {
       setPets(json[0]);
     }
     loadData();
-  }, []);
+  }, [petId]);
   if (pets) {
     console.log("weight12321", pets.PetWeight);
     console.log("pets: ", pets);

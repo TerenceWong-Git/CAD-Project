@@ -21,7 +21,7 @@ export default function GrowTree() {
       setImgForGrow(json.slice(0, 4));
     }
     loadData();
-  }, []);
+  }, [petId]);
 
   console.log("petImg: ", petImg);
   console.log("imgForGrow: ", imgForGrow);

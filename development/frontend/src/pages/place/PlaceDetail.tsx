@@ -20,7 +20,7 @@ export default function PlaceDetail() {
       setThis2PlaceComments(json.Comment);
     }
     fetchData();
-  }, []);
+  }, [placeId]);
 
   console.log("PlaceItems: ", thisPlaceItems);
   console.log("WorkingHours: ", thisPlaceWorkingHours);

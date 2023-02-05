@@ -2,7 +2,7 @@ import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 import ImageUploading from "react-images-uploading";
-import { tags } from "../../components/pet/petTag";
+import { tags } from "../../components/pet/PetTag";
 import { MultiSelect } from "@mantine/core";
 
 function UploadGrowTree() {

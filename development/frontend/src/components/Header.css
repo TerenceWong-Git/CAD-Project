@@ -1,15 +1,15 @@
 @media only screen and (min-width: 821px) {
   .header {
     background-color: aliceblue;
-    border: 2px solid rgb(255, 0, 144);
-    height: 4%;
+    /* border: 2px solid rgb(255, 0, 144); */
+    height: 8%;
     width: 821px;
     position: fixed;
     top: 0;
   }
 
   .logOut {
-    border: 2px solid rgb(68, 19, 47);
+    /* border: 2px solid rgb(68, 19, 47); */
     display: flex;
     justify-content: flex-end;
     font-size: 3vmin;
@@ -26,5 +26,6 @@
     height: 500px;
     display: flex;
     justify-content: center;
+    z-index: 1000000;
   }
 }

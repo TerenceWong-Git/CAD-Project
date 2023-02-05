@@ -3,21 +3,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 3px solid rgb(255, 208, 0);
+    /* border: 3px solid rgb(255, 208, 0); */
   }
 
   .landingPageInfiniteScroll {
+    /* border: 3px solid rgb(0, 0, 0); */
     height: 100%;
     width: 821px;
     display: flex;
     flex-direction: column;
+
     padding-top: 5vmin;
   }
 
   .landingPageTags {
-    border: 3px solid rgb(0, 0, 0);
+    background-color: azure;
     display: flex;
     justify-content: center;
+    position: sticky;
+    top: 6%;
+    z-index: 1;
   }
 
   .my-masonry-grid {
@@ -27,12 +32,15 @@
   }
 
   .my-masonry-grid_column {
-    background-clip: padding-box;
+    /* background-clip: padding-box; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .my-masonry-grid_column img {
-    width: 35vmin;
-    margin: 2vmin 0 1vmin 0;
+    width: 16vw;
+    margin-top: 3vmin;
     border-radius: 10px;
   }
 }

@@ -1,6 +1,6 @@
 import "./css/List.css";
-import "../../components/place/list/placeCard.css";
-import "../../components/place/list/placeCard.css";
+import "../../components/place/list/PlaceCard.css";
+import "../../components/place/list/PlaceCard.css";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { districts, types } from "../../components/place/map/District";

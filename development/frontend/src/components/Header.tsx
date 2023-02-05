@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { MdPets } from "react-icons/md";
 import { useState } from "react";
 import { RxExit } from "react-icons/rx";
+import Footer from "./Footer";
 
 export default function Header() {
   const navigate = useNavigate();

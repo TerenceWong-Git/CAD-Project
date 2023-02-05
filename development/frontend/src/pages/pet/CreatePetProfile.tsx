@@ -2,10 +2,7 @@ import { Radio, Select } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-<<<<<<< HEAD
 import ImageUploading from "react-images-uploading";
-=======
->>>>>>> 40baf01190ba515a20a01f391dd216d5cb97e430
 
 // photo preview
 // update button + remove button
@@ -86,20 +83,9 @@ function CreatePetProfile() {
           formData.append("gender", data.gender);
           formData.append("speciesId", data.firstName);
           formData.append("dateBirth", data.dateBirth);
-<<<<<<< HEAD
-          // formData.append("file",newFile);
-
-          for (const img of newFile) {
-            formData.append("file", img);
-            console.log(img)
-          }
-          
-          await fetch(`${path}/pet/addPet`, {
-=======
           formData.append("file", data.file[0]);
 
           const res = await fetch(`${path}/pet/addPet`, {
->>>>>>> 40baf01190ba515a20a01f391dd216d5cb97e430
             method: "POST",
             headers: {
               Authorization: `Bearer ${jwt}`,
@@ -150,30 +136,14 @@ function CreatePetProfile() {
           </label>
         </div> */}
 
-<ImageUploading
-          value={images}
-          onChange={onChange}
-          dataURLKey="data_url"
-        >
-          {({
-            imageList,
-            onImageUpload,
-            onImageUpdate,
-            onImageRemove,
-            isDragging,
-            dragProps,
-          }) => (
+        <ImageUploading value={images} onChange={onChange} dataURLKey="data_url">
+          {({ imageList, onImageUpload, onImageUpdate, onImageRemove, isDragging, dragProps }) => (
             // write your building UI
             <div className="upload__image-wrapper">
-              <button
-                type="button"
-                style={isDragging ? { color: "red" } : undefined}
-                onClick={onImageUpload}
-                {...dragProps}
-              >
+              <button type="button" style={isDragging ? { color: "red" } : undefined} onClick={onImageUpload} {...dragProps}>
                 Click or Drop here
               </button>
-              
+
               {imageList.map((image, index) => (
                 <div key={index} className="image-item">
                   <img src={image["data_url"]} alt="" width="100" />

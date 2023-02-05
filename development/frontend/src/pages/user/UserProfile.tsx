@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./css/UserProfile.css";
 import { FaPlus } from "react-icons/fa";
-import icon from "./IMG_8790.jpeg";
-import userIcon from "./7D2555FA-F4B2-4F88-865C-326B0E7CC787_1_105_c.jpeg";
+import icon from "../../assets/img_8790.jpeg";
+import userIcon from "../../assets/128.png";
 
 function UserProfile() {
   const path = process.env.REACT_APP_BACKEND_URL;
@@ -52,13 +52,9 @@ function UserProfile() {
     <div>
       {/* UserProfile */}
       <div className="user-card">
-<<<<<<< HEAD
         <div>
           <img className="user-icon" width="300" height="300" src={userIcon} alt="icon" />
         </div>
-=======
-        <div>{/* <img className="user-icon" width="300" height="300" src={userIcon} alt="icon" /> */}</div>
->>>>>>> 40baf01190ba515a20a01f391dd216d5cb97e430
         {/* <div className="user-icon">{name.userIcon}</div> */}
         <div className="username">{name.username}</div>
       </div>
@@ -67,13 +63,7 @@ function UserProfile() {
           <Link to={`/petprofile/${pet.id}`} key={pet.id}>
             <div className="pet-profile">
               <div className="pet-image">
-                <img
-                  className="pet-icon"
-                  width="300"
-                  height="300"
-                  src={icon}
-                  alt={pet.id}
-                />
+                <img className="pet-icon" width="300" height="300" src={icon} alt={pet.id} />
               </div>
               <div className="pet-detail">
                 <div className="pet-name">{pet.name}</div>

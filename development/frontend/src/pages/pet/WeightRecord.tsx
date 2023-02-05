@@ -73,29 +73,39 @@ function WeightRecord() {
 
         <div className="weight-pet-introduction">
           <div className="weight-pet-name">{pets.name}</div>
-          {pets.dateBirth ? <div className="weight-pet-age">{age(pets.dateBirth)}&nbsp;歲</div> : <div></div>}
+          {pets.dateBirth ? (
+            <div className="weight-pet-age">{age(pets.dateBirth)}&nbsp;歲</div>
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
 
       <div className="weight-container">
-        <div className="weight-container-titte">record</div>
+        <div className="weight-container-titte">
+          <div className="weight-container-titte-weight">體重</div>
+          <div className="weight-container-titte-date">日期 </div>
+        </div>
         {fiveRecord.length > 0 ? (
           <div>
             {fiveRecord.map((item: any, index: number) => (
-              <div key={index}>
-                <h2>{item.weight}</h2>
+              <div key={index} className="weight-record">
+                <h2>{item.weight}&nbsp;KG</h2>
                 <h2>{item.createdAt.slice(0, 10)}</h2>
               </div>
             ))}
           </div>
         ) : (
-          <div>no record</div>
+          <div>未有記錄</div>
         )}
       </div>
       <div>
         {/* <button onClick={inputWeight}>+</button>
             {isLoading && <div className='toggleBox'>輸入體重</div>} */}
-        <Modal opened={opened} onClose={() => setOpened(false)} title="輸入體重">
+        <Modal
+          opened={opened}
+          onClose={() => setOpened(false)}
+          title="輸入體重">
           {
             <form
               onSubmit={handleSubmit(async (data) => {
@@ -109,9 +119,15 @@ function WeightRecord() {
                 });
 
                 if (res.ok) {
-                  const getRes = await fetch(`${path}/pet/petProfile/${petId.id}`, { headers: { Authorization: `Bearer ${jwt}` } });
+                  const getRes = await fetch(
+                    `${path}/pet/petProfile/${petId.id}`,
+                    { headers: { Authorization: `Bearer ${jwt}` } }
+                  );
                   const json = await getRes.json();
-                  const getRes2 = await fetch(`${path}/pet/petWeight/${petId.id}`, { headers: { Authorization: `Bearer ${jwt}` } });
+                  const getRes2 = await fetch(
+                    `${path}/pet/petWeight/${petId.id}`,
+                    { headers: { Authorization: `Bearer ${jwt}` } }
+                  );
                   const json2 = await getRes2.json();
 
                   setPets(json[0]);
@@ -119,15 +135,15 @@ function WeightRecord() {
                   setOpened(false);
                 }
                 console.log(pets.PetWeight);
-              })}
-            >
-              <label>
-                weight
-                <input type="text" {...register("weight")} />
-              </label>
-              <p>
-                <input type="submit" value="submit" />
-              </p>
+              })}>
+              <div className="weight-input-box">
+                <label className="weight-input-text">
+                  <input type="text" {...register("weight")} className="weight-input-text-box" />KG
+                </label>
+                <div className="weight-input-button">
+                  <input type="submit" value="輸入" />
+                </div>
+              </div>
             </form>
           }
         </Modal>

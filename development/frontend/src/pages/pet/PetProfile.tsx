@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import "./css/PetProfile.css";
-import icon from "../../assets/img_8790.jpeg";
+// import icon from "../../assets/img_8790.jpeg";
 
 function PetProfile() {
   const jwt = localStorage.getItem("token");
@@ -64,8 +64,8 @@ function PetProfile() {
               className="pet-icon"
               width="300"
               height="300"
-              src={icon}
-              // src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${pets.profileImg}`}
+              // src={icon}
+              src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${pets.profileImg}`}
               alt={pets.id}
             />
           ) : (

@@ -28,5 +28,34 @@
 }
 .weight-container{
     border: 1px solid black;
+    margin-top: 5vmin;
 
+}
+.weight-container-titte{
+    font-size: 6vmin;
+    display: flex;
+    justify-content: space-evenly;
+}
+.weight-record{
+    display: flex;
+    justify-content: space-evenly;
+}
+.weight-input-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.weight-input-button{
+    margin-top: 4vmin;
+}
+.weight-input-text-box{
+    width: 80px;
+}
+.mantine-121w2fi {
+    margin-left: 120px;
+}
+.mantine-cx9mud {
+    margin-left: 30px;
 }

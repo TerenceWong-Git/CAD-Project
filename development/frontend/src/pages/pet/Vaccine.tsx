@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router";
 import { ImFolderUpload } from "react-icons/im";
 import "./css/Vaccine.css";
 import icon from "../../assets/img_8790.jpeg";
+import { log } from "console";
 
 const path = process.env.REACT_APP_BACKEND_URL;
 
@@ -28,6 +29,7 @@ function VaccinePage() {
     }
     loadData();
   }, []);
+  
   return (
     <div className="vaccine-body">
       <div className="vaccine-tittle">針卡記錄</div>
@@ -77,6 +79,7 @@ function VaccinePage() {
                 body: formData,
               });
               console.log(res);
+              console.log(vaccine)
               if (res.status === 201) {
                 const getRes = await fetch(`${path}/pet/vaccine/${petId.id}`, { headers: { Authorization: `Bearer ${jwt}` } });
                 const json = await getRes.json();

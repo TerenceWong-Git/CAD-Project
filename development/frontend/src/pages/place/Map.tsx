@@ -2,12 +2,12 @@ import { Autocomplete, Card, Checkbox } from "@mantine/core";
 
 import { Circle, GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
-import Footer from "../../components/Footer";
+import { Link } from "react-router-dom";
 import { districts, types } from "../../components/place/map/District";
 import { circleSettings, containerStyle } from "../../components/place/map/MapSetting";
 import "./css/Map.css";
 
-export default function Map3() {
+export default function Map() {
   ////////////////////////////////////   Load Data   /////////////////////////////////////
 
   const [allPlaceItems, setAllPlaceItems] = useState<any[]>([]);
@@ -27,20 +27,20 @@ export default function Map3() {
     fetchData();
   }, []);
 
-  //   console.log("allPlaceItems: ", allPlaceItems);
-
   ////////////////////////////////////   Load Data   /////////////////////////////////////
 
   ////////////////////////////////////   Initial Map   ///////////////////////////////////
 
-  const [userLocation, setUserLocation] = useState({ lat: 0, lng: 0 });
-  const [targetLocation, setTargetLocation] = useState({ lat: 0, lng: 0 });
+  // const [targetLocation, setTargetLocation] = useState({ lat: 0, lng: 0 });
+  const [userLat, setUserLat] = useState(0);
+  const [usertLng, setUserLng] = useState(0);
 
   navigator.geolocation.watchPosition((position) => {
-    setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
-    setTargetLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
+    // setTargetLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
+
+    setUserLat(position.coords.latitude);
+    setUserLng(position.coords.longitude);
   });
-  console.log(targetLocation);
 
   ////////////////////////////////////   Initial Map   ///////////////////////////////////
 
@@ -48,12 +48,18 @@ export default function Map3() {
 
   const [values, setValues] = useState<any>([]);
 
-  const activateFilter = async () => {
+  const activateFilter = () => {
     filterItem(values);
+    setIsTriggered(false);
   };
 
-  const deactivateFilter = async () => {
+  const deactivateFilter = () => {
     setValues([]);
+  };
+
+  const wantToUseFilter = () => {
+    setValues([]);
+    setIsTriggered(true);
   };
 
   const filterItem = (input: any) => {
@@ -68,7 +74,9 @@ export default function Map3() {
       if (values.length < 2) {
         return inputValue.includes(districtName) || inputValue.includes(typeName);
       } else {
-        return inputValue.includes(districtName) && inputValue.includes(typeName);
+        return (
+          inputValue.includes(districtName) || inputValue.includes(typeName) || (inputValue.includes(districtName) && inputValue.includes(typeName))
+        );
       }
     });
     setFilteredItems(newItems);
@@ -85,6 +93,13 @@ export default function Map3() {
     return item.chiName;
   });
 
+  const search = () => {
+    if (searchValues.length > 0) {
+      searchSpecificPlace(searchValues);
+    }
+    setSearchItems(filteredItems);
+  };
+
   const searchSpecificPlace = (input: any) => {
     const newItems = allPlaceItems.filter((place) => {
       const inputValue = input;
@@ -94,11 +109,9 @@ export default function Map3() {
     });
 
     setSearchItems(newItems);
-    setTargetLocation({ lat: parseFloat(newItems[0].latitude), lng: parseFloat(newItems[0].longitude) });
+    setUserLat(parseFloat(newItems[0].latitude));
+    setUserLng(parseFloat(newItems[0].longitude));
   };
-  console.log("searchValues: ", searchValues);
-  console.log("searchItems: ", searchItems);
-  console.log("==========");
 
   ////////////////////////////////////   Search Bar   ////////////////////////////////////
 
@@ -108,15 +121,22 @@ export default function Map3() {
   const [isCardShown, setIsCardShown] = useState(false);
 
   ///////////////////////////////////   Click Click   ////////////////////////////////////
-
-  console.log("values: ", values);
-  console.log("filteredItems: ", filteredItems);
+  console.log("依家係邊: ", userLat, usertLng);
+  console.log("拎到乜野: ", allPlaceItems);
+  console.log("==========");
+  console.log("係咪要用filter: ", isTriggered);
+  console.log("入左咩落filter: ", values);
+  console.log("fil完之後有咩地方: ", filteredItems);
+  console.log("==========");
+  console.log("可以search d咩: ", searchItems);
+  console.log("入左咩落search bar: ", searchValues);
+  console.log("==========");
+  console.log("");
 
   return (
     <>
       {isTriggered ? (
         <div className="pageContainer">
-          <button onClick={() => setIsTriggered(false)}>Back</button>
           <div className="categoryContainer">
             <div className="districtCategory">
               {districts.map((district) => {
@@ -140,7 +160,6 @@ export default function Map3() {
             <button onClick={activateFilter}>Filter</button>
             <button onClick={deactivateFilter}>Clear</button>
           </div>
-          <Footer/>
         </div>
       ) : (
         <div className="pageContainer">
@@ -149,37 +168,40 @@ export default function Map3() {
               <Autocomplete value={searchValues} onChange={setSearchValues} data={searchablePlace} />
             </div>
             <div className="searchTrigger">
-              <button onClick={() => searchSpecificPlace(searchValues)}>Search</button>
+              <button onClick={search}>Search</button>
             </div>
 
             <div className="categoryTrigger">
-              <button onClick={() => setIsTriggered(true)}>Category</button>
+              <button onClick={wantToUseFilter}>Category</button>
             </div>
           </div>
           {isCardShown && (
             <div>
               <Card className="previewPlaceCard">
-                <Card.Section className="cardSection">
-                  <img className="previewPicture2" src="/uploads/pictures/3.jpg" alt={selectedMarker.engName} />
-                </Card.Section>
-                <Card.Section className="cardSection">{selectedMarker.chiName}</Card.Section>
-                <Card.Section className="cardSection">{selectedMarker.mapType.chiType}</Card.Section>
-                <button
-                  className="closeCardButton"
-                  onClick={() => {
-                    setIsCardShown(false);
-                  }}
-                >
-                  x
-                </button>
+                <Link to={`/list/placeDetail/${selectedMarker.id}`} style={{ color: "#262220" }}>
+                  <Card.Section className="cardSection">
+                    <img className="previewPicture2" src="/uploads/pictures/3.jpg" alt={selectedMarker.engName} />
+                  </Card.Section>
+                  <Card.Section className="cardSection">{selectedMarker.chiName}</Card.Section>
+                  <Card.Section className="cardSection">{selectedMarker.mapType.chiType}</Card.Section>
+                  <button
+                    className="closeCardButton"
+                    onClick={() => {
+                      setIsCardShown(false);
+                    }}
+                  >
+                    x
+                  </button>
+                </Link>
               </Card>
             </div>
           )}
           <div className="mapContainer">
             <LoadScript googleMapsApiKey={`${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`}>
-              <GoogleMap mapContainerStyle={containerStyle} center={targetLocation} zoom={17} options={{ disableDefaultUI: true }}>
-                <Circle center={userLocation} options={circleSettings} />
-                <Marker position={userLocation} />
+              <GoogleMap mapContainerStyle={containerStyle} center={{ lat: userLat, lng: usertLng }} zoom={17} options={{ disableDefaultUI: true }}>
+                {/* <GoogleMap mapContainerStyle={containerStyle} center={targetLocation} zoom={17} options={{ disableDefaultUI: true }}> */}
+                <Circle center={{ lat: userLat, lng: usertLng }} options={circleSettings} />
+                <Marker position={{ lat: userLat, lng: usertLng }} />
                 {searchItems.map((item) => {
                   const latitudeToFloat = parseFloat(item.latitude);
                   const longitudeToFloat = parseFloat(item.longitude);
@@ -199,9 +221,7 @@ export default function Map3() {
                 <></>
               </GoogleMap>
             </LoadScript>
-            
           </div>
-          <Footer/>
         </div>
       )}
     </>

@@ -2,8 +2,13 @@ import { Radio, Select } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
+<<<<<<< HEAD
 import ImageUploading from "react-images-uploading";
+=======
+>>>>>>> 40baf01190ba515a20a01f391dd216d5cb97e430
 
+// photo preview
+// update button + remove button
 function CreatePetProfile() {
   const path = process.env.REACT_APP_BACKEND_URL;
   const { register, handleSubmit, control, watch } = useForm();
@@ -37,7 +42,7 @@ function CreatePetProfile() {
   const catSpeciesFilter = loadPetSpecies.filter((item) => {
     return item.familyId === 1;
   });
-  console.log(catSpeciesFilter)
+  console.log(catSpeciesFilter);
 
   const catNameFilter = catFilter.map((item) => {
     return item.chiSpecies;
@@ -45,7 +50,7 @@ function CreatePetProfile() {
 
   const catSubSpeciesFilter = catSpeciesFilter.map((item) => [{ label: item.chiSpecies, value: item.id }]);
   const catSubSpeciesId = catSubSpeciesFilter.flat();
-  console.log(catSubSpeciesFilter )
+  console.log(catSubSpeciesFilter);
 
   ///////////////////////   Cat Species   ///////////////////////
 
@@ -57,7 +62,7 @@ function CreatePetProfile() {
   const dogSpeciesFilter = loadPetSpecies.filter((item) => {
     return item.familyId === 2;
   });
-
+  console.log(dogSpeciesFilter);
   const dogNameFilter = dogFilter.map((item) => item.chiSpecies);
 
   const dogSubSpeciesFilter = dogSpeciesFilter.map((item) => [{ label: item.chiSpecies, value: item.id }]);
@@ -75,12 +80,13 @@ function CreatePetProfile() {
       <form
         onSubmit={handleSubmit(async (data) => {
           const jwt = localStorage.getItem("token");
-          
+
           const formData = new FormData();
           formData.append("name", data.name);
           formData.append("gender", data.gender);
           formData.append("speciesId", data.firstName);
           formData.append("dateBirth", data.dateBirth);
+<<<<<<< HEAD
           // formData.append("file",newFile);
 
           for (const img of newFile) {
@@ -89,12 +95,26 @@ function CreatePetProfile() {
           }
           
           await fetch(`${path}/pet/addPet`, {
+=======
+          formData.append("file", data.file[0]);
+
+          const res = await fetch(`${path}/pet/addPet`, {
+>>>>>>> 40baf01190ba515a20a01f391dd216d5cb97e430
             method: "POST",
             headers: {
               Authorization: `Bearer ${jwt}`,
             },
             body: formData,
-          }).then(() => navigate("/userprofile"));
+          });
+
+          const result = await res.json();
+          if (res.status === 201) {
+            alert("Success");
+            navigate("/userprofile");
+          } else {
+            alert(`${result.message}`);
+          }
+
           console.log(data);
         })}
       >

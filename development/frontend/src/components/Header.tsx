@@ -1,30 +1,20 @@
-import { Button } from "@mui/material";
-import React from "react";
-import { Link } from "react-router-dom";
+import "./Header.css";
+import { useNavigate } from "react-router";
 
 export default function Header() {
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/initialLanding");
+  };
   return (
-    <div>
-      <Button variant="contained" style={{ marginRight: "2vmin" }}>
-        <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
-          Back
-        </Link>
-      </Button>
-      <Button variant="contained" style={{ marginRight: "2vmin" }}>
-        <Link to={"/login"} style={{ textDecoration: "none", color: "white" }}>
-          Login
-        </Link>
-      </Button>
-      <Button variant="contained" style={{ marginRight: "2vmin" }}>
-        <Link to={"/register"} style={{ textDecoration: "none", color: "white" }}>
-          Register
-        </Link>
-      </Button>
-      <Button variant="contained">
-        <Link to={"/landing"} style={{ textDecoration: "none", color: "white" }}>
-          Home
-        </Link>
-      </Button>
-    </div>
+    <>
+      <div className="header">Name</div>
+      <div className="logOut">
+        <button type="button" onClick={logout}>
+          Logout
+        </button>
+      </div>
+    </>
   );
 }

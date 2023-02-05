@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { RegisterDto, UserDto } from './dto';
+import { RegisterDto } from './dto';
 
 import * as bcrypt from 'bcryptjs';
 const SALT_ROUNDS = 10;

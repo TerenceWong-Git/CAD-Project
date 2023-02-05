@@ -4,9 +4,10 @@ import { Modal, Button, Group } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router";
 
+// 寫翻fail情況提示  -> 最多6位(連小數)
 function WeightRecord() {
   const petId = useParams();
-  const jwt = localStorage.getItem('token');
+  const jwt = localStorage.getItem("token");
   const path = process.env.REACT_APP_BACKEND_URL;
   const [opened, setOpened] = useState(false);
   const { register, handleSubmit } = useForm();
@@ -19,24 +20,21 @@ function WeightRecord() {
   // };
   useEffect(() => {
     async function loadData() {
-      const res = await fetch(`${path}/pet/petProfile/${petId.id}`,{headers: {Authorization: `Bearer ${jwt}`}});
+      const res = await fetch(`${path}/pet/petProfile/${petId.id}`, { headers: { Authorization: `Bearer ${jwt}` } });
       const json = await res.json();
-      
-      const res2 = await fetch(`${path}/pet/petWeight/${petId.id}`,{headers: {Authorization: `Bearer ${jwt}`}});
+
+      const res2 = await fetch(`${path}/pet/petWeight/${petId.id}`, { headers: { Authorization: `Bearer ${jwt}` } });
       const json2 = await res2.json();
       setPets(json[0]);
-      setFiveRecord(json2)
-      console.log("what is pet",json[0]);
-      
-      
+      setFiveRecord(json2);
+      console.log("what is pet", json[0]);
     }
     loadData();
   }, []);
-  console.log("what is weight",fiveRecord)
+  console.log("what is weight", fiveRecord);
   // if (pets) {
-  //   const onlyFiveRecord = pets.PetWeight.slice(-5); 
+  //   const onlyFiveRecord = pets.PetWeight.slice(-5);
   //   console.log("weight12321", pets.PetWeight);
-    
 
   // }
   const age = (dob1: any) => {
@@ -92,16 +90,16 @@ function WeightRecord() {
                 });
 
                 if (res.ok) {
-                    const getRes = await fetch(`${path}/pet/petProfile/${petId.id}`,{headers: {Authorization: `Bearer ${jwt}`}});
-                    const json = await getRes.json();
-                    const getRes2 = await fetch(`${path}/pet/petWeight/${petId.id}`,{headers: {Authorization: `Bearer ${jwt}`}});
-                    const json2 = await getRes2.json();
-                    
-                    setPets(json[0]);
-                    setFiveRecord(json2);
-                    setOpened(false)
+                  const getRes = await fetch(`${path}/pet/petProfile/${petId.id}`, { headers: { Authorization: `Bearer ${jwt}` } });
+                  const json = await getRes.json();
+                  const getRes2 = await fetch(`${path}/pet/petWeight/${petId.id}`, { headers: { Authorization: `Bearer ${jwt}` } });
+                  const json2 = await getRes2.json();
+
+                  setPets(json[0]);
+                  setFiveRecord(json2);
+                  setOpened(false);
                 }
-                console.log(pets.PetWeight)
+                console.log(pets.PetWeight);
               })}
             >
               <label>

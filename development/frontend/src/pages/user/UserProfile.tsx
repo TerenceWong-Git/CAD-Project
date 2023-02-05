@@ -31,6 +31,10 @@ function UserProfile() {
     loadName();
     loadData();
   }, []);
+
+  console.log(pets);
+  console.log(name);
+
   const age = (dob1: any) => {
     if (dob1 === null) {
       return;
@@ -48,9 +52,13 @@ function UserProfile() {
     <div>
       {/* UserProfile */}
       <div className="user-card">
+<<<<<<< HEAD
         <div>
           <img className="user-icon" width="300" height="300" src={userIcon} alt="icon" />
         </div>
+=======
+        <div>{/* <img className="user-icon" width="300" height="300" src={userIcon} alt="icon" /> */}</div>
+>>>>>>> 40baf01190ba515a20a01f391dd216d5cb97e430
         {/* <div className="user-icon">{name.userIcon}</div> */}
         <div className="username">{name.username}</div>
       </div>
@@ -70,13 +78,7 @@ function UserProfile() {
               <div className="pet-detail">
                 <div className="pet-name">{pet.name}</div>
                 {/* <div>{pet.dateBirth && <p>{age(pet.dateBirth)}</p>}</div> */}
-                <div className="pet-age">
-                  {pet.dateBirth ? (
-                    <div>{age(pet.dateBirth)}&nbsp;歲</div>
-                  ) : (
-                    <div></div>
-                  )}
-                </div>
+                <div className="pet-age">{pet.dateBirth ? <div>{age(pet.dateBirth)}&nbsp;歲</div> : <div></div>}</div>
               </div>
             </div>
           </Link>

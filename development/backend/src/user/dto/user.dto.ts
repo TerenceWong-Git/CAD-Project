@@ -1,6 +1,5 @@
 import { District, Gender } from '@prisma/client';
 import {
-  IsBoolean,
   IsEmail,
   IsNotEmpty,
   IsNumber,

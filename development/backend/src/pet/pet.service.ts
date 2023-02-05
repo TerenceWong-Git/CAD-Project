@@ -1,8 +1,7 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { UserDto } from 'src/user/dto';
-import { AddPetDto, AddWeightDto, PetDto, uploadPetImgDto } from './dto';
-import { v4 as uuidv4 } from 'uuid';
+import { AddPetDto, AddWeightDto, UploadPetImgDto } from './dto';
+// Deleted UserDto & PetDto (有冇用過)
 
 @Injectable()
 export class PetService {
@@ -62,11 +61,11 @@ export class PetService {
       throw new ForbiddenException('Failed to update get weight');
     }
     const foundPet = await this.prismaService.petWeight.findMany({
-      take:5,
+      take: 5,
       where: { petId: petId },
       select: {
-        weight:true,
-        createdAt:true,
+        weight: true,
+        createdAt: true,
       },
       orderBy: {
         createdAt: 'desc',
@@ -74,7 +73,6 @@ export class PetService {
     });
     return foundPet;
   }
-
 
   async getPetImg(petId: number, userId: number) {
     const foundPet = await this.prismaService.petImg.findMany({
@@ -120,22 +118,8 @@ export class PetService {
     return data;
   }
 
-  //   async uploadPetImg(uploadPetImgDto:uploadPetImgDto, petId: number,file: Express.Multer.File){
-
-  //     const newFile = new Date().toJSON().slice(0)+ "-" +file.originalname
-
-  //     const data = await this.prismaService.petImg.create({
-  //         data:{
-  //             petId: petId,
-  //             ...uploadPetImgDto,
-  //             name: newFile
-  //         }
-  //     })
-  //     return data
-  // }
-
   async uploadPetImg(
-    uploadPetImgDto: uploadPetImgDto,
+    uploadPetImgDto: UploadPetImgDto,
     petId: number,
     files: Express.Multer.File[],
   ) {

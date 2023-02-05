@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+// 欠 isThumb Handle
 export default function PlaceDetail() {
   ////////////////////////////////////   Load Data   /////////////////////////////////////
   const placeId = useParams();
@@ -19,7 +20,7 @@ export default function PlaceDetail() {
       setThis2PlaceComments(json.Comment);
     }
     fetchData();
-  }, []);
+  }, [placeId]);
 
   console.log("PlaceItems: ", thisPlaceItems);
   console.log("WorkingHours: ", thisPlaceWorkingHours);
@@ -32,6 +33,11 @@ export default function PlaceDetail() {
     return item.workingHour;
   });
 
+  const checkIsThumb = thisPlaceComments.map((item: any) => {
+    return item.isThumb === true;
+  });
+
+  console.log(checkIsThumb);
   /////////////////////////////////   Render PlaceCard   /////////////////////////////////
 
   return (
@@ -55,27 +61,23 @@ export default function PlaceDetail() {
             })}
 
             <br></br>
-            {
-              thisPlaceComments.map((comment: any) => {
-                return (
-                  <div key={comment.content}>
-                    <div>{comment.user.username}</div>
-                    <div>{"Title: " + comment.title}</div>
-                    <div>{"Content: " + comment.content}</div>
-                    <div>{"Like?: " + comment.isThumb}</div>
-                    <div>{"Like?: " + comment.CommentImg[0].name}</div>
-                    <img
-                    height="100"
-                    width="100"
-                    src={`${process.env.REACT_APP_BACKEND_URL}/upload/${comment.CommentImg[0].name}`}
-                    alt=""
-                  />
-                    <br></br>
-                  </div>
-                );
-              })
-            }
-            
+            {thisPlaceComments.map((comment: any) => {
+              return (
+                <div key={comment.content}>
+                  <div>{comment.user.username}</div>
+                  <div>{"Title: " + comment.title}</div>
+                  <div>{"Content: " + comment.content}</div>
+                  <div>{"Like?: " + comment.isThumb}</div>
+                  {comment.CommentImg.length > 0 ? (
+                    <img height="100" width="100" src={`${process.env.REACT_APP_BACKEND_URL}/upload/${comment.CommentImg[0].name}`} alt="" />
+                  ) : (
+                    <div>No image</div>
+                  )}
+
+                  <br></br>
+                </div>
+              );
+            })}
           </div>
 
           <div className="placeDetailCommentContainer"></div>

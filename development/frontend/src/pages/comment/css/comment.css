@@ -4,6 +4,7 @@
 
 body {
   background-color: #f7f1f0;
+  color: #2b2b2e;
 }
 
 .comment-button-area > button {
@@ -21,13 +22,15 @@ body {
 
 .comment-body {
   height: 100%;
+  width: 100%;
+  margin: auto;
   overflow: scroll;
 }
 
 .comment-card-container {
   margin: 5% 10%;
   height: 15vh;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
   border: 1px solid #eee;
   box-shadow: 0px 4px 16px rgba(0, 38, 82, 0.1);
   border-radius: 15px;
@@ -66,23 +69,23 @@ body {
   align-items: flex-start;
 }
 
-.comment-detail >div {
-    display: flex;
-    text-align: start;;
-    flex-direction: column;
-    align-items:flex-start;
+.comment-detail > div {
+  display: flex;
+  text-align: start;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.comment-detail >div:nth-child(1){
-    padding: 8px 0 ;
-    font-weight: bold;;
+.comment-detail > div:nth-child(1) {
+  padding: 8px 0;
+  font-weight: bold;
 }
 
 .comment-detail-user {
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .comment-detail-div {
@@ -96,7 +99,6 @@ body {
 .comment-detail-button {
   display: flex;
   flex-direction: row;
-  margin: 10px 0px;
 }
 
 .comment-edit-button {
@@ -108,9 +110,178 @@ body {
 }
 
 .comment-delete-button {
-    background-color: #FFCDD6;
-    color: #9B6972;
-    border-radius: 6px;
-    border: none;
-    margin: 2px;
+  background-color: #ffcdd6;
+  color: #9b6972;
+  border-radius: 6px;
+  border: none;
+  margin: 2px;
 }
+
+.comment-error {
+  color: #e4655c;
+  font-size: small;
+}
+
+.comment-detail-page {
+  margin-top: 15%;
+}
+
+.comment-detail-image {
+  width: 343px;
+  height: 360px;
+  border-radius: 45px;
+}
+
+.comment-detail-noImage {
+  width: 343px;
+  height: 360px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 25%; */
+}
+
+.comment-detail-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 6%;
+}
+
+.comment-detail-title {
+  font-weight: normal;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.comment-detail-map-name {
+  background-color: #e0cdff;
+  font-size: 15px;
+  color: #7c699b;
+  border-radius: 30px;
+  height: 20px;
+  padding: 6px 14px 7px;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.comment-detail-username {
+  background-color: #ffebcd;
+  font-size: 15px;
+  border-radius: 30px;
+  height: 20px;
+  padding: 6px 14px 7px;
+  gap: 10px;
+  color: #9b8769;
+  margin-bottom: 10px;
+}
+
+.comment-detail-content {
+  color: #5c5c62;
+  padding: 16px;
+  margin-bottom: 5px;
+  text-align: start;
+  font-size: 20px;
+}
+
+.comment-detail-date {
+  color: #7c7c8a;
+  font-size: 10px;
+}
+
+.comment-submit {
+  background-color: #f2968f;
+  color: #fcfcfc;
+  border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  margin-bottom: 15px;
+  height: 35px;
+  width: 50px;
+}
+
+.comment-create-page {
+  margin: 5%;
+  overflow: scroll;
+}
+
+.comment-create-form {
+  background-color: white;
+  border-radius: 15px;
+  padding-top: 15px;
+}
+
+.comment-edit-mapName {
+  text-align: left;
+  width: 293px;
+}
+
+.comment-form-input {
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comment-error-area {
+  height: 20px;
+}
+
+.comment-select {
+  width: 293px;
+  border-radius: 8px;
+  border: 1px solid #c3a6a0;
+}
+
+.comment-form-text {
+  border: 1px solid #c3a6a0;
+  border-radius: 8px;
+}
+
+.comment-form-text:focus,
+.comment-select:focus {
+  outline: 1px#b74829;
+}
+
+.image-item > img,
+.comment-edit-newImage,
+.comment-edit-oldImage {
+  margin: 2%;
+  border-radius: 10px;
+}
+
+.comment-image-update {
+  background-color: white;
+  font-size: 12px;
+  border-radius: 15px;
+  padding: 3px 6px;
+  border: 1px solid #f2968f;
+  margin-right: 5px;
+}
+
+.comment-image-delete {
+  background-color: white;
+  font-size: 12px;
+  border-radius: 15px;
+  padding: 3px 6px;
+  border: 1px solid #f2968f;
+}
+
+.comment-edit-uploadDiv {
+  display: flex;
+  justify-content: center;
+}
+
+#comment-edit-uploadImage {
+  display: none;
+}
+
+.comment-upload-button {
+    background-color: #e0cdff;
+    font-size: 15px;
+    color: #7c699b;
+    border-radius: 30px;
+    height: 20px;
+    padding: 6px 14px 7px;
+    gap: 10px;
+    margin-bottom: 10px;
+  }

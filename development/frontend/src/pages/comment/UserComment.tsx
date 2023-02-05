@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GiHollowCat } from "react-icons/gi";
+import { BiCommentDetail } from "react-icons/bi";
+import { MdOutlineThumbUpOffAlt, MdOutlineThumbDown } from "react-icons/md";
 
 function UserComment() {
   const [comments, setComments] = useState<any[]>([]);
@@ -30,23 +32,40 @@ function UserComment() {
                   {comment.CommentImg.length > 0 ? (
                     <img src={`${process.env.REACT_APP_BACKEND_URL}/upload/${comment.CommentImg?.[0].name}`} alt="" />
                   ) : (
-                    <div className="comment-image"><GiHollowCat size={70} /></div>
+                    <div className="comment-image">
+                      <GiHollowCat size={70} />
+                    </div>
                   )}
                 </Link>
 
                 <div className="comment-detail-user">
                   <div className="comment-detail-div">
-                    <span>{comment.title}</span>
-                    <span>{comment.content}</span>
-                    <span>{comment.map?.chiName}</span>
+                    <span>
+                      <BiCommentDetail />
+                      &nbsp;{comment.title}
+                    </span>
+                    {comment.isThumb ? (
+                    <span>
+                      <MdOutlineThumbUpOffAlt />&nbsp;
+                      {comment.map.chiName}
+                    </span>
+                  ) : (
+                    <span>
+                      <MdOutlineThumbDown />&nbsp;
+                      {comment.map.chiName}
+                    </span>
+                  )}
                   </div>
 
                   <div className="comment-detail-button">
                     <button className="comment-edit-button">
-                      <Link to={`/comments/editComment/${comment.id}`} style={{ color: "#7C699B" }}>
-                        edit
+                      <Link
+                        to={`/comments/editComment/${comment.id}`}
+                        style={{ color: "#7C699B" }}
+                      >
+                        修改
                       </Link>
-                    </button>
+                    </button>&nbsp;&nbsp;
                     <button
                       className="comment-delete-button"
                       onClick={async (data) => {
@@ -69,7 +88,7 @@ function UserComment() {
                         }
                       }}
                     >
-                      delete
+                      刪除
                     </button>
                   </div>
                 </div>
@@ -77,7 +96,7 @@ function UserComment() {
             </div>
           ))
         ) : (
-          <div>you don't have comment</div>
+          <div>您還沒有建立留言</div>
         )}
       </div>
     </div>

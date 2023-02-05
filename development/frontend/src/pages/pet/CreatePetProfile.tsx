@@ -3,12 +3,21 @@ import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import ImageUploading from "react-images-uploading";
+import { RxUpdate } from "react-icons/rx";
+import { AiOutlineDelete } from "react-icons/ai";
+import "./css/CreatePetProfile.css";
 
 // photo preview
 // update button + remove button
 function CreatePetProfile() {
   const path = process.env.REACT_APP_BACKEND_URL;
-  const { register, handleSubmit, control, watch } = useForm();
+  const {
+    register,
+    handleSubmit,
+    control,
+    watch,
+    formState: { errors },
+  } = useForm();
   const [images, setImages] = React.useState([]);
   const onChange = (imageList: any, addUpdateIndex: any) => {
     // data for submit
@@ -23,7 +32,9 @@ function CreatePetProfile() {
 
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/pet/species`);
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/pet/species`
+      );
       const json = await res.json();
 
       setLoadPetSpecies(json);
@@ -45,7 +56,9 @@ function CreatePetProfile() {
     return item.chiSpecies;
   });
 
-  const catSubSpeciesFilter = catSpeciesFilter.map((item) => [{ label: item.chiSpecies, value: item.id }]);
+  const catSubSpeciesFilter = catSpeciesFilter.map((item) => [
+    { label: item.chiSpecies, value: item.id },
+  ]);
   const catSubSpeciesId = catSubSpeciesFilter.flat();
   console.log(catSubSpeciesFilter);
 
@@ -62,7 +75,9 @@ function CreatePetProfile() {
   console.log(dogSpeciesFilter);
   const dogNameFilter = dogFilter.map((item) => item.chiSpecies);
 
-  const dogSubSpeciesFilter = dogSpeciesFilter.map((item) => [{ label: item.chiSpecies, value: item.id }]);
+  const dogSubSpeciesFilter = dogSpeciesFilter.map((item) => [
+    { label: item.chiSpecies, value: item.id },
+  ]);
   const dogSubSpeciesId = dogSubSpeciesFilter.flat();
 
   ///////////////////////   Dog Species   ///////////////////////
@@ -72,9 +87,9 @@ function CreatePetProfile() {
   const newFile = images.map((item: any) => item.file);
 
   return (
-    <div>
-      CreatePetProfile
+    <div className="pet-profile-create-page">
       <form
+        className="pet-profile-create-form"
         onSubmit={handleSubmit(async (data) => {
           const jwt = localStorage.getItem("token");
 
@@ -110,29 +125,93 @@ function CreatePetProfile() {
         })}
       >
         <div>
+          <label id="name">
+            名字 &nbsp;
+            <input type="text" className="pet-profile-create-text" {...register("name", { required: true })} />
+          </label>
+          <br></br>
+          <div className="comment-error-area">
+            {errors.name && (
+              <span className="comment-error">請填寫寵物名字</span>
+            )}
+          </div>
+
+          <div>
+            <label id="dateBirth">
+              出生日期 &nbsp;
+              <input type="date" className="pet-profile-create-text" {...register("dateBirth")} />
+            </label>
+          </div>
+        </div>
+
+        <br></br>
+
+        <div>
+          <label id="gender">
+            <input
+              type="radio"
+              value="Male"
+              {...register("gender", { required: true })}
+            />
+            男
+            <input type="radio" value="Female" {...register("gender")} />女
+          </label>
+          <br></br>
+          <div className="comment-error-area">
+            {errors.gender && (
+              <span className="comment-error">請選擇寵物性別</span>
+            )}
+          </div>
+        </div>
+
+        <div>
           <Radio.Group value={value} onChange={setValue}>
-            <Radio value={"1"} label={catNameFilter} onClick={() => setIsTriggered(1)} />
-            <Radio value={"2"} label={dogNameFilter} onClick={() => setIsTriggered(2)} />
+            <Radio
+              value={"1"}
+              label={catNameFilter}
+              onClick={() => setIsTriggered(1)}
+            />
+            <Radio
+              value={"2"}
+              label={dogNameFilter}
+              onClick={() => setIsTriggered(2)}
+            />
           </Radio.Group>
         </div>
+        <br></br>
 
-        <div>{isTriggered === 0 && <div></div>}</div>
+        <div className="pet-profile-create-option-area">
+          <div>{isTriggered === 0 && <div></div>}</div>
 
-        <div>
-          {isTriggered === 1 && (
-            <div>
-              <Controller name="firstName" control={control} render={({ field }) => <Select data={catSubSpeciesId} {...field} />} />
-            </div>
-          )}
+          <div>
+            {isTriggered === 1 && (
+              <div>
+                <Controller
+                  name="firstName"
+                  control={control}
+                  render={({ field }) => (
+                    <Select data={catSubSpeciesId} {...field} />
+                  )}
+                />
+              </div>
+            )}
+          </div>
+
+          <div>
+            {isTriggered === 2 && (
+              <div>
+                <Controller
+                  name="firstName"
+                  control={control}
+                  render={({ field }) => (
+                    <Select data={dogSubSpeciesId} {...field} />
+                  )}
+                />
+              </div>
+            )}
+          </div>
         </div>
-
-        <div>
-          {isTriggered === 2 && (
-            <div>
-              <Controller name="firstName" control={control} render={({ field }) => <Select data={dogSubSpeciesId} {...field} />} />
-            </div>
-          )}
-        </div>
+        <br></br>
 
         {/* <div>
           <label id="profileImg">
@@ -141,23 +220,49 @@ function CreatePetProfile() {
           </label>
         </div> */}
 
-        <ImageUploading value={images} onChange={onChange} dataURLKey="data_url">
-          {({ imageList, onImageUpload, onImageUpdate, onImageRemove, isDragging, dragProps }) => (
+        <ImageUploading
+          value={images}
+          onChange={onChange}
+          dataURLKey="data_url"
+        >
+          {({
+            imageList,
+            onImageUpload,
+            onImageUpdate,
+            onImageRemove,
+            isDragging,
+            dragProps,
+          }) => (
             // write your building UI
             <div className="upload__image-wrapper">
-              <button type="button" style={isDragging ? { color: "red" } : undefined} onClick={onImageUpload} {...dragProps}>
-                Click or Drop here
+              <button
+                type="button"
+                className="comment-edit-button"
+                style={isDragging ? { color: "red" } : undefined}
+                onClick={onImageUpload}
+                {...dragProps}
+              >
+                上傳寵物頭像
               </button>
 
               {imageList.map((image, index) => (
                 <div key={index} className="image-item">
                   <img src={image["data_url"]} alt="" width="100" />
+                  <br></br>
                   <div className="image-item__btn-wrapper">
-                    <button type="button" onClick={() => onImageUpdate(index)}>
-                      Update
+                    <button
+                      type="button"
+                      className="comment-image-update"
+                      onClick={() => onImageUpdate(index)}
+                    >
+                      <RxUpdate color="#F2968F" />
                     </button>
-                    <button type="button" onClick={() => onImageRemove(index)}>
-                      Remove
+                    <button
+                      type="button"
+                      className="comment-image-delete"
+                      onClick={() => onImageRemove(index)}
+                    >
+                      <AiOutlineDelete color="#F2968F" />
                     </button>
                   </div>
                 </div>
@@ -165,35 +270,10 @@ function CreatePetProfile() {
             </div>
           )}
         </ImageUploading>
+        <br></br>
 
         <div>
-          <label id="name">
-            name
-            <input type="text" {...register("name")} />
-          </label>
-        </div>
-
-        <div>
-          <label id="dateBirth">
-            date of birth
-            <input type="date" {...register("dateBirth")} />
-          </label>
-        </div>
-
-        <div></div>
-
-        <div>
-          <label id="gender">
-            gender
-            <input type="radio" value="Male" {...register("gender")} />
-            Male
-            <input type="radio" value="Female" {...register("gender")} />
-            Female
-          </label>
-        </div>
-
-        <div>
-          <input type="submit" value="submit" />
+          <input type="submit" value="提交" className="comment-submit" />
         </div>
       </form>
     </div>

@@ -7,10 +7,9 @@ body {
   color: #2b2b2e;
 }
 
-.comment-page{
-    height: 100vh;
+.comment-page {
+  height: 100vh;
 }
-
 
 .comment-button-area {
   display: flex;
@@ -24,7 +23,6 @@ body {
   border-radius: 15px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   margin: 3px;
-  
 }
 
 .comment-button-area > button:hover {
@@ -47,7 +45,6 @@ body {
   box-shadow: 0px 4px 16px rgba(0, 38, 82, 0.1);
   border-radius: 15px;
 }
-
 
 .comment-card {
   height: 100%;
@@ -91,8 +88,6 @@ body {
   font-size: 10px;
   margin-bottom: 10px;
 }
-
-
 
 .comment-detail > div {
   display: flex;
@@ -250,9 +245,9 @@ body {
 }
 
 .comment-create-form-second {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .comment-error-area {
@@ -275,6 +270,17 @@ body {
   outline: 1px#b74829;
 }
 
+.image-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} 
+
+.image-item__btn-wrapper {
+    display: flex;
+    justify-content: space-around
+}
+
 .image-item > img,
 .comment-edit-newImage,
 .comment-edit-oldImage {
@@ -283,9 +289,9 @@ body {
 }
 
 .comment-edit-form-second {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .comment-image-update {
@@ -307,7 +313,14 @@ body {
 
 .comment-edit-uploadDiv {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comment-edit-images-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #comment-edit-uploadImage {

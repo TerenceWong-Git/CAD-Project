@@ -182,14 +182,14 @@ function EditComment() {
               {images.CommentImg?.length > 0 &&
                 images.CommentImg?.map((image: any, index: any) => {
                   return (
-                    <div key={index}>
+                    <div className="comment-edit-images-area" key={index}>
                       <img
                         className="comment-edit-oldImage"
                         src={`${process.env.REACT_APP_BACKEND_URL}/upload/${image.name}`}
                         width="100"
                         alt=""
                       />
-                      <br></br>
+                    <br></br>
                       <button
                         type="button"
                         className="comment-image-delete"
@@ -227,14 +227,13 @@ function EditComment() {
               {updateFile.length > 0 &&
                 updateFile.map((image: any, index: any) => {
                   return (
-                    <div key={index}>
+                    <div  className="comment-edit-images-area" key={index}>
                       <img
                         className="comment-edit-newImage"
                         src={URL.createObjectURL(image)}
                         width="100"
                         alt=""
                       />
-                      <br></br>
                       <button
                         type="button"
                         className="comment-image-delete"
@@ -247,7 +246,7 @@ function EditComment() {
                 })}
             </div>
           </div>
-          <p></p>
+        <br></br>
 
           <div>
             <input type="submit" value="提交" className="comment-submit" />

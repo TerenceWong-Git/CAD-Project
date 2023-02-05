@@ -1,8 +1,14 @@
 @media only screen and (min-width: 821px) {
   .footer {
+    background-color: aliceblue;
     border: 2px solid rgb(255, 247, 0);
     height: 4%;
-    position: relative;
+    width: 821px;
+    position: fixed;
     bottom: 0;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 4vmin;
+    font-style: white !important;
   }
 }

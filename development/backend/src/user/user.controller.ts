@@ -21,4 +21,9 @@ export class UserController {
     console.log('result: ', result);
     return result;
   }
+
+  @Get('landing')
+  async getLanding() {
+    return await this.userService.getLanding();
+  }
 }

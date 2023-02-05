@@ -73,4 +73,19 @@ export class UserService {
     console.log('Register id from server: ', register.id);
     return register.id;
   }
+
+  async getLanding() {
+    const foundLanding = await this.prismaService.petImg.findMany({
+      where: { isPrivate: false },
+      select: {
+        tag: true,
+        name: true,
+        createdAt: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+    return foundLanding;
+  }
 }

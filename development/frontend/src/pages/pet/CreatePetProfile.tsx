@@ -2,10 +2,7 @@ import { Radio, Select } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-<<<<<<< HEAD
 import ImageUploading from "react-images-uploading";
-=======
->>>>>>> 40baf01190ba515a20a01f391dd216d5cb97e430
 
 // photo preview
 // update button + remove button
@@ -86,7 +83,6 @@ function CreatePetProfile() {
           formData.append("gender", data.gender);
           formData.append("speciesId", data.firstName);
           formData.append("dateBirth", data.dateBirth);
-<<<<<<< HEAD
           // formData.append("file",newFile);
 
           for (const img of newFile) {
@@ -94,12 +90,7 @@ function CreatePetProfile() {
             console.log(img)
           }
           
-          await fetch(`${path}/pet/addPet`, {
-=======
-          formData.append("file", data.file[0]);
-
           const res = await fetch(`${path}/pet/addPet`, {
->>>>>>> 40baf01190ba515a20a01f391dd216d5cb97e430
             method: "POST",
             headers: {
               Authorization: `Bearer ${jwt}`,

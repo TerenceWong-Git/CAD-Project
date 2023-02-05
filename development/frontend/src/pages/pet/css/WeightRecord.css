@@ -1,8 +1,19 @@
+.weight-body{
+    margin: 8vmin;
+    text-align: center;
+  }
+
 .weight-profile{
     display: flex;
-    justify-content: center;
-    flex-direction: column;
+    justify-content: space-evenly;
+    flex-direction: row;
 
+}
+.weight-pet-introduction{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* margin-left: 50px; */
 }
 .weight-pet-name,.weight-pet-age{
     font-size: 10vmin;

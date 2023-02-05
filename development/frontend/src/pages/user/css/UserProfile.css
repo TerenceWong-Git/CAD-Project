@@ -28,7 +28,7 @@
     color: black;
 }
 .pet-name,.pet-age{
-    font-size: 8vmin;
+    font-size: 6vmin;
     margin: 1vmin;
 }
 .add-pet{
@@ -50,10 +50,16 @@
     width: 100px;
     height: 100px;
 }
-.pet-icon{
+.user-pet-icon{
     border-radius: 50%;
     width: 100px;
     height: 100px;
+}
+.user-emtpy-pet-icon{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    background-color: gray;
 }
 .pet-image {
     display: flex;
@@ -71,3 +77,23 @@
     justify-content: space-between;
     align-items: flex-start; */
   }
+
+.pet-species-tag-container{
+    display: flex;
+}
+.pet-species-tag-chi{
+    background-color: #ffebcd;
+    font-size: 15px;
+    color: #9b8769;
+    border-radius: 30px;
+    height: 20px;
+    padding: 6px 14px 7px;
+}
+.pet-age{
+background-color: #e0cdff;
+border-radius: 30px;
+height: 8vmin;
+padding: 6px 14px 7px;
+color: #7c699b;
+width: 20vmin;
+}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Masonry from "react-masonry-css";
+import Header from "../components/Header";
 // import Footer from "../components/Footer";
 // import Header from "../components/Header";
 import "./LandingPage.css";
@@ -69,7 +70,7 @@ export default function LandingPage() {
   return (
     <>
       <div className="landingPageContainer">
-        <div className="header"></div>
+        <Header />
 
         <div className="abc">
           <InfiniteScroll

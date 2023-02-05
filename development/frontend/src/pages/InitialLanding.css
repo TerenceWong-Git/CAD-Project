@@ -1,24 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@1,400;1,700&display=swap");
+
 @media only screen and (min-width: 821px) {
-  .notyetLoginLandingContainer {
+  .initialLandingContainer {
     border: 2px solid black;
-    background: #f56575;
+    background: #df0054;
     border-radius: 25px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     overflow: hidden;
     height: 1080px;
     width: 820px;
   }
 
-  .notyetLoginLandingTextPart {
+  .initialLandingTitleArea {
+    /* border: 5px solid rgb(0, 0, 0); */
+    color: white;
+    /* font-family: "Josefin Sans", sans-serif; */
+    font-family: "Source Code Pro", monospace;
+    font-size: 10vmin;
+    position: relative;
+    top: 10%;
+    left: -17%;
+  }
+
+  .initialLandingSlogan {
+    color: rgb(255, 233, 178);
+    font-family: "Source Code Pro", monospace;
+    font-weight: bold;
+    font-size: 6vmin;
+    position: relative;
+    top: 15%;
+    left: 10%;
+  }
+
+  .initialLandingLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 20%;
+  }
+
+  .initialLandingLogin button {
+    background-color: rgb(255, 200, 81);
+    border: none;
+    color: white;
+    width: 25vmin;
+    height: 7vmin;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 46px;
+    font-family: "Source Code Pro", monospace;
+    font-size: 3vmin;
+    font-weight: 700;
+  }
+
+  .initialLandingovalArea {
     border: 2px solid rgb(255, 255, 255);
     height: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    top: 30%;
+    background: white;
+    position: relative;
+    width: 1000px;
+    height: 500px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
 
-    /* width: 900px;
-    height: 1200px;
-    border-radius: 50%; */
+  .initialLandingovalBackgroundImg {
+    border: 5px solid black;
+    display: flex;
+    justify-content: center;
+  }
+  .initialLandingovalBackgroundImg img {
+    width: 70%;
   }
 }

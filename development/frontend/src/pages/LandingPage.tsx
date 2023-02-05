@@ -19,7 +19,7 @@ export default function LandingPage() {
   const [initialPicture, setInitialPicture] = useState<any>([]);
 
   const [initialHasMore, setInitialHasMore] = useState(true);
-  const [indexA, setIndexA] = useState(9);
+  const [indexA, setIndexA] = useState(30);
 
   useEffect(() => {
     async function getLanding() {
@@ -27,7 +27,7 @@ export default function LandingPage() {
       const json = await res.json();
 
       setAllPicture(json);
-      setInitialPicture(json.slice(0, 9));
+      setInitialPicture(json.slice(0, 30));
     }
     getLanding();
   }, []);

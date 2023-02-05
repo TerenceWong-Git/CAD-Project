@@ -18,7 +18,7 @@ export default function InitialLanding() {
       </div>
       <div className="initialLandingovalArea">
         <div className="initialLandingovalBackgroundImg">
-          <img src={"/uploads/initialLandingImg.jpeg"} alt={""} />
+          <img src={"/uploads/initialLanding.jpeg"} alt={""} />
         </div>
       </div>
     </div>

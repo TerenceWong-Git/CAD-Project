@@ -139,109 +139,118 @@ function EditComment() {
           </div>
         </div>
 
-        <div>
-          <input type="radio" id="good" value="true" {...register("isThumb")} />
-          <label htmlFor="good">
-            <MdOutlineThumbUpOffAlt color="#5A5555" />
-            好評
-          </label>
-          <input type="radio" id="bad" value="false" {...register("isThumb")} />
-          <label htmlFor="bad">
-            <MdOutlineThumbDown color="#5A5555" />
-            差評
-          </label>
-        </div>
-        <br></br>
-
-        <div className="comment-edit-uploadDiv ">
-          <label htmlFor="comment-edit-uploadImage">
+        <div className="comment-edit-form-second">
+          <div>
             <input
-              id="comment-edit-uploadImage"
-              type="file"
-              multiple
-              accept="image/png , image/jpg, image/jpeg"
-              {...register("files")}
-              onChange={uploadFiles}
-            ></input>
-            <div className="comment-upload-button">
-              上載圖片
-            </div>
-          </label>
-
+              type="radio"
+              id="good"
+              value="true"
+              {...register("isThumb")}
+            />
+            <label htmlFor="good">
+              <MdOutlineThumbUpOffAlt color="#5A5555" />
+              好評
+            </label>
+            <input
+              type="radio"
+              id="bad"
+              value="false"
+              {...register("isThumb")}
+            />
+            <label htmlFor="bad">
+              <MdOutlineThumbDown color="#5A5555" />
+              差評
+            </label>
+          </div>
           <br></br>
-          <div className="comment-edit-images">
-            {images.CommentImg?.length > 0 &&
-              images.CommentImg?.map((image: any, index: any) => {
-                return (
-                  <div key={index}>
-                    <img
-                      className="comment-edit-oldImage"
-                      src={`${process.env.REACT_APP_BACKEND_URL}/upload/${image.name}`}
-                      width="100"
-                      alt=""
-                    />
+
+          <div className="comment-edit-uploadDiv ">
+            <label htmlFor="comment-edit-uploadImage">
+              <input
+                id="comment-edit-uploadImage"
+                type="file"
+                multiple
+                accept="image/png , image/jpg, image/jpeg"
+                {...register("files")}
+                onChange={uploadFiles}
+              ></input>
+              <div className="comment-upload-button">上載圖片</div>
+            </label>
+
+            <br></br>
+            <div className="comment-edit-images">
+              {images.CommentImg?.length > 0 &&
+                images.CommentImg?.map((image: any, index: any) => {
+                  return (
+                    <div className="comment-edit-images-area" key={index}>
+                      <img
+                        className="comment-edit-oldImage"
+                        src={`${process.env.REACT_APP_BACKEND_URL}/upload/${image.name}`}
+                        width="100"
+                        alt=""
+                      />
                     <br></br>
-                    <button
-                      type="button"
-                      className="comment-image-delete"
-                      onClick={async (data) => {
-                        const jwt = localStorage.getItem("token");
-                        const res = await fetch(
-                          `${process.env.REACT_APP_BACKEND_URL}/comment/deleteImg/${image.id}`,
-                          {
-                            method: "DELETE",
-                            headers: {
-                              Authorization: `Bearer ${jwt}`,
-                            },
-                          }
-                        );
-                        if (res.ok) {
+                      <button
+                        type="button"
+                        className="comment-image-delete"
+                        onClick={async (data) => {
                           const jwt = localStorage.getItem("token");
                           const res = await fetch(
-                            `${process.env.REACT_APP_BACKEND_URL}/comment/files/${commentId.id}`,
+                            `${process.env.REACT_APP_BACKEND_URL}/comment/deleteImg/${image.id}`,
                             {
+                              method: "DELETE",
                               headers: {
                                 Authorization: `Bearer ${jwt}`,
                               },
                             }
                           );
-                          const data = await res.json();
-                          setImages(data);
-                        }
-                      }}
-                    >
-                      <AiOutlineDelete color="#F2968F" />
-                    </button>
-                  </div>
-                );
-              })}
-            {updateFile.length > 0 &&
-              updateFile.map((image: any, index: any) => {
-                return (
-                  <div key={index}>
-                    <img
-                      className="comment-edit-newImage"
-                      src={URL.createObjectURL(image)}
-                      width="100"
-                      alt=""
-                    />
-                    <br></br>
-                    <button
-                      type="button"
-                      className="comment-image-delete"
-                      onClick={() => deleteUpdateFile(index)}
-                    >
-                      <AiOutlineDelete color="#F2968F" />
-                    </button>
-                  </div>
-                );
-              })}
+                          if (res.ok) {
+                            const jwt = localStorage.getItem("token");
+                            const res = await fetch(
+                              `${process.env.REACT_APP_BACKEND_URL}/comment/files/${commentId.id}`,
+                              {
+                                headers: {
+                                  Authorization: `Bearer ${jwt}`,
+                                },
+                              }
+                            );
+                            const data = await res.json();
+                            setImages(data);
+                          }
+                        }}
+                      >
+                        <AiOutlineDelete color="#F2968F" />
+                      </button>
+                    </div>
+                  );
+                })}
+              {updateFile.length > 0 &&
+                updateFile.map((image: any, index: any) => {
+                  return (
+                    <div  className="comment-edit-images-area" key={index}>
+                      <img
+                        className="comment-edit-newImage"
+                        src={URL.createObjectURL(image)}
+                        width="100"
+                        alt=""
+                      />
+                      <button
+                        type="button"
+                        className="comment-image-delete"
+                        onClick={() => deleteUpdateFile(index)}
+                      >
+                        <AiOutlineDelete color="#F2968F" />
+                      </button>
+                    </div>
+                  );
+                })}
+            </div>
           </div>
-        </div>
-        <p></p>
+        <br></br>
 
-        <div>
-          <input type="submit" value="提交" className="comment-submit" />
+          <div>
+            <input type="submit" value="提交" className="comment-submit" />
+          </div>
         </div>
       </form>
     </div>

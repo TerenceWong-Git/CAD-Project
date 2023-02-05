@@ -27,7 +27,7 @@ export default function App() {
       {/* <Route path="/" element={<PrivateRoute />}>
         </Route> */}
 
-      <Route path="/initialLanding" element={<InitialLanding />}></Route>
+      <Route path="/" element={<InitialLanding />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/register" element={<Register />}></Route>
 

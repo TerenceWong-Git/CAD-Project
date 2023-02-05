@@ -40,7 +40,7 @@ jobs:
       - name: Migrate database with prisma
         working-directory: backend
         run: |
-          yarn prisma generate && yarn migrate:dev && yarn seed:dev
+          yarn prisma generate && yarn migrate:dev && yarn seed:prod
       - name: Build project
         working-directory: backend
         run: |
@@ -151,4 +151,5 @@ jobs:
           AWS_DEFAULT_REGION: ${{ env.AWS_DEFAULT_REGION }}
         run: |
           aws s3 sync ./build s3://${{env.BUCKET_NAME}} --delete
-          aws cloudfront create-invalidation --distribution-id ${{env.CLOUDFRONT_DISTRIBUTION}} --paths "/*"
+
+# aws cloudfront create-invalidation --distribution-id ${{env.CLOUDFRONT_DISTRIBUTION}} --paths "/*"

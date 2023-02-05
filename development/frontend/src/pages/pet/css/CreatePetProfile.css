@@ -1,0 +1,26 @@
+.pet-profile-create-page {
+  height: 100vh;
+  margin: 5%;
+}
+
+.pet-profile-create-form {
+  background-color: white;
+  border-radius: 15px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pet-profile-create-option-area {
+  height: 40px;
+}
+
+.pet-profile-create-text {
+  border: 1px solid #c3a6a0;
+  border-radius: 8px;
+}
+
+.pet-profile-create-text:focus {
+    outline: #c3a6a0;
+}

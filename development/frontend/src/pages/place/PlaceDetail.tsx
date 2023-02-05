@@ -37,7 +37,10 @@ export default function PlaceDetail() {
     return item.isThumb === true;
   });
 
+  const countThumbAmount = checkIsThumb.filter((value: boolean) => value === true).length;
+
   console.log(checkIsThumb);
+  console.log("有幾多like啊: ", countThumbAmount);
   /////////////////////////////////   Render PlaceCard   /////////////////////////////////
 
   return (
@@ -49,6 +52,7 @@ export default function PlaceDetail() {
             <div>{thisPlaceItems.chiAddress}</div>
             <div>{thisPlaceItems.phoneNumber}</div>
             <div>{thisPlaceItems.district}</div>
+            <div>{"讚好數量: " + countThumbAmount}</div>
 
             <br></br>
             {workingHours.map((hour: any) => {
@@ -69,7 +73,7 @@ export default function PlaceDetail() {
                   <div>{"Content: " + comment.content}</div>
                   <div>{"Like?: " + comment.isThumb}</div>
                   {comment.CommentImg.length > 0 ? (
-                    <img height="100" width="100" src={`${process.env.REACT_APP_BACKEND_URL}/upload/${comment.CommentImg[0].name}`} alt="" />
+                    <img height="100" width="100" src={`${comment.CommentImg[0].name}`} alt="" />
                   ) : (
                     <div>No image</div>
                   )}

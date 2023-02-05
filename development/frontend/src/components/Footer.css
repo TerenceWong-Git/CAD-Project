@@ -1,8 +1,8 @@
 @media only screen and (min-width: 821px) {
   .footer {
     background-color: aliceblue;
-    border: 2px solid rgb(255, 247, 0);
-    height: 4%;
+    /* border: 2px solid rgb(255, 247, 0); */
+    height: 8%;
     width: 821px;
     position: fixed;
     bottom: 0;
@@ -11,4 +11,8 @@
     font-size: 4vmin;
     font-style: white !important;
   }
+}
+
+.footer {
+  height: 8vh;
 }

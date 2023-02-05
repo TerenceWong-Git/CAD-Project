@@ -3,6 +3,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Masonry from "react-masonry-css";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { tags } from "../components/pet/PetTag";
 // import Footer from "../components/Footer";
 // import Header from "../components/Header";
 import "./LandingPage.css";
@@ -36,19 +37,48 @@ export default function LandingPage() {
 
   const breakpointColumnsObj = {
     default: 3,
-    821: 2,
+    820: 2,
     290: 1,
   };
 
-  console.log("allPicture: ", allPicture);
-  console.log("item no: ", allPicture.length - initialPicture.length);
-  console.log(hasMore);
+  /////////////////////////////////////   Category   /////////////////////////////////////
+
+  const [filteredPicture, setFilteredPicture] = useState<any>([]);
+
+  function getTag(tag: any) {
+    landingTagFilter(tag);
+  }
+
+  const landingTagFilter = (tag: any) => {
+    const newItems = allPicture.filter((picture: any) => {
+      let tagName = picture.tag;
+      let filteredTag = tag;
+
+      return tagName === filteredTag;
+    });
+
+    setFilteredPicture(newItems);
+  };
+
+  console.log(filteredPicture);
+
+  /////////////////////////////////////   Category   /////////////////////////////////////
+
   return (
     <>
       <div className="landingPageContainer">
         <Header />
 
-        <div className="abc">
+        <div className="landingPageInfiniteScroll">
+          <div className="landingPageTags">
+            {tags.map((tag) => {
+              return (
+                <div key={tag.value}>
+                  <button onClick={() => getTag(tag.value)}>{tag.label}</button>
+                </div>
+              );
+            })}
+          </div>
           <InfiniteScroll
             dataLength={initialPicture.length}
             next={fetchData}

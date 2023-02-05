@@ -4,7 +4,7 @@
     border: 2px solid rgb(255, 0, 144);
     height: 4%;
     width: 821px;
-    position: relative;
+    position: fixed;
     top: 0;
   }
 

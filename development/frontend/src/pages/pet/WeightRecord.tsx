@@ -52,15 +52,17 @@ function WeightRecord() {
   };
   return (
     <div>
-      <div>
-        <h1>{pets.name}</h1>
+      <div className="weight-profile">
+      
+        <div className="weight-pet-name">{pets.name}</div>
+      
+      <div>{pets.dateBirth && <div className="weight-pet-age">{age(pets.dateBirth)}</div>}</div>
       </div>
-      <div>{pets.dateBirth && <h1>{age(pets.dateBirth)}</h1>}</div>
       <div>
         <div>record</div>
         {fiveRecord.length > 0 ? (
-          <div>
-            {fiveRecord.map((item: any, index: number) => (
+          <div className="weight-container">
+            {fiveRecord.map((item: any,index:number) => (
               <div key={index}>
                 <h2>{item.weight}</h2>
                 <h2>{item.createdAt.slice(0, 10)}</h2>

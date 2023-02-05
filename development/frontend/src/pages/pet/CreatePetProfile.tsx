@@ -2,13 +2,22 @@ import { Radio, Select } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
+<<<<<<< HEAD
+import ImageUploading from "react-images-uploading";
+=======
+>>>>>>> 40baf01190ba515a20a01f391dd216d5cb97e430
 
 // photo preview
 // update button + remove button
 function CreatePetProfile() {
   const path = process.env.REACT_APP_BACKEND_URL;
   const { register, handleSubmit, control, watch } = useForm();
-
+  const [images, setImages] = React.useState([]);
+  const onChange = (imageList: any, addUpdateIndex: any) => {
+    // data for submit
+    console.log(imageList, addUpdateIndex);
+    setImages(imageList);
+  };
   const navigate = useNavigate();
 
   const [loadPetSpecies, setLoadPetSpecies] = useState<any[]>([]);
@@ -63,6 +72,7 @@ function CreatePetProfile() {
 
   console.log("watch: ", watch());
   console.log("=================");
+  const newFile = images.map((item: any) => item.file);
 
   return (
     <div>
@@ -76,9 +86,20 @@ function CreatePetProfile() {
           formData.append("gender", data.gender);
           formData.append("speciesId", data.firstName);
           formData.append("dateBirth", data.dateBirth);
+<<<<<<< HEAD
+          // formData.append("file",newFile);
+
+          for (const img of newFile) {
+            formData.append("file", img);
+            console.log(img)
+          }
+          
+          await fetch(`${path}/pet/addPet`, {
+=======
           formData.append("file", data.file[0]);
 
           const res = await fetch(`${path}/pet/addPet`, {
+>>>>>>> 40baf01190ba515a20a01f391dd216d5cb97e430
             method: "POST",
             headers: {
               Authorization: `Bearer ${jwt}`,
@@ -122,12 +143,53 @@ function CreatePetProfile() {
           )}
         </div>
 
-        <div>
+        {/* <div>
           <label id="profileImg">
             profile img
             <input type="file" {...register("file")} />
           </label>
-        </div>
+        </div> */}
+
+<ImageUploading
+          value={images}
+          onChange={onChange}
+          dataURLKey="data_url"
+        >
+          {({
+            imageList,
+            onImageUpload,
+            onImageUpdate,
+            onImageRemove,
+            isDragging,
+            dragProps,
+          }) => (
+            // write your building UI
+            <div className="upload__image-wrapper">
+              <button
+                type="button"
+                style={isDragging ? { color: "red" } : undefined}
+                onClick={onImageUpload}
+                {...dragProps}
+              >
+                Click or Drop here
+              </button>
+              
+              {imageList.map((image, index) => (
+                <div key={index} className="image-item">
+                  <img src={image["data_url"]} alt="" width="100" />
+                  <div className="image-item__btn-wrapper">
+                    <button type="button" onClick={() => onImageUpdate(index)}>
+                      Update
+                    </button>
+                    <button type="button" onClick={() => onImageRemove(index)}>
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </ImageUploading>
 
         <div>
           <label id="name">

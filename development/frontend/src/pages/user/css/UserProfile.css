@@ -6,8 +6,10 @@
     margin: 4vmin;
 }
 .username{
+    width: 50vw;
     font-size: 10vmin;
     margin: 8vmin;
+    display: flex;
 }
 .pet-profile-container{
     display: flex;

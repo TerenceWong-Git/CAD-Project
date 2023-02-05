@@ -1,3 +1,12 @@
+.weight-profile{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+.weight-pet-name,.weight-pet-age{
+    font-size: 10vmin;
+}
 .toggleBox{
     width: 300px;
     height: 300px;
@@ -5,4 +14,8 @@
     border: 10px solid black;
     background-color: blue;
     
+}
+.weight-container{
+    border: 1px solid black;
+
 }

@@ -28,7 +28,8 @@ function CommentDetail() {
               <img
                 key={image.id}
                 className="comment-detail-image"
-                src={`${process.env.REACT_APP_BACKEND_URL}/upload/${image.name}`}
+                src={`${image.name}`}
+                // src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${image.name}`}
                 alt=""
               />
             </Carousel.Slide>

@@ -30,7 +30,8 @@ function UserComment() {
               <div className="comment-card">
                 <Link to={`/comments/commentDetail/${comment.id}`} style={{ color: "BLACK" }} className="comment-image">
                   {comment.CommentImg.length > 0 ? (
-                    <img src={`${process.env.REACT_APP_BACKEND_URL}/upload/${comment.CommentImg?.[0].name}`} alt="" />
+                    <img src={`${comment.CommentImg?.[0].name}`} alt="" />
+                    // <img src={`${REACT_APP_S3_UPLOAD_URL}/${comment.CommentImg?.[0].name}`} alt="" />
                   ) : (
                     <div className="comment-image">
                       <GiHollowCat size={70} />

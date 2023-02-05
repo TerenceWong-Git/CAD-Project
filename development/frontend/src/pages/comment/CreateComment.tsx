@@ -103,7 +103,7 @@ function CreateComment() {
                 type="text"
                 className="comment-form-text"
                 size={42}
-                {...register("title", { required: true })}
+                {...register("title", { required: true, maxLength: 50 })}
               ></input>
               <br></br>
               <div className="comment-error-area">
@@ -134,99 +134,101 @@ function CreateComment() {
           </div>
         </div>
 
-        <div>
-          <input
-            type="radio"
-            value="true"
-            id="good"
-            className="comment-form-radio"
-            {...register("isThumb", { required: true })}
-          />
-          <label htmlFor="good">
-            <MdOutlineThumbUpOffAlt color="#5A5555" />
-            好評
-          </label>
-          <input
-            type="radio"
-            value="false"
-            id="bad"
-            className="comment-form-radio"
-            {...register("isThumb")}
-          />
-          <label htmlFor="bad">
-            <MdOutlineThumbDown color="#5A5555" />
-            差評
-          </label>
-          <br></br>
-          <div className="comment-error-area">
-            {errors.isThumb && (
-              <span className="comment-error">請選擇其一選項</span>
-            )}
-          </div>
-        </div>
-
-        <ImageUploading
-          multiple
-          value={images}
-          onChange={onChange}
-          dataURLKey="data_url"
-        >
-          {({
-            imageList,
-            onImageUpload,
-            onImageRemoveAll,
-            onImageUpdate,
-            onImageRemove,
-            isDragging,
-            dragProps,
-          }) => (
-            // write your building UI
-            <div className="upload__image-wrapper">
-              <button
-                className="comment-edit-button"
-                type="button"
-                style={isDragging ? { color: "red" } : undefined}
-                onClick={onImageUpload}
-                {...dragProps}
-              >
-                上載圖片
-              </button>
-              &nbsp;
-              <button
-                className="comment-delete-button"
-                type="button"
-                onClick={onImageRemoveAll}
-              >
-                移除所有圖片
-              </button>
-              {imageList.map((image, index) => (
-                <div key={index} className="image-item">
-                  <img src={image["data_url"]} alt="" width="100" />
-                  <div className="image-item__btn-wrapper">
-                    <button
-                      className="comment-image-update"
-                      type="button"
-                      onClick={() => onImageUpdate(index)}
-                    >
-                      <RxUpdate color="#F2968F" />
-                    </button>
-                    <button
-                      className="comment-image-delete"
-                      type="button"
-                      onClick={() => onImageRemove(index)}
-                    >
-                      <AiOutlineDelete color="#F2968F" />
-                    </button>
-                  </div>
-                </div>
-              ))}
+        <div className="comment-create-form-second">
+          <div>
+            <input
+              type="radio"
+              value="true"
+              id="good"
+              className="comment-form-radio"
+              {...register("isThumb", { required: true })}
+            />
+            <label htmlFor="good">
+              <MdOutlineThumbUpOffAlt color="#5A5555" />
+              好評
+            </label>
+            <input
+              type="radio"
+              value="false"
+              id="bad"
+              className="comment-form-radio"
+              {...register("isThumb")}
+            />
+            <label htmlFor="bad">
+              <MdOutlineThumbDown color="#5A5555" />
+              差評
+            </label>
+            <br></br>
+            <div className="comment-error-area">
+              {errors.isThumb && (
+                <span className="comment-error">請選擇其一選項</span>
+              )}
             </div>
-          )}
-        </ImageUploading>
-        <p></p>
+          </div>
 
-        <div>
-          <input type="submit" value="提交" className="comment-submit" />
+          <ImageUploading
+            multiple
+            value={images}
+            onChange={onChange}
+            dataURLKey="data_url"
+          >
+            {({
+              imageList,
+              onImageUpload,
+              onImageRemoveAll,
+              onImageUpdate,
+              onImageRemove,
+              isDragging,
+              dragProps,
+            }) => (
+              // write your building UI
+              <div className="upload__image-wrapper">
+                <button
+                  className="comment-edit-button"
+                  type="button"
+                  style={isDragging ? { color: "red" } : undefined}
+                  onClick={onImageUpload}
+                  {...dragProps}
+                >
+                  上載圖片
+                </button>
+                &nbsp;
+                <button
+                  className="comment-delete-button"
+                  type="button"
+                  onClick={onImageRemoveAll}
+                >
+                  移除所有圖片
+                </button>
+                {imageList.map((image, index) => (
+                  <div key={index} className="image-item">
+                    <img src={image["data_url"]} alt="" width="100" />
+                    <div className="image-item__btn-wrapper">
+                      <button
+                        className="comment-image-update"
+                        type="button"
+                        onClick={() => onImageUpdate(index)}
+                      >
+                        <RxUpdate color="#F2968F" />
+                      </button>
+                      <button
+                        className="comment-image-delete"
+                        type="button"
+                        onClick={() => onImageRemove(index)}
+                      >
+                        <AiOutlineDelete color="#F2968F" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </ImageUploading>
+          <p></p>
+
+          <div>
+            <input type="submit" value="提交" className="comment-submit" />
+          </div>
         </div>
       </form>
     </div>

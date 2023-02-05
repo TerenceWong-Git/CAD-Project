@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import "./css/PetProfile.css";
-// import icon from "./IMG_8790.jpeg";
+import icon from "./IMG_8790.jpeg";
 
 function PetProfile() {
   const jwt = localStorage.getItem("token");
@@ -60,19 +60,19 @@ function PetProfile() {
     <>
       <div className="pet-card">
         <div>
-          {/* <img
+          <img
             className="pet-icon"
             width="300"
             height="300"
             src={icon}
             alt="icon"
-          /> */}
+          />
         </div>
-        <h1>{pets.name}</h1>
-        {pets.dateBirth ? <h1>{age(pets.dateBirth)}</h1> : <div></div>}
+        <div className="pet-introduction">
+          <div>{pets.name}</div>
+          {pets.dateBirth ? <div>{age(pets.dateBirth)}&nbsp;歲</div> : <div></div>}
+        </div>
       </div>
-      {/* <h1>{pets.name}</h1>
-      {pets.dateBirth && <h1>{age(pets.dateBirth)}</h1>} */}
 
       <div>
         <div className="pet-profile-container">

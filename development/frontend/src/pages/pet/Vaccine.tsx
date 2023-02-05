@@ -2,6 +2,9 @@ import { Button, Group, Modal } from '@mantine/core';
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router';
+import { ImFolderUpload} from "react-icons/im";
+import "./css/Vaccine.css";
+import icon from "./IMG_8790.jpeg";
 
 const path = process.env.REACT_APP_BACKEND_URL;
 
@@ -28,19 +31,26 @@ function Vaccine() {
   }, []);
   return (
     <div>
-      Vaccine
+      <div className='vaccine-tittle'>
+        針卡記錄
+      </div>
+      
 
       <div>
         {vaccine?.name}
-       {/* <img width="100" src={`${path}/S3條route`} /> */}
+       <img className="vaccine" width="300" height="300" src={icon} />
       </div>
 
+
+      
       <Modal
+          className='vaccine-upload-tille'
           opened={opened}
           onClose={() => setOpened(false)}
-          title="新增針卡">
+          >
           {
       <form
+        className='vaccine-upload-container'
         onSubmit={handleSubmit(async (data) => {
           const formData = new FormData();
           formData.append("file", data.file[0]);
@@ -57,21 +67,23 @@ function Vaccine() {
       }
         })}
         >
-        <div>
+        <div >
           <label id="file">
-            upload photo
-            <input type="file" {...register("file")} />
+            <input style={{display:'none'}} type="file" {...register("file")} />
+            <div className='folderupload'>
+            <ImFolderUpload/>上載針卡</div>
           </label>
         </div>
 
         <div>
-          <input type="submit" value="submit" />
+          <Button type="submit" value="submit" className='upload-vaccine-button'>加入針卡</Button>
         </div>
       </form>
     }
         </Modal>
+        
         <Group position="center">
-          <Button onClick={() => setOpened(true)}>新增針卡</Button>
+          <Button className='add-vaccine-button' onClick={() => setOpened(true)}>新增針卡</Button>
         </Group>
     </div>
   )

@@ -4,6 +4,8 @@ import "../comment/css/Comment.css";
 import { BiUser } from "react-icons/bi";
 import { GiHollowCat } from "react-icons/gi";
 import { MdOutlineThumbUpOffAlt, MdOutlineThumbDown } from "react-icons/md";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
 
 function CommentPage() {
   const [comments, setComments] = useState<any[]>([]);
@@ -34,6 +36,7 @@ function CommentPage() {
 
   return (
     <div className="comment-page">
+       <Header />
       <div className="comment-button-area">
         <button>
           <Link to={"createComment"} style={{ color: "#FCFCFC" }}>
@@ -74,7 +77,8 @@ function CommentPage() {
               {comment.CommentImg.length > 0 ? (
                 <div className="comment-image">
                   <img
-                    src={`${process.env.REACT_APP_BACKEND_URL}/upload/${comment.CommentImg?.[0].name}`}
+                    src={`${comment.CommentImg?.[0].name}`}
+                    // src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${comment.CommentImg?.[0].name}`}
                     alt=""
                   />
                 </div>
@@ -84,22 +88,22 @@ function CommentPage() {
                 </div>
               )}
               <div className="comment-detail">
-                <div>{comment.title}</div>
-                <div>
+                <div className="comment-detail-first">{comment.title}</div>
+                <div className="comment-detail-second">
                   {comment.isThumb ? (
-                    <span>
+                    <span className="comment-detail-second-map">
                       <MdOutlineThumbUpOffAlt />
                       &nbsp;
                       {comment.map.chiName}
                     </span>
                   ) : (
-                    <span>
+                    <span className="comment-detail-second-map">
                       <MdOutlineThumbDown />
                       &nbsp;
                       {comment.map.chiName}
                     </span>
                   )}
-                  <span>
+                  <span className="comment-detail-second-username">
                     <BiUser />
                     &nbsp;
                     {comment.user.username}
@@ -110,6 +114,7 @@ function CommentPage() {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 }

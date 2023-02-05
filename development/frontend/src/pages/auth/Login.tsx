@@ -37,7 +37,7 @@ export default function Login() {
         <TextInput id="email" label="Email" placeholder="Email" withAsterisk mt="md" {...form.getInputProps("email")} />
         {/* <TextInput id="username" label="Username" placeholder="Username" withAsterisk mt="md" {...form.getInputProps("username")} /> */}
         {/* <TextInput id="password" label="Password" placeholder="Password" withAsterisk mt="md" {...form.getInputProps("password")} /> */}
-        <PasswordInput error="Invalid password" />
+        <PasswordInput placeholder="Password" label="Password" withAsterisk {...form.getInputProps("password")} />
 
         <Group position="right" mt="md">
           <Button type="submit">Submit</Button>

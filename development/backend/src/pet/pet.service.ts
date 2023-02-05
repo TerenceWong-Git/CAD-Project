@@ -12,6 +12,7 @@ export class PetService {
     const foundPet = await this.prismaService.user.findUnique({
       where: { id: Id },
       select: {
+        // userIcon: true,
         username: true,
       },
     });

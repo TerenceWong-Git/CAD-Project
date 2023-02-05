@@ -3,7 +3,7 @@ import "./css/WeightRecord.css";
 import { Modal, Button, Group } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router";
-import icon from "../../uploads/IMG_8790.jpeg";
+import icon from "../../assets/img_8790.jpeg";
 
 // 寫翻fail情況提示  -> 最多6位(連小數)
 function WeightRecord() {
@@ -58,27 +58,22 @@ function WeightRecord() {
   return (
     <div className="weight-body">
       <div className="weight-profile">
-          {pets.profileImg ? (
-            <img
-              className="pet-icon"
-              width="300"
-              height="300"
-              src={icon}
-              // src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${pets.profileImg}`}
-              alt={pets.id}
-            />
-          ) : (
-            <div className="emtpy-pet-icon"></div>
-          )}
-        
+        {pets.profileImg ? (
+          <img
+            className="pet-icon"
+            width="300"
+            height="300"
+            src={icon}
+            // src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${pets.profileImg}`}
+            alt={pets.id}
+          />
+        ) : (
+          <div className="emtpy-pet-icon"></div>
+        )}
 
         <div className="weight-pet-introduction">
           <div className="weight-pet-name">{pets.name}</div>
-          {pets.dateBirth ? (
-            <div className="weight-pet-age">{age(pets.dateBirth)}&nbsp;歲</div>
-          ) : (
-            <div></div>
-          )}
+          {pets.dateBirth ? <div className="weight-pet-age">{age(pets.dateBirth)}&nbsp;歲</div> : <div></div>}
         </div>
       </div>
 
@@ -87,7 +82,7 @@ function WeightRecord() {
         {fiveRecord.length > 0 ? (
           <div>
             {fiveRecord.map((item: any, index: number) => (
-              <div key={index} >
+              <div key={index}>
                 <h2>{item.weight}</h2>
                 <h2>{item.createdAt.slice(0, 10)}</h2>
               </div>
@@ -100,10 +95,7 @@ function WeightRecord() {
       <div>
         {/* <button onClick={inputWeight}>+</button>
             {isLoading && <div className='toggleBox'>輸入體重</div>} */}
-        <Modal
-          opened={opened}
-          onClose={() => setOpened(false)}
-          title="輸入體重">
+        <Modal opened={opened} onClose={() => setOpened(false)} title="輸入體重">
           {
             <form
               onSubmit={handleSubmit(async (data) => {
@@ -117,15 +109,9 @@ function WeightRecord() {
                 });
 
                 if (res.ok) {
-                  const getRes = await fetch(
-                    `${path}/pet/petProfile/${petId.id}`,
-                    { headers: { Authorization: `Bearer ${jwt}` } }
-                  );
+                  const getRes = await fetch(`${path}/pet/petProfile/${petId.id}`, { headers: { Authorization: `Bearer ${jwt}` } });
                   const json = await getRes.json();
-                  const getRes2 = await fetch(
-                    `${path}/pet/petWeight/${petId.id}`,
-                    { headers: { Authorization: `Bearer ${jwt}` } }
-                  );
+                  const getRes2 = await fetch(`${path}/pet/petWeight/${petId.id}`, { headers: { Authorization: `Bearer ${jwt}` } });
                   const json2 = await getRes2.json();
 
                   setPets(json[0]);
@@ -133,7 +119,8 @@ function WeightRecord() {
                   setOpened(false);
                 }
                 console.log(pets.PetWeight);
-              })}>
+              })}
+            >
               <label>
                 weight
                 <input type="text" {...register("weight")} />

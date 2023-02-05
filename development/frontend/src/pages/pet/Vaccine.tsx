@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 import { ImFolderUpload } from "react-icons/im";
 import "./css/Vaccine.css";
-import icon from "../../uploads/IMG_8790.jpeg";
+import icon from "../../assets/img_8790.jpeg";
 
 const path = process.env.REACT_APP_BACKEND_URL;
 

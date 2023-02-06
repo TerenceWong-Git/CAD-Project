@@ -5,20 +5,23 @@ import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class S3uploadService {
-  async upload(file) {
-    const { originalname } = file;
+  async upload(file, filename) {
     const bucketS3 = process.env.S3_BUCKET;
-    await this.uploadS3(file.buffer, bucketS3, originalname);
+    console.log('running upload');
+    console.log('file: ', file);
+
+    await this.uploadS3(file.buffer, bucketS3, filename);
   }
 
   async uploadS3(file, bucket, name) {
     const s3 = this.getS3();
     const params = {
       Bucket: bucket,
-      // Key: String(name),
-      Key: `${uuid()}${extname(name)}`,
+      Key: String(name),
       Body: file,
     };
+    console.log('params: ', params);
+
     return new Promise((resolve, reject) => {
       s3.upload(params, (err, data) => {
         if (err) {

@@ -68,7 +68,7 @@ function UserProfile() {
           </div>
           {/* <div className="user-icon">{name.userIcon}</div> */}
           <div className="username">
-          <RiUser3Line/> &nbsp;
+            <RiUser3Line /> &nbsp;
             {name.username}
           </div>
         </div>
@@ -86,8 +86,8 @@ function UserProfile() {
                       className="user-pet-icon"
                       width="300"
                       height="300"
-                      src={icon}
-                      // src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${pet.profileImg}`}
+                      // src={icon}
+                      src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${pet.profileImg}`}
                       alt={pet.id}
                     />
                   ) : (
@@ -110,9 +110,7 @@ function UserProfile() {
                     <div className="pet-species-tag-chi">
                       {pet.species.chiSpecies}
                     </div>
-                    <div className="pet-tag-gender">
-                      {pet.gender}
-                    </div>
+                    <div className="pet-tag-gender">{pet.gender}</div>
                   </div>
                 </div>
               </div>

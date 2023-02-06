@@ -58,8 +58,10 @@
       border-radius: 30px;
 
   }
+  .mantine-rqmd87 {
+    border-radius: 30px;
   }
-
+}
 /* -----------------------------  Pad Ver. ----------------------------- */
 @media only screen and (min-width: 821px) {
 
@@ -124,6 +126,9 @@
       border-radius: 30px;
   }
 
+  .mantine-rqmd87 {
+    border-radius: 30px;
+  }
 
 
 }

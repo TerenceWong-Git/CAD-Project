@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Masonry from "react-masonry-css";
+import DefaultHeader from "../components/DefaultHeader";
 import Footer from "../components/Footer";
-import Header from "../components/Header";
 import { tags } from "../components/pet/PetTag";
 // import Footer from "../components/Footer";
 // import Header from "../components/Header";
@@ -97,7 +97,7 @@ export default function LandingPage() {
   return (
     <>
       <div className="landingPageContainer">
-        <Header />
+        <DefaultHeader />
 
         <div className="landingPageInfiniteScroll">
           <div className="landingPageTags">

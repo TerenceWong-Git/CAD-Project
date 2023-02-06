@@ -1,25 +1,16 @@
 @media only screen and (min-width: 821px) {
-  .header {
+  .headerDefault {
     /* border: 2px solid rgb(255, 0, 144); */
     background-color: rgb(128, 196, 255);
     height: 7vh;
     width: 821px;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     top: 0;
   }
 
-  .previousPage {
-    /* border: 2px solid rgb(68, 19, 47); */
-    font-size: 4vmin;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 2vw;
-    margin-right: 41vw;
-  }
-
-  .logOut {
+  .logOutDefault {
     /* border: 2px solid rgb(68, 19, 47); */
     display: flex;
     justify-content: space-around;
@@ -27,7 +18,7 @@
     width: 8vw;
   }
 
-  .logoutCard {
+  .logoutCardDefault {
     background-color: aliceblue;
     border: 2px solid rgb(0, 0, 0);
     border-radius: 15px;
@@ -45,7 +36,7 @@
 /* ----------------------------- Laptop Ver. ----------------------------- */
 
 @media only screen and (max-width: 820px) {
-  .header {
+  .headerDefault {
     /* border: 2px solid rgb(255, 0, 144); */
     background-color: rgb(128, 196, 255);
     height: 5vh;
@@ -56,24 +47,14 @@
     top: 0;
   }
 
-  .previousPage {
-    /* border: 2px solid rgb(68, 19, 47); */
-    font-size: 4vmin;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 2vw;
-    margin-right: 41vw;
-  }
-
-  .logOut {
+  .logOutDefault {
     /* border: 2px solid rgb(68, 19, 47); */
     display: flex;
     justify-content: flex-end;
     font-size: 3vmax;
   }
 
-  .logoutCard {
+  .logoutCardDefault {
     background-color: aliceblue;
     border: 2px solid rgb(0, 0, 0);
     border-radius: 15px;
@@ -91,7 +72,7 @@
 /* -----------------------------  Phone Ver. ----------------------------- */
 
 @media only screen and (max-width: 767px) {
-  .header {
+  .headerDefault {
     /* border: 2px solid rgb(255, 0, 144); */
     background-color: rgb(128, 196, 255);
     height: 6vh;
@@ -102,24 +83,14 @@
     top: 0;
   }
 
-  .previousPage {
-    /* border: 2px solid rgb(68, 19, 47); */
-    font-size: 4vmin;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 2vw;
-    margin-right: 41vw;
-  }
-
-  .logOut {
+  .logOutDefault {
     /* border: 2px solid rgb(68, 19, 47); */
     display: flex;
     justify-content: flex-end;
     font-size: 3vmax;
   }
 
-  .logoutCard {
+  .logoutCardDefault {
     background-color: aliceblue;
     border: 2px solid rgb(0, 0, 0);
     border-radius: 15px;

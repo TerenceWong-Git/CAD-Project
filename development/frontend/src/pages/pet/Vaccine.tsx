@@ -38,10 +38,11 @@ function VaccinePage() {
         <div className="vaccine-tittle">針卡記錄</div>
 
         <div>
-          {vaccine?.name}
+          {/* {vaccine?.name} */}
           <img className="vaccine" width="300" height="300" src={icon} alt={""} />
         </div>
-        <Modal opened={opened} onClose={() => setOpened(false)} title="新增針卡">
+        {/* <Modal opened={opened} onClose={() => setOpened(false)} title="新增針卡" overlayOpacity={0.3}
+      overlayBlur={1}>
           {
             <form
               onSubmit={handleSubmit(async (data) => {
@@ -68,9 +69,10 @@ function VaccinePage() {
               </div>
             </form>
           }
-        </Modal>
+        </Modal> */}
 
-        <Modal className="vaccine-upload-tille" opened={opened} onClose={() => setOpened(false)}>
+        <Modal centered className="vaccine-upload-tille" opened={opened} overlayOpacity={0.55}
+      overlayBlur={1} onClose={() => setOpened(false)}>
           {
             <form
               className="vaccine-upload-container"

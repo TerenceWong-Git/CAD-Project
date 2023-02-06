@@ -1,19 +1,24 @@
 .vaccine-body{
-  margin: 8vmin;
   text-align: center;
 }
+
 .vaccine-tittle {
-  margin: 4vmin;
-  font-size: 10vmin;
+  margin: 2%;
+  font-size: 6vmin;
+  font-weight: 300;
 }
+
 .vaccine {
-  border: 10px solid #f2968f;
-  border-radius: 10px;
+  border: 2px solid #f0dcda;
+  border-radius: 20px;
 }
+
 .add-vaccine-button {
   background: #e4655c;
   margin: 5vmin;
+  border-radius: 25px;
 }
+
 .vaccine-upload-container {
     text-align: center; 
     height: 20vh;
@@ -21,20 +26,26 @@
 .vaccine-upload-tille {
   font-size: 8vmin;
 }
+
 .mantine-121w2fi {
   margin-left: 90px;
 }
-.folderupload{
-    font-size: 10vmin;
+
+.vaccine-folderupload{
+    font-size: 6vmin;
     width: 80vw;
+    height: 4vh;
     /* border: 5px solid black; */
     background-color: #e0cdff;
     color: #7c699b;
+    border-radius: 30px;
 }
+
 .upload-vaccine-button{
     font-size: 5vmin;
     width: 30vw;
     height: 4vh;
     margin-top: 5vmin;
-    background: #e4655c;
+    background: #f2968f;
+    border-radius: 30px;
 }

@@ -101,16 +101,18 @@ export default function LandingPage() {
 
         <div className="landingPageInfiniteScroll">
           <div className="landingPageTags">
-            <div>
+            <div className="allButtonInLanding" style={{ marginLeft: "1vw", marginRight: "2vw" }}>
               <button onClick={() => clearTag()}>All</button>
             </div>
-            {tags.map((tag) => {
-              return (
-                <div key={tag.value}>
-                  <button onClick={() => getTag(tag.value)}>{tag.label}</button>
-                </div>
-              );
-            })}
+            <div className="tagButtonInLanding">
+              {tags.map((tag) => {
+                return (
+                  <div key={tag.value}>
+                    <button onClick={() => getTag(tag.value)}>{tag.label}</button>
+                  </div>
+                );
+              })}
+            </div>
           </div>
           {isFiltered ? (
             <InfiniteScroll

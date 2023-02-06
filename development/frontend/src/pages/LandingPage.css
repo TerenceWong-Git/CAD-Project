@@ -16,11 +16,27 @@
 
   .landingPageTags {
     background-color: azure;
+    height: 7vh;
     display: flex;
-    justify-content: center;
+    align-items: center;
     position: sticky;
     top: 0;
     z-index: 1;
+  }
+
+  .landingPageTags button {
+    border: none;
+    border-radius: 100px;
+    height: 5.5vh;
+    width: 4.5vw;
+  }
+
+  .tagButtonInLanding {
+    display: flex;
+  }
+
+  .tagButtonInLanding button {
+    margin-right: 0.65vw;
   }
 
   .my-masonry-grid {
@@ -54,8 +70,8 @@
   }
 
   .landingPageInfiniteScroll {
-    border: 1px solid rgb(0, 0, 0);
-    height: 90vh;
+    /* border: 1px solid rgb(0, 0, 0); */
+    height: 100vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -63,11 +79,35 @@
 
   .landingPageTags {
     background-color: azure;
+    height: 7vh;
+    padding: 0.5vh;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
-    z-index: 1;
+  }
+
+  .landingPageTags button {
+    border: none;
+    border-radius: 100px;
+    font-size: 2vmax;
+  }
+
+  .tagButtonInLanding {
+    display: flex;
+    overflow: scroll;
+  }
+
+  .allButtonInLanding button {
+    height: 5.5vh;
+    width: 7vmax;
+  }
+
+  .tagButtonInLanding button {
+    height: 5.5vh;
+    width: 11vmax;
+    margin-right: 2vw;
   }
 
   .my-masonry-grid {
@@ -85,7 +125,79 @@
   .my-masonry-grid_column img {
     width: 95%;
     margin-top: 3vmin;
-    margin-left: 1vmin;
+    margin-left: 1.5vmin;
+    border-radius: 10px;
+  }
+}
+
+/* -----------------------------  Phone Ver. ----------------------------- */
+
+@media only screen and (max-width: 767px) {
+  .landingPageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 3px solid rgb(255, 208, 0); */
+  }
+
+  .landingPageInfiniteScroll {
+    /* border: 1px solid rgb(0, 0, 0); */
+    height: 90vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .landingPageTags {
+    background-color: azure;
+    height: 7vh;
+    padding: 0.5vh;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  .landingPageTags button {
+    border: none;
+    border-radius: 100px;
+    font-size: 2vmax;
+  }
+
+  .tagButtonInLanding {
+    display: flex;
+    overflow: scroll;
+  }
+
+  .allButtonInLanding button {
+    height: 4vh;
+    width: 7vmax;
+  }
+
+  .tagButtonInLanding button {
+    overflow: scroll;
+    height: 4vh;
+    width: 11vmax;
+    margin-right: 2vw;
+  }
+
+  .my-masonry-grid {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .my-masonry-grid_column {
+    /* background-clip: padding-box; */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .my-masonry-grid_column img {
+    width: 95%;
+    margin-top: 3vmin;
+    margin-left: 1.5vmin;
     border-radius: 10px;
   }
 }

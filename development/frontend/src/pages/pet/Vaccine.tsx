@@ -1,11 +1,10 @@
 import { Button, Group, Modal } from "@mantine/core";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import { ImFolderUpload } from "react-icons/im";
 import "./css/Vaccine.css";
 import icon from "../../assets/img_8790.jpeg";
-import { log } from "console";
 
 const path = process.env.REACT_APP_BACKEND_URL;
 
@@ -29,14 +28,14 @@ function VaccinePage() {
     }
     loadData();
   }, []);
-  
+
   return (
     <div className="vaccine-body">
       <div className="vaccine-tittle">針卡記錄</div>
 
       <div>
         {vaccine?.name}
-        <img className="vaccine" width="300" height="300" src={icon} />
+        <img className="vaccine" width="300" height="300" src={icon} alt={""} />
       </div>
       <Modal opened={opened} onClose={() => setOpened(false)} title="新增針卡">
         {
@@ -79,7 +78,7 @@ function VaccinePage() {
                 body: formData,
               });
               console.log(res);
-              console.log(vaccine)
+              console.log(vaccine);
               if (res.status === 201) {
                 const getRes = await fetch(`${path}/pet/vaccine/${petId.id}`, { headers: { Authorization: `Bearer ${jwt}` } });
                 const json = await getRes.json();

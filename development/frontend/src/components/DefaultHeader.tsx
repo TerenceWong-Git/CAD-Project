@@ -1,6 +1,5 @@
 import "./DefaultHeader.css";
 import { useNavigate } from "react-router";
-import { GrFormPrevious } from "react-icons/gr";
 import { MdPets } from "react-icons/md";
 import { useState } from "react";
 import { RxExit } from "react-icons/rx";

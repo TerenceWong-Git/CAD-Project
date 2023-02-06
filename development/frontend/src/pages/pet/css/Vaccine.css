@@ -1,3 +1,66 @@
+/* -----------------------------  Phone Ver. ----------------------------- */
+
+@media only screen and (max-width: 820px) {
+
+  .vaccine-body{
+    text-align: center;
+  }
+  
+  .vaccine-tittle {
+    margin: 2%;
+    font-size: 6vmin;
+    font-weight: 300;
+  }
+  
+  .vaccine {
+    margin-top: 5%;
+    border: 2px solid #f0dcda;
+    border-radius: 20px;
+  }
+  
+  .add-vaccine-button {
+    background: #f2968f;
+    margin: 5vmin;
+    border-radius: 25px;
+  }
+  
+  .vaccine-upload-container {
+      text-align: center; 
+      height: 20vh;
+  }
+  .vaccine-upload-tille {
+    font-size: 8vmin;
+    /* width: 85vw; */
+  }
+  
+  .mantine-121w2fi {
+    margin-left: 90px;
+  }
+  
+  .vaccine-folderupload{
+    padding-top: 2%;
+      font-size: 6vmin;
+      width: 50vw;
+      height: 10vw;
+      /* border: 5px solid black; */
+      background-color: #e0cdff;
+      color: #7c699b;
+      border-radius: 30px;
+      margin-left: 15vw;
+  }
+  
+  .upload-vaccine-button{
+      font-size: 5vmin;
+      width: 30vw;
+      height: 10vw;
+      margin-top: 2vmin;
+      background: #f2968f;
+      border-radius: 30px;
+
+  }
+  }
+
+/* -----------------------------  Pad Ver. ----------------------------- */
 @media only screen and (min-width: 821px) {
 
 
@@ -12,6 +75,7 @@
   }
   
   .vaccine {
+    margin-top: 5%;
     border: 2px solid #f0dcda;
     border-radius: 20px;
     width: 80vw;
@@ -19,9 +83,10 @@
   }
   
   .add-vaccine-button {
-    background: #e4655c;
+    background: #f2968f;
     margin: 5vmin;
     border-radius: 25px;
+    
   }
   
   .vaccine-upload-container {
@@ -46,15 +111,15 @@
       background-color: #e0cdff;
       color: #7c699b;
       border-radius: 30px;
-      padding-top: 6px;
-      margin-left: 50px;
+      padding-top: 2%;
+      margin-left: 8vw;
   }
   
   .upload-vaccine-button{
       font-size: 5vmin;
       width: 30vw;
-      height: 4vh;
-      margin-top: 5vmin;
+      height: 8vw;
+      margin-top: 2vmin;
       background: #f2968f;
       border-radius: 30px;
   }
@@ -65,88 +130,3 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* -----------------------------  Phone Ver. ----------------------------- */
-
-@media only screen and (max-width: 820px) {
-
-.vaccine-body{
-  text-align: center;
-}
-
-.vaccine-tittle {
-  margin: 2%;
-  font-size: 6vmin;
-  font-weight: 300;
-}
-
-.vaccine {
-  border: 2px solid #f0dcda;
-  border-radius: 20px;
-}
-
-.add-vaccine-button {
-  background: #e4655c;
-  margin: 5vmin;
-  border-radius: 25px;
-}
-
-.vaccine-upload-container {
-    text-align: center; 
-    height: 20vh;
-}
-.vaccine-upload-tille {
-  font-size: 8vmin;
-}
-
-.mantine-121w2fi {
-  margin-left: 90px;
-}
-
-.vaccine-folderupload{
-    font-size: 6vmin;
-    height: 4vh;
-    /* border: 5px solid black; */
-    background-color: #e0cdff;
-    color: #7c699b;
-    border-radius: 30px;
-}
-
-.upload-vaccine-button{
-    font-size: 5vmin;
-    width: 30vw;
-    height: 4vh;
-    margin-top: 5vmin;
-    background: #f2968f;
-    border-radius: 30px;
-}
-}

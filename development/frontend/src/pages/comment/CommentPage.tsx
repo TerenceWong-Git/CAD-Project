@@ -69,8 +69,8 @@ function CommentPage() {
               {comment.CommentImg.length > 0 ? (
                 <div className="comment-image">
                   <img
-                    src={`${comment.CommentImg?.[0].name}`}
-                    // src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${comment.CommentImg?.[0].name}`}
+                    // src={`${comment.CommentImg?.[0].name}`}
+                    src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${comment.CommentImg?.[0].name}`}
                     alt=""
                   />
                 </div>

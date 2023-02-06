@@ -10,6 +10,7 @@
   display: flex;
   justify-content: center;
   height: 5vh;
+  margin: 1%;
 }
 
 .comment-button-area > button {
@@ -82,6 +83,7 @@
 .comment-detail-second {
   font-size: 10px;
   margin-bottom: 10px;
+  font-weight: 300;
 }
 
 .comment-detail > div {
@@ -93,7 +95,7 @@
 
 .comment-detail > div:nth-child(1) {
   padding: 8px 0;
-  font-weight: bold;
+  font-weight: 400;
 }
 
 .comment-detail-user {
@@ -121,7 +123,7 @@
 .comment-edit-button {
   background-color: #e0cdff;
   color: #7c699b;
-  border-radius: 6px;
+  border-radius: 10px;
   border: none;
   margin: 2px;
 }
@@ -129,7 +131,7 @@
 .comment-delete-button {
   background-color: #ffcdd6;
   color: #9b6972;
-  border-radius: 6px;
+  border-radius: 10px;
   border: none;
   margin: 2px;
 }
@@ -331,4 +333,43 @@
   padding: 6px 14px 7px;
   gap: 10px;
   margin-bottom: 10px;
+}
+
+@media only screen and (min-width: 500px) {
+  .comment-body{
+    width: 100vw;
+  }
+  .comment-button-area > button {
+    width: 9vw;
+    height: 4vh;
+  }
+
+  .comment-card-container {
+    width: 85vw;
+    height: 22vh;
+  }
+
+  .comment-detail{
+    padding: 2vw;
+  }
+
+  .comment-detail-first {
+    font-size: 3vmin;
+  }
+
+  .comment-detail-second {
+    font-size: 2.5vmin;
+  }
+
+  .comment-detail-user{
+    margin: 2%;
+  }
+
+  .comment-detail-div{
+    font-size: 3vmin;
+  }
+
+  .comment-detail-button-font{
+    font-size: 3vmin;
+  }
 }

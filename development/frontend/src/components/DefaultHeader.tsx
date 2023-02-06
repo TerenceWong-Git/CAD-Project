@@ -25,7 +25,6 @@ export default function Header() {
     <>
       <div className="headerDefault">
         <div className="logOutDefault">
-          Name
           <div onClick={trigger}>
             <MdPets />
           </div>

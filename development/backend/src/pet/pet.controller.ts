@@ -77,7 +77,6 @@ export class PetController {
     @Param('id', ParseIntPipe) petId: number,
     @GetUser('id') userId: number,
   ) {
-    console.log('getVaccine');
     const res = await this.petService.getVaccine(petId, userId);
     return res;
   }

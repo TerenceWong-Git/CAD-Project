@@ -29,7 +29,6 @@ export default function Header() {
           <GrFormPrevious />
         </div>
         <div className="logOut">
-          Name
           <div onClick={trigger}>
             <MdPets />
           </div>

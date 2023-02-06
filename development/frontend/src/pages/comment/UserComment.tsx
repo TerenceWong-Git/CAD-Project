@@ -64,7 +64,7 @@ function UserComment() {
                         to={`/comments/editComment/${comment.id}`}
                         style={{ color: "#7C699B" }}
                       >
-                        修改
+                        <span className="comment-detail-button-font">修改</span>
                       </Link>
                     </button>&nbsp;&nbsp;
                     <button
@@ -89,7 +89,7 @@ function UserComment() {
                         }
                       }}
                     >
-                      刪除
+                      <span className="comment-detail-button-font">刪除</span>
                     </button>
                   </div>
                 </div>

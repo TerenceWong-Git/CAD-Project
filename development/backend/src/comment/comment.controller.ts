@@ -90,11 +90,17 @@ export class CommentController {
     @Body() commentDto: UpdateCommentDto,
     @UploadedFiles() files: Express.Multer.File[],
   ) {
+    const arrayOfFileNames = [];
+    for (const file of files) {
+      const filename = `${uuid()}${extname(file.originalname)}`;
+      arrayOfFileNames.push(filename);
+      await this.s3uploadService.upload(file, filename);
+    }
     return await this.commentService.editCommentById(
       userId,
       commentId,
       commentDto,
-      files,
+      arrayOfFileNames,
     );
   }
 

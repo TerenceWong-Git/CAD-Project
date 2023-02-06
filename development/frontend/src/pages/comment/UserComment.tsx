@@ -10,11 +10,14 @@ function UserComment() {
   useEffect(() => {
     async function loadData() {
       const jwt = localStorage.getItem("token");
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/comment/myComment`, {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/comment/myComment`,
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
       const json = await res.json();
       setComments(json);
     }
@@ -28,10 +31,17 @@ function UserComment() {
           comments.map((comment) => (
             <div className="comment-card-container" key={comment.id}>
               <div className="comment-card">
-                <Link to={`/comments/commentDetail/${comment.id}`} style={{ color: "BLACK" }} className="comment-image">
+                <Link
+                  to={`/comments/commentDetail/${comment.id}`}
+                  style={{ color: "BLACK" }}
+                  className="comment-image"
+                >
                   {comment.CommentImg.length > 0 ? (
-                    <img src={`${comment.CommentImg?.[0].name}`} alt="" />
-                    // <img src={`${REACT_APP_S3_UPLOAD_URL}/${comment.CommentImg?.[0].name}`} alt="" />
+                    // <img src={`${comment.CommentImg?.[0].name}`} alt="" />
+                    <img
+                      src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${comment.CommentImg?.[0].name}`}
+                      alt=""
+                    />
                   ) : (
                     <div className="comment-image">
                       <GiHollowCat size={70} />
@@ -46,16 +56,18 @@ function UserComment() {
                       &nbsp;{comment.title}
                     </span>
                     {comment.isThumb ? (
-                    <span>
-                      <MdOutlineThumbUpOffAlt />&nbsp;
-                      {comment.map.chiName}
-                    </span>
-                  ) : (
-                    <span>
-                      <MdOutlineThumbDown />&nbsp;
-                      {comment.map.chiName}
-                    </span>
-                  )}
+                      <span>
+                        <MdOutlineThumbUpOffAlt />
+                        &nbsp;
+                        {comment.map.chiName}
+                      </span>
+                    ) : (
+                      <span>
+                        <MdOutlineThumbDown />
+                        &nbsp;
+                        {comment.map.chiName}
+                      </span>
+                    )}
                   </div>
 
                   <div className="comment-detail-button">
@@ -66,24 +78,31 @@ function UserComment() {
                       >
                         <span className="comment-detail-button-font">修改</span>
                       </Link>
-                    </button>&nbsp;&nbsp;
+                    </button>
+                    &nbsp;&nbsp;
                     <button
                       className="comment-delete-button"
                       onClick={async (data) => {
                         const jwt = localStorage.getItem("token");
-                        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/comment/delete/${comment.id}`, {
-                          method: "DELETE",
-                          headers: {
-                            Authorization: `Bearer ${jwt}`,
-                          },
-                        });
-                        if (res.ok) {
-                          const jwt = localStorage.getItem("token");
-                          const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/comment/myComment`, {
+                        const res = await fetch(
+                          `${process.env.REACT_APP_BACKEND_URL}/comment/delete/${comment.id}`,
+                          {
+                            method: "DELETE",
                             headers: {
                               Authorization: `Bearer ${jwt}`,
                             },
-                          });
+                          }
+                        );
+                        if (res.ok) {
+                          const jwt = localStorage.getItem("token");
+                          const res = await fetch(
+                            `${process.env.REACT_APP_BACKEND_URL}/comment/myComment`,
+                            {
+                              headers: {
+                                Authorization: `Bearer ${jwt}`,
+                              },
+                            }
+                          );
                           const data = await res.json();
                           setComments(data);
                         }

@@ -149,7 +149,7 @@ export class CommentService {
     userId: number,
     commentId: number,
     commentDto: UpdateCommentDto,
-    files: Express.Multer.File[],
+    arrayOfFileNames: string[],
   ) {
     console.log(commentDto);
 
@@ -163,8 +163,8 @@ export class CommentService {
       throw new ForbiddenException('Failed to update comment');
     }
 
-    const fieldFiles = files.map((file) => ({
-      name: file.filename,
+    const fieldFiles = arrayOfFileNames.map((filename) => ({
+      name: filename,
       isDeleted: false,
     }));
 

@@ -5,12 +5,12 @@ const containerStyle = {
 
 const containerStyle2 = {
   width: "800px",
-  height: "910px",
+  height: "940px",
 };
 
 const containerStyle3 = {
   width: "600px",
-  height: "490px",
+  height: "510px",
 };
 
 const circleSettings = {

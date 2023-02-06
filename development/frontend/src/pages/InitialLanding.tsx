@@ -9,8 +9,9 @@ export default function InitialLanding() {
   const login = () => {
     if (isAuth) {
       navigate("/landing");
+    } else {
+      navigate("/login");
     }
-    navigate("/login");
   };
 
   return (
@@ -19,9 +20,7 @@ export default function InitialLanding() {
         <div className="initialLandingTitleArea">Wikipetia</div>
         <div className="initialLandingSlogan">Life is exploring more </div>
         <div className="initialLandingLogin">
-          <button type="button" onClick={login}>
-            Let's GO!
-          </button>
+          <button onClick={login}>Let's GO!</button>
         </div>
         <div className="initialLandingovalArea">
           <div className="initialLandingovalBackgroundImg">

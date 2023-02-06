@@ -52,7 +52,7 @@
     width: 100vw;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     top: 0;
   }
 
@@ -62,8 +62,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 2vw;
-    margin-right: 41vw;
+    margin-left: 5%;
+    margin-right: 80%;
   }
 
   .logOut {
@@ -98,7 +98,7 @@
     width: 100vw;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     top: 0;
   }
 
@@ -108,8 +108,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 2vw;
-    margin-right: 41vw;
+    margin-left: 6.5%;
+    margin-right: 76%;
   }
 
   .logOut {

@@ -33,11 +33,11 @@
   .categoryTrigger {
     /* border: 3px solid rgb(0, 0, 0); */
     margin-left: 7%;
-    margin-right: 8.5%;
+    margin-right: 14%;
   }
 
   .searchTrigger {
-    margin-right: 12%;
+    margin-right: 8%;
   }
 
   .searchTrigger button,
@@ -49,17 +49,6 @@
     height: 40px;
   }
 
-  .categoryContainer {
-    border: 3px solid rgb(0, 208, 255);
-    display: flex;
-    justify-content: space-evenly;
-    top: 5vmin;
-    width: 100%;
-    height: 60%;
-    overflow: scroll;
-    padding: 0 1% 0 1%;
-  }
-
   .districtCategory,
   .typeCategory {
     /* border: 3px solid black; */
@@ -67,34 +56,97 @@
     flex-wrap: wrap;
   }
 
+  .categoryContainerMap {
+    border: 3px solid rgb(0, 208, 255);
+    border-radius: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: relative;
+    top: 5%;
+    width: 95%;
+    height: 75%;
+    overflow: scroll;
+    padding: 0 1% 0 1%;
+  }
+
+  .mantine-17do188,
+  .mantine-Checkbox-body {
+    border: 2px solid rgb(255, 99, 169);
+    border-radius: 15px;
+    width: 100px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+  }
+
+  .categoryContainerButton {
+    /* border: 2px solid rgb(255, 99, 169); */
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+
+  .categoryContainerButton button {
+    border: none;
+    border-radius: 40px;
+    width: 120px;
+    height: 60px;
+  }
+
+  .districtCategoryMap {
+    /* border: 3px solid rgb(255, 204, 0); */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+  }
+
+  .typeCategoryMap {
+    /* border: 3px solid rgb(255, 204, 0); */
+    border-top: 3px solid;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    /* justify-content: center; */
+    padding-left: 4%;
+    height: 20vh;
+  }
+
   .mapContainer {
     display: flex;
     justify-content: center;
     position: relative;
     width: 90%;
-    height: 90%;
+    height: 89.5%;
     top: 0px;
-    /* border: 3px solid rgb(255, 204, 0); */
+    border: 3px solid rgb(255, 204, 0);
     border-radius: 40px;
     overflow: hidden;
   }
 
   .previewPlaceCard {
     border: 3px solid black;
+    width: 16vmax;
+    height: 14vmax;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    border-radius: 20px;
+    border-radius: 30px;
     position: absolute;
-    width: 300px;
-    height: 33vmin;
-    left: 3%;
+    left: 27%;
+    bottom: 11%;
     z-index: 10000;
   }
 
   .cardSection {
     border: 2px solid black;
     border-radius: 20px;
+    width: 1vmax;
   }
 
   .previewPicture2 {
@@ -129,7 +181,7 @@
     align-items: center;
     height: 85vh;
     width: 99vw;
-    padding-top: 0.3%;
+    padding-top: 0.5%;
   }
 
   .filterContainer {

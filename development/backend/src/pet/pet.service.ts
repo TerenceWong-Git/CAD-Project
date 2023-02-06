@@ -5,6 +5,9 @@ import { AddPetDto, AddWeightDto, UploadPetImgDto } from './dto';
 
 @Injectable()
 export class PetService {
+
+  ////////////GET////////////
+
   constructor(private readonly prismaService: PrismaService) {}
 
   async getUserName(Id: number) {
@@ -25,6 +28,8 @@ export class PetService {
         id: true,
         name: true,
         dateBirth: true,
+        profileImg: true,
+        gender:true,
         species: {
           select: {
             id: true,
@@ -45,6 +50,7 @@ export class PetService {
         id: true,
         name: true,
         dateBirth: true,
+        profileImg: true,
         PetWeight: true,
       },
     });
@@ -108,6 +114,22 @@ export class PetService {
     return foundSpecies;
   }
 
+  ////////////POST////////////
+
+  async addPet(
+    userId: number,
+    addPetDto: AddPetDto,
+    file: Express.Multer.File,
+  ) {
+    await this.prismaService.pet.create({
+      data: {
+        userId: userId,
+        ...addPetDto,
+        profileImg: file.filename,
+      },
+    });
+  }
+
   async addWeight(addWeightDto: AddWeightDto, petId: number) {
     const data = await this.prismaService.petWeight.create({
       data: {
@@ -145,17 +167,5 @@ export class PetService {
     return data;
   }
 
-  async addPet(
-    userId: number,
-    addPetDto: AddPetDto,
-    file: Express.Multer.File,
-  ) {
-    await this.prismaService.pet.create({
-      data: {
-        userId: userId,
-        ...addPetDto,
-        profileImg: file.filename,
-      },
-    });
-  }
+ 
 }

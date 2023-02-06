@@ -109,6 +109,11 @@ function WeightRecord() {
         {/* <button onClick={inputWeight}>+</button>
             {isLoading && <div className='toggleBox'>輸入體重</div>} */}
         <Modal
+          centered
+          size="auto"
+          overlayOpacity={0.55}
+          overlayBlur={1}
+          className="weight-modal"
           opened={opened}
           onClose={() => setOpened(false)}
           title="輸入體重">

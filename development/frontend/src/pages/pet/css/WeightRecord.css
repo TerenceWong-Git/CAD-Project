@@ -1,3 +1,109 @@
+@media only screen and (min-width: 821px) {
+
+
+    .weight-body{
+        margin: 8vmin;
+        text-align: center;
+      }
+    
+    .weight-profile{
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+    
+    }
+    .weight-pet-introduction{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* margin-left: 50px; */
+    }
+    .weight-pet-name,.weight-pet-age{
+        font-size: 10vmin;
+    }
+    .toggleBox{
+        width: 300px;
+        height: 300px;
+        position: fixed;
+        border: 10px solid black;
+        background-color: blue;
+        
+    }
+    .weight-container{
+        border: 1px solid black;
+        margin-top: 5vmin;
+    
+    }
+    .weight-container-titte{
+        font-size: 6vmin;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .weight-record{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .weight-input-box{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .weight-input-button{
+        border-radius: 30px;
+        font-size: 5vmin;
+        width: 30vw;
+        height: 6vh;
+        margin-top: 5vmin;
+        background: #e4655c;
+    }
+    .weight-submit-button{
+        margin-top: 4vmin;
+        background: #e4655c;
+        border-radius: 30px;
+    
+    }
+    .weight-input-text-box{
+        width: 80px;
+    }
+    .mantine-121w2fi {
+        margin-left: 50px;
+    }
+    .mantine-cx9mud {
+        padding-top: 10px;
+        text-align: center;
+        width: 100px;
+        height: 30px;
+        margin-right: 70px;
+        font-weight: 400;
+        background-color: #e0cdff;
+        color: #7c699b;
+        border-radius: 30px;
+    }
+    .pet-icon {
+        border-radius: 50%;
+        width: 15vmin;
+        height: 15vmin;
+      }
+    .emtpy-pet-icon{
+        border-radius: 50%;
+    width: 35vmin;
+    height: 35vmin;
+    background-color: #f0dcda;
+    }
+
+}
+
+
+
+/* -----------------------------  Phone Ver. ----------------------------- */
+
+@media only screen and (max-width: 820px) {
+
+
+
+
 .weight-body{
     margin: 8vmin;
     text-align: center;
@@ -5,7 +111,7 @@
 
 .weight-profile{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     flex-direction: row;
 
 }
@@ -48,24 +154,46 @@
 }
 
 .weight-input-button{
-    
+    border-radius: 30px;
     font-size: 5vmin;
     width: 30vw;
-    height: 4vh;
+    height: 5vh;
     margin-top: 5vmin;
     background: #e4655c;
 }
 .weight-submit-button{
     margin-top: 4vmin;
     background: #e4655c;
+    margin-right: 20px;
+    border-radius: 30px;
 
 }
 .weight-input-text-box{
     width: 80px;
 }
 .mantine-121w2fi {
-    margin-left: 120px;
+    margin-left: 90px;
 }
 .mantine-cx9mud {
-    margin-left: 30px;
+        padding-top: 10px;
+        text-align: center;
+        width: 100px;
+        height: 30px;
+        margin-right: 80px;
+        font-weight: 400;
+        background-color: #e0cdff;
+        color: #7c699b;
+        border-radius: 30px;
+}
+.pet-icon {
+    border-radius: 50%;
+    width: 20vmin;
+    height: 20vmin;
+  }
+.emtpy-pet-icon{
+    border-radius: 50%;
+width: 20vmin;
+height: 20vmin;
+background-color: #f0dcda;
+}
 }

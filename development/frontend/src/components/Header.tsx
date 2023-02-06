@@ -29,7 +29,6 @@ export default function Header() {
           <GrFormPrevious />
         </div>
         <div className="logOut">
-          Wikipetia
           <div onClick={trigger}>
             <MdPets />
           </div>

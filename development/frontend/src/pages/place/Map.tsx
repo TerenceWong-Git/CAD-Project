@@ -2,8 +2,8 @@ import { Autocomplete, Card, Checkbox } from "@mantine/core";
 import { Circle, GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import DefaultHeader from "../../components/DefaultHeader";
 import Footer from "../../components/Footer";
-import Header from "../../components/Header";
 import { districts, types } from "../../components/place/map/District";
 import { circleSettings, containerStyle, containerStyle2, containerStyle3 } from "../../components/place/map/MapSetting";
 import "./css/Map.css";
@@ -216,6 +216,7 @@ export default function Map() {
   console.log("可以search d咩: ", searchItems);
   console.log("入左咩落search bar: ", searchValues);
   console.log("==========");
+  console.log("search左邊間: ", selectedMarker);
   console.log("");
 
   console.log(window.screen.width);
@@ -224,11 +225,11 @@ export default function Map() {
   return (
     <>
       <div className="mapContainerArea">
-        <Header />
+        <DefaultHeader />
         {isTriggered ? (
           <div className="pageContainer">
-            <div className="categoryContainer">
-              <div className="districtCategory">
+            <div className="categoryContainerMap">
+              <div className="districtCategoryMap">
                 {districts.map((district) => {
                   return (
                     <Checkbox.Group key={district.engDistrict} value={values} onChange={setValues}>
@@ -237,7 +238,7 @@ export default function Map() {
                   );
                 })}
               </div>
-              <div className="typeCategory">
+              <div className="typeCategoryMap">
                 {types.map((type) => {
                   return (
                     <Checkbox.Group key={type.engType} value={values} onChange={setValues}>
@@ -246,9 +247,14 @@ export default function Map() {
                   );
                 })}
               </div>
-
-              <button onClick={activateFilter}>Filter</button>
-              <button onClick={deactivateFilter}>Clear</button>
+              <div className="categoryContainerButton">
+                <div className="filterButton">
+                  <button onClick={activateFilter}>Filter</button>
+                </div>
+                <div className="filterButton">
+                  <button onClick={deactivateFilter}>Clear</button>
+                </div>
+              </div>
             </div>
           </div>
         ) : (
@@ -270,30 +276,28 @@ export default function Map() {
               </div>
             </div>
             {isCardShown && (
-              <div>
-                <Card className="previewPlaceCard">
-                  <Link to={`/list/placeDetail/${selectedMarker.id}`} style={{ color: "#262220" }}>
-                    <Card.Section className="cardSection">
-                      <img className="previewPicture2" src="/uploads/pictures/3.jpg" alt={selectedMarker.engName} />
-                    </Card.Section>
-                    <Card.Section className="cardSection">{selectedMarker.chiName}</Card.Section>
-                    <Card.Section className="cardSection">{selectedMarker.mapType.chiType}</Card.Section>
-                    <button
-                      className="closeCardButton"
-                      onClick={() => {
-                        setIsCardShown(false);
-                      }}
-                    >
-                      x
-                    </button>
-                  </Link>
-                </Card>
-              </div>
+              <Card className="previewPlaceCard">
+                <Link to={`/list/placeDetail/${selectedMarker.id}`} style={{ color: "#262220" }}>
+                  <Card.Section>
+                    <img className="previewPicture2" src={`/uploads/list/${selectedMarker.profileImg}`} alt={selectedMarker.engName} />
+                  </Card.Section>
+                  <Card.Section className="cardSection">{selectedMarker.chiName}</Card.Section>
+                  <Card.Section className="cardSection">{selectedMarker.mapType.chiType}</Card.Section>
+                </Link>
+                <button
+                  className="closeCardButton"
+                  onClick={() => {
+                    setIsCardShown(false);
+                  }}
+                >
+                  x
+                </button>
+              </Card>
             )}
 
-            {window.screen.width > 820 && <div className="mapContainer">{bigSizeMap()}</div>}
-            {window.screen.width >= 412 && <div className="mapContainer">{middleSizeMap()}</div>}
-            {window.screen.width < 412 && <div className="mapContainer">{smallSizeMap()}</div>}
+            {window.screen.width >= 821 && <div className="mapContainer">{bigSizeMap()}</div>}
+            {window.screen.width < 821 && window.screen.width >= 413 && <div className="mapContainer">{middleSizeMap()}</div>}
+            {window.screen.width < 413 && <div className="mapContainer">{smallSizeMap()}</div>}
           </div>
         )}
         <Footer />

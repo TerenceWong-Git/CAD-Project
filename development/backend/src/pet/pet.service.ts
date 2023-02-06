@@ -1,11 +1,13 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { AddPetDto, AddWeightDto, UploadPetImgDto } from './dto';
+import { extname } from 'path';
+import { v4 as uuid } from 'uuid';
+import { S3uploadService } from 'src/s3upload/s3upload.service';
 // Deleted UserDto & PetDto (有冇用過)
 
 @Injectable()
 export class PetService {
-
   ////////////GET////////////
 
   constructor(private readonly prismaService: PrismaService) {}
@@ -29,7 +31,7 @@ export class PetService {
         name: true,
         dateBirth: true,
         profileImg: true,
-        gender:true,
+        gender: true,
         species: {
           select: {
             id: true,
@@ -116,16 +118,14 @@ export class PetService {
 
   ////////////POST////////////
 
-  async addPet(
-    userId: number,
-    addPetDto: AddPetDto,
-    file: Express.Multer.File,
-  ) {
+  async addPet(userId: number, addPetDto: AddPetDto, filename: string) {
+    console.log('file: ', filename);
+
     await this.prismaService.pet.create({
       data: {
         userId: userId,
         ...addPetDto,
-        profileImg: file.filename,
+        profileImg: filename,
       },
     });
   }
@@ -166,6 +166,4 @@ export class PetService {
     });
     return data;
   }
-
- 
 }

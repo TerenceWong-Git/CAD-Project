@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@1,400;1,700&display=swap");
 
 @media only screen and (min-width: 821px) {
-  body {
+  .initialLandingBox {
     display: flex;
     justify-content: center;
   }
@@ -21,8 +21,8 @@
 
   .initialLandingTitleArea {
     /* border: 5px solid rgb(0, 0, 0); */
-    color: white;
     /* font-family: "Josefin Sans", sans-serif; */
+    color: white;
     font-family: "Source Code Pro", monospace;
     font-size: 10vmin;
     position: relative;
@@ -78,6 +78,188 @@
     position: relative;
     width: 1000px;
     height: 500px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .initialLandingovalBackgroundImg {
+    border: 5px solid black;
+    display: flex;
+    justify-content: center;
+  }
+  .initialLandingovalBackgroundImg img {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 820px) {
+  body {
+    background-color: #f7f1f0;
+    color: #2b2b2e;
+  }
+
+  .initialLandingContainer {
+    border: 2px solid black;
+    background: #df0054;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .initialLandingTitleArea {
+    /* border: 5px solid rgb(0, 0, 0); */
+    color: white;
+    /* font-family: "Josefin Sans", sans-serif; */
+    font-family: "Source Code Pro", monospace;
+    font-size: 10vmin;
+    position: relative;
+    top: 10%;
+    left: -17%;
+  }
+
+  .initialLandingSlogan {
+    color: rgb(255, 233, 178);
+    font-family: "Source Code Pro", monospace;
+    font-weight: bold;
+    font-size: 6vmin;
+    position: relative;
+    top: 15%;
+    left: 4vmax;
+  }
+
+  .initialLandingLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 20%;
+  }
+
+  .initialLandingLogin button {
+    background-color: rgb(255, 200, 81);
+    border: none;
+    color: white;
+    width: 22vmax;
+    height: 6vmax;
+    padding: 10px 20px;
+    text-align: center;
+    text-justify: distribute;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 46px;
+    font-family: "Source Code Pro", monospace;
+    font-size: 3vmax;
+    font-weight: 700;
+  }
+
+  .initialLandingovalArea {
+    border: 2px solid rgb(255, 255, 255);
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 25%;
+    background: white;
+    position: relative;
+    width: 140vmin;
+    height: 70vmin;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .initialLandingovalBackgroundImg {
+    border: 5px solid black;
+    display: flex;
+    justify-content: center;
+  }
+  .initialLandingovalBackgroundImg img {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  body {
+    background-color: #f7f1f0;
+    color: #2b2b2e;
+  }
+
+  .initialLandingContainer {
+    border: 2px solid black;
+    background: #df0054;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .initialLandingTitleArea {
+    /* border: 5px solid rgb(0, 0, 0); */
+    color: white;
+    /* font-family: "Josefin Sans", sans-serif; */
+    font-family: "Source Code Pro", monospace;
+    font-size: 10vmin;
+    position: relative;
+    top: 12%;
+    left: -17%;
+  }
+
+  .initialLandingSlogan {
+    color: rgb(255, 233, 178);
+    font-family: "Source Code Pro", monospace;
+    font-weight: bold;
+    font-size: 6vmin;
+    position: relative;
+    top: 18%;
+    left: 3.3vmax;
+  }
+
+  .initialLandingLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 25%;
+  }
+
+  .initialLandingLogin button {
+    background-color: rgb(255, 200, 81);
+    border: none;
+    color: white;
+    width: 22vmax;
+    height: 6vmax;
+    padding: 10px 20px;
+    text-align: center;
+    text-justify: distribute;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 46px;
+    font-family: "Source Code Pro", monospace;
+    font-size: 3vmax;
+    font-weight: 700;
+  }
+
+  .initialLandingovalArea {
+    border: 2px solid rgb(255, 255, 255);
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 33%;
+    background: white;
+    position: relative;
+    width: 140vmin;
+    height: 70vmin;
     border-radius: 50%;
     overflow: hidden;
   }

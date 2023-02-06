@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Masonry from "react-masonry-css";
+import DefaultHeader from "../components/DefaultHeader";
 import Footer from "../components/Footer";
-import Header from "../components/Header";
 import { tags } from "../components/pet/PetTag";
 // import Footer from "../components/Footer";
 // import Header from "../components/Header";
@@ -19,7 +19,7 @@ export default function LandingPage() {
   const [initialPicture, setInitialPicture] = useState<any>([]);
 
   const [initialHasMore, setInitialHasMore] = useState(true);
-  const [indexA, setIndexA] = useState(9);
+  const [indexA, setIndexA] = useState(30);
 
   useEffect(() => {
     async function getLanding() {
@@ -27,7 +27,7 @@ export default function LandingPage() {
       const json = await res.json();
 
       setAllPicture(json);
-      setInitialPicture(json.slice(0, 9));
+      setInitialPicture(json.slice(0, 30));
     }
     getLanding();
   }, []);
@@ -97,20 +97,22 @@ export default function LandingPage() {
   return (
     <>
       <div className="landingPageContainer">
-        <Header />
+        <DefaultHeader />
 
         <div className="landingPageInfiniteScroll">
           <div className="landingPageTags">
-            <div>
+            <div className="allButtonInLanding" style={{ marginLeft: "1vw", marginRight: "2vw" }}>
               <button onClick={() => clearTag()}>All</button>
             </div>
-            {tags.map((tag) => {
-              return (
-                <div key={tag.value}>
-                  <button onClick={() => getTag(tag.value)}>{tag.label}</button>
-                </div>
-              );
-            })}
+            <div className="tagButtonInLanding">
+              {tags.map((tag) => {
+                return (
+                  <div key={tag.value}>
+                    <button onClick={() => getTag(tag.value)}>{tag.label}</button>
+                  </div>
+                );
+              })}
+            </div>
           </div>
           {isFiltered ? (
             <InfiniteScroll

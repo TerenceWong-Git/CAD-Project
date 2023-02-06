@@ -4,6 +4,7 @@ import { IconEyeCheck, IconEyeOff } from "@tabler/icons";
 import { useNavigate } from "react-router";
 import { loginThunk } from "./redux/AuthSlice";
 import { useAppDispatch } from "../../redux/Hook";
+import Footer from "../../components/Footer";
 
 // ask ask login fail alert
 export default function Login() {
@@ -43,6 +44,7 @@ export default function Login() {
           <Button type="submit">Submit</Button>
         </Group>
       </Box>
+      <Footer />
     </>
   );
 }

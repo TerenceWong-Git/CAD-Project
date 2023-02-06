@@ -1,4 +1,4 @@
-import "./Header.css";
+import "./DefaultHeader.css";
 import { useNavigate } from "react-router";
 import { GrFormPrevious } from "react-icons/gr";
 import { MdPets } from "react-icons/md";
@@ -24,18 +24,15 @@ export default function Header() {
   };
   return (
     <>
-      <div className="header">
-        <div className="previousPage" onClick={() => navigate(-1)}>
-          <GrFormPrevious />
-        </div>
-        <div className="logOut">
+      <div className="headerDefault">
+        <div className="logOutDefault">
           Name
           <div onClick={trigger}>
             <MdPets />
           </div>
         </div>
         {isTrigger && (
-          <div className="logoutCard">
+          <div className="logoutCardDefault">
             <div onClick={logout}>
               <RxExit />
             </div>

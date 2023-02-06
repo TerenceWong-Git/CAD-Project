@@ -91,7 +91,7 @@ function VaccinePage() {
             <div>
               <label id="file">
                 <input style={{ display: "none" }} type="file" {...register("file")} />
-                <div className="folderupload">
+                <div className="vaccine-folderupload">
                   <ImFolderUpload />
                   上載針卡
                 </div>

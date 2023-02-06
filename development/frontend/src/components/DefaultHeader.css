@@ -43,15 +43,14 @@
     width: 100vw;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
     top: 0;
   }
 
   .logOutDefault {
-    /* border: 2px solid rgb(68, 19, 47); */
+    border: 2px solid rgb(68, 19, 47);
     display: flex;
-    justify-content: flex-end;
     font-size: 3vmax;
+    margin-left: 87vw;
   }
 
   .logoutCardDefault {
@@ -59,12 +58,14 @@
     border: 2px solid rgb(0, 0, 0);
     border-radius: 15px;
     position: absolute;
-    top: 5.5vh;
+    top: 5.4vh;
     right: 0.6vw;
     width: 30vw;
     height: 45vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     z-index: 1000000;
   }
 }

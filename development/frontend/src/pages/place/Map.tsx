@@ -27,6 +27,8 @@ export default function Map() {
                 onClick={() => {
                   setSelectedMarker(item);
                   setIsCardShown(true);
+                  setUserLat(latitudeToFloat);
+                  setUserLng(longitudeToFloat);
                 }}
               />
 
@@ -55,6 +57,8 @@ export default function Map() {
                 onClick={() => {
                   setSelectedMarker(item);
                   setIsCardShown(true);
+                  setUserLat(latitudeToFloat);
+                  setUserLng(longitudeToFloat);
                 }}
               />
 
@@ -83,6 +87,8 @@ export default function Map() {
                 onClick={() => {
                   setSelectedMarker(item);
                   setIsCardShown(true);
+                  setUserLat(latitudeToFloat);
+                  setUserLng(longitudeToFloat);
                 }}
               />
 

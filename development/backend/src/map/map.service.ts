@@ -50,6 +50,10 @@ export class MapService {
             content: true,
             isThumb: true,
             CommentImg: true,
+            createdAt: true,
+          },
+          orderBy: {
+            createdAt: 'desc',
           },
         },
         MapToWorkingHour: {

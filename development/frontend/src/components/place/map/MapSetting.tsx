@@ -1,11 +1,11 @@
 const containerStyle = {
   width: "800px",
-  height: "650px",
+  height: "565px",
 };
 
 const containerStyle2 = {
   width: "800px",
-  height: "945px",
+  height: "950px",
 };
 
 const containerStyle3 = {

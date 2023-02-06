@@ -1,3 +1,5 @@
+import { v4 as uuid } from 'uuid';
+
 import {
   Controller,
   Post,
@@ -17,10 +19,15 @@ import { JwtGuard } from 'src/auth/guard';
 import { AddPetDto, AddWeightDto, UploadPetImgDto } from './dto';
 import { PetService } from './pet.service';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import { S3uploadService } from 'src/s3upload/s3upload.service';
+import { extname } from 'path';
 
 @Controller('pet')
 export class PetController {
-  constructor(private readonly petService: PetService) {}
+  constructor(
+    private readonly petService: PetService,
+    private readonly s3uploadService: S3uploadService,
+  ) {}
 
   @Get('species')
   async getSpecies() {
@@ -83,7 +90,10 @@ export class PetController {
     @Body() addPetDto: AddPetDto,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    await this.petService.addPet(userId, addPetDto, file);
+    const filename = `${uuid()}${extname(file.originalname)}`;
+    await this.s3uploadService.upload(file, filename);
+    await this.petService.addPet(userId, addPetDto, filename);
+
     return { message: 'success' };
   }
 

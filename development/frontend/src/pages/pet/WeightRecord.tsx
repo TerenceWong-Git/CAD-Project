@@ -83,15 +83,17 @@ function WeightRecord() {
 
       <div className="weight-container">
         <div className="weight-container-titte">
-          <div className="weight-container-titte-weight">體重</div>
           <div className="weight-container-titte-date">日期 </div>
+          <div className="weight-container-titte-weight">體重</div>
+          
         </div>
         {fiveRecord.length > 0 ? (
           <div>
             {fiveRecord.map((item: any, index: number) => (
               <div key={index} className="weight-record">
-                <h2>{item.weight}&nbsp;KG</h2>
+                
                 <h2>{item.createdAt.slice(0, 10)}</h2>
+                <h2>{item.weight}&nbsp;KG</h2>
               </div>
             ))}
           </div>
@@ -140,8 +142,9 @@ function WeightRecord() {
                 <label className="weight-input-text">
                   <input type="text" {...register("weight")} className="weight-input-text-box" />KG
                 </label>
-                <div className="weight-input-button">
-                  <input type="submit" value="輸入" />
+                <div >
+                  {/* <input type="submit" value="輸入" /> */}
+                  <Button className="weight-submit-button" type="submit">輸入</Button>
                 </div>
               </div>
             </form>
@@ -149,7 +152,7 @@ function WeightRecord() {
         </Modal>
 
         <Group position="center">
-          <Button onClick={() => setOpened(true)}>輸入體重</Button>
+          <Button className="weight-input-button" onClick={() => setOpened(true)}>輸入體重</Button>
         </Group>
       </div>
     </div>

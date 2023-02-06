@@ -82,6 +82,7 @@ function UserProfile() {
                 <div className="pet-age">{pet.dateBirth ? <div>{age(pet.dateBirth)}&nbsp;歲</div> : <div></div>}</div>
                 <div className="pet-species-tag-container">
                   <div className="pet-species-tag-chi">{pet.species.chiSpecies}</div>
+                  <div className="pet-tag-gender">{pet.gender}</div>
                 </div>
               </div>
             </div>

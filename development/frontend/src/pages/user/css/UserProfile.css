@@ -89,6 +89,14 @@
     height: 20px;
     padding: 6px 14px 7px;
 }
+.pet-tag-gender{
+    background-color: #ffebcd;
+    font-size: 15px;
+    color: #9b8769;
+    border-radius: 30px;
+    height: 20px;
+    padding: 6px 14px 7px;
+}
 .pet-age{
 background-color: #e0cdff;
 border-radius: 30px;

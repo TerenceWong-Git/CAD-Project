@@ -1,3 +1,129 @@
+/* -----------------------------  Phone Ver. ----------------------------- */
+
+@media only screen and (max-width: 820px) {
+
+
+
+
+    .weight-body{
+        margin: 8vmin;
+        text-align: center;
+      }
+    
+    .weight-profile{
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+    
+    }
+    .weight-pet-introduction{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 15%;
+    }
+    
+    .weight-pet-name{
+        font-size: 10vmin;
+        font-weight: 230;
+    }
+    
+    .weight-pet-age{
+        background-color: #e0cdff;
+        border-radius: 30px;
+        font-size: 15px;
+        height: 20px;
+        padding: 6px 14px 7px;
+        color: #7c699b;
+        margin: 10px;
+    }
+    
+    .toggleBox{
+        width: 300px;
+        height: 300px;
+        position: fixed;
+        border: 10px solid black;
+        background-color: blue;
+        
+    }
+    .weight-container{
+        background-color: white;
+        border-radius: 15px;
+        margin-top: 5vmin;
+        padding: 6vmin 0;
+    
+    }
+    .weight-container-titte{
+        font-size: 6vmin;
+        display: flex;
+        justify-content: space-evenly;
+        font-weight: 300;
+    }
+    .weight-record{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    
+    .weight-record-date,.weight-record-weight{
+        margin: 5%;
+        font-size: 5vmin;
+        font-weight: 300;
+    }
+    .weight-input-box{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .weight-input-button{
+        border-radius: 30px;
+        font-size: 5vmin;
+        width: 30vw;
+        height: 5vh;
+        margin-top: 5vmin;
+        background: #f2968f;
+    }
+    .weight-submit-button{
+        margin-top: 4vmin;
+        background: #f2968f;
+        margin-right: 20px;
+        border-radius: 30px;
+    
+    }
+    .weight-input-text-box{
+        width: 80px;
+        border: 1px solid #c3a6a0;
+        border-radius: 8px;
+    }
+    .mantine-121w2fi {
+        margin-left: 90px;
+    }
+    .mantine-cx9mud {
+            padding-top: 10px;
+            text-align: center;
+            width: 100px;
+            height: 30px;
+            margin-right: 80px;
+            font-weight: 300;
+            color: #2b2b2e;
+            border-radius: 30px;
+    }
+    .pet-icon {
+        border-radius: 50%;
+        width: 20vmin;
+        height: 20vmin;
+      }
+    .emtpy-pet-icon{
+        border-radius: 50%;
+    width: 20vmin;
+    height: 20vmin;
+    background-color: #f0dcda;
+    }
+    }
+
+
+/* -----------------------------  Pad Ver. ----------------------------- */
 @media only screen and (min-width: 821px) {
 
 
@@ -8,7 +134,7 @@
     
     .weight-profile{
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         flex-direction: row;
     
     }
@@ -16,10 +142,21 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        /* margin-left: 50px; */
+        margin-left: 15%;
     }
-    .weight-pet-name,.weight-pet-age{
+    .weight-pet-name{
         font-size: 10vmin;
+        font-weight: 230;
+    }
+    
+    .weight-pet-age{
+        background-color: #e0cdff;
+        border-radius: 30px;
+        font-size: 15px;
+        height: 20px;
+        padding: 6px 14px 7px;
+        color: #7c699b;
+        margin: 10px;
     }
     .toggleBox{
         width: 300px;
@@ -30,19 +167,29 @@
         
     }
     .weight-container{
-        border: 1px solid black;
-        margin-top: 5vmin;
+        background-color: white;
+    border-radius: 15px;
+    margin-top: 5vmin;
+    padding: 6vmin 0;
     
     }
     .weight-container-titte{
         font-size: 6vmin;
         display: flex;
         justify-content: space-evenly;
+        font-weight: 300;
     }
     .weight-record{
         display: flex;
         justify-content: space-evenly;
     }
+    
+    .weight-record-date,.weight-record-weight{
+        margin: 5%;
+        font-size: 5vmin;
+        font-weight: 300;
+    }
+
     .weight-input-box{
         display: flex;
         flex-direction: column;
@@ -56,11 +203,11 @@
         width: 30vw;
         height: 6vh;
         margin-top: 5vmin;
-        background: #e4655c;
+        background: #f2968f;
     }
     .weight-submit-button{
         margin-top: 4vmin;
-        background: #e4655c;
+        background: #f2968f;
         border-radius: 30px;
     
     }
@@ -70,7 +217,7 @@
     .mantine-121w2fi {
         margin-left: 50px;
     }
-    .mantine-cx9mud {
+    /* .mantine-cx9mud {
         padding-top: 10px;
         text-align: center;
         width: 100px;
@@ -80,7 +227,7 @@
         background-color: #e0cdff;
         color: #7c699b;
         border-radius: 30px;
-    }
+    } */
     .pet-icon {
         border-radius: 50%;
         width: 15vmin;
@@ -97,103 +244,3 @@
 
 
 
-/* -----------------------------  Phone Ver. ----------------------------- */
-
-@media only screen and (max-width: 820px) {
-
-
-
-
-.weight-body{
-    margin: 8vmin;
-    text-align: center;
-  }
-
-.weight-profile{
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-
-}
-.weight-pet-introduction{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* margin-left: 50px; */
-}
-.weight-pet-name,.weight-pet-age{
-    font-size: 10vmin;
-}
-.toggleBox{
-    width: 300px;
-    height: 300px;
-    position: fixed;
-    border: 10px solid black;
-    background-color: blue;
-    
-}
-.weight-container{
-    border: 1px solid black;
-    margin-top: 5vmin;
-
-}
-.weight-container-titte{
-    font-size: 6vmin;
-    display: flex;
-    justify-content: space-evenly;
-}
-.weight-record{
-    display: flex;
-    justify-content: space-evenly;
-}
-.weight-input-box{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.weight-input-button{
-    border-radius: 30px;
-    font-size: 5vmin;
-    width: 30vw;
-    height: 5vh;
-    margin-top: 5vmin;
-    background: #e4655c;
-}
-.weight-submit-button{
-    margin-top: 4vmin;
-    background: #e4655c;
-    margin-right: 20px;
-    border-radius: 30px;
-
-}
-.weight-input-text-box{
-    width: 80px;
-}
-.mantine-121w2fi {
-    margin-left: 90px;
-}
-.mantine-cx9mud {
-        padding-top: 10px;
-        text-align: center;
-        width: 100px;
-        height: 30px;
-        margin-right: 80px;
-        font-weight: 400;
-        background-color: #e0cdff;
-        color: #7c699b;
-        border-radius: 30px;
-}
-.pet-icon {
-    border-radius: 50%;
-    width: 20vmin;
-    height: 20vmin;
-  }
-.emtpy-pet-icon{
-    border-radius: 50%;
-width: 20vmin;
-height: 20vmin;
-background-color: #f0dcda;
-}
-}

@@ -6,6 +6,7 @@ import { useParams } from "react-router";
 import icon from "../../assets/img_8790.jpeg";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import moment from "moment";
 
 // 寫翻fail情況提示  -> 最多6位(連小數)
 function WeightRecord() {
@@ -96,8 +97,9 @@ function WeightRecord() {
             {fiveRecord.map((item: any, index: number) => (
               <div key={index} className="weight-record">
                 
-                <h2>{item.createdAt.slice(0, 10)}</h2>
-                <h2>{item.weight}&nbsp;KG</h2>
+                {/* <div className="weight-record-date">{item.createdAt.slice(0, 10)}</div> */}
+                <div className="weight-record-date">{moment(item.createdAt).format('l')}</div>
+                <div className="weight-record-weight">{item.weight}&nbsp;KG</div>
               </div>
             ))}
           </div>
@@ -116,7 +118,8 @@ function WeightRecord() {
           className="weight-modal"
           opened={opened}
           onClose={() => setOpened(false)}
-          title="輸入體重">
+          title="輸入體重"
+          >
           {
             <form
               onSubmit={handleSubmit(async (data) => {
@@ -149,7 +152,7 @@ function WeightRecord() {
               })}>
               <div className="weight-input-box">
                 <label className="weight-input-text">
-                  <input type="text" {...register("weight")} className="weight-input-text-box" />KG
+                  <input type="text" {...register("weight")} className="weight-input-text-box" placeholder="KG"/>
                 </label>
                 <div >
                   {/* <input type="submit" value="輸入" /> */}

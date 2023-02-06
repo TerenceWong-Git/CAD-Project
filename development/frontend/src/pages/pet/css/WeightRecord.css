@@ -48,7 +48,17 @@
 }
 
 .weight-input-button{
+    
+    font-size: 5vmin;
+    width: 30vw;
+    height: 4vh;
+    margin-top: 5vmin;
+    background: #e4655c;
+}
+.weight-submit-button{
     margin-top: 4vmin;
+    background: #e4655c;
+
 }
 .weight-input-text-box{
     width: 80px;

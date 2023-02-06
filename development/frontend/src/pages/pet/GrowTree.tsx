@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useParams } from "react-router";
 import "./css/GrowTree.css";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
 
 export default function GrowTree() {
   const petId = useParams();
@@ -65,6 +67,9 @@ export default function GrowTree() {
     });
 
   return (
+    <div>
+      <Header/>
+    
     <div className="growTreePageContainer">
       <div className="treeContainer">
         Our Journey Starts Here
@@ -82,6 +87,8 @@ export default function GrowTree() {
           {renderContinueGrow()}
         </InfiniteScroll>
       </div>
+    </div>
+    <Footer/>
     </div>
   );
 }

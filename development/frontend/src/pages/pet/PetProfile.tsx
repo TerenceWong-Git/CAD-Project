@@ -6,7 +6,7 @@ import Header from "../../components/Header";
 import "./css/PetProfile.css";
 import { TiTree } from "react-icons/ti";
 import { BsCardList } from "react-icons/bs";
-// import icon from "../../assets/img_8790.jpeg";
+
 
 function PetProfile() {
   const jwt = localStorage.getItem("token");
@@ -60,6 +60,7 @@ function PetProfile() {
     return age_now;
   };
   return (
+    
     <div className="pet-profile-page">
       <Header />
       <div className="pet-card-container">
@@ -128,6 +129,7 @@ function PetProfile() {
       </div>
       <Footer />
     </div>
+    
   );
 }
 

@@ -5,7 +5,8 @@ import { useNavigate, useParams } from "react-router";
 import { ImFolderUpload } from "react-icons/im";
 import "./css/Vaccine.css";
 import icon from "../../assets/img_8790.jpeg";
-import { log } from "console";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 const path = process.env.REACT_APP_BACKEND_URL;
 
@@ -31,6 +32,8 @@ function VaccinePage() {
   }, []);
   
   return (
+    <div>
+      <Header/>
     <div className="vaccine-body">
       <div className="vaccine-tittle">針卡記錄</div>
 
@@ -112,6 +115,8 @@ function VaccinePage() {
           新增針卡
         </Button>
       </Group>
+    </div>
+    <Footer/>
     </div>
   );
 }

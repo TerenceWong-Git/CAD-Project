@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router";
 import ImageUploading from "react-images-uploading";
 import { tags } from "../../components/pet/PetTag";
 import { MultiSelect } from "@mantine/core";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 function UploadGrowTree() {
   const path = process.env.REACT_APP_BACKEND_URL;
@@ -24,7 +26,9 @@ function UploadGrowTree() {
   console.log(watch());
   return (
     <div>
-      CommentPage
+      <Header/>
+    <div>
+      Upload Grow Tree
       <form
         onSubmit={handleSubmit((data) => {
           const jwt = localStorage.getItem("token");
@@ -96,6 +100,8 @@ function UploadGrowTree() {
           <input type="submit" value="submit" />
         </div>
       </form>
+    </div>
+    <Footer/>
     </div>
   );
 }

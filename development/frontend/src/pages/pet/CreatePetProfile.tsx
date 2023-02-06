@@ -6,6 +6,8 @@ import ImageUploading from "react-images-uploading";
 import { RxUpdate } from "react-icons/rx";
 import { AiOutlineDelete } from "react-icons/ai";
 import "./css/CreatePetProfile.css";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 // photo preview
 // update button + remove button
@@ -87,6 +89,8 @@ function CreatePetProfile() {
   const newFile = images.map((item: any) => item.file);
 
   return (
+    <div>
+      <Header/>
     <div className="pet-profile-create-page">
       <form
         className="pet-profile-create-form"
@@ -276,6 +280,8 @@ function CreatePetProfile() {
           <input type="submit" value="提交" className="comment-submit" />
         </div>
       </form>
+    </div>
+    <Footer/>
     </div>
   );
 }

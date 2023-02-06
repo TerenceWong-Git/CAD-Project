@@ -4,6 +4,8 @@ import { Modal, Button, Group } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router";
 import icon from "../../assets/img_8790.jpeg";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 // 寫翻fail情況提示  -> 最多6位(連小數)
 function WeightRecord() {
@@ -56,6 +58,8 @@ function WeightRecord() {
     return age_now;
   };
   return (
+    <div>
+      <Header />
     <div className="weight-body">
       <div className="weight-profile">
         {pets.profileImg ? (
@@ -155,6 +159,8 @@ function WeightRecord() {
           <Button className="weight-input-button" onClick={() => setOpened(true)}>輸入體重</Button>
         </Group>
       </div>
+    </div>
+    <Footer />
     </div>
   );
 }

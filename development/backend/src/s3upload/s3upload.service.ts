@@ -1,11 +1,13 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { S3 } from 'aws-sdk';
+import { extname } from 'path';
+import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class S3uploadService {
   async upload(file) {
     const { originalname } = file;
-    const bucketS3 = 'my-aws-bucket';
+    const bucketS3 = process.env.S3_BUCKET;
     await this.uploadS3(file.buffer, bucketS3, originalname);
   }
 
@@ -13,7 +15,8 @@ export class S3uploadService {
     const s3 = this.getS3();
     const params = {
       Bucket: bucket,
-      Key: String(name),
+      // Key: String(name),
+      Key: `${uuid()}${extname(name)}`,
       Body: file,
     };
     return new Promise((resolve, reject) => {

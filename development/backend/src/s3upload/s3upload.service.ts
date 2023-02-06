@@ -1,7 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { S3 } from 'aws-sdk';
-import { extname } from 'path';
-import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class S3uploadService {

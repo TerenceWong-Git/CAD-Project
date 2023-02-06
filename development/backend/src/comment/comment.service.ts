@@ -124,12 +124,12 @@ export class CommentService {
   async createComment(
     userId: number,
     commentDto: CreateCommentDto,
-    files: Express.Multer.File[],
+    arrayOfFileNames: string[],
   ) {
-    console.log('check files', files, 'length:', files.length);
+    console.log('check filenames', arrayOfFileNames);
 
-    const fieldFiles = files.map((file) => ({
-      name: file.filename,
+    const fieldFiles = arrayOfFileNames.map((filename) => ({
+      name: filename,
       isDeleted: false,
     }));
 

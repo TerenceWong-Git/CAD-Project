@@ -110,6 +110,9 @@ function UserProfile() {
                     <div className="pet-species-tag-chi">
                       {pet.species.chiSpecies}
                     </div>
+                    <div className="pet-tag-gender">
+                      {pet.gender}
+                    </div>
                   </div>
                 </div>
               </div>

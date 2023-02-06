@@ -15,11 +15,13 @@
   }
 
   .landingPageTags {
+    /* border: 3px solid rgb(0, 0, 0); */
     background-color: azure;
     height: 7vh;
     display: flex;
     align-items: center;
     position: sticky;
+    overflow: scroll;
     top: 0;
     z-index: 1;
   }

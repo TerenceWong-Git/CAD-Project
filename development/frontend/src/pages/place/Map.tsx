@@ -1,19 +1,104 @@
 import { Autocomplete, Card, Checkbox } from "@mantine/core";
-
 import { Circle, GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
 import { districts, types } from "../../components/place/map/District";
-import { circleSettings, containerStyle } from "../../components/place/map/MapSetting";
+import { circleSettings, containerStyle, containerStyle2, containerStyle3 } from "../../components/place/map/MapSetting";
 import "./css/Map.css";
 
 export default function Map() {
+  const bigSizeMap = () => {
+    return (
+      <LoadScript googleMapsApiKey={`${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`}>
+        <GoogleMap mapContainerStyle={containerStyle} center={{ lat: userLat, lng: usertLng }} zoom={17} options={{ disableDefaultUI: true }}>
+          <Circle center={{ lat: userLat, lng: usertLng }} options={circleSettings} />
+          <Marker position={{ lat: userLat, lng: usertLng }} />
+          {searchItems.map((item) => {
+            const latitudeToFloat = parseFloat(item.latitude);
+            const longitudeToFloat = parseFloat(item.longitude);
+            return (
+              <Marker
+                key={item.engName}
+                position={{ lat: latitudeToFloat, lng: longitudeToFloat }}
+                onClick={() => {
+                  setSelectedMarker(item);
+                  setIsCardShown(true);
+                }}
+              />
+
+              // options={{ icon: Mall }}
+            );
+          })}
+          <></>
+        </GoogleMap>
+      </LoadScript>
+    );
+  };
+
+  const middleSizeMap = () => {
+    return (
+      <LoadScript googleMapsApiKey={`${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`}>
+        <GoogleMap mapContainerStyle={containerStyle2} center={{ lat: userLat, lng: usertLng }} zoom={17} options={{ disableDefaultUI: true }}>
+          <Circle center={{ lat: userLat, lng: usertLng }} options={circleSettings} />
+          <Marker position={{ lat: userLat, lng: usertLng }} />
+          {searchItems.map((item) => {
+            const latitudeToFloat = parseFloat(item.latitude);
+            const longitudeToFloat = parseFloat(item.longitude);
+            return (
+              <Marker
+                key={item.engName}
+                position={{ lat: latitudeToFloat, lng: longitudeToFloat }}
+                onClick={() => {
+                  setSelectedMarker(item);
+                  setIsCardShown(true);
+                }}
+              />
+
+              // options={{ icon: Mall }}
+            );
+          })}
+          <></>
+        </GoogleMap>
+      </LoadScript>
+    );
+  };
+
+  const smallSizeMap = () => {
+    return (
+      <LoadScript googleMapsApiKey={`${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`}>
+        <GoogleMap mapContainerStyle={containerStyle3} center={{ lat: userLat, lng: usertLng }} zoom={17} options={{ disableDefaultUI: true }}>
+          <Circle center={{ lat: userLat, lng: usertLng }} options={circleSettings} />
+          <Marker position={{ lat: userLat, lng: usertLng }} />
+          {searchItems.map((item) => {
+            const latitudeToFloat = parseFloat(item.latitude);
+            const longitudeToFloat = parseFloat(item.longitude);
+            return (
+              <Marker
+                key={item.engName}
+                position={{ lat: latitudeToFloat, lng: longitudeToFloat }}
+                onClick={() => {
+                  setSelectedMarker(item);
+                  setIsCardShown(true);
+                }}
+              />
+
+              // options={{ icon: Mall }}
+            );
+          })}
+          <></>
+        </GoogleMap>
+      </LoadScript>
+    );
+  };
   ////////////////////////////////////   Load Data   /////////////////////////////////////
 
   const [allPlaceItems, setAllPlaceItems] = useState<any[]>([]);
   const [filteredItems, setFilteredItems] = useState<any[]>([]);
   const [searchItems, setSearchItems] = useState<any[]>([]);
   const [isTriggered, setIsTriggered] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -133,97 +218,86 @@ export default function Map() {
   console.log("==========");
   console.log("");
 
+  console.log(window.screen.width);
+  console.log(window.screen.height);
+
   return (
     <>
-      {isTriggered ? (
-        <div className="pageContainer">
-          <div className="categoryContainer">
-            <div className="districtCategory">
-              {districts.map((district) => {
-                return (
-                  <Checkbox.Group key={district.engDistrict} value={values} onChange={setValues}>
-                    <Checkbox value={district.engDistrict} label={district.chiDistrict} />
-                  </Checkbox.Group>
-                );
-              })}
-            </div>
-            <div className="typeCategory">
-              {types.map((type) => {
-                return (
-                  <Checkbox.Group key={type.engType} value={values} onChange={setValues}>
-                    <Checkbox value={type.engType} label={type.chiType} />
-                  </Checkbox.Group>
-                );
-              })}
-            </div>
-
-            <button onClick={activateFilter}>Filter</button>
-            <button onClick={deactivateFilter}>Clear</button>
-          </div>
-        </div>
-      ) : (
-        <div className="pageContainer">
-          <div className="filterContainer">
-            <div className="searchContainer">
-              <Autocomplete value={searchValues} onChange={setSearchValues} data={searchablePlace} />
-            </div>
-            <div className="searchTrigger">
-              <button onClick={search}>Search</button>
-            </div>
-
-            <div className="categoryTrigger">
-              <button onClick={wantToUseFilter}>Category</button>
-            </div>
-          </div>
-          {isCardShown && (
-            <div>
-              <Card className="previewPlaceCard">
-                <Link to={`/list/placeDetail/${selectedMarker.id}`} style={{ color: "#262220" }}>
-                  <Card.Section className="cardSection">
-                    <img className="previewPicture2" src="/uploads/pictures/3.jpg" alt={selectedMarker.engName} />
-                  </Card.Section>
-                  <Card.Section className="cardSection">{selectedMarker.chiName}</Card.Section>
-                  <Card.Section className="cardSection">{selectedMarker.mapType.chiType}</Card.Section>
-                  <button
-                    className="closeCardButton"
-                    onClick={() => {
-                      setIsCardShown(false);
-                    }}
-                  >
-                    x
-                  </button>
-                </Link>
-              </Card>
-            </div>
-          )}
-          <div className="mapContainer">
-            <LoadScript googleMapsApiKey={`${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`}>
-              <GoogleMap mapContainerStyle={containerStyle} center={{ lat: userLat, lng: usertLng }} zoom={17} options={{ disableDefaultUI: true }}>
-                {/* <GoogleMap mapContainerStyle={containerStyle} center={targetLocation} zoom={17} options={{ disableDefaultUI: true }}> */}
-                <Circle center={{ lat: userLat, lng: usertLng }} options={circleSettings} />
-                <Marker position={{ lat: userLat, lng: usertLng }} />
-                {searchItems.map((item) => {
-                  const latitudeToFloat = parseFloat(item.latitude);
-                  const longitudeToFloat = parseFloat(item.longitude);
+      <div className="mapContainerArea">
+        <Header />
+        {isTriggered ? (
+          <div className="pageContainer">
+            <div className="categoryContainer">
+              <div className="districtCategory">
+                {districts.map((district) => {
                   return (
-                    <Marker
-                      key={item.engName}
-                      position={{ lat: latitudeToFloat, lng: longitudeToFloat }}
-                      onClick={() => {
-                        setSelectedMarker(item);
-                        setIsCardShown(true);
-                      }}
-                    />
-
-                    // options={{ icon: Mall }}
+                    <Checkbox.Group key={district.engDistrict} value={values} onChange={setValues}>
+                      <Checkbox value={district.engDistrict} label={district.chiDistrict} />
+                    </Checkbox.Group>
                   );
                 })}
-                <></>
-              </GoogleMap>
-            </LoadScript>
+              </div>
+              <div className="typeCategory">
+                {types.map((type) => {
+                  return (
+                    <Checkbox.Group key={type.engType} value={values} onChange={setValues}>
+                      <Checkbox value={type.engType} label={type.chiType} />
+                    </Checkbox.Group>
+                  );
+                })}
+              </div>
+
+              <button onClick={activateFilter}>Filter</button>
+              <button onClick={deactivateFilter}>Clear</button>
+            </div>
           </div>
-        </div>
-      )}
+        ) : (
+          <div className="pageContainer">
+            <div className="filterContainer">
+              <div className="categoryTrigger">
+                <button onClick={wantToUseFilter}>Category</button>
+              </div>
+
+              <div className="searchContainer">
+                <Autocomplete value={searchValues} onChange={setSearchValues} data={searchablePlace} />
+              </div>
+              <div className="searchTrigger">
+                <button onClick={search}>Search</button>
+              </div>
+
+              <div className="goListPage">
+                <button onClick={() => navigate("/list")}>Go</button>
+              </div>
+            </div>
+            {isCardShown && (
+              <div>
+                <Card className="previewPlaceCard">
+                  <Link to={`/list/placeDetail/${selectedMarker.id}`} style={{ color: "#262220" }}>
+                    <Card.Section className="cardSection">
+                      <img className="previewPicture2" src="/uploads/pictures/3.jpg" alt={selectedMarker.engName} />
+                    </Card.Section>
+                    <Card.Section className="cardSection">{selectedMarker.chiName}</Card.Section>
+                    <Card.Section className="cardSection">{selectedMarker.mapType.chiType}</Card.Section>
+                    <button
+                      className="closeCardButton"
+                      onClick={() => {
+                        setIsCardShown(false);
+                      }}
+                    >
+                      x
+                    </button>
+                  </Link>
+                </Card>
+              </div>
+            )}
+
+            {window.screen.width > 820 && <div className="mapContainer">{bigSizeMap()}</div>}
+            {window.screen.width >= 412 && <div className="mapContainer">{middleSizeMap()}</div>}
+            {window.screen.width < 412 && <div className="mapContainer">{smallSizeMap()}</div>}
+          </div>
+        )}
+        <Footer />
+      </div>
     </>
   );
 }

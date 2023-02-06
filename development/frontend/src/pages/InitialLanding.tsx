@@ -1,9 +1,15 @@
 import "./InitialLanding.css";
 import { useNavigate } from "react-router";
+import { useAppSelector } from "../redux/Hook";
 
 export default function InitialLanding() {
+  const isAuth = useAppSelector((state) => state.auth.isAuth);
+  console.log(isAuth);
   const navigate = useNavigate();
   const login = () => {
+    if (isAuth) {
+      navigate("/landing");
+    }
     navigate("/login");
   };
 

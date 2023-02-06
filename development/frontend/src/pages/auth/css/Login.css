@@ -1,4 +1,4 @@
-.app {
+/* .app {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,4 +59,77 @@ input[type="submit"]:hover {
   flex-direction: column;
   gap: 8px;
   margin: 10px;
+} */
+
+@media only screen and (min-width: 821px) {
+  .loginContainer {
+    /* border: 2px solid rgba(0, 0, 0, 0.2); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loginFormContainer {
+    /* border: 2px solid rgba(0, 0, 0, 0.2); */
+    width: 821px;
+    height: 1080px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .loginLogo {
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+  }
+}
+
+/* ----------------------------- Laptop Ver. ----------------------------- */
+
+@media only screen and (max-width: 820px) {
+  .loginContainer {
+    /* border: 2px solid rgba(0, 0, 0, 0.2); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loginFormContainer {
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .loginLogo {
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+  }
+}
+
+/* -----------------------------  Phone Ver. ----------------------------- */
+
+@media only screen and (max-width: 767px) {
+  .loginContainer {
+    /* border: 2px solid rgba(0, 0, 0, 0.2); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loginFormContainer {
+    /* border: 2px solid rgba(0, 0, 0, 0.2); */
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .loginLogo {
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+  }
 }

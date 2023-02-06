@@ -1,6 +1,16 @@
 const containerStyle = {
+  width: "800px",
+  height: "650px",
+};
+
+const containerStyle2 = {
+  width: "800px",
+  height: "910px",
+};
+
+const containerStyle3 = {
   width: "600px",
-  height: "600px",
+  height: "490px",
 };
 
 const circleSettings = {
@@ -17,4 +27,4 @@ const circleSettings = {
   zIndex: 1,
 };
 
-export { containerStyle, circleSettings };
+export { containerStyle, containerStyle2, containerStyle3, circleSettings };

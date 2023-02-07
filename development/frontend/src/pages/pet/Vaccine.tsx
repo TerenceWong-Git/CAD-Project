@@ -28,7 +28,7 @@ function VaccinePage() {
       setVaccine(data.at(-1));
     }
     loadData();
-  }, []);
+  }, [jwt,petId.id]);
 
   return (
     <div className="vaccine-page">

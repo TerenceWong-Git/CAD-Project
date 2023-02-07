@@ -38,7 +38,7 @@ function WeightRecord() {
       console.log("what is pet", json[0]);
     }
     loadData();
-  }, []);
+  }, [jwt,petId.id,path]);
   console.log("what is weight", fiveRecord);
   // if (pets) {
   //   const onlyFiveRecord = pets.PetWeight.slice(-5);

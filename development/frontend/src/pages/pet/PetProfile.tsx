@@ -38,7 +38,7 @@ function PetProfile() {
       setPets(json[0]);
     }
     loadData();
-  }, [petId]);
+  }, [petId,jwt,path]);
   if (pets) {
     console.log("weight12321", pets.PetWeight);
     console.log("pets: ", pets);

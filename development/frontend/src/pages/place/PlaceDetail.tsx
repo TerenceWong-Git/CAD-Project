@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./css/PlaceDetail.css";
 import { useParams } from "react-router-dom";
 import Footer from "../../components/Footer";
-import { Button, Collapse } from "@mantine/core";
+import { Collapse } from "@mantine/core";
 import { BiCurrentLocation, BiDislike, BiLike, BiTime } from "react-icons/bi";
 import Header from "../../components/Header";
 import { MdPlace } from "react-icons/md";

@@ -163,7 +163,8 @@
 }
 
 .comment-detail-noImage {
-  width: 343px;
+  /* width: 343px; */
+  width: 100%;
   height: 360px;
   display: flex;
   justify-content: center;

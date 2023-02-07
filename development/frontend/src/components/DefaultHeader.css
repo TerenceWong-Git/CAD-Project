@@ -12,7 +12,7 @@
 
   .headerLogo {
     height: 100%;
-    margin-right: 27%;
+    /* margin-right: 27%; */
   }
 
   .headerLogo img {
@@ -40,6 +40,7 @@
     align-items: center;
     justify-content: center;
     z-index: 1000000;
+    font-weight: 200;
   }
 }
 
@@ -75,18 +76,19 @@
 
   .logoutCardDefault {
     background-color: aliceblue;
-    border: 2px solid rgb(241, 234, 234);;
+    border: 2px solid rgb(241, 234, 234);
     border-radius: 15px;
     position: absolute;
     top: 5vh;
     /* right: 0.6vw; */
     width: 30vw;
-    height: 10vh;
+    height: 12vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 1000000;
+    font-weight: 200;
   }
 }
 
@@ -111,13 +113,15 @@
 
   .headerLogo img {
     height: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   .logOutDefault {
     /* border: 2px solid rgb(68, 19, 47); */
     display: flex;
     font-size: 3vmax;
-    margin-right: 9%;
+    /* margin-right: 9%; */
   }
 
   .logoutCardDefault {
@@ -132,5 +136,6 @@
     display: flex;
     justify-content: center;
     z-index: 1000000;
+    font-weight: 200;
   }
 }

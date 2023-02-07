@@ -1,8 +1,9 @@
 import { Autocomplete, Card, Checkbox } from "@mantine/core";
 import { Circle, GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
+import { AiOutlineClear } from "react-icons/ai";
 import { BsCardList } from "react-icons/bs";
-import { GrFormPrevious } from "react-icons/gr";
+import { GrFilter, GrFormPrevious } from "react-icons/gr";
 import { Link, useNavigate } from "react-router-dom";
 import DefaultHeader from "../../components/DefaultHeader";
 import Footer from "../../components/Footer";
@@ -267,10 +268,14 @@ export default function Map() {
                   </button>
                 </div>
                 <div className="filterButton">
-                  <button onClick={activateFilter}>Filter</button>
+                  <button onClick={activateFilter}>
+                    <GrFilter />
+                  </button>
                 </div>
                 <div className="filterButton">
-                  <button onClick={deactivateFilter}>Clear</button>
+                  <button onClick={deactivateFilter}>
+                    <AiOutlineClear />
+                  </button>
                 </div>
               </div>
             </div>
@@ -279,14 +284,18 @@ export default function Map() {
           <div className="pageContainer">
             <div className="filterContainer">
               <div className="categoryTrigger">
-                <button onClick={wantToUseFilter}>Category</button>
+                <button onClick={wantToUseFilter}>
+                  <GrFilter />
+                </button>
               </div>
 
               <div className="searchContainer">
                 <Autocomplete value={searchValues} onChange={setSearchValues} data={searchablePlace} />
               </div>
               <div className="searchTrigger">
-                <button onClick={search}>Search</button>
+                <button onClick={search}>
+                  <AiOutlineClear />
+                </button>
               </div>
 
               <div className="goListPage" onClick={() => navigate("/list")}>

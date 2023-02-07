@@ -52,7 +52,7 @@
   }
 
   .initialLandingLogin button {
-    background-color: #bf1858;
+    background-color: #ce294d;
     border: none;
     color: white;
     width: 25vmin;
@@ -77,7 +77,7 @@
     align-items: center;
     position: fixed;
     top: 0vmax;
-    background: #ffebcd;
+    background: #e7d0d5;
     /* background: #f6eabc; */
     position: relative;
     width: 900px;

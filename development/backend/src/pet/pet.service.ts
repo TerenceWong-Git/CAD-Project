@@ -1,9 +1,6 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { AddPetDto, AddWeightDto, UploadPetImgDto } from './dto';
-import { extname } from 'path';
-import { v4 as uuid } from 'uuid';
-import { S3uploadService } from 'src/s3upload/s3upload.service';
 // Deleted UserDto & PetDto (有冇用過)
 
 @Injectable()

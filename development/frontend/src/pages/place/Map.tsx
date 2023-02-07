@@ -1,6 +1,8 @@
 import { Autocomplete, Card, Checkbox } from "@mantine/core";
 import { Circle, GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
+import { BsCardList } from "react-icons/bs";
+import { GrFormPrevious } from "react-icons/gr";
 import { Link, useNavigate } from "react-router-dom";
 import DefaultHeader from "../../components/DefaultHeader";
 import Footer from "../../components/Footer";
@@ -25,6 +27,8 @@ export default function Map() {
                 onClick={() => {
                   setSelectedMarker(item);
                   setIsCardShown(true);
+                  setUserLat(latitudeToFloat);
+                  setUserLng(longitudeToFloat);
                 }}
               />
 
@@ -53,6 +57,8 @@ export default function Map() {
                 onClick={() => {
                   setSelectedMarker(item);
                   setIsCardShown(true);
+                  setUserLat(latitudeToFloat);
+                  setUserLng(longitudeToFloat);
                 }}
               />
 
@@ -81,6 +87,8 @@ export default function Map() {
                 onClick={() => {
                   setSelectedMarker(item);
                   setIsCardShown(true);
+                  setUserLat(latitudeToFloat);
+                  setUserLng(longitudeToFloat);
                 }}
               />
 
@@ -140,6 +148,11 @@ export default function Map() {
 
   const deactivateFilter = () => {
     setValues([]);
+  };
+
+  const closeFilter = () => {
+    setValues([]);
+    setIsTriggered(false);
   };
 
   const wantToUseFilter = () => {
@@ -248,6 +261,11 @@ export default function Map() {
                 })}
               </div>
               <div className="categoryContainerButton">
+                <div className="closeFilterButton">
+                  <button onClick={closeFilter}>
+                    <GrFormPrevious />
+                  </button>
+                </div>
                 <div className="filterButton">
                   <button onClick={activateFilter}>Filter</button>
                 </div>
@@ -272,18 +290,26 @@ export default function Map() {
               </div>
 
               <div className="goListPage">
-                <button onClick={() => navigate("/list")}>Go</button>
+                <button onClick={() => navigate("/list")}>
+                  <BsCardList />
+                </button>
               </div>
             </div>
+            {window.screen.width >= 821 && <div className="mapContainer">{bigSizeMap()}</div>}
+            {window.screen.width < 821 && window.screen.width >= 413 && <div className="mapContainer">{middleSizeMap()}</div>}
+            {window.screen.width < 413 && <div className="mapContainer">{smallSizeMap()}</div>}
+
             {isCardShown && (
-              <Card className="previewPlaceCard">
-                <Link to={`/list/placeDetail/${selectedMarker.id}`} style={{ color: "#262220" }}>
-                  <Card.Section>
-                    <img className="previewPicture2" src={`/uploads/list/${selectedMarker.profileImg}`} alt={selectedMarker.engName} />
-                  </Card.Section>
-                  <Card.Section className="cardSection">{selectedMarker.chiName}</Card.Section>
-                  <Card.Section className="cardSection">{selectedMarker.mapType.chiType}</Card.Section>
-                </Link>
+              <div className="previewCardArea">
+                <Card className="previewPlaceCard">
+                  <Link to={`/list/placeDetail/${selectedMarker.id}`} style={{ color: "#262220" }}>
+                    <Card.Section>
+                      <img className="previewPicture2" src={`/uploads/list/${selectedMarker.profileImg}`} alt={selectedMarker.engName} />
+                    </Card.Section>
+                    <Card.Section className="cardSection">{selectedMarker.chiName}</Card.Section>
+                    <Card.Section className="cardSection">{selectedMarker.mapType.chiType}</Card.Section>
+                  </Link>
+                </Card>
                 <button
                   className="closeCardButton"
                   onClick={() => {
@@ -292,12 +318,8 @@ export default function Map() {
                 >
                   x
                 </button>
-              </Card>
+              </div>
             )}
-
-            {window.screen.width >= 821 && <div className="mapContainer">{bigSizeMap()}</div>}
-            {window.screen.width < 821 && window.screen.width >= 413 && <div className="mapContainer">{middleSizeMap()}</div>}
-            {window.screen.width < 413 && <div className="mapContainer">{smallSizeMap()}</div>}
           </div>
         )}
         <Footer />

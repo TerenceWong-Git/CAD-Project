@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
+import "./css/PlaceDetail.css";
 import { useParams } from "react-router-dom";
+import Footer from "../../components/Footer";
+import DefaultHeader from "../../components/DefaultHeader";
+import { Button, Collapse } from "@mantine/core";
+import { BiDislike, BiLike } from "react-icons/bi";
 
 // 欠 isThumb Handle
 export default function PlaceDetail() {
@@ -43,48 +48,83 @@ export default function PlaceDetail() {
   console.log("有幾多like啊: ", countThumbAmount);
   /////////////////////////////////   Render PlaceCard   /////////////////////////////////
 
+  const [opened, setOpened] = useState(false);
+
   return (
     <>
       {thisPlaceItems && (
         <div className="placeDetailPageContainer">
+          <DefaultHeader />
           <div className="placeDetailCardContainer">
-            <div>{thisPlaceItems.chiName}</div>
-            <div>{thisPlaceItems.chiAddress}</div>
-            <div>{thisPlaceItems.phoneNumber}</div>
-            <div>{thisPlaceItems.district}</div>
-            <div>{"讚好數量: " + countThumbAmount}</div>
+            <div className="placeDetailInfoContainer">
+              <div className="placeDetailPreviewPicture">
+                <img src={`/uploads/list/${thisPlaceItems.profileImg}`} alt="" />
+              </div>
 
-            <br></br>
-            {workingHours.map((hour: any) => {
-              return (
-                <div key={hour.id}>
-                  <div>{hour.weekday}</div>
-                  <div>{hour.hours}</div>
+              {thisPlaceComments.isThumb === "true" ? (
+                <div className="placeDetailCommentContainer">
+                  {thisPlaceComments.map((comment: any) => {
+                    return (
+                      <div className="placeDetailEachComment" key={comment.content}>
+                        <div className="placeDetailEachCommentColumn">{comment.user.username}</div>
+                        <div className="placeDetailEachCommentColumn">{"Title: " + comment.title}</div>
+                        <div className="placeDetailEachCommentColumn">{"Content: " + comment.content}</div>
+                        <div className="placeDetailEachCommentColumn">
+                          <BiLike />
+                        </div>
+                        <div className="placeDetailEachCommentColumn">{comment.createdAt.slice(0, 10)}</div>
+                        {comment.CommentImg.length > 0 ? (
+                          <img className="placeDetailEachCommentPicture" height="100" width="100" src={`${comment.CommentImg[0].name}`} alt="" />
+                        ) : (
+                          <div>No image</div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
-              );
-            })}
-
-            <br></br>
-            {thisPlaceComments.map((comment: any) => {
-              return (
-                <div key={comment.content}>
-                  <div>{comment.user.username}</div>
-                  <div>{"Title: " + comment.title}</div>
-                  <div>{"Content: " + comment.content}</div>
-                  <div>{"Like?: " + comment.isThumb}</div>
-                  {comment.CommentImg.length > 0 ? (
-                    <img height="100" width="100" src={`${comment.CommentImg[0].name}`} alt="" />
-                  ) : (
-                    <div>No image</div>
-                  )}
-
-                  <br></br>
+              ) : (
+                <div className="placeDetailCommentContainer">
+                  {thisPlaceComments.map((comment: any) => {
+                    return (
+                      <div className="placeDetailEachComment" key={comment.content}>
+                        <div className="placeDetailEachCommentColumn">{comment.user.username}</div>
+                        <div className="placeDetailEachCommentColumn">{"Title: " + comment.title}</div>
+                        <div className="placeDetailEachCommentColumn">{"Content: " + comment.content}</div>
+                        <div className="placeDetailEachCommentColumn">
+                          <BiDislike />
+                        </div>
+                        <div className="placeDetailEachCommentColumn">{comment.createdAt.slice(0, 10)}</div>
+                        {comment.CommentImg.length > 0 ? (
+                          <img className="placeDetailEachCommentPicture" height="100" width="100" src={`${comment.CommentImg[0].name}`} alt="" />
+                        ) : (
+                          <div>No image</div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
-              );
-            })}
+              )}
+            </div>
+            <div className="placeDetailInfo">
+              <div>{thisPlaceItems.chiName}</div>
+              <div>{thisPlaceItems.chiAddress}</div>
+              <div>{thisPlaceItems.phoneNumber}</div>
+              <div>{thisPlaceItems.district}</div>
+              <div>{"讚好數量: " + countThumbAmount}</div>
+
+              <Button onClick={() => setOpened((o) => !o)}>Toggle content</Button>
+              <Collapse in={opened}>
+                {workingHours.map((hour: any) => {
+                  return (
+                    <div key={hour.id}>
+                      {hour.weekday}: {hour.hours}
+                    </div>
+                  );
+                })}
+              </Collapse>
+            </div>
           </div>
-
-          <div className="placeDetailCommentContainer"></div>
+          <Footer />
         </div>
       )}
     </>

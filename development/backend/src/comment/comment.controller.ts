@@ -17,10 +17,16 @@ import { CreateCommentDto } from './dto/create-comment.dto';
 import { GetUser } from 'src/auth/decorator';
 import { UpdateCommentDto } from './dto/update-comment.dto';
 import { FilesInterceptor } from '@nestjs/platform-express/multer';
+import { extname } from 'path';
+import { v4 as uuid } from 'uuid';
+import { S3uploadService } from 'src/s3upload/s3upload.service';
 
 @Controller('comment')
 export class CommentController {
-  constructor(private readonly commentService: CommentService) {}
+  constructor(
+    private readonly commentService: CommentService,
+    private readonly s3uploadService: S3uploadService,
+  ) {}
 
   @Get('map')
   async getMap() {
@@ -61,8 +67,18 @@ export class CommentController {
     @Body() commentDto: CreateCommentDto,
     @UploadedFiles() files: Express.Multer.File[],
   ) {
-    // console.log('controller inspect', files);
-    return await this.commentService.createComment(userId, commentDto, files);
+    const arrayOfFileNames = [];
+    for (const file of files) {
+      const filename = `${uuid()}${extname(file.originalname)}`;
+      arrayOfFileNames.push(filename);
+      await this.s3uploadService.upload(file, filename);
+    }
+
+    await this.commentService.createComment(
+      userId,
+      commentDto,
+      arrayOfFileNames,
+    );
   }
 
   @Patch('update/:id')
@@ -74,11 +90,17 @@ export class CommentController {
     @Body() commentDto: UpdateCommentDto,
     @UploadedFiles() files: Express.Multer.File[],
   ) {
+    const arrayOfFileNames = [];
+    for (const file of files) {
+      const filename = `${uuid()}${extname(file.originalname)}`;
+      arrayOfFileNames.push(filename);
+      await this.s3uploadService.upload(file, filename);
+    }
     return await this.commentService.editCommentById(
       userId,
       commentId,
       commentDto,
-      files,
+      arrayOfFileNames,
     );
   }
 

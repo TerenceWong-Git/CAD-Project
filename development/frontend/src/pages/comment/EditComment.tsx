@@ -185,7 +185,7 @@ function EditComment() {
                     <div className="comment-edit-images-area" key={index}>
                       <img
                         className="comment-edit-oldImage"
-                        src={`${process.env.REACT_APP_BACKEND_URL}/upload/${image.name}`}
+                        src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${image.name}`}
                         width="100"
                         alt=""
                       />

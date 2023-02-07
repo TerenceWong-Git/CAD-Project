@@ -2,10 +2,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@1,400;1,700&display=swap");
 
 @media only screen and (min-width: 821px) {
-  /* .initialLandingBox {
+  .initialLandingBox {
     display: flex;
     justify-content: center;
-  } */
+  }
 
   .initialLandingContainer {
     border: 2px solid black;

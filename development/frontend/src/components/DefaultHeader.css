@@ -29,14 +29,15 @@
 
   .logoutCardDefault {
     background-color: aliceblue;
-    /* border: 2px solid rgb(0, 0, 0); */
+    border: 2px solid rgb(241, 234, 234);
     border-radius: 15px;
     position: absolute;
-    top: 7.5vh;
-    right: 23.5vw;
+    top: 7vh;
+    /* right: 23.5vw; */
     width: 18%;
-    height: 500px;
+    height: 15vh;
     display: flex;
+    align-items: center;
     justify-content: center;
     z-index: 1000000;
   }
@@ -74,13 +75,13 @@
 
   .logoutCardDefault {
     background-color: aliceblue;
-    border: 2px solid rgb(0, 0, 0);
+    border: 2px solid rgb(241, 234, 234);;
     border-radius: 15px;
     position: absolute;
-    top: 5.4vh;
-    right: 0.6vw;
+    top: 5vh;
+    /* right: 0.6vw; */
     width: 30vw;
-    height: 45vh;
+    height: 10vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -121,13 +122,13 @@
 
   .logoutCardDefault {
     background-color: aliceblue;
-    border: 2px solid rgb(0, 0, 0);
+    border: 2px solid rgb(241, 234, 234);
     border-radius: 15px;
     position: absolute;
-    top: 6.6vh;
-    right: 1vw;
+    /* top: 6.6vh; */
+    /* right: 1vw; */
     width: 50vw;
-    height: 45vh;
+    height: 10vh;
     display: flex;
     justify-content: center;
     z-index: 1000000;

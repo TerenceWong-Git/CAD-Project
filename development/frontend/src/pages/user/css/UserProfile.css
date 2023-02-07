@@ -19,14 +19,10 @@
     justify-content: center;
     background-color: #fef7f6;
     box-shadow: 0px 4px 16px rgba(0, 38, 82, 0.2);
-    border-radius: 30px;
+    border-radius: 50px;
     margin: 2%;
-    width: 100%;
-  }
-
-  .user-card > div:nth-child(1) {
-    border: 1px solid #eee;
-    border-radius: 50%;
+    width: 85vw;
+    height: 12vh;
   }
 
   .username {
@@ -183,6 +179,11 @@
 /* -----------------------------  Pad Ver. ----------------------------- */
 
 @media only screen and (min-width: 500px) {
+  .user-card {
+    width: 70vw;
+    height: 19vh;
+    border-radius: 150px;
+  }
   .user-pet-profile {
     border-radius: 150px;
     width: 70vw;
@@ -196,7 +197,6 @@
   .user-add-pet {
     height: 20vh;
   }
-
 }
 
 /* -----------------------------  Pad Ver. ----------------------------- */
@@ -209,7 +209,7 @@
   }
 
   .user-profile-body {
-    height: 94vh;
+    height: 100vh;
   }
 
   .user-card {
@@ -217,11 +217,10 @@
     justify-content: center;
     background-color: #f7f1f0;
     box-shadow: 0px 4px 16px rgba(0, 38, 82, 0.2);
-    border-radius: 30px;
-    width: 80vw;
+    border-radius: 150px;
+    width: 50vw;
     margin: 2%;
-    margin-left: 10vw;
-    /* margin-left: vw; */
+  
   }
 
   .user-card > div:nth-child(1) {
@@ -239,7 +238,8 @@
   }
 
   .user-pet-profile-container {
-    height: 73vh;
+    height: 80vh;
+    width: 60vw;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -6,6 +6,7 @@ import { tags } from "../../components/pet/PetTag";
 import { MultiSelect } from "@mantine/core";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import "./css/UploadGrowTree.css";
 
 function UploadGrowTree() {
   const path = process.env.REACT_APP_BACKEND_URL;
@@ -27,9 +28,10 @@ function UploadGrowTree() {
   return (
     <div>
       <Header/>
-    <div>
+    <div className="upload-grow-tree-page">
       Upload Grow Tree
       <form
+      className="upload-grow-tree-form"
         onSubmit={handleSubmit((data) => {
           const jwt = localStorage.getItem("token");
           const formData = new FormData();
@@ -52,7 +54,7 @@ function UploadGrowTree() {
             body: formData,
           });
 
-          navigate(`/growtree/${petId.id}`);
+          navigate(`/petProfile/${petId.id}`);
         })}
       >
         <div>
@@ -64,7 +66,7 @@ function UploadGrowTree() {
         <ImageUploading multiple value={images} onChange={onChange} dataURLKey="data_url">
           {({ imageList, onImageUpload, onImageRemoveAll, onImageUpdate, onImageRemove, isDragging, dragProps }) => (
             // write your building UI
-            <div className="upload__image-wrapper">
+            <div className="upload-grow-tree-input-tag">
               <button type="button" style={isDragging ? { color: "red" } : undefined} onClick={onImageUpload} {...dragProps}>
                 Click or Drop here
               </button>

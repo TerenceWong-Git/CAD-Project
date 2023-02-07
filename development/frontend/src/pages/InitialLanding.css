@@ -9,7 +9,7 @@
 
   .initialLandingContainer {
     border: 2px solid black;
-    background: #df0054;
+    background: #f7f1f0;
     border-radius: 25px;
     display: flex;
     flex-direction: column;
@@ -26,30 +26,33 @@
     font-family: "Source Code Pro", monospace;
     font-size: 120px;
     position: relative;
-    top: 10%;
-    left: -6.5%;
+    top: 0%;
   }
 
-  .initialLandingSlogan {
+  .initialLandingTitleArea img {
+    height: 400px;
+  }
+
+  /* .initialLandingSlogan {
     color: rgb(255, 233, 178);
     font-family: "Source Code Pro", monospace;
     font-weight: bold;
     font-size: 45px;
     position: relative;
-    top: 15%;
+    top: 5%;
     left: 11%;
-  }
+  } */
 
   .initialLandingLogin {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    top: 13vmax;
+    top: -3.5vmax;
   }
 
   .initialLandingLogin button {
-    background-color: rgb(255, 200, 81);
+    background-color: #bf1858;
     border: none;
     color: white;
     width: 25vmin;
@@ -67,17 +70,18 @@
   }
 
   .initialLandingovalArea {
-    border: 2px solid rgb(255, 255, 255);
+    border: 2px solid #f7f1f0;
     height: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
     position: fixed;
-    top: 17vmax;
-    background: white;
+    top: 0vmax;
+    background: #ffebcd;
+    /* background: #f6eabc; */
     position: relative;
-    width: 1000px;
-    height: 500px;
+    width: 900px;
+    height: 450px;
     border-radius: 50%;
     overflow: hidden;
   }
@@ -99,8 +103,8 @@
   }
 
   .initialLandingContainer {
-    border: 2px solid black;
-    background: #df0054;
+    /* border: 2px solid black; */
+    background: #f7f1f0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -111,64 +115,67 @@
 
   .initialLandingTitleArea {
     /* border: 5px solid rgb(0, 0, 0); */
-    color: white;
     /* font-family: "Josefin Sans", sans-serif; */
+    color: white;
     font-family: "Source Code Pro", monospace;
-    font-size: 10vmin;
+    font-size: 120px;
     position: relative;
-    top: 10%;
-    left: -17%;
+    top: 0%;
   }
 
-  .initialLandingSlogan {
+  .initialLandingTitleArea img {
+    height: 400px;
+  }
+
+  /* .initialLandingSlogan {
     color: rgb(255, 233, 178);
     font-family: "Source Code Pro", monospace;
     font-weight: bold;
-    font-size: 6vmin;
+    font-size: 45px;
     position: relative;
-    top: 15%;
-    left: 4vmax;
-  }
+    top: 5%;
+    left: 11%;
+  } */
 
   .initialLandingLogin {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    top: 20%;
+    top: -3.5vmax;
   }
 
   .initialLandingLogin button {
-    background-color: rgb(255, 200, 81);
+    background-color: #bf1858;
     border: none;
     color: white;
-    width: 22vmax;
-    height: 6vmax;
+    width: 25vmin;
+    height: 7vmin;
     padding: 10px 20px;
     text-align: center;
-    text-justify: distribute;
     text-decoration: none;
     display: inline-block;
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 46px;
     font-family: "Source Code Pro", monospace;
-    font-size: 3vmax;
+    font-size: 3vmin;
     font-weight: 700;
   }
 
   .initialLandingovalArea {
-    border: 2px solid rgb(255, 255, 255);
+    border: 2px solid #f7f1f0;
     height: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    top: 5vmax;
+    background: #ffebcd;
+    /* background: #f6eabc; */
     position: relative;
-    top: 25%;
-    background: white;
-    position: relative;
-    width: 140vmin;
-    height: 70vmin;
+    width: 900px;
+    height: 450px;
     border-radius: 50%;
     overflow: hidden;
   }
@@ -202,64 +209,67 @@
 
   .initialLandingTitleArea {
     /* border: 5px solid rgb(0, 0, 0); */
-    color: white;
     /* font-family: "Josefin Sans", sans-serif; */
+    color: white;
     font-family: "Source Code Pro", monospace;
-    font-size: 10vmin;
+    font-size: 120px;
     position: relative;
-    top: 12%;
-    left: -17%;
+    top: 0%;
   }
 
-  .initialLandingSlogan {
+  .initialLandingTitleArea img {
+    height: 400px;
+  }
+
+  /* .initialLandingSlogan {
     color: rgb(255, 233, 178);
     font-family: "Source Code Pro", monospace;
     font-weight: bold;
-    font-size: 6vmin;
+    font-size: 45px;
     position: relative;
-    top: 18%;
-    left: 3.3vmax;
-  }
+    top: 5%;
+    left: 11%;
+  } */
 
   .initialLandingLogin {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    top: 25%;
+    top: -3.5vmax;
   }
 
   .initialLandingLogin button {
-    background-color: rgb(255, 200, 81);
+    background-color: #bf1858;
     border: none;
     color: white;
-    width: 22vmax;
-    height: 6vmax;
+    width: 25vmin;
+    height: 7vmin;
     padding: 10px 20px;
     text-align: center;
-    text-justify: distribute;
     text-decoration: none;
     display: inline-block;
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 46px;
     font-family: "Source Code Pro", monospace;
-    font-size: 3vmax;
+    font-size: 3vmin;
     font-weight: 700;
   }
 
   .initialLandingovalArea {
-    border: 2px solid rgb(255, 255, 255);
+    border: 2px solid #f7f1f0;
     height: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    top: 5vmax;
+    background: #ffebcd;
+    /* background: #f6eabc; */
     position: relative;
-    top: 33%;
-    background: white;
-    position: relative;
-    width: 140vmin;
-    height: 70vmin;
+    width: 900px;
+    height: 450px;
     border-radius: 50%;
     overflow: hidden;
   }

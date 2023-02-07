@@ -39,7 +39,7 @@ function VaccinePage() {
 
         <div>
           {/* {vaccine?.name} */}
-          <img className="vaccine" width="300" height="300" src={icon} alt={""} />
+          <img className="vaccine" width="300" height="300" src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${vaccine?.name}`} alt={""} />
         </div>
         {/* <Modal opened={opened} onClose={() => setOpened(false)} title="新增針卡" overlayOpacity={0.3}
       overlayBlur={1}>

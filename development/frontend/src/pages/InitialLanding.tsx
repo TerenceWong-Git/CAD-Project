@@ -17,14 +17,17 @@ export default function InitialLanding() {
   return (
     <div className="initialLandingBox">
       <div className="initialLandingContainer">
-        <div className="initialLandingTitleArea">Wikipetia</div>
-        <div className="initialLandingSlogan">Life is exploring more </div>
+        {/* <div className="initialLandingTitleArea">Wikipetia</div> */}
+        <div className="initialLandingTitleArea">
+          <img src={"/uploads/Logo.png"} alt={""} />
+        </div>
+        {/* <div className="initialLandingSlogan">Life is exploring more </div> */}
         <div className="initialLandingLogin">
           <button onClick={login}>Let's GO!</button>
         </div>
         <div className="initialLandingovalArea">
           <div className="initialLandingovalBackgroundImg">
-            <img src={"/uploads/initialLanding.jpeg"} alt={""} />
+            <img src={"/uploads/initialLanding.png"} alt={""} />
           </div>
         </div>
       </div>

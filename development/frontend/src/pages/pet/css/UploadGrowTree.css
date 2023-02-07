@@ -1,0 +1,16 @@
+.upload-grow-tree-page{
+    height: 100vh;
+    margin: 5%;
+}
+.upload-grow-tree-form{
+    background-color: white;
+  border-radius: 15px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.upload-grow-tree-input-tag{
+    border-radius: 8px;
+    border: 1px solid #c3a6a0;
+}

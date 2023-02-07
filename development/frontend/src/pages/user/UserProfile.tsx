@@ -5,6 +5,7 @@ import { FaPlus } from "react-icons/fa";
 import userIcon from "../../assets/128.png";
 import Footer from "../../components/Footer";
 import { RiUser3Line } from "react-icons/ri";
+import { GiSittingDog } from "react-icons/gi";
 import DefaultHeader from "../../components/DefaultHeader";
 
 function UserProfile() {
@@ -80,7 +81,7 @@ function UserProfile() {
                       alt={pet.id}
                     />
                   ) : (
-                    <div className="user-emtpy-pet-icon"></div>
+                    <div className="user-emtpy-pet-icon"><GiSittingDog className="user-emtpy-pet-icon-dummy"/></div>
                   )}
                 </div>
                 <div className="pet-detail">

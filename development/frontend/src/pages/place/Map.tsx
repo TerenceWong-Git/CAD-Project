@@ -246,7 +246,7 @@ export default function Map() {
                 {districts.map((district) => {
                   return (
                     <Checkbox.Group key={district.engDistrict} value={values} onChange={setValues}>
-                      <Checkbox value={district.engDistrict} label={district.chiDistrict} />
+                      <Checkbox className="districtCategoryCheckBox" value={district.engDistrict} label={district.chiDistrict} />
                     </Checkbox.Group>
                   );
                 })}
@@ -255,7 +255,7 @@ export default function Map() {
                 {types.map((type) => {
                   return (
                     <Checkbox.Group key={type.engType} value={values} onChange={setValues}>
-                      <Checkbox value={type.engType} label={type.chiType} />
+                      <Checkbox className="typeCategoryCheckBox" value={type.engType} label={type.chiType} />
                     </Checkbox.Group>
                   );
                 })}
@@ -289,10 +289,8 @@ export default function Map() {
                 <button onClick={search}>Search</button>
               </div>
 
-              <div className="goListPage">
-                <button onClick={() => navigate("/list")}>
-                  <BsCardList />
-                </button>
+              <div className="goListPage" onClick={() => navigate("/list")}>
+                <BsCardList />
               </div>
             </div>
             {window.screen.width >= 821 && <div className="mapContainer">{bigSizeMap()}</div>}
@@ -301,15 +299,17 @@ export default function Map() {
 
             {isCardShown && (
               <div className="previewCardArea">
-                <Card className="previewPlaceCard">
+                <div className="previewPlaceCard">
                   <Link to={`/list/placeDetail/${selectedMarker.id}`} style={{ color: "#262220" }}>
-                    <Card.Section>
-                      <img className="previewPicture2" src={`/uploads/list/${selectedMarker.profileImg}`} alt={selectedMarker.engName} />
-                    </Card.Section>
-                    <Card.Section className="cardSection">{selectedMarker.chiName}</Card.Section>
-                    <Card.Section className="cardSection">{selectedMarker.mapType.chiType}</Card.Section>
+                    <div className="previewPlaceCardPicture">
+                      <img src={`/uploads/list/${selectedMarker.profileImg}`} alt={selectedMarker.engName} />
+                    </div>
                   </Link>
-                </Card>
+                  <div className="previewPlaceCardInfo">
+                    <div className="cardTitle">{selectedMarker.chiName}</div>
+                    <div className="cardType">{selectedMarker.mapType.chiType}</div>
+                  </div>
+                </div>
                 <button
                   className="closeCardButton"
                   onClick={() => {

@@ -112,7 +112,13 @@ export class PetController {
     @Param('id', ParseIntPipe) petId: number,
     @UploadedFiles() files: Express.Multer.File[],
   ) {
-    await this.petService.uploadPetImg(uploadPetImgDto, petId, files);
+    const arrayOfFileNames = [];
+    for (const file of files) {
+      const filename = `${uuid()}${extname(file.originalname)}`;
+      arrayOfFileNames.push(filename);
+      await this.s3uploadService.upload(file, filename);
+    }
+    await this.petService.uploadPetImg(uploadPetImgDto, petId, arrayOfFileNames);
     return { message: 'success' };
   }
 
@@ -122,7 +128,9 @@ export class PetController {
     @Param('id', ParseIntPipe) petId: number,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    await this.petService.uploadVaccine(petId, file);
+    const filename = `${uuid()}${extname(file.originalname)}`;
+    await this.s3uploadService.upload(file, filename);
+    await this.petService.uploadVaccine(petId, filename);
     return { message: 'success' };
   }
 }

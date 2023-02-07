@@ -1,3 +1,9 @@
+.upload-grow-tree-title{
+    text-align: center;
+    font-weight: 300;
+    font-size: 5vmin;
+}
+
 .upload-grow-tree-page{
     height: 100vh;
     margin: 5%;
@@ -11,6 +17,17 @@
   align-items: center;
 }
 .upload-grow-tree-input-tag{
-    border-radius: 8px;
-    border: 1px solid #c3a6a0;
+    /* border-radius: 8px; */
+    /* border: 1px solid #c3a6a0; */
+    margin-top: 10px;
+}
+
+.upload-grow-tree-form>div {
+    margin: 10px;
+}
+.upload-grow-tree-img{
+    margin: 12px;
+}
+.upload-grow-tree-button{
+    margin-top: 12px;
 }

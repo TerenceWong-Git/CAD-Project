@@ -7,6 +7,8 @@ import { MultiSelect } from "@mantine/core";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import "./css/UploadGrowTree.css";
+import { RxUpdate } from "react-icons/rx";
+import { AiOutlineDelete } from "react-icons/ai";
 
 function UploadGrowTree() {
   const path = process.env.REACT_APP_BACKEND_URL;
@@ -29,7 +31,9 @@ function UploadGrowTree() {
     <div>
       <Header/>
     <div className="upload-grow-tree-page">
-      Upload Grow Tree
+      <div className="upload-grow-tree-title">
+      加入回憶
+      </div>
       <form
       className="upload-grow-tree-form"
         onSubmit={handleSubmit((data) => {
@@ -67,22 +71,22 @@ function UploadGrowTree() {
           {({ imageList, onImageUpload, onImageRemoveAll, onImageUpdate, onImageRemove, isDragging, dragProps }) => (
             // write your building UI
             <div className="upload-grow-tree-input-tag">
-              <button type="button" style={isDragging ? { color: "red" } : undefined} onClick={onImageUpload} {...dragProps}>
-                Click or Drop here
+              <button className="comment-edit-button" type="button" style={isDragging ? { color: "red" } : undefined} onClick={onImageUpload} {...dragProps}>
+              上載圖片
               </button>
               &nbsp;
-              <button type="button" onClick={onImageRemoveAll}>
-                Remove all images
+              <button  className="comment-delete-button" type="button" onClick={onImageRemoveAll}>
+              移除所有圖片
               </button>
               {imageList.map((image, index) => (
-                <div key={index} className="image-item">
+                <div key={index} className="image-item upload-grow-tree-img">
                   <img src={image["data_url"]} alt="" width="100" />
-                  <div className="image-item__btn-wrapper">
-                    <button type="button" onClick={() => onImageUpdate(index)}>
-                      Update
+                  <div className="image-item__btn-wrapper upload-grow-tree-button">
+                    <button className="comment-image-update" type="button" onClick={() => onImageUpdate(index)}>
+                    <RxUpdate color="#F2968F" />
                     </button>
-                    <button type="button" onClick={() => onImageRemove(index)}>
-                      Remove
+                    <button className="comment-image-delete" type="button" onClick={() => onImageRemove(index)}>
+                    <AiOutlineDelete color="#F2968F" />
                     </button>
                   </div>
                 </div>
@@ -92,14 +96,14 @@ function UploadGrowTree() {
         </ImageUploading>
 
         <div>
-          <input type="radio" value="true" required {...register("isPrivate")} />
+          <input className="comment-form-radio" type="radio" value="true" required {...register("isPrivate")} />
           <label>公開</label>
-          <input type="radio" value="false" {...register("isPrivate")} />
+          <input className="comment-form-radio" type="radio" value="false" {...register("isPrivate")} />
           <label>私人</label>
         </div>
 
         <div>
-          <input type="submit" value="submit" />
+          <input type="submit" value="提交" className="comment-submit upload-grow-tree-submit"/>
         </div>
       </form>
     </div>

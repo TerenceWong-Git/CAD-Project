@@ -76,13 +76,12 @@ export default function GrowTree() {
           <div className="paw" key={index}>
             <div className="rightPhoto inner">
               <div className="bottom">
-                {/* <img
+                <img
                   className="right"
-                  style={{ backgroundImage: "url(" + `${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}` + ")" }}
+                  // style={{ backgroundImage: "url(" + `${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}` + ")" }}
                   src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`}
                   alt={img.engName}
-                /> */}
-                <img className="right" key={img.name} src={"/dog-cat-gfb55af861_1920.jpg"} alt={img.engName} />
+                />
               </div>
             </div>
           </div>

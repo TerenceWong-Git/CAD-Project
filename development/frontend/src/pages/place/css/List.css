@@ -39,3 +39,9 @@
     overflow: scroll;
   }
 }
+
+/* -----------------------------  Phone Ver. ----------------------------- */
+
+@media only screen and (max-width: 767px) {
+  border-radius: 30px;
+}

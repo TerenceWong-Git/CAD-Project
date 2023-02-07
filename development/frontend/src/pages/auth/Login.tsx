@@ -43,17 +43,40 @@ export default function Login() {
           <div className="loginLogo">
             <img height={150} src={`/uploads/smallLogo.png`} alt={""} />
           </div>
-          <Box style={{ width: "65%" }} component="form" onSubmit={form.onSubmit(handleSubmit)}>
-            <TextInput id="email" label="電郵" placeholder="Email" withAsterisk mt="md" {...form.getInputProps("email")} />
+          <Box
+            style={{ width: "65%" }}
+            component="form"
+            onSubmit={form.onSubmit(handleSubmit)}
+          >
+            <TextInput
+              id="email"
+              label="電郵"
+              placeholder="Email"
+              withAsterisk
+              mt="md"
+              {...form.getInputProps("email")}
+            />
 
-            <PasswordInput label="密碼" placeholder="Password" withAsterisk mt="md" {...form.getInputProps("password")} />
+            <PasswordInput
+              label="密碼"
+              placeholder="Password"
+              withAsterisk
+              mt="md"
+              {...form.getInputProps("password")}
+            />
 
             <Group position="center" mt="md">
-              <Button className="login-submit-button" type="submit">登入</Button>
+              <Button className="login-submit-button" type="submit">
+                登入
+              </Button>
             </Group>
           </Box>
           <div className="goRegister">尚未註冊?</div>
-          <Button  className="login-submit-button" type="submit" onClick={goRegister}>
+          <Button
+            className="login-submit-button"
+            type="submit"
+            onClick={goRegister}
+          >
             點此創建帳號
           </Button>
         </div>

@@ -4,6 +4,8 @@ import { useParams } from "react-router";
 import "./css/GrowTree.css";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
+import { Link } from "react-router-dom";
+import { AiOutlinePlusSquare } from "react-icons/ai"
 
 export default function GrowTree() {
   const petId = useParams();
@@ -73,6 +75,8 @@ export default function GrowTree() {
     <div className="growTreePageContainer">
       <div className="treeContainer">
         Our Journey Starts Here
+
+        <div><Link to={`/uploadGrowTree/${petId.id}`}><AiOutlinePlusSquare/></Link></div>
         <InfiniteScroll
           dataLength={imgForGrow.length}
           next={continueGrow}

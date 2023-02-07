@@ -54,7 +54,7 @@ function UploadGrowTree() {
             body: formData,
           });
 
-          navigate(`/growtree/${petId.id}`);
+          navigate(`/petProfile/${petId.id}`);
         })}
       >
         <div>

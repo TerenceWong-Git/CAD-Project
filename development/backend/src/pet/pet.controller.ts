@@ -118,7 +118,11 @@ export class PetController {
       arrayOfFileNames.push(filename);
       await this.s3uploadService.upload(file, filename);
     }
-    await this.petService.uploadPetImg(uploadPetImgDto, petId, arrayOfFileNames);
+    await this.petService.uploadPetImg(
+      uploadPetImgDto,
+      petId,
+      arrayOfFileNames,
+    );
     return { message: 'success' };
   }
 

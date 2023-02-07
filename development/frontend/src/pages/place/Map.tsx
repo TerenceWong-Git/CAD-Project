@@ -1,4 +1,4 @@
-import { Autocomplete, Card, Checkbox } from "@mantine/core";
+import { Autocomplete, Checkbox } from "@mantine/core";
 import { Circle, GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
 import { AiOutlineClear } from "react-icons/ai";

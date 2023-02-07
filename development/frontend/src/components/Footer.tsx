@@ -64,7 +64,8 @@ export default function Footer() {
           alignItems: "center",
         }}
       >
-        <a href="http://localhost:3000/map">
+        {/* 改 */}
+        <a href="https://www.wikipetia.me/map">
           <IconContext.Provider value={{ style: { color: "black" } }}>
             <FiMapPin />
           </IconContext.Provider>

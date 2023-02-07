@@ -3,10 +3,10 @@ import {
   Get,
   Param,
   ParseIntPipe,
-  UseGuards,
+  // UseGuards,
 } from '@nestjs/common';
-import { GetUser } from 'src/auth/decorator';
-import { JwtGuard } from 'src/auth/guard';
+// import { GetUser } from 'src/auth/decorator';
+// import { JwtGuard } from 'src/auth/guard';
 import { MapService } from './map.service';
 
 @Controller('map')

@@ -92,12 +92,22 @@ export default function PlaceDetail() {
                   {thisPlaceComments.map((comment: any) => {
                     return (
                       <div className="placeDetailEachComment" key={comment.content}>
-                        <div className="placeDetailEachCommentColumn">{comment.user.username}</div>
-                        <div className="placeDetailEachCommentColumn">{"Title: " + comment.title}</div>
-                        <div className="placeDetailEachCommentColumn">{"Content: " + comment.content}</div>
-                        <div className="placeDetailEachCommentColumn">
-                          <BiDislike />
+                        <div className="placeDetailEachCommentName">{comment.user.username}</div>
+                        <div className="placeDetailEachCommentTitle">{comment.title}</div>
+                        <div className="placeDetailEachCommentLike">
+                          {comment.isThumb && (
+                            <div>
+                              <BiLike />
+                            </div>
+                          )}
+                          {!comment.isThumb && (
+                            <div>
+                              <BiDislike />
+                            </div>
+                          )}
                         </div>
+                        <div className="placeDetailEachCommentColumn">{comment.content}</div>
+
                         <div className="placeDetailEachCommentColumn">{comment.createdAt.slice(0, 10)}</div>
                         {comment.CommentImg.length > 0 ? (
                           <img className="placeDetailEachCommentPicture" height="100" width="100" src={`${comment.CommentImg[0].name}`} alt="" />

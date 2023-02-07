@@ -24,6 +24,9 @@ export default function Header() {
   return (
     <>
       <div className="headerDefault">
+        <div className="headerLogo">
+          <img src={"/uploads/banner.png"} alt={""} />
+        </div>
         <div className="logOutDefault">
           <div onClick={trigger}>
             <MdPets />

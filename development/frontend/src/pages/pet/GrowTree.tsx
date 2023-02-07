@@ -6,6 +6,7 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
 import { AiOutlinePlusSquare } from "react-icons/ai";
+import { BackgroundImage } from "@mantine/core";
 
 export default function GrowTree() {
   const petId = useParams();
@@ -54,28 +55,38 @@ export default function GrowTree() {
   };
 
   const renderContinueGrow = () =>
-    imgForGrow.map((img: any) => {
+    imgForGrow.map((img: any,index:any) => {
       if (!img.isPrivate && img.id % 2 === 0) {
         return (
-          <div className="leftPhoto" key={img.name}>
-            
+          <div className="paw" key={index}>
+          <div className="leftPhoto inner">
+            <div className="bottom">
             <img
-              key={img.name}
-              src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`}
+            className="left"
+              style={{backgroundImage:"url(" + `${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}` + ")",backgroundPosition: 'center',backgroundSize:"cover"}}
+              
+              // src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`}
               alt={img.engName}
             />
+            </div>
+          </div>
           </div>
         );
       } else {
         return (
-          <div className="rightPhoto" key={img.name}>
+          <div className="paw" key={index}>
+          <div className="rightPhoto inner">
+          <div className="bottom">
             <img
               className="right"
-              key={img.name}
+              style={{backgroundImage:"url(" + `${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}` + ")"}}
+              
               src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`}
               alt={img.engName}
             />
             {/* <img className="right" key={img.name} src={"/dog-cat-gfb55af861_1920.jpg"} alt={img.engName} /> */}
+          </div>
+          </div>
           </div>
         );
       }

@@ -16,8 +16,9 @@
 
   .landingPageTags {
     /* border: 3px solid rgb(0, 0, 0); */
-    background-color: azure;
+    background-color: #f7f3f5;
     height: 7vh;
+    margin-top: 2%;
     display: flex;
     align-items: center;
     position: sticky;
@@ -29,8 +30,10 @@
   .landingPageTags button {
     border: none;
     border-radius: 100px;
+    background-color: #eacfcc;
     height: 5.5vh;
     width: 4.5vw;
+    color: rgba(0, 0, 0, 0.849);
   }
 
   .tagButtonInLanding {
@@ -80,9 +83,9 @@
   }
 
   .landingPageTags {
-    background-color: azure;
+    background-color: #f7f3f5;
     height: 7vh;
-    padding: 0.5vh;
+    margin-top: 2%;
     display: flex;
     align-items: center;
     position: -webkit-sticky;
@@ -92,8 +95,10 @@
 
   .landingPageTags button {
     border: none;
+    background-color: #eacfcc;
     border-radius: 100px;
     font-size: 2vmax;
+    color: rgba(0, 0, 0, 0.849);
   }
 
   .tagButtonInLanding {
@@ -151,9 +156,9 @@
   }
 
   .landingPageTags {
-    background-color: azure;
+    background-color: #f7f3f5;
     height: 7vh;
-    padding: 0.5vh;
+    margin-top: 2%;
     display: flex;
     align-items: center;
     position: sticky;
@@ -163,8 +168,10 @@
 
   .landingPageTags button {
     border: none;
+    background-color: #eacfcc;
     border-radius: 100px;
     font-size: 2vmax;
+    color: rgba(0, 0, 0, 0.849);
   }
 
   .tagButtonInLanding {

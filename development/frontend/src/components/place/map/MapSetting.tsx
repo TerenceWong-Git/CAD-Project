@@ -1,6 +1,6 @@
 const containerStyle = {
   width: "800px",
-  height: "565px",
+  height: "575px",
 };
 
 const containerStyle2 = {

@@ -4,7 +4,7 @@ import { S3 } from 'aws-sdk';
 @Injectable()
 export class S3uploadService {
   async upload(file, filename) {
-    const bucketS3 = process.env.S3_BUCKET;
+    const bucketS3 = 'cas-uploads-development';
     console.log('running upload');
     console.log('file: ', file);
 

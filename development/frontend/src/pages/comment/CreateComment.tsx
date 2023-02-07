@@ -6,7 +6,7 @@ import { MdOutlineThumbUpOffAlt, MdOutlineThumbDown } from "react-icons/md";
 import { RxUpdate } from "react-icons/rx";
 import { AiOutlineDelete } from "react-icons/ai";
 import Footer from "../../components/Footer";
-import DefaultHeader from "../../components/DefaultHeader";
+import Header from "../../components/Header";
 
 function CreateComment() {
   const {
@@ -46,7 +46,7 @@ function CreateComment() {
 
   return (
     <div className="comment-create-page">
-      <DefaultHeader />
+      <Header />
       <form
         className="comment-create-form"
         onSubmit={handleSubmit(async (data) => {

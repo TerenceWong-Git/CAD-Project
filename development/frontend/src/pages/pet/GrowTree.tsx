@@ -52,36 +52,22 @@ export default function GrowTree() {
 
   const renderContinueGrow = () =>
     imgForGrow.map((img: any, index: any) => {
-      if (!img.isPrivate && img.id % 2 === 0) {
+      if (index % 2 !== 0) {
         return (
-          <div className="paw" key={index}>
-            <div className="leftPhoto inner">
-              <div className="bottom">
-                <img
-                  className="left"
-                  // style={{
-                  //   backgroundImage: url(`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`),
-                  //   backgroundPosition: "center",
-                  //   backgroundSize: "cover",
-                  // }}
-                  src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`}
-                  alt={img.engName}
-                />
+          <div className="growPictureRight">
+            <div className="paw leftPhoto">
+              <div className=" inner" key={index}>
+                <img className="left" src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`} alt={img.engName} />
               </div>
             </div>
           </div>
         );
       } else {
         return (
-          <div className="paw" key={index}>
-            <div className="rightPhoto inner">
-              <div className="bottom">
-                <img
-                  className="right"
-                  // style={{ backgroundImage: "url(" + `${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}` + ")" }}
-                  src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`}
-                  alt={img.engName}
-                />
+          <div className="growPictureLeft">
+            <div className="paw rightPhoto">
+              <div className=" inner" key={index}>
+                <img className="right" src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`} alt={img.engName} />
               </div>
             </div>
           </div>

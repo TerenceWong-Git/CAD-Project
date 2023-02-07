@@ -68,8 +68,12 @@ function UserProfile() {
             </div> */}
             {/* <div className="user-icon">{name.userIcon}</div> */}
             <div className="username">
-              <RiUser3Line size={"40%"}/> &nbsp;
+              <div className="user-emtpy-pet-icon">
+              <RiUser3Line className="user-emtpy-pet-icon-dummy"/>
+              </div>
+              <div className="username-name">
               {name.username}
+              </div>
             </div>
           </div>
         </div>

@@ -3,7 +3,7 @@ import { District, Gender } from '@prisma/client';
 const usersData = [
   {
     email: 'terence@tecky.io',
-    username: 'bedstrawpatsy',
+    username: 'Terence',
     password: '@Tecky1234',
     phoneNumber: 12345678,
     gender: Gender['Male'],

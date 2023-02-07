@@ -52,7 +52,6 @@
     background-color: #e0cdff;
     color: #7c699b;
     border-radius: 30px;
-    margin-left: 15vw;
   }
 
   .upload-vaccine-button {
@@ -65,6 +64,9 @@
   }
   .mantine-rqmd87 {
     border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 /* -----------------------------  Pad Ver. ----------------------------- */
@@ -128,7 +130,4 @@
     border-radius: 30px;
   }
 
-  .mantine-rqmd87 {
-    border-radius: 30px;
-  }
 }

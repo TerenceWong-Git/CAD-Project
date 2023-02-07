@@ -6,11 +6,11 @@
   }
 
   .placeDetailCardContainer {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     width: 821px;
     height: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     padding-top: 10px;
   }
 

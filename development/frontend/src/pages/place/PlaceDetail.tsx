@@ -3,8 +3,11 @@ import "./css/PlaceDetail.css";
 import { useParams } from "react-router-dom";
 import Footer from "../../components/Footer";
 import { Button, Collapse } from "@mantine/core";
-import { BiDislike, BiLike } from "react-icons/bi";
+import { BiCurrentLocation, BiDislike, BiLike, BiTime } from "react-icons/bi";
 import Header from "../../components/Header";
+import { MdPlace } from "react-icons/md";
+import { FaMapSigns } from "react-icons/fa";
+import { AiOutlinePhone } from "react-icons/ai";
 
 // 欠 isThumb Handle
 export default function PlaceDetail() {
@@ -108,18 +111,51 @@ export default function PlaceDetail() {
               )}
             </div>
             <div className="placeDetailInfo">
-              <div>{thisPlaceItems.chiName}</div>
-              <div>{thisPlaceItems.chiAddress}</div>
-              <div>{thisPlaceItems.phoneNumber}</div>
-              <div>{thisPlaceItems.district}</div>
-              <div>{"讚好數量: " + countThumbAmount}</div>
+              <div className="placeDetailNameArea">
+                <div className="placeDetailNameLogo">
+                  <FaMapSigns />
+                </div>
+                <div className="placeDetailName">{thisPlaceItems.chiName}</div>
+              </div>
 
-              <Button onClick={() => setOpened((o) => !o)}>Toggle content</Button>
+              <div className="placeDetailAddressArea">
+                <div className="placeDetailAddressLogo">
+                  <MdPlace />
+                </div>
+                <div className="placeDetailAddress">{thisPlaceItems.chiAddress}</div>
+              </div>
+
+              <div className="placeDetailPhoneArea">
+                <div className="placeDetailPhoneLogo">
+                  <AiOutlinePhone />
+                </div>
+                <div className="placeDetailPhone">{thisPlaceItems.phoneNumber}</div>
+              </div>
+
+              <div className="placeDetailDistrictArea">
+                <div className="placeDetailDistrictLogo">
+                  <BiCurrentLocation />
+                </div>
+                <div className="placeDetailDistrict">{thisPlaceItems.district}</div>
+              </div>
+
+              <div className="placeDetailThumbArea">
+                <div className="placeDetailThumbLogo">
+                  <BiLike />
+                </div>
+                <div className="placeDetailThumb">{"讚好數量: " + countThumbAmount}</div>
+              </div>
+
+              <div onClick={() => setOpened((o) => !o)}>
+                <BiTime />
+                營業時間
+              </div>
               <Collapse in={opened}>
                 {workingHours.map((hour: any) => {
                   return (
-                    <div key={hour.id}>
-                      {hour.weekday}: {hour.hours}
+                    <div className="placeDetailWH" key={hour.id}>
+                      <div>{hour.weekday}</div>
+                      <div>{hour.hours}</div>
                     </div>
                   );
                 })}

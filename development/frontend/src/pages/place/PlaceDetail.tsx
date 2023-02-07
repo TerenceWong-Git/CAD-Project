@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./css/PlaceDetail.css";
 import { useParams } from "react-router-dom";
 import Footer from "../../components/Footer";
-import DefaultHeader from "../../components/DefaultHeader";
 import { Button, Collapse } from "@mantine/core";
 import { BiDislike, BiLike } from "react-icons/bi";
+import Header from "../../components/Header";
 
 // 欠 isThumb Handle
 export default function PlaceDetail() {
@@ -54,7 +54,9 @@ export default function PlaceDetail() {
     <>
       {thisPlaceItems && (
         <div className="placeDetailPageContainer">
-          <DefaultHeader />
+          <div>
+            <Header />
+          </div>
           <div className="placeDetailCardContainer">
             <div className="placeDetailInfoContainer">
               <div className="placeDetailPreviewPicture">

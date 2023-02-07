@@ -6,6 +6,7 @@ import Header from "../../components/Header";
 import "./css/PetProfile.css";
 import { TiTree } from "react-icons/ti";
 import { BsCardList } from "react-icons/bs";
+import { GiSittingDog } from "react-icons/gi";
 
 function PetProfile() {
   const jwt = localStorage.getItem("token");
@@ -75,7 +76,7 @@ function PetProfile() {
                   alt={pets.id}
                 />
               ) : (
-                <div className="empty-pet-icon"></div>
+                <div className="empty-pet-icon"><GiSittingDog className="user-emtpy-pet-icon-dummy"/></div>
               )}
             </div>
             <div className="pet-introduction">

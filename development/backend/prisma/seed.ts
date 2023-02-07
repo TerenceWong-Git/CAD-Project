@@ -1,7 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import * as bcrypt from 'bcryptjs';
 import commentData from './data/commentData';
-import commentImgData from './data/commentImgData';
 import eventData from './data/eventData';
 import expData from './data/expData';
 import expLikeData from './data/expLikeData';
@@ -361,15 +360,6 @@ async function main() {
     select: { id: true },
   });
   console.log(`No. of comment data inserted: ${commentRes.length}`);
-  console.log(`length of comment Img array: ${commentImgData.length}`);
-  await prisma.commentImg.createMany({
-    data: commentImgData,
-    skipDuplicates: true,
-  });
-  const commentImgRes = await prisma.commentImg.findMany({
-    select: { id: true },
-  });
-  console.log(`No. of comment Img data inserted: ${commentImgRes.length}`);
   console.log(`length of event array: ${eventData.length}`);
   await prisma.event.createMany({
     data: eventData,

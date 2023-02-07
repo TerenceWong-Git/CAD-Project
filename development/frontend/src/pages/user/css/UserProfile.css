@@ -299,10 +299,17 @@
   }
 
   .user-emtpy-pet-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 50%;
     width: 100px;
     height: 100px;
-    background-color: gray;
+    background-color: rgba(216, 209, 209, 0.411);
+  }
+  .user-emtpy-pet-icon-dummy{
+    font-size: 80px;
+    color: white;
   }
 
   .pet-image {

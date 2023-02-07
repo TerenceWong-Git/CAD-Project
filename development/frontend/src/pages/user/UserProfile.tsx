@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./css/UserProfile.css";
 import { FaPlus } from "react-icons/fa";
-import userIcon from "../../assets/128.png";
 import Footer from "../../components/Footer";
 import { RiUser3Line } from "react-icons/ri";
 import { GiSittingDog } from "react-icons/gi";
@@ -33,7 +32,7 @@ function UserProfile() {
     }
     loadName();
     loadData();
-  }, []);
+  }, [jwt,path]);
 
   console.log(pets);
   console.log(name);

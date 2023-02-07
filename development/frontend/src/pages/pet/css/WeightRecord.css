@@ -47,7 +47,7 @@
     background-color: blue;
   }
   .weight-container {
-    background-color: white;
+    background-color: #f8dbdb;
     width: 90vw;
     border-radius: 15px;
     margin-top: 5vmin;
@@ -127,6 +127,12 @@
 
 /* -----------------------------  Pad Ver. ----------------------------- */
 @media only screen and (min-width: 821px) {
+  .weight-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .weight-body {
     margin: 8vmin;
     text-align: center;
@@ -165,7 +171,7 @@
     background-color: blue;
   }
   .weight-container {
-    background-color: white;
+    background-color: #f8dbdb;
     border-radius: 15px;
     margin-top: 5vmin;
     padding: 6vmin 0;

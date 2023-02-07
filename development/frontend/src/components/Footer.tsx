@@ -56,20 +56,19 @@ export default function Footer() {
         </Link>
       </div>
 
-      <div>
-        <Link
-          to={"/map"}
-          style={{
-            textDecoration: "none",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+      <div
+        style={{
+          textDecoration: "none",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <a href="http://localhost:3000/map">
           <IconContext.Provider value={{ style: { color: "black" } }}>
             <FiMapPin />
           </IconContext.Provider>
-        </Link>
+        </a>
       </div>
       <div>
         <Link

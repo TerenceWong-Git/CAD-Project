@@ -394,3 +394,13 @@
     font-size: 3vmin;
   }
 }
+
+@media only screen and (min-width: 821px){
+  .comment-card {
+    height: 30vh;
+  }
+
+  .comment-card-container {
+    width: 60vw;
+  }
+}

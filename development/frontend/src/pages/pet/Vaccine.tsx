@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { useParams } from "react-router";
 import { ImFolderUpload } from "react-icons/im";
 import "./css/Vaccine.css";
-import icon from "../../assets/img_8790.jpeg";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -71,8 +70,7 @@ function VaccinePage() {
           }
         </Modal> */}
 
-        <Modal centered className="vaccine-upload-tille" opened={opened} overlayOpacity={0.55}
-      overlayBlur={1} onClose={() => setOpened(false)}>
+        <Modal centered className="vaccine-upload-tille" opened={opened} overlayOpacity={0.55} overlayBlur={1} onClose={() => setOpened(false)}>
           {
             <form
               className="vaccine-upload-container"

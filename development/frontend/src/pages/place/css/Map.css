@@ -32,6 +32,7 @@
 
   .categoryTrigger {
     /* border: 3px solid rgb(0, 0, 0); */
+    background-color: #f7f3f5;
     margin-left: 7%;
     margin-right: 14%;
   }
@@ -44,28 +45,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2vmax;
+    font-size: 3vmax;
   }
 
   .filterButton button {
-    font-size: 1.3vmax;
-  }
-
-  .goListPage {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2vmax;
+    font-size: 3vmax;
   }
 
   .searchTrigger button,
   .categoryTrigger button,
   .goListPage {
-    background-color: #f6eabc;
+    background-color: #eacfcc;
     border: none;
     border-radius: 50px;
     width: 70px;
     height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5vmax;
   }
 
   .districtCategory,
@@ -76,7 +74,7 @@
   }
 
   .categoryContainerMap {
-    border: 3px solid rgb(0, 208, 255);
+    /* border: 3px solid rgb(0, 208, 255); */
     border-radius: 60px;
     display: flex;
     flex-direction: column;
@@ -84,30 +82,31 @@
     position: relative;
     top: 5%;
     width: 95%;
-    height: 75%;
+    height: 85%;
     overflow: scroll;
     padding: 0 1% 0 1%;
   }
 
   .districtCategoryCheckBox,
   .typeCategoryCheckBox {
-    border: 2px solid rgb(255, 99, 169);
+    /* border: 2px solid rgb(255, 99, 169); */
+    background-color: #eacfcc;
     border-radius: 15px;
     width: 100px;
     height: 50px;
     display: flex;
+    justify-content: center;
     align-items: center;
   }
 
   .categoryContainerButton {
     /* border: 2px solid rgb(255, 99, 169); */
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
+    justify-content: space-evenly;
   }
 
   .categoryContainerButton button {
-    background-color: #f6eabc;
+    background-color: #eacfcc;
     border: none;
     border-radius: 40px;
     width: 120px;
@@ -141,9 +140,9 @@
     justify-content: center;
     position: relative;
     width: 90%;
-    height: 89.5%;
+    height: 91%;
     top: 0px;
-    border: 3px solid rgb(255, 204, 0);
+    /* border: 3px solid rgb(255, 204, 0); */
     border-radius: 40px;
     overflow: hidden;
   }
@@ -197,7 +196,7 @@
   .cardType {
     /* border: 2px solid rgb(255, 255, 255); */
     width: 13.7vw;
-    color: rgb(255, 200, 0);
+    color: rgb(255, 255, 255);
     font-size: 20px;
     font-weight: bold;
   }
@@ -258,41 +257,44 @@
   }
 
   .filterButton button {
-    background-color: #f6eabc;
+    background-color: #eacfcc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 2vmax;
   }
 
   .closeFilterButton button {
-    background-color: #f6eabc;
+    background-color: #eacfcc;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3vmax;
+    font-size: 2vmax;
   }
 
   .goListPage {
     border: none;
     border-radius: 50px;
-    background-color: #f6eabc;
+    background-color: #eacfcc;
     height: 4vh;
     width: 10vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3vmax;
+    font-size: 2.5vmax;
   }
 
   .searchTrigger button,
   .categoryTrigger button {
     border: none;
     border-radius: 50px;
-    background-color: #f6eabc;
+    background-color: #eacfcc;
     height: 4vh;
     width: 10vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5vmax;
+    font-size: 2.5vmax;
   }
 
   .districtCategory,
@@ -303,7 +305,7 @@
   }
 
   .categoryContainerMap {
-    border: 3px solid rgb(0, 208, 255);
+    /* border: 3px solid rgb(0, 208, 255); */
     border-radius: 60px;
     display: flex;
     flex-direction: column;
@@ -318,27 +320,31 @@
 
   .districtCategoryCheckBox,
   .typeCategoryCheckBox {
-    border: 2px solid rgb(255, 99, 169);
+    /* border: 2px solid rgb(255, 99, 169); */
     border-radius: 15px;
-    width: 100px;
-    height: 50px;
+    width: 14vw;
+    height: 5vh;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    background-color: #eacfcc;
   }
 
   .categoryContainerButton {
     /* border: 2px solid rgb(255, 99, 169); */
     display: flex;
     justify-content: space-around;
-    margin-bottom: 20px;
+    margin-bottom: 1vh;
   }
 
   .categoryContainerButton button {
     border: none;
-    border-radius: 40px;
-    width: 120px;
-    height: 60px;
+    border-radius: 20px;
+    width: 15vw;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .districtCategoryMap {
@@ -370,7 +376,7 @@
     width: 90%;
     height: 92%;
     top: 0px;
-    border: 3px solid rgb(255, 204, 0);
+    /* border: 3px solid rgb(255, 204, 0); */
     border-radius: 40px;
     overflow: hidden;
   }
@@ -460,7 +466,7 @@
   }
 
   .filterContainer {
-    border: 3px solid rgb(0, 0, 0);
+    /* border: 3px solid rgb(0, 0, 0); */
     border-radius: 40px;
     height: 7%;
     width: 95%;
@@ -477,30 +483,30 @@
   .categoryTrigger {
     /* border: 3px solid rgb(0, 0, 0); */
     margin-left: 5%;
-    margin-right: 5%;
+    margin-right: 3%;
   }
 
   .searchTrigger {
-    margin-right: 4%;
+    margin-right: 3%;
   }
 
   .filterButton button {
     color: black;
-    background-color: #f6eabc;
+    background-color: #eacfcc;
     font-size: 2vmax;
   }
 
   .closeFilterButton button {
     color: black;
-    background-color: #f6eabc;
+    background-color: #eacfcc;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 3vmax;
   }
 
-  .goListPage button {
-    background-color: none;
+  .goListPage {
+    background-color: #eacfcc;
     border: none;
     display: flex;
     align-items: center;
@@ -513,7 +519,7 @@
     border: none;
     border-radius: 50px;
     color: black;
-    background-color: #f6eabc;
+    background-color: #eacfcc;
     height: 4vh;
     width: 16vw;
     display: flex;
@@ -530,7 +536,7 @@
   }
 
   .categoryContainerMap {
-    border: 3px solid rgb(0, 208, 255);
+    /* border: 2px solid rgb(0, 208, 255); */
     border-radius: 60px;
     display: flex;
     flex-direction: column;
@@ -545,30 +551,35 @@
 
   .districtCategoryCheckBox,
   .typeCategoryCheckBox {
-    border: 2px solid rgb(255, 99, 169);
+    /* border: 2px solid rgb(255, 99, 169); */
     border-radius: 15px;
-    width: 22vw;
+    width: 25vw;
     height: 5vh;
     display: flex;
     align-items: center;
+    background-color: #eacfcc;
   }
 
   .categoryContainerButton {
     /* border: 2px solid rgb(255, 99, 169); */
     display: flex;
     justify-content: space-around;
-    margin-bottom: 20px;
+    margin-bottom: 1vh;
   }
 
   .categoryContainerButton button {
     border: none;
-    border-radius: 40px;
-    width: 120px;
-    height: 60px;
+    border-radius: 20px;
+    width: 20vw;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vmax;
   }
 
   .districtCategoryMap {
-    border: 3px solid rgb(255, 204, 0);
+    /* border: 3px solid rgb(255, 204, 0); */
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -595,7 +606,7 @@
     width: 90%;
     height: 92%;
     top: 0px;
-    border: 3px solid rgb(255, 204, 0);
+    /* border: 3px solid rgb(255, 204, 0); */
     border-radius: 40px;
     overflow: hidden;
   }

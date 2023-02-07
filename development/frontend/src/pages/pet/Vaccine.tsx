@@ -32,7 +32,7 @@ function VaccinePage() {
   }, []);
 
   return (
-    <div>
+    <div className="vaccine-page">
       <Header />
       <div className="vaccine-body">
         {/* <div className="vaccine-tittle">針卡記錄</div> */}

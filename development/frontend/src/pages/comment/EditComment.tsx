@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { MdOutlineThumbUpOffAlt, MdOutlineThumbDown } from "react-icons/md";
 import { BiMap } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 interface FormInput {
   title: string;
@@ -65,6 +67,7 @@ function EditComment() {
 
   return (
     <div className="comment-create-page">
+      <Header />
       <form
         className="comment-create-form"
         onSubmit={handleSubmit(async (data) => {
@@ -189,7 +192,7 @@ function EditComment() {
                         width="100"
                         alt=""
                       />
-                    <br></br>
+                      <br></br>
                       <button
                         type="button"
                         className="comment-image-delete"
@@ -227,7 +230,7 @@ function EditComment() {
               {updateFile.length > 0 &&
                 updateFile.map((image: any, index: any) => {
                   return (
-                    <div  className="comment-edit-images-area" key={index}>
+                    <div className="comment-edit-images-area" key={index}>
                       <img
                         className="comment-edit-newImage"
                         src={URL.createObjectURL(image)}
@@ -246,13 +249,14 @@ function EditComment() {
                 })}
             </div>
           </div>
-        <br></br>
+          <br></br>
 
           <div>
             <input type="submit" value="提交" className="comment-submit" />
           </div>
         </div>
       </form>
+      <Footer />
     </div>
   );
 }

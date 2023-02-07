@@ -52,7 +52,7 @@
 @media only screen and (max-width: 767px) {
   .footer {
     background-color: #f0dcda;
-    border: 2px solid rgb(255, 247, 0);
+    /* border: 2px solid rgb(255, 247, 0); */
     height: 8vh;
     width: 95vw;
     position: fixed;

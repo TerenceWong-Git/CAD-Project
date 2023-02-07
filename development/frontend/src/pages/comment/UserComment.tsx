@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { GiHollowCat } from "react-icons/gi";
 import { BiCommentDetail } from "react-icons/bi";
 import { MdOutlineThumbUpOffAlt, MdOutlineThumbDown } from "react-icons/md";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 function UserComment() {
   const [comments, setComments] = useState<any[]>([]);
@@ -25,8 +27,9 @@ function UserComment() {
   }, []);
 
   return (
-    <div>
-      <div className="comment-body ">
+    <div className="comment-user-page ">
+      <Header />
+      <div className="comment-user-body ">
         {comments.length > 0 ? (
           comments.map((comment) => (
             <div className="comment-card-container" key={comment.id}>
@@ -119,6 +122,7 @@ function UserComment() {
           <div>您還沒有建立留言</div>
         )}
       </div>
+      <Footer />
     </div>
   );
 }

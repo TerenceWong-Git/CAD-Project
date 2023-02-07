@@ -5,7 +5,7 @@ import { BiUser } from "react-icons/bi";
 import { GiHollowCat } from "react-icons/gi";
 import { MdOutlineThumbUpOffAlt, MdOutlineThumbDown } from "react-icons/md";
 import Footer from "../../components/Footer";
-import Header from "../../components/Header";
+import DefaultHeader from "../../components/DefaultHeader";
 
 function CommentPage() {
   const [comments, setComments] = useState<any[]>([]);
@@ -36,7 +36,7 @@ function CommentPage() {
 
   return (
     <div className="comment-page">
-      <Header />
+      <DefaultHeader />
       <div className="comment-button-area">
         <button>
           <Link to={"createComment"} style={{ color: "#FCFCFC" }}>

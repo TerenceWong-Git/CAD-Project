@@ -143,25 +143,25 @@ export class PetService {
   async uploadPetImg(
     uploadPetImgDto: UploadPetImgDto,
     petId: number,
-    files: Express.Multer.File[],
+    arrayOfFileNames: string[],
   ) {
-    console.log(files);
+    console.log(arrayOfFileNames);
 
     await this.prismaService.petImg.createMany({
-      data: files.map((file) => ({
+      data: arrayOfFileNames.map((file) => ({
         petId: petId,
-        name: file.filename,
+        name: file,
         tag: uploadPetImgDto.tag,
         isPrivate: uploadPetImgDto.isPrivate,
       })),
     });
   }
 
-  async uploadVaccine(petId: number, file: Express.Multer.File) {
+  async uploadVaccine(petId: number, filename: string) {
     const data = await this.prismaService.petVaccine.create({
       data: {
         petId: petId,
-        name: file.filename,
+        name: filename,
       },
     });
     return data;

@@ -5,7 +5,7 @@ import "./css/GrowTree.css";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
-import { AiOutlinePlusSquare } from "react-icons/ai"
+import { AiOutlinePlusSquare } from "react-icons/ai";
 
 export default function GrowTree() {
   const petId = useParams();
@@ -15,11 +15,14 @@ export default function GrowTree() {
   useEffect(() => {
     async function loadData() {
       const jwt = localStorage.getItem("token");
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/pet/petImg/${petId.id}`, {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/pet/petImg/${petId.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
       const json = await res.json();
       setImg(json);
       setImgForGrow(json.slice(0, 4));
@@ -55,13 +58,23 @@ export default function GrowTree() {
       if (!img.isPrivate && img.id % 2 === 0) {
         return (
           <div className="leftPhoto" key={img.name}>
-            <img key={img.name} src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`} alt={img.engName} />
+            
+            <img
+              key={img.name}
+              src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`}
+              alt={img.engName}
+            />
           </div>
         );
       } else {
         return (
           <div className="rightPhoto" key={img.name}>
-            <img className="right" key={img.name} src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`} alt={img.engName} />
+            <img
+              className="right"
+              key={img.name}
+              src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`}
+              alt={img.engName}
+            />
             {/* <img className="right" key={img.name} src={"/dog-cat-gfb55af861_1920.jpg"} alt={img.engName} /> */}
           </div>
         );
@@ -70,29 +83,31 @@ export default function GrowTree() {
 
   return (
     <div>
-      <Header/>
-    
-    <div className="growTreePageContainer">
-      <div className="treeContainer">
-        Our Journey Starts Here
+      <Header />
 
-        <div><Link to={`/uploadGrowTree/${petId.id}`}><AiOutlinePlusSquare/></Link></div>
-        <InfiniteScroll
-          dataLength={imgForGrow.length}
-          next={continueGrow}
-          hasMore={hasMore}
-          loader={<div></div>}
-          endMessage={
-            <p style={{ textAlign: "center" }}>
-              <b>To be continued ~ </b>
-            </p>
-          }
-        >
-          {renderContinueGrow()}
-        </InfiniteScroll>
+      <div className="growTreePageContainer">
+        <div className="treeContainer">
+          Our Journey Starts Here
+          <div>
+            <Link to={`/uploadGrowTree/${petId.id}`}>
+              <AiOutlinePlusSquare />
+            </Link>
+          </div>
+          <InfiniteScroll
+            dataLength={imgForGrow.length}
+            next={continueGrow}
+            hasMore={hasMore}
+            loader={<div></div>}
+            endMessage={
+              <p style={{ textAlign: "center" }}>
+                <b>To be continued ~ </b>
+              </p>
+            }>
+            {renderContinueGrow()}
+          </InfiniteScroll>
+        </div>
       </div>
-    </div>
-    <Footer/>
+      <Footer />
     </div>
   );
 }

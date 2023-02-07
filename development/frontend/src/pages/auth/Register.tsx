@@ -1,6 +1,7 @@
 import { useForm, isEmail, isInRange, hasLength, matches } from "@mantine/form";
 import { Button, Group, TextInput, NumberInput, Box, Select } from "@mantine/core";
 import { useNavigate } from "react-router";
+import "./css/Register.css"
 
 export default function Register() {
   const navigate = useNavigate();
@@ -62,20 +63,23 @@ export default function Register() {
   };
 
   return (
+    <div className="register-body">
+      <div className="register-title">註冊</div>
+      <div className="register-form" >
     <Box component="form" maw={400} onSubmit={form.onSubmit(handleSubmit)}>
-      <TextInput id="email" label="Email" placeholder="Email" withAsterisk mt="md" {...form.getInputProps("email")} />
-      <TextInput id="username" label="Username" placeholder="Username" withAsterisk mt="md" {...form.getInputProps("username")} />
-      <TextInput id="password" label="Password" placeholder="Password" withAsterisk mt="md" {...form.getInputProps("password")} />
+      <TextInput id="email" label="電郵" placeholder="Email" withAsterisk mt="md" {...form.getInputProps("email")} />
+      <TextInput id="username" label="用戶名稱" placeholder="Username" withAsterisk mt="md" {...form.getInputProps("username")} />
+      <TextInput id="password" label="密碼" placeholder="Password" withAsterisk mt="md" {...form.getInputProps("password")} />
       <NumberInput
         hideControls
         id="phoneNumber"
-        label="Phone Number"
+        label="電話號碼"
         placeholder="Phone Number"
         withAsterisk
         mt="md"
         {...form.getInputProps("phoneNumber")}
       />
-      <Select id="gender" data={["Male", "Female"]} placeholder="Gender" label="Gender" withAsterisk mt="md" {...form.getInputProps("gender")} />
+      <Select id="gender" data={["Male", "Female"]} placeholder="Gender" label="性別" withAsterisk mt="md" {...form.getInputProps("gender")} />
       <Select
         id="district"
         data={[
@@ -99,7 +103,7 @@ export default function Register() {
           { value: "Wan_Chai", label: "Wan Chai" },
         ]}
         placeholder="District"
-        label="District"
+        label="地區"
         withAsterisk
         mt="md"
         {...form.getInputProps("district")}
@@ -107,7 +111,7 @@ export default function Register() {
       <NumberInput
         hideControls
         id="yearBirth"
-        label="Birth Year"
+        label="生日年份"
         placeholder="Birth Year"
         withAsterisk
         mt="md"
@@ -116,16 +120,18 @@ export default function Register() {
       <NumberInput
         hideControls
         id="monthBirth"
-        label="Birth Month"
+        label="生日月份"
         placeholder="Birth Month"
         withAsterisk
         mt="md"
         {...form.getInputProps("monthBirth")}
       />
 
-      <Group position="right" mt="md">
-        <Button type="submit">Submit</Button>
+      <Group position="center" mt="md">
+        <Button type="submit" className="register-submit-button">提交</Button>
       </Group>
     </Box>
+    </div>
+    </div>
   );
 }

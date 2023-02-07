@@ -40,6 +40,7 @@ export default function Footer() {
           </IconContext.Provider>
         </Link>
       </div>
+
       <div>
         <Link
           to={"/comments/createComment"}
@@ -56,21 +57,22 @@ export default function Footer() {
         </Link>
       </div>
 
-      <div
-        style={{
-          textDecoration: "none",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {/* 改 */}
-        <a href="https://www.wikipetia.me/map">
+      <div>
+        <Link
+          to={"/map"}
+          style={{
+            textDecoration: "none",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <IconContext.Provider value={{ style: { color: "black" } }}>
             <FiMapPin />
           </IconContext.Provider>
-        </a>
+        </Link>
       </div>
+
       <div>
         <Link
           to={"/userprofile"}

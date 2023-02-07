@@ -85,11 +85,31 @@
   }
 
 /* -----------------------------  Pad Ver. ----------------------------- */
+
+@media only screen and (min-width: 500px) {
+  .pet-card {
+    width: 60vw;
+    height: 20vh;
+  }
+
+  .pet-profile {
+    width: 50vw;
+    height: 20vh;
+  }
+}
+
+
+
+ 
+/* -----------------------------  Pad Ver. ----------------------------- */
 @media only screen and (min-width: 821px) {
 
 
   .pet-profile-page {
     height: 86vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .pet-card-container{
@@ -98,8 +118,8 @@
   }
   
   .pet-card {
-    height: 15vh;
-    width: 80vw;
+    height: 20vh;
+    width: 60vw;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -152,8 +172,8 @@
   
   .pet-profile {
     margin: 15px;
-    width: 80vw;
-    height: 15vh;
+    width: 50vw;
+    height: 20vh;
     box-shadow: 0px 4px 16px rgba(0, 38, 82, 0.1);
     border-radius: 40px;
     display: flex;

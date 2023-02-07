@@ -2,8 +2,12 @@
   text-decoration: none;
 }
 
-.comment-page {
+.comment-page,
+.comment-user-page {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .comment-button-area {
@@ -26,16 +30,21 @@
 }
 
 .comment-body {
-  height: 83vh;
+  height: 80vh;
   width: 100%;
-  /* width: 100vw;
-  height: 90vh; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   overflow: scroll;
 }
 
+.comment-user-body {
+  height: 89vh;
+}
+
 .comment-card-container {
-  margin: 5% 10%;
-  height: 15vh;
+  margin: 2.5% 0;
+  width: 85vw;
   background-color: #f8f8f8;
   border: 1px solid #eee;
   box-shadow: 0px 4px 16px rgba(0, 38, 82, 0.1);
@@ -43,7 +52,7 @@
 }
 
 .comment-card {
-  height: 100%;
+  height: 15vh;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -68,7 +77,6 @@
 
 .comment-detail {
   width: 60%;
-
   padding: 0 2%;
   display: flex;
   flex-direction: column;
@@ -142,7 +150,10 @@
 }
 
 .comment-detail-page {
-  margin-top: 15%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .comment-detail-image {
@@ -164,7 +175,10 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  height: 84vh;
   margin: 0 6%;
+
+  overflow: scroll;
 }
 
 .comment-detail-title {
@@ -219,12 +233,16 @@
 }
 
 .comment-create-page {
-  margin: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   overflow: scroll;
 }
 
 .comment-create-form {
   background-color: white;
+  margin: 3%;
+  width: 90vw;
   border-radius: 15px;
   padding-top: 15px;
 }
@@ -336,7 +354,7 @@
 }
 
 @media only screen and (min-width: 500px) {
-  .comment-body{
+  .comment-body {
     width: 100vw;
   }
   .comment-button-area > button {
@@ -346,10 +364,13 @@
 
   .comment-card-container {
     width: 85vw;
+  }
+
+  .comment-card {
     height: 22vh;
   }
 
-  .comment-detail{
+  .comment-detail {
     padding: 2vw;
   }
 
@@ -361,15 +382,15 @@
     font-size: 2.5vmin;
   }
 
-  .comment-detail-user{
+  .comment-detail-user {
     margin: 2%;
   }
 
-  .comment-detail-div{
+  .comment-detail-div {
     font-size: 3vmin;
   }
 
-  .comment-detail-button-font{
+  .comment-detail-button-font {
     font-size: 3vmin;
   }
 }

@@ -59,7 +59,7 @@ function WeightRecord() {
     return age_now;
   };
   return (
-    <div>
+    <div className="weight-page">
       <Header />
     <div className="weight-body">
       <div className="weight-profile">

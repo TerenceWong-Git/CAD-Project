@@ -4,9 +4,9 @@ import "./css/UserProfile.css";
 import { FaPlus } from "react-icons/fa";
 import icon from "../../assets/img_8790.jpeg";
 import userIcon from "../../assets/128.png";
-import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { RiUser3Line } from "react-icons/ri";
+import DefaultHeader from "../../components/DefaultHeader";
 
 function UserProfile() {
   const path = process.env.REACT_APP_BACKEND_URL;
@@ -53,7 +53,7 @@ function UserProfile() {
   };
   return (
     <div className="user-profile-page">
-      <Header />
+      <DefaultHeader />
       {/* UserProfile */}
       <div className="user-profile-body">
         <div className="user-card">

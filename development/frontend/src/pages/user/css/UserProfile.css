@@ -5,6 +5,9 @@
 
   .user-profile-page {
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .user-profile-body {

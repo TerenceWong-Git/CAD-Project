@@ -4,7 +4,10 @@
 
 
   .pet-profile-page {
-    height: 86vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .pet-card-container{

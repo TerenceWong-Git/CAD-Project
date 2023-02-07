@@ -1,0 +1,24 @@
+.register-body{
+    text-align: center;
+    font-weight: 300;
+}
+
+.register-title{
+    margin-top: 5vmin;
+}
+
+.register-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border:5px solid black; */
+    margin: 5vmin;
+    padding: 4vmin;
+    border-radius: 30px;
+    background-color: white;
+}
+.register-submit-button{
+    background: #f2968f;
+    border-radius: 30px;
+
+}

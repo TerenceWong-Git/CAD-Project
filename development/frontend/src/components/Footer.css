@@ -5,7 +5,7 @@
     height: 7vh;
     width: 52%;
     position: fixed;
-    bottom: 0.5vh;
+    bottom: 0.2vh;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -52,7 +52,7 @@
 @media only screen and (max-width: 767px) {
   .footer {
     background-color: #f0dcda;
-    border: 2px solid rgb(255, 247, 0);
+    /* border: 2px solid rgb(255, 247, 0); */
     height: 8vh;
     width: 95vw;
     position: fixed;

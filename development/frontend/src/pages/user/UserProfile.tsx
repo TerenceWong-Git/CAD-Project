@@ -5,6 +5,7 @@ import { FaPlus } from "react-icons/fa";
 import userIcon from "../../assets/128.png";
 import Footer from "../../components/Footer";
 import { RiUser3Line } from "react-icons/ri";
+import { GiSittingDog } from "react-icons/gi";
 import DefaultHeader from "../../components/DefaultHeader";
 
 function UserProfile() {
@@ -55,19 +56,31 @@ function UserProfile() {
       <DefaultHeader />
       {/* UserProfile */}
       <div className="user-profile-body">
-        <div className="user-card">
-          <div>
-            <img className="user-icon" width="300" height="300" src={userIcon} alt="icon" />
-          </div>
-          {/* <div className="user-icon">{name.userIcon}</div> */}
-          <div className="username">
-            <RiUser3Line /> &nbsp;
-            {name.username}
+        <div style={{display:"flex",justifyContent:"center"}}>
+          <div className="user-card">
+            {/* <div>
+              <img
+                className="user-icon"
+                width="300"
+                height="300"
+                src={userIcon}
+                alt="icon"
+              />
+            </div> */}
+            {/* <div className="user-icon">{name.userIcon}</div> */}
+            <div className="username">
+              <RiUser3Line size={"40%"}/> &nbsp;
+              {name.username}
+            </div>
           </div>
         </div>
         <div className="user-pet-profile-container">
           {pets.map((pet) => (
-            <Link to={`/petprofile/${pet.id}`} key={pet.id} style={{ color: "#2b2b2e" }}>
+            <Link
+              to={`/petprofile/${pet.id}`}
+              key={pet.id}
+              style={{ color: "#2b2b2e" }}
+            >
               <div className="user-pet-profile">
                 <div className="pet-image">
                   {pet.profileImg ? (
@@ -80,17 +93,25 @@ function UserProfile() {
                       alt={pet.id}
                     />
                   ) : (
-                    <div className="user-emtpy-pet-icon"></div>
+                    <div className="user-emtpy-pet-icon"><GiSittingDog className="user-emtpy-pet-icon-dummy"/></div>
                   )}
                 </div>
                 <div className="pet-detail">
                   <div className="pet-name">{pet.name}</div>
                   {/* <div>{pet.dateBirth && <p>{age(pet.dateBirth)}</p>}</div> */}
                   <div className="pet-tag-container">
-                    <div className="pet-age">{pet.dateBirth ? <div>{age(pet.dateBirth)}&nbsp;歲</div> : <div></div>}</div>
+                    <div className="pet-age">
+                      {pet.dateBirth ? (
+                        <div>{age(pet.dateBirth)}&nbsp;歲</div>
+                      ) : (
+                        <div></div>
+                      )}
+                    </div>
                   </div>
                   <div className="pet-tag-container">
-                    <div className="pet-species-tag-chi">{pet.species.chiSpecies}</div>
+                    <div className="pet-species-tag-chi">
+                      {pet.species.chiSpecies}
+                    </div>
                     <div className="pet-tag-gender">{pet.gender}</div>
                   </div>
                 </div>

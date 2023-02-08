@@ -77,32 +77,36 @@ export default function GrowTree() {
 
   return (
     <div>
-      <Header />
+      <div className="growTreePage">
+        <Header />
 
-      <div className="growTreePageContainer">
-        <div className="treeContainer">
-          Our Journey Starts Here
-          <div>
-            <Link to={`/uploadGrowTree/${petId.id}`}>
-              <AiOutlinePlusSquare />
-            </Link>
+        <div className="growTreePageContainer">
+          <div className="treeContainer">
+            Our Journey Starts Here
+            <div>
+              <Link to={`/uploadGrowTree/${petId.id}`}>
+                <AiOutlinePlusSquare />
+              </Link>
+            </div>
+            <InfiniteScroll
+              dataLength={imgForGrow.length}
+              next={continueGrow}
+              hasMore={hasMore}
+              loader={<div></div>}
+              endMessage={
+                <p style={{ textAlign: "center" }}>
+                  <b>To be continued ~ </b>
+                </p>
+              }
+            >
+              {renderContinueGrow()}
+            </InfiniteScroll>
           </div>
-          <InfiniteScroll
-            dataLength={imgForGrow.length}
-            next={continueGrow}
-            hasMore={hasMore}
-            loader={<div></div>}
-            endMessage={
-              <p style={{ textAlign: "center" }}>
-                <b>To be continued ~ </b>
-              </p>
-            }
-          >
-            {renderContinueGrow()}
-          </InfiniteScroll>
+        </div>
+        <div className="growTreeFooter">
+          <Footer />
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

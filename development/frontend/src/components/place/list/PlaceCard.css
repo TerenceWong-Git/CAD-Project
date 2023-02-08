@@ -22,6 +22,13 @@
     width: 100%;
     height: 100%;
   }
+
+  .previewPicture img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .info {
     /* border: 3px solid rgb(140, 0, 255); */
     /* border-radius: 0 20px 20px 0; */
@@ -82,13 +89,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    width: 45%;
     overflow: hidden;
   }
 
   .previewPicture {
     width: 100%;
     height: 100%;
+  }
+
+  .previewPicture img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .info {
@@ -166,6 +179,12 @@
   .previewPicture {
     width: 100%;
     height: 100%;
+  }
+
+  .previewPicture img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .info {

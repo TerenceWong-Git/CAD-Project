@@ -82,7 +82,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    width: 45%;
     overflow: hidden;
   }
 
@@ -156,7 +156,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    width: 45%;
     overflow: hidden;
   }
 

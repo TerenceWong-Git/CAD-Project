@@ -22,7 +22,7 @@ export default function GrowTree() {
       });
       const json = await res.json();
       setImg(json);
-      setImgForGrow(json.slice(0, 4));
+      setImgForGrow(json.slice(0, 3));
     }
     loadData();
   }, [petId]);
@@ -39,7 +39,7 @@ export default function GrowTree() {
   // }, []);
   // console.log("reOrder: ", reOrder);
 
-  const [continueGrowIndex, setContinueGrowIndex] = useState(4);
+  const [continueGrowIndex, setContinueGrowIndex] = useState(3);
   const [hasMore, setHasMore] = useState(true);
 
   const continueGrow = async () => {

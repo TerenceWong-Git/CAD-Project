@@ -10,7 +10,7 @@ import "./LandingPage.css";
 
 export default function LandingPage() {
   const breakpointColumnsObj = {
-    default: 3,
+    default: 2,
     820: 2,
     290: 1,
   };
@@ -19,7 +19,7 @@ export default function LandingPage() {
   const [initialPicture, setInitialPicture] = useState<any>([]);
 
   const [initialHasMore, setInitialHasMore] = useState(true);
-  const [indexA, setIndexA] = useState(30);
+  const [indexA, setIndexA] = useState(8);
 
   useEffect(() => {
     async function getLanding() {
@@ -27,7 +27,7 @@ export default function LandingPage() {
       const json = await res.json();
 
       setAllPicture(json);
-      setInitialPicture(json.slice(0, 30));
+      setInitialPicture(json.slice(0, 8));
     }
     getLanding();
   }, []);
@@ -48,7 +48,7 @@ export default function LandingPage() {
   const [isShownFilteredPicture, setIsShownFilteredPicture] = useState<any[]>([]);
 
   const [hasMore, setHasMore] = useState(true);
-  const [indexB, setIndexB] = useState(9);
+  const [indexB, setIndexB] = useState(8);
   const [isFiltered, setIsFiltered] = useState(false);
 
   function clearTag() {
@@ -71,7 +71,7 @@ export default function LandingPage() {
     });
 
     setFilteredPicture(newItems);
-    setIsShownFilteredPicture(newItems.slice(0, 9));
+    setIsShownFilteredPicture(newItems.slice(0, 8));
   };
 
   const filteredLandingPicture = async () => {

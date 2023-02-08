@@ -13,24 +13,27 @@ env:
   BUCKET_NAME: cas-react-development
   CLOUDFRONT_DISTRIBUTION: E10KX1B5YIW1RZ
   AWS_DEFAULT_REGION: ap-southeast-1
+  POSTGRES_DB: ${{secrets.POSTGRES_DB}}
+  POSTGRES_USER: ${{secrets.POSTGRES_USER}}
+  POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASSWORD}}
 
 jobs:
   test-and-build-backend:
     runs-on: ubuntu-latest
     container: node:latest
-    # services:
-    #   db:
-    #     image: postgres:latest
-    #     env:
-    #       POSTGRES_DB: ${{env.POSTGRES_DB}}
-    #       POSTGRES_USER: ${{env.POSTGRES_USER}}
-    #       POSTGRES_PASSWORD: ${{env.POSTGRES_PASSWORD}}
-    #     ports:
-    #       - 5432:5432
-    # env:
-    #   PORT: 80
-    #   DB_HOST: db
-    #   DB_PORT: 5432
+    services:
+      db:
+        image: postgres:latest
+        env:
+          POSTGRES_DB: ${{env.POSTGRES_DB}}
+          POSTGRES_USER: ${{env.POSTGRES_USER}}
+          POSTGRES_PASSWORD: ${{env.POSTGRES_PASSWORD}}
+        ports:
+          - 5432:5432
+    env:
+      PORT: 80
+      DB_HOST: db
+      DB_PORT: 5432
     steps:
       - uses: actions/checkout@v3
       - name: Install yarn deps
@@ -116,6 +119,7 @@ jobs:
         env:
           REACT_APP_GOOGLE_MAPS_API_KEY: ${{ secrets.REACT_APP_GOOGLE_MAPS_API_KEY }}
           REACT_APP_BACKEND_URL: https://backend.wikipetia.me
+          REACT_APP_S3_UPLOAD_URL: http://upload.wikipetia.me
         run: yarn run build
       - name: Archive react built files
         uses: actions/upload-artifact@v3

@@ -82,7 +82,7 @@ export default function GrowTree() {
 
         <div className="growTreePageContainer">
           <div className="treeContainer">
-            Our Journey Starts Here
+            旅程從此展開
             <div>
               <Link to={`/uploadGrowTree/${petId.id}`}>
                 <AiOutlinePlusSquare />

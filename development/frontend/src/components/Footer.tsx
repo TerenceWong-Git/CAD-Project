@@ -19,7 +19,7 @@ export default function Footer() {
             alignItems: "center",
           }}
         >
-          <IconContext.Provider value={{ style: { color: "#2B262D" } }}>
+          <IconContext.Provider value={{ style: { color: "#9b6972" } }}>
             <BiHome />
           </IconContext.Provider>
         </Link>
@@ -35,7 +35,7 @@ export default function Footer() {
             alignItems: "center",
           }}
         >
-          <IconContext.Provider value={{ style: { color: "#2B262D" } }}>
+          <IconContext.Provider value={{ style: { color: "#9b6972" } }}>
             <BiCommentDetail />
           </IconContext.Provider>
         </Link>
@@ -51,7 +51,7 @@ export default function Footer() {
             alignItems: "center",
           }}
         >
-          <IconContext.Provider value={{ style: { color: "#2B262D" } }}>
+          <IconContext.Provider value={{ style: { color: "#9b6972" } }}>
             <HiPlus />
           </IconContext.Provider>
         </Link>
@@ -67,7 +67,7 @@ export default function Footer() {
             alignItems: "center",
           }}
         >
-          <IconContext.Provider value={{ style: { color: "#2B262D" } }}>
+          <IconContext.Provider value={{ style: { color: "#9b6972" } }}>
             <FiMapPin />
           </IconContext.Provider>
         </Link>
@@ -83,7 +83,7 @@ export default function Footer() {
             alignItems: "center",
           }}
         >
-          <IconContext.Provider value={{ style: { color: "#2B262D" } }}>
+          <IconContext.Provider value={{ style: { color: "#9b6972" } }}>
             <RiUserLine />
           </IconContext.Provider>
         </Link>

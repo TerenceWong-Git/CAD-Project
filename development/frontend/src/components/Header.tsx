@@ -30,7 +30,7 @@ export default function Header() {
         </div>
         <div className="logOut">
           <div onClick={trigger}>
-            <MdPets />
+            <MdPets style={{color:"#9b6972"}}/>
           </div>
         </div>
         {isTrigger && (

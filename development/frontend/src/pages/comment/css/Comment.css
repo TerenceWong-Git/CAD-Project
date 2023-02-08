@@ -18,10 +18,10 @@
 }
 
 .comment-button-area > button {
-  background-color: #f2968f;
-  color: #fcfcfc;
+  background-color: #eacfcc;
+  color: #9b6972;
   border-radius: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: none;
   margin: 3px;
 }
 

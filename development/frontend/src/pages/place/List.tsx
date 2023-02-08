@@ -6,8 +6,13 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { districts, types } from "../../components/place/map/District";
 import { Checkbox } from "@mantine/core";
 import { Link } from "react-router-dom";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 export default function List() {
+  const removeUnder = (input: string) => {
+    return input.replaceAll("_", " ");
+  };
   ////////////////////////////////////   Load Data   /////////////////////////////////////
 
   const [allPlaceItems, setAllPlaceItems] = useState<any[]>([]);
@@ -110,7 +115,7 @@ export default function List() {
           <Link to={`placeDetail/${data.id}`} style={{ color: "#262220" }}>
             <div className="card">
               <div className="picture">
-                <img className="previewPicture" src="/uploads/pictures/3.jpg" alt={data.engName} />
+                <img className="previewPicture" src={`/uploads/list/${data.profileImg}`} alt={data.engName} />
               </div>
               <div className="info">
                 <div className="chiName">{data.chiName}</div>
@@ -132,10 +137,10 @@ export default function List() {
           <Link to={`placeDetail/${data.id}`} style={{ color: "#262220" }}>
             <div className="card">
               <div className="picture">
-                <img className="previewPicture" src="/uploads/pictures/3.jpg" alt={data.engName} />
+                <img className="previewPicture" src={`/uploads/list/${data.profileImg}`} alt={data.engName} />
               </div>
               <div className="info">
-                <div className="chiName">{data.chiName}</div>
+                <div className="chiName">{removeUnder(data.chiName)}</div>
                 <div className="engName">{data.engName}</div>
                 <div className="district">{data.district}</div>
                 <div className="mapType">{data.mapType.chiType}</div>
@@ -164,65 +169,74 @@ export default function List() {
 
   return (
     <>
-      <div className="listPageContainer">
-        <div className="categoryContainer">
-          <div className="districtCategory">
-            {districts.map((district: any) => {
-              return (
-                <Checkbox.Group key={district.engDistrict} onClick={reTag} value={values} onChange={setValues}>
-                  <Checkbox value={district.engDistrict} label={district.chiDistrict} />
-                </Checkbox.Group>
-              );
-            })}
+      <div className="listPageArea">
+        <div className="listPageAreaHeader">
+          <Header />
+        </div>
+        <div className="listPageContainer">
+          <div className="categoryContainerList">
+            <div className="listPageButton">
+              <button onClick={activateFilter}>Filter</button>
+              <button onClick={deactivateFilter}>Clear</button>
+            </div>
+            <div className="moileScroll">
+              <div className="districtCategoryList">
+                {districts.map((district: any) => {
+                  return (
+                    <Checkbox.Group key={district.engDistrict} onClick={reTag} value={values} onChange={setValues}>
+                      <Checkbox className="districtCategoryListCheckBox" value={district.engDistrict} label={district.chiDistrict} />
+                    </Checkbox.Group>
+                  );
+                })}
+              </div>
+
+              <div className="typeCategoryList">
+                {types.map((type: any) => {
+                  return (
+                    <Checkbox.Group key={type.engType} value={values} onChange={setValues}>
+                      <Checkbox className="typeCategoryListCheckBox" value={type.engType} label={type.chiType} />
+                    </Checkbox.Group>
+                  );
+                })}
+              </div>
+            </div>
           </div>
 
-          <div className="typeCategory">
-            {types.map((type: any) => {
-              return (
-                <Checkbox.Group key={type.engType} value={values} onChange={setValues}>
-                  <Checkbox value={type.engType} label={type.chiType} />
-                </Checkbox.Group>
-              );
-            })}
-          </div>
-
-          <button onClick={activateFilter}>Filter</button>
-          <button onClick={deactivateFilter}>Clear</button>
-        </div>
-        <div className="placeContainer">
-          <div className="searchBarContainer"></div>
-          <div className="CardContainer">
-            {isFiltered ? (
-              <InfiniteScroll
-                dataLength={isShownFilteredPlaceCard.length}
-                next={filteredInfiniteScroll}
-                hasMore={hasMore}
-                loader={<div></div>}
-                endMessage={
-                  <p style={{ textAlign: "center" }}>
-                    <b>Yay! You have seen it all</b>
-                  </p>
-                }
-              >
-                {renderFilteredPlaceCard()}
-              </InfiniteScroll>
-            ) : (
-              <InfiniteScroll
-                dataLength={notYetFilteredPlaceCard.length}
-                next={notYetFilteredInfiniteScroll}
-                hasMore={initialHasMore}
-                loader={<div></div>}
-                endMessage={
-                  <p style={{ textAlign: "center" }}>
-                    <b>Yay! You have seen it all</b>
-                  </p>
-                }
-              >
-                {renderNotYetFilteredPlaceCard()}
-              </InfiniteScroll>
-            )}
+          <div className="placeContainerList">
+            <div className="CardContainerList">
+              {isFiltered ? (
+                <InfiniteScroll
+                  dataLength={isShownFilteredPlaceCard.length}
+                  next={filteredInfiniteScroll}
+                  hasMore={hasMore}
+                  loader={<div></div>}
+                  endMessage={
+                    <p style={{ textAlign: "center" }}>
+                      <b>Yay! You have seen it all</b>
+                    </p>
+                  }
+                >
+                  {renderFilteredPlaceCard()}
+                </InfiniteScroll>
+              ) : (
+                <InfiniteScroll
+                  dataLength={notYetFilteredPlaceCard.length}
+                  next={notYetFilteredInfiniteScroll}
+                  hasMore={initialHasMore}
+                  loader={<div></div>}
+                  endMessage={
+                    <p style={{ textAlign: "center" }}>
+                      <b>Yay! You have seen it all</b>
+                    </p>
+                  }
+                >
+                  {renderNotYetFilteredPlaceCard()}
+                </InfiniteScroll>
+              )}
+            </div>
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );

@@ -112,6 +112,7 @@ export default function Map() {
   const [searchItems, setSearchItems] = useState<any[]>([]);
   const [isTriggered, setIsTriggered] = useState(false);
   const [isFastTravel, setIsFastTravel] = useState(false);
+  console.log(isFastTravel);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -254,14 +255,11 @@ export default function Map() {
   // console.log("入左咩落filter: ", values);
   // console.log("fil完之後有咩地方: ", filteredItems);
   // console.log("==========");
-  console.log("可以search d咩: ", searchItems);
+  // console.log("可以search d咩: ", searchItems);
   // console.log("入左咩落search bar: ", searchValues);
   // console.log("==========");
   // console.log("search左邊間: ", selectedMarker);
   // console.log("");
-
-  console.log(window.screen.width);
-  console.log(window.screen.height);
 
   return (
     <>

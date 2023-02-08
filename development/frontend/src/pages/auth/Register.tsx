@@ -1,12 +1,5 @@
 import { useForm, isEmail, isInRange, hasLength, matches } from "@mantine/form";
-import {
-  Button,
-  Group,
-  TextInput,
-  NumberInput,
-  Box,
-  Select,
-} from "@mantine/core";
+import { Button, Group, TextInput, NumberInput, Box, Select } from "@mantine/core";
 import { useNavigate } from "react-router";
 import "./css/Register.css";
 import Header from "../../components/Header";
@@ -16,10 +9,10 @@ export default function Register() {
   const navigate = useNavigate();
   const form = useForm({
     initialValues: {
-      email: "testpost2@gmail.com",
-      username: "testpost2",
-      password: "@Tecky1234",
-      phoneNumber: 11223344,
+      email: "wikipetia123@gmail",
+      username: "wikipet",
+      password: "Tecky1234",
+      phoneNumber: 2121313,
       gender: "Male",
       district: "Sha_tin",
       yearBirth: 1991,
@@ -28,22 +21,13 @@ export default function Register() {
 
     validate: {
       email: isEmail("Invalid email"),
-      username: hasLength(
-        { min: 8, max: 16 },
-        "Username must be 8-16 characters long"
-      ),
+      username: hasLength({ min: 8, max: 16 }, "Username must be 8-16 characters long"),
       password: matches(
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
         "Password must include 8 characters, at least one capital letter, one small letter, number and special character"
       ),
-      phoneNumber: isInRange(
-        { min: 10000000, max: 99999999 },
-        "Phone number must be 8 numbers long"
-      ),
-      yearBirth: isInRange(
-        { min: 1000, max: 9999 },
-        "Birth Year must be 4 numbers long"
-      ),
+      phoneNumber: isInRange({ min: 10000000, max: 99999999 }, "Phone number must be 8 numbers long"),
+      yearBirth: isInRange({ min: 1000, max: 9999 }, "Birth Year must be 4 numbers long"),
       monthBirth: isInRange({ min: 1, max: 12 }, "Birth Month must be 1 to 12"),
     },
   });
@@ -86,35 +70,10 @@ export default function Register() {
       <div className="register-body">
         {/* <div className="register-title">註冊</div> */}
         <div className="register-form">
-          <Box
-            component="form"
-            maw={400}
-            onSubmit={form.onSubmit(handleSubmit)}
-          >
-            <TextInput
-              id="email"
-              label="電郵"
-              placeholder="Email"
-              withAsterisk
-              mt="md"
-              {...form.getInputProps("email")}
-            />
-            <TextInput
-              id="username"
-              label="用戶名稱"
-              placeholder="Username"
-              withAsterisk
-              mt="md"
-              {...form.getInputProps("username")}
-            />
-            <TextInput
-              id="password"
-              label="密碼"
-              placeholder="Password"
-              withAsterisk
-              mt="md"
-              {...form.getInputProps("password")}
-            />
+          <Box component="form" maw={400} onSubmit={form.onSubmit(handleSubmit)}>
+            <TextInput id="email" label="電郵" placeholder="Email" withAsterisk mt="md" {...form.getInputProps("email")} />
+            <TextInput id="username" label="用戶名稱" placeholder="Username" withAsterisk mt="md" {...form.getInputProps("username")} />
+            <TextInput id="password" label="密碼" placeholder="Password" withAsterisk mt="md" {...form.getInputProps("password")} />
             <NumberInput
               hideControls
               id="phoneNumber"
@@ -124,15 +83,7 @@ export default function Register() {
               mt="md"
               {...form.getInputProps("phoneNumber")}
             />
-            <Select
-              id="gender"
-              data={["Male", "Female"]}
-              placeholder="Gender"
-              label="性別"
-              withAsterisk
-              mt="md"
-              {...form.getInputProps("gender")}
-            />
+            <Select id="gender" data={["Male", "Female"]} placeholder="Gender" label="性別" withAsterisk mt="md" {...form.getInputProps("gender")} />
             <Select
               id="district"
               data={[

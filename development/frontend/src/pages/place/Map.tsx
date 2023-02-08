@@ -1,7 +1,7 @@
 import { Autocomplete, Checkbox } from "@mantine/core";
 import { Circle, GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
-import { AiOutlineClear } from "react-icons/ai";
+import { AiOutlineArrowRight, AiOutlineClear } from "react-icons/ai";
 import { BsCardList } from "react-icons/bs";
 import { GrFilter, GrFormPrevious } from "react-icons/gr";
 import { Link, useNavigate } from "react-router-dom";
@@ -319,7 +319,7 @@ export default function Map() {
               </div>
               <div className="searchTrigger">
                 <button onClick={search}>
-                  <AiOutlineClear />
+                  <AiOutlineArrowRight />
                 </button>
               </div>
 

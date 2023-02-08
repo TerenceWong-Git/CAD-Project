@@ -76,7 +76,7 @@ function PetProfile() {
                   alt={pets.id}
                 />
               ) : (
-                <div className="empty-pet-icon"><GiSittingDog className="user-emtpy-pet-icon-dummy"/></div>
+                <div className="empty-pet-icon"><GiSittingDog className="user-emtpy-pet-icon-dummy username-icon-area"/></div>
               )}
             </div>
             <div className="pet-introduction">

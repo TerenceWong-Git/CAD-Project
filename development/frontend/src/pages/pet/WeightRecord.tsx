@@ -3,10 +3,10 @@ import "./css/WeightRecord.css";
 import { Modal, Button, Group } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router";
-import icon from "../../assets/img_8790.jpeg";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import moment from "moment";
+import { GiSittingDog } from "react-icons/gi";
 
 // 寫翻fail情況提示  -> 最多6位(連小數)
 function WeightRecord() {
@@ -68,12 +68,12 @@ function WeightRecord() {
             className="pet-icon"
             width="300"
             height="300"
-            src={icon}
-            // src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${pets.profileImg}`}
+            // src={icon}
+            src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${pets.profileImg}`}
             alt={pets.id}
           />
         ) : (
-          <div className="emtpy-pet-icon"></div>
+          <div className="emtpy-pet-icon"><GiSittingDog className="user-emtpy-pet-icon-dummy"/></div>
         )}
 
         <div className="weight-pet-introduction">

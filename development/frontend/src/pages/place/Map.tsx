@@ -10,8 +10,12 @@ import Footer from "../../components/Footer";
 import { districts, types } from "../../components/place/map/District";
 import { circleSettings, containerStyle, containerStyle2, containerStyle3 } from "../../components/place/map/MapSetting";
 import "./css/Map.css";
+import { useIsMounted } from "../../redux/Hook";
+// import Mall from "/uploads/mapIcon/mall.png";
+// options={{ icon: Mall }}
 
 export default function Map() {
+  const isMounted = useIsMounted();
   const bigSizeMap = () => {
     return (
       <LoadScript googleMapsApiKey={`${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`}>
@@ -107,6 +111,7 @@ export default function Map() {
   const [filteredItems, setFilteredItems] = useState<any[]>([]);
   const [searchItems, setSearchItems] = useState<any[]>([]);
   const [isTriggered, setIsTriggered] = useState(false);
+  const [isFastTravel, setIsFastTravel] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -129,11 +134,27 @@ export default function Map() {
   const [userLat, setUserLat] = useState(0);
   const [usertLng, setUserLng] = useState(0);
 
-  navigator.geolocation.watchPosition((position) => {
-    // setTargetLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
+  useEffect(() => {
+    console.log("navigator check status", isMounted.current.toString());
+    const success_func = (position: any) => {
+      // console.log("check navigator position", position);
+      console.log("navigator trigger useEffect target", position.coords.latitude, position.coords.longitude);
+      setUserLat(position.coords.latitude);
+      setUserLng(position.coords.longitude);
+    };
 
-    setUserLat(position.coords.latitude);
-    setUserLng(position.coords.longitude);
+    const error_func = () => {
+      console.error("navigator failed");
+    };
+
+    const options = {
+      maximumAge: Infinity,
+    };
+    if (isMounted.current && !isFastTravel) {
+      navigator.geolocation.watchPosition(success_func, error_func, options);
+    } else {
+      console.log("navigator unmont");
+    }
   });
 
   ////////////////////////////////////   Initial Map   ///////////////////////////////////
@@ -200,6 +221,8 @@ export default function Map() {
   };
 
   const searchSpecificPlace = (input: any) => {
+    console.log("search左", input);
+
     const newItems = allPlaceItems.filter((place) => {
       const inputValue = input;
       const districtName = place.chiName;
@@ -207,7 +230,11 @@ export default function Map() {
       return inputValue.includes(districtName);
     });
 
+    console.log(newItems);
+
     setSearchItems(newItems);
+
+    setIsFastTravel(true);
     setUserLat(parseFloat(newItems[0].latitude));
     setUserLng(parseFloat(newItems[0].longitude));
   };
@@ -220,18 +247,18 @@ export default function Map() {
   const [isCardShown, setIsCardShown] = useState(false);
 
   ///////////////////////////////////   Click Click   ////////////////////////////////////
-  console.log("依家係邊: ", userLat, usertLng);
-  console.log("拎到乜野: ", allPlaceItems);
-  console.log("==========");
-  console.log("係咪要用filter: ", isTriggered);
-  console.log("入左咩落filter: ", values);
-  console.log("fil完之後有咩地方: ", filteredItems);
-  console.log("==========");
+  // console.log("依家係邊: ", userLat, usertLng);
+  // console.log("拎到乜野: ", allPlaceItems);
+  // console.log("==========");
+  // console.log("係咪要用filter: ", isTriggered);
+  // console.log("入左咩落filter: ", values);
+  // console.log("fil完之後有咩地方: ", filteredItems);
+  // console.log("==========");
   console.log("可以search d咩: ", searchItems);
-  console.log("入左咩落search bar: ", searchValues);
-  console.log("==========");
-  console.log("search左邊間: ", selectedMarker);
-  console.log("");
+  // console.log("入左咩落search bar: ", searchValues);
+  // console.log("==========");
+  // console.log("search左邊間: ", selectedMarker);
+  // console.log("");
 
   console.log(window.screen.width);
   console.log(window.screen.height);

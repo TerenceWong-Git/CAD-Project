@@ -54,9 +54,9 @@ export default function GrowTree() {
     imgForGrow.map((img: any, index: any) => {
       if (index % 2 !== 0) {
         return (
-          <div className="growPictureRight">
+          <div key={index} className="growPictureRight">
             <div className="paw leftPhoto">
-              <div className=" inner" key={index}>
+              <div className=" inner">
                 <img className="left" src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`} alt={img.engName} />
               </div>
             </div>
@@ -64,7 +64,7 @@ export default function GrowTree() {
         );
       } else {
         return (
-          <div className="growPictureLeft">
+          <div key={index} className="growPictureLeft">
             <div className="paw rightPhoto">
               <div className=" inner" key={index}>
                 <img className="right" src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`} alt={img.engName} />

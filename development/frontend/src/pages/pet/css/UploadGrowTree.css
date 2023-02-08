@@ -1,33 +1,97 @@
-.upload-grow-tree-title{
+@media only screen and (max-width: 820px) {
+  .upload-grow-tree-title {
     text-align: center;
-    font-weight: 300;
-    font-size: 5vmin;
-}
+    font-weight: 200;
+    font-size: 4vmax;
+    margin-top: 20%;
+    background-color: #e0cdff;
+    color: #7c699b;
+    border-radius: 10px;
+    border: none;
+    padding: 1%;
+  }
 
-.upload-grow-tree-page{
+  .upload-grow-tree-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 100vh;
     margin: 5%;
-}
-.upload-grow-tree-form{
+  }
+
+  .upload-grow-tree-form {
+    border: 1px solid #000000;
     background-color: white;
-  border-radius: 15px;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.upload-grow-tree-input-tag{
-    /* border-radius: 8px; */
-    /* border: 1px solid #c3a6a0; */
-    margin-top: 10px;
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+    width: 70vw;
+    font-size: 2.5vmax;
+  }
+
+  .comment-edit-button,
+  .comment-delete-button {
+    font-size: 2vmax;
+  }
+
+  .upload-grow-tree-form > div {
+    margin: 1vh;
+  }
+  .upload-grow-tree-img img {
+    height: 100%;
+    width: 100%;
+    margin: 2vh 0 2vh 0;
+  }
 }
 
-.upload-grow-tree-form>div {
-    margin: 10px;
-}
-.upload-grow-tree-img{
-    margin: 12px;
-}
-.upload-grow-tree-button{
-    margin-top: 12px;
+@media only screen and (max-width: 767px) {
+  .upload-grow-tree-title {
+    text-align: center;
+    font-weight: 200;
+    font-size: 3vmax;
+    margin-top: 20%;
+    background-color: #e0cdff;
+    color: #7c699b;
+    border-radius: 10px;
+    border: none;
+    padding: 1%;
+  }
+
+  .upload-grow-tree-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 5%;
+  }
+
+  .upload-grow-tree-form {
+    border: 1px solid #000000;
+    background-color: white;
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+    width: 70vw;
+    font-size: 2.5vmax;
+  }
+
+  .comment-edit-button,
+  .comment-delete-button {
+    font-size: 2vmax;
+  }
+
+  .upload-grow-tree-form > div {
+    margin: 1vh;
+  }
+  .upload-grow-tree-img img {
+    height: 100%;
+    width: 100%;
+    margin: 2vh 0 2vh 0;
+  }
 }

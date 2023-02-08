@@ -52,7 +52,7 @@
   }
 
   .initialLandingLogin button {
-    background-color: rgb(176,60,70);;
+    background-color: rgb(176, 60, 70);
     border: none;
     color: white;
     width: 25vmin;
@@ -146,7 +146,7 @@
   }
 
   .initialLandingLogin button {
-    background-color: rgb(176,60,70);;
+    background-color: rgb(176, 60, 70);
     border: none;
     color: white;
     width: 25vmin;
@@ -218,7 +218,7 @@
   }
 
   .initialLandingTitleArea img {
-    height: 350px;
+    height: 400px;
   }
 
   /* .initialLandingSlogan {
@@ -240,11 +240,11 @@
   }
 
   .initialLandingLogin button {
-    background-color: rgb(176,60,70);
+    background-color: rgb(176, 60, 70);
     border: none;
     color: white;
-    width: 30vmin;
-    height: 10vmin;
+    width: 38vmin;
+    height: 17vmin;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -253,8 +253,10 @@
     cursor: pointer;
     border-radius: 46px;
     /* font-family: "Source Code Pro", monospace; */
-    font-size: 3vmin;
+    font-size: 6vmin;
     font-weight: 600;
+    position: relative;
+    top: -2vmax;
   }
 
   .initialLandingovalArea {
@@ -264,12 +266,12 @@
     justify-content: center;
     align-items: center;
     position: fixed;
-    top: 0vmax;
+    top: -4vmax;
     background: #f8e3e4;
     /* background: #f6eabc; */
     position: relative;
-    width: 600px;
-    height: 270px;
+    width: 700px;
+    height: 350px;
     border-radius: 50%;
     overflow: hidden;
   }

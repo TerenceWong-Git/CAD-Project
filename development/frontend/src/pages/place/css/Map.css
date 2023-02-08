@@ -149,11 +149,11 @@
 
   .previewCardArea {
     /* border: 3px solid black; */
-    background-color: #000000;
+    background-color: #f5f1f1;
     width: 33%;
     height: 10vmax;
     display: flex;
-    border-radius: 30px;
+    border-radius: 15px;
     position: fixed;
     bottom: 5vmax;
     z-index: 10000;
@@ -188,17 +188,17 @@
   .cardTitle {
     /* border: 2px solid rgb(255, 255, 255); */
     width: 13.7vw;
-    color: rgb(255, 200, 0);
-    font-size: 20px;
-    font-weight: bold;
+    color: black;
+    font-size: 15px;
+    font-weight: 500;
   }
 
   .cardType {
     /* border: 2px solid rgb(255, 255, 255); */
     width: 13.7vw;
-    color: rgb(255, 255, 255);
-    font-size: 20px;
-    font-weight: bold;
+    color: black;
+    font-size: 15px;
+    font-weight: 400;
   }
 
   .closeCardButton {
@@ -383,11 +383,11 @@
 
   .previewCardArea {
     /* border: 3px solid black; */
-    background-color: #000000;
+    background-color: #f5f1f1;
     width: 55%;
     height: 13%;
     display: flex;
-    border-radius: 30px;
+    border-radius: 20px;
     position: fixed;
     bottom: 10%;
     z-index: 10000;
@@ -422,17 +422,17 @@
   .cardTitle {
     /* border: 2px solid rgb(255, 255, 255); */
     width: 18vw;
-    color: rgb(255, 200, 0);
+    color: black;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 500;
   }
 
   .cardType {
     /* border: 2px solid rgb(255, 255, 255); */
     width: 13.7vw;
-    color: rgb(255, 255, 255);
+    color: black;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 400;
   }
 
   .closeCardButton {
@@ -613,11 +613,11 @@
 
   .previewCardArea {
     /* border: 3px solid black; */
-    background-color: #000000;
+    background-color: #f5f1f1;
     width: 80%;
     height: 13%;
     display: flex;
-    border-radius: 30px;
+    border-radius: 15px;
     position: fixed;
     bottom: 11%;
     z-index: 10000;
@@ -652,17 +652,17 @@
   .cardTitle {
     /* border: 2px solid rgb(255, 255, 255); */
     width: 35vw;
-    color: rgb(255, 200, 0);
-    font-size: 20px;
-    font-weight: bold;
+    color: black;
+    font-size: 19px;
+    font-weight: 500;
   }
 
   .cardType {
     /* border: 2px solid rgb(255, 255, 255); */
     width: 35vw;
-    color: rgb(255, 255, 255);
-    font-size: 20px;
-    font-weight: bold;
+    color: rgb(58, 57, 57);
+    font-size: 18px;
+    font-weight: 400;
   }
 
   .closeCardButton {

@@ -7,6 +7,9 @@
     align-items: center;
   }
 
+  .weight-body-mid{
+    height: 50vh;
+  }
   .weight-body {
     padding-top: 2%;
     text-align: center;
@@ -175,6 +178,7 @@
     border-radius: 15px;
     margin-top: 5vmin;
     padding: 6vmin 0;
+    width: 60vw;
   }
   .weight-container-titte {
     font-size: 6vmin;
@@ -238,8 +242,8 @@
   }
   .emtpy-pet-icon {
     border-radius: 50%;
-    width: 35vmin;
-    height: 35vmin;
+    width: 25vmin;
+    height: 25vmin;
     background-color: #f0dcda;
   }
 }

@@ -5,7 +5,7 @@ import "./css/GrowTree.css";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
-import { AiOutlinePlusSquare } from "react-icons/ai";
+import { AiFillPlusCircle } from "react-icons/ai";
 
 export default function GrowTree() {
   const petId = useParams();
@@ -79,15 +79,23 @@ export default function GrowTree() {
     <div>
       <div className="growTreePage">
         <Header />
-
-        <div className="growTreePageContainer">
-          <div className="treeContainer">
+      <div className="grow-tree-body">
+        <div className="tree-top-area">
+            <div className="tree-title">
             旅程從此展開
-            <div>
+            </div>
+            
+            <div className="tree-upload-grow-tree">
               <Link to={`/uploadGrowTree/${petId.id}`}>
-                <AiOutlinePlusSquare />
+                <AiFillPlusCircle className="tree-upload-grow-tree"/>
               </Link>
             </div>
+            </div>
+            <div className="grow-tree-mid">
+        <div className="growTreePageContainer">
+          <div className="treeContainer">
+
+            
             <InfiniteScroll
               dataLength={imgForGrow.length}
               next={continueGrow}
@@ -103,9 +111,11 @@ export default function GrowTree() {
             </InfiniteScroll>
           </div>
         </div>
+        </div>
         <div className="growTreeFooter">
           <Footer />
         </div>
+      </div>
       </div>
     </div>
   );

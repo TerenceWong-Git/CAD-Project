@@ -61,6 +61,7 @@ function WeightRecord() {
   return (
     <div className="weight-page">
       <Header />
+      <div className="weight-body-mid">
     <div className="weight-body">
       <div className="weight-profile">
         {pets.profileImg ? (
@@ -167,6 +168,7 @@ function WeightRecord() {
           <Button className="weight-input-button" onClick={() => setOpened(true)}>輸入體重</Button>
         </Group>
       </div>
+    </div>
     </div>
     <Footer />
     </div>

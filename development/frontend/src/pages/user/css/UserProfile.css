@@ -21,8 +21,6 @@
     box-shadow: 0px 4px 16px rgba(0, 38, 82, 0.2); */
     border-radius: 50px;
     margin: 3%;
-    width: 85vw;
-    height: 40vw;
   }
 
   .username {
@@ -34,12 +32,13 @@
     font-size: 7vmin;
     font-weight: 300;
   }
-/* .username-icon-area{
+  /* .username-icon-area{
   margin: 10px;
 } */
-.username-name{
-  font-weight: 200;
-}
+  .username-name {
+    font-size: 4vmax;
+    font-weight: 200;
+  }
   .user-pet-profile-container {
     height: 65vh;
     display: flex;
@@ -65,7 +64,7 @@
 
   .user-pet-profile {
     background-color: #f9f2f1;
-    width: 85vw;
+    width: 65vw;
     box-shadow: 0px 4px 16px rgba(0, 38, 82, 0.1);
     border-radius: 40px;
     display: flex;
@@ -105,11 +104,11 @@
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     background-color: rgba(216, 209, 209, 0.411);
   }
-  .user-emtpy-pet-icon-dummy{
+  .user-emtpy-pet-icon-dummy {
     font-size: 80px;
     color: white;
   }
@@ -184,29 +183,6 @@
 }
 
 /* -----------------------------  Pad Ver. ----------------------------- */
-
-@media only screen and (min-width: 500px) {
-  .user-card {
-    width: 70vw;
-    height: 19vh;
-    border-radius: 150px;
-  }
-  .user-pet-profile {
-    border-radius: 150px;
-    width: 70vw;
-    height: 20vh;
-  }
-  .user-add-pet-container {
-    width: 70vw;
-    border-radius: 150px;
-  }
-
-  .user-add-pet {
-    height: 20vh;
-  }
-}
-
-/* -----------------------------  Pad Ver. ----------------------------- */
 @media only screen and (min-width: 821px) {
   .user-profile-page {
     height: 100vh;
@@ -227,9 +203,8 @@
     border-radius: 150px;
     width: 50vw;
     margin: 5%;
-  
   }
-  .username-name{
+  .username-name {
     font-weight: 200;
   }
 
@@ -327,7 +302,7 @@
     height: 100px;
     background-color: rgba(216, 209, 209, 0.411);
   }
-  .user-emtpy-pet-icon-dummy{
+  .user-emtpy-pet-icon-dummy {
     font-size: 20vw;
     color: white;
   }

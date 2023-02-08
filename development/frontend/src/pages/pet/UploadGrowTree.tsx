@@ -111,7 +111,9 @@ function UploadGrowTree() {
           </div>
         </form>
       </div>
-      <Footer />
+      <div className="grow-tree-footer">
+        <Footer />
+      </div>
     </div>
   );
 }

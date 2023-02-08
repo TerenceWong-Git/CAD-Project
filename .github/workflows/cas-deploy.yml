@@ -37,26 +37,26 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install yarn deps
-        working-directory: /development/backend
+        working-directory: development/backend
         run: |
           yarn
       - name: Migrate database with prisma
-        working-directory: /development/backend
+        working-directory: development/backend
         run: |
           yarn prisma generate && yarn migrate:dev && yarn seed:prod
       - name: Build project
-        working-directory: /development/backend
+        working-directory: development/backend
         run: |
           yarn build
       - name: Run testing
-        working-directory: /development/backend
+        working-directory: development/backend
         run: |
           yarn start:prod
       - name: archive built files
         uses: actions/upload-artifact@v3
         with:
           name: dist
-          path: /development/backend/dist
+          path: development/backend/dist
 
   deploy-server-to-docker:
     needs: test-and-build-backend
@@ -68,9 +68,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: dist
-          path: /development/backend/dist
+          path: development/backend/dist
       - name: Build docker image for backend
-        working-directory: /development/backend
+        working-directory: development/backend
         run: |
           docker build -t cas-server .
       - name: Login to Docker Hub
@@ -79,7 +79,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Do Docker tag and push
-        working-directory: /development/backend
+        working-directory: development/backend
         run: |
           docker tag cas-server:latest ${{ env.DOCKER_REPO_NAME }}
           docker push ${{ env.DOCKER_REPO_NAME }}
@@ -109,13 +109,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install yarn deps
-        working-directory: /development/frontend
+        working-directory: development/frontend
         run: yarn
       # - name: run testing
-      #   working-directory: frontend
+      #   working-directory: development/frontend
       #   run: yarn run test
       - name: Build frontend project
-        working-directory: /development/frontend
+        working-directory: development/frontend
         env:
           REACT_APP_GOOGLE_MAPS_API_KEY: ${{ secrets.REACT_APP_GOOGLE_MAPS_API_KEY }}
           REACT_APP_BACKEND_URL: https://backend.wikipetia.me
@@ -125,7 +125,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build
-          path: /development/frontend/build
+          path: development/frontend/build
 
   deploy-react-to-aws:
     needs:
@@ -137,9 +137,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build
-          path: /development/frontend/build
+          path: development/frontend/build
       - name: Check built files in server
-        working-directory: /development/frontend
+        working-directory: development/frontend
         run: |
           ls build/index.html
       - uses: actions/setup-python@v4
@@ -148,7 +148,7 @@ jobs:
           cache: "pip"
       - run: pip install -r requirements.txt
       - name: Deploy to s3 and cloudfront
-        working-directory: /development/frontend
+        working-directory: development/frontend
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

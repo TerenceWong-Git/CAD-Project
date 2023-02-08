@@ -26,7 +26,7 @@
 }
 
 .comment-button-area > button:hover {
-  background: #e4655c;
+  background: #efa39a;
 }
 
 .comment-body {
@@ -282,6 +282,7 @@
 
 .comment-form-text {
   border: 1px solid #c3a6a0;
+  width: 293px;
   height: 40px;
   border-radius: 8px;
   margin: 5px 0;
@@ -289,13 +290,15 @@
 
 .comment-form-textarea {
   border: 1px solid #c3a6a0;
+  width: 293px;
   border-radius: 8px;
   margin: 5px 0;
 }
 
 .comment-form-text:focus,
+.comment-form-textarea:focus,
 .comment-select:focus {
-  outline: 1px#b74829;
+  outline: 1px solid #83544c;
 }
 
 .image-item {
@@ -415,5 +418,13 @@
 
   .comment-card-container {
     width: 60vw;
+  }
+
+  .comment-create-form {
+    width: 90vw;
+    height: 80vh;
+    border-radius: 15px;
+    padding-top: 15px;
+    overflow: scroll;
   }
 }

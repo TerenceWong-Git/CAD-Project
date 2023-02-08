@@ -105,7 +105,8 @@ function CreateComment() {
               <input
                 type="text"
                 className="comment-form-text"
-                size={42}
+                placeholder="   請填寫標題"
+                // size={42}
                 {...register("title", { required: true, maxLength: 50 })}
               ></input>
               <br></br>
@@ -125,6 +126,7 @@ function CreateComment() {
                 className="comment-form-textarea"
                 rows={10}
                 cols={35}
+                placeholder=" 請填寫內文"
                 {...register("content", { required: true })}
               ></textarea>
               <br></br>

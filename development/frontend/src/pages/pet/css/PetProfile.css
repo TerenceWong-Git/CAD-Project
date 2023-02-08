@@ -23,10 +23,9 @@
     justify-content: space-evenly;
     background-color: #fef7f6;
     box-shadow: 0px 4px 16px rgba(0, 38, 82, 0.2);
-    border-radius: 35px;
+    border-radius: 40px;
     margin: 2%;
-  }
-  
+  } 
   .pet-icon {
     border-radius: 50%;
     width: 20vmin;
@@ -35,9 +34,12 @@
   
   .empty-pet-icon {
     border-radius: 50%;
-    width: 20vmin;
-    height: 20vmin;
+    width: 22vmin;
+    height: 22vmin;
     background-color: #f0dcda;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .pet-introduction {
@@ -118,14 +120,14 @@
   }
   
   .pet-card {
-    height: 20vh;
-    width: 60vw;
+    height: 20vw;
+    width: 50vw;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     background-color: #f7f1f0;
     box-shadow: 0px 4px 16px rgba(0, 38, 82, 0.2);
-    border-radius: 30px;
+    border-radius: 40px;
     margin: 2%;
   }
   
@@ -140,6 +142,9 @@
     width: 15vmin;
     height: 15vmin;
     background-color: #f0dcda;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .pet-introduction {

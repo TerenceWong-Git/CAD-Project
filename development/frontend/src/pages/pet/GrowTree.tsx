@@ -52,36 +52,22 @@ export default function GrowTree() {
 
   const renderContinueGrow = () =>
     imgForGrow.map((img: any, index: any) => {
-      if (!img.isPrivate && img.id % 2 === 0) {
+      if (index % 2 !== 0) {
         return (
-          <div className="paw" key={index}>
-            <div className="leftPhoto inner">
-              <div className="bottom">
-                <img
-                  className="left"
-                  // style={{
-                  //   backgroundImage: url(`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`),
-                  //   backgroundPosition: "center",
-                  //   backgroundSize: "cover",
-                  // }}
-                  src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`}
-                  alt={img.engName}
-                />
+          <div className="growPictureRight">
+            <div className="paw leftPhoto">
+              <div className=" inner" key={index}>
+                <img className="left" src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`} alt={img.engName} />
               </div>
             </div>
           </div>
         );
       } else {
         return (
-          <div className="paw" key={index}>
-            <div className="rightPhoto inner">
-              <div className="bottom">
-                <img
-                  className="right"
-                  // style={{ backgroundImage: "url(" + `${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}` + ")" }}
-                  src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`}
-                  alt={img.engName}
-                />
+          <div className="growPictureLeft">
+            <div className="paw rightPhoto">
+              <div className=" inner" key={index}>
+                <img className="right" src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`} alt={img.engName} />
               </div>
             </div>
           </div>
@@ -91,32 +77,36 @@ export default function GrowTree() {
 
   return (
     <div>
-      <Header />
+      <div className="growTreePage">
+        <Header />
 
-      <div className="growTreePageContainer">
-        <div className="treeContainer">
-          Our Journey Starts Here
-          <div>
-            <Link to={`/uploadGrowTree/${petId.id}`}>
-              <AiOutlinePlusSquare />
-            </Link>
+        <div className="growTreePageContainer">
+          <div className="treeContainer">
+            Our Journey Starts Here
+            <div>
+              <Link to={`/uploadGrowTree/${petId.id}`}>
+                <AiOutlinePlusSquare />
+              </Link>
+            </div>
+            <InfiniteScroll
+              dataLength={imgForGrow.length}
+              next={continueGrow}
+              hasMore={hasMore}
+              loader={<div></div>}
+              endMessage={
+                <p style={{ textAlign: "center" }}>
+                  <b>To be continued ~ </b>
+                </p>
+              }
+            >
+              {renderContinueGrow()}
+            </InfiniteScroll>
           </div>
-          <InfiniteScroll
-            dataLength={imgForGrow.length}
-            next={continueGrow}
-            hasMore={hasMore}
-            loader={<div></div>}
-            endMessage={
-              <p style={{ textAlign: "center" }}>
-                <b>To be continued ~ </b>
-              </p>
-            }
-          >
-            {renderContinueGrow()}
-          </InfiniteScroll>
+        </div>
+        <div className="growTreeFooter">
+          <Footer />
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

@@ -1,4 +1,19 @@
 @media only screen and (min-width: 821px) {
+  .photoWithDetail {
+    border: 2px solid black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 821px;
+    height: 100vh;
+    z-index: 1000;
+  }
+
+  .photoWithDetail img {
+    width: 100%;
+    height: 100%;
+  }
+
   .landingPageContainer {
     display: flex;
     flex-direction: column;

@@ -86,6 +86,19 @@ export default function LandingPage() {
 
   /////////////////////////////////////   Category   /////////////////////////////////////
 
+  ///////////////////////////////////// Click photo //////////////////////////////////////
+  const [isClick, setIsClick] = useState<any>(false);
+  const click = (input: any) => {
+    console.log("input: ", input);
+    setIsClick(true);
+    return (
+      <div className="photoWithDetail">
+        <img src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${input}`} alt={""} />
+      </div>
+    );
+  };
+  ///////////////////////////////////// Click photo //////////////////////////////////////
+
   console.log("拎左幾多野", allPicture);
   console.log("一開頭show左幾多野", initialPicture);
   console.log("==============");
@@ -114,6 +127,7 @@ export default function LandingPage() {
               })}
             </div>
           </div>
+
           {isFiltered ? (
             <InfiniteScroll
               dataLength={isShownFilteredPicture.length}
@@ -152,7 +166,13 @@ export default function LandingPage() {
                 {initialPicture.map((item: any) => {
                   return (
                     <div key={item.name}>
-                      <img src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${item.name}`} alt={item.name} />
+                      <img
+                        onClick={() => {
+                          click(item.name);
+                        }}
+                        src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${item.name}`}
+                        alt={item.name}
+                      />
                     </div>
                   );
                 })}

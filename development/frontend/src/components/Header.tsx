@@ -24,10 +24,16 @@ export default function Header() {
     localStorage.removeItem("token");
     navigate("/");
   };
+
+  const lastPage = () => {
+    window.scrollTo(0, 0);
+    navigate(-1);
+  };
+
   return (
     <>
       <div className="header">
-        <div className="previousPage" onClick={() => navigate(-1)}>
+        <div className="previousPage" onClick={lastPage}>
           <GrFormPrevious />
         </div>
         <div className="logOut">

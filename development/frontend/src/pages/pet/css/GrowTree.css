@@ -5,7 +5,7 @@
   }
 
   .growTreePageContainer {
-    border: 3px solid black;
+    /* border: 3px solid black; */
     width: 821px;
     display: flex;
     flex-direction: column;

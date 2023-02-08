@@ -244,8 +244,10 @@
   background-color: white;
   margin: 3%;
   width: 90vw;
+  height: 80vh;
   border-radius: 15px;
   padding-top: 15px;
+  overflow: scroll;
 }
 
 .comment-edit-mapName {
@@ -272,13 +274,23 @@
 
 .comment-select {
   width: 293px;
+  height: 40px;
   border-radius: 8px;
   border: 1px solid #c3a6a0;
+  margin: 5px 0;
 }
 
 .comment-form-text {
   border: 1px solid #c3a6a0;
+  height: 40px;
   border-radius: 8px;
+  margin: 5px 0;
+}
+
+.comment-form-textarea {
+  border: 1px solid #c3a6a0;
+  border-radius: 8px;
+  margin: 5px 0;
 }
 
 .comment-form-text:focus,
@@ -396,7 +408,7 @@
   }
 }
 
-@media only screen and (min-width: 821px){
+@media only screen and (min-width: 821px) {
   .comment-card {
     height: 30vh;
   }

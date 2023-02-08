@@ -122,7 +122,7 @@ function CreateComment() {
               內容
               <br></br>
               <textarea
-                className="comment-form-text"
+                className="comment-form-textarea"
                 rows={10}
                 cols={35}
                 {...register("content", { required: true })}

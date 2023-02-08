@@ -142,7 +142,7 @@
 
 @media only screen and (max-width: 820px) {
   .growTreePageContainer {
-    border: 3px solid black;
+    /* border: 3px solid black; */
     display: flex;
     justify-content: center;
     background-image: url("/src/assets/128.png");

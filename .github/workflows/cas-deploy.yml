@@ -119,6 +119,7 @@ jobs:
         env:
           REACT_APP_GOOGLE_MAPS_API_KEY: ${{ secrets.REACT_APP_GOOGLE_MAPS_API_KEY }}
           REACT_APP_BACKEND_URL: https://backend.wikipetia.me
+          REACT_APP_S3_UPLOAD_URL: http://upload.wikipetia.me
         run: yarn run build
       - name: Archive react built files
         uses: actions/upload-artifact@v3

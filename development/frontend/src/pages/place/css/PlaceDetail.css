@@ -397,9 +397,9 @@
     flex-direction: column;
     padding: 2%;
     position: sticky;
-    top: 10px;
+    top: 5%;
     height: 100%;
-    width: 40%;
+    width: 35%;
   }
 
   .placeDetailName {

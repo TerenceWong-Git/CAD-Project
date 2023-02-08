@@ -79,43 +79,42 @@ export default function GrowTree() {
     <div>
       <div className="growTreePage">
         <Header />
-      <div className="grow-tree-body">
-        <div className="tree-top-area">
+        <div className="grow-tree-body">
+          <div className="tree-top-area">
             <div className="tree-title">
-            旅程從此展開
+              <img src="/uploads/growTreeDog.png" alt=""></img>
+              <img src="/uploads/growTreeCat.png" alt=""></img>
             </div>
-            
+
             <div className="tree-upload-grow-tree">
               <Link to={`/uploadGrowTree/${petId.id}`}>
-                <AiFillPlusCircle className="tree-upload-grow-tree"/>
+                <AiFillPlusCircle className="tree-upload-grow-tree" />
               </Link>
             </div>
+          </div>
+          <div className="grow-tree-mid">
+            <div className="growTreePageContainer">
+              <div className="treeContainer">
+                <InfiniteScroll
+                  dataLength={imgForGrow.length}
+                  next={continueGrow}
+                  hasMore={hasMore}
+                  loader={<div></div>}
+                  endMessage={
+                    <p style={{ textAlign: "center" }}>
+                      <b>To be continued ~ </b>
+                    </p>
+                  }
+                >
+                  {renderContinueGrow()}
+                </InfiniteScroll>
+              </div>
             </div>
-            <div className="grow-tree-mid">
-        <div className="growTreePageContainer">
-          <div className="treeContainer">
-
-            
-            <InfiniteScroll
-              dataLength={imgForGrow.length}
-              next={continueGrow}
-              hasMore={hasMore}
-              loader={<div></div>}
-              endMessage={
-                <p style={{ textAlign: "center" }}>
-                  <b>To be continued ~ </b>
-                </p>
-              }
-            >
-              {renderContinueGrow()}
-            </InfiniteScroll>
+          </div>
+          <div className="growTreeFooter">
+            <Footer />
           </div>
         </div>
-        </div>
-        <div className="growTreeFooter">
-          <Footer />
-        </div>
-      </div>
       </div>
     </div>
   );

@@ -92,6 +92,9 @@
     width: 60vw;
     height: 20vh;
   }
+  .ipad-dummy-pet-icon{
+    font-size: 20vmin;
+  }
 }
 
 @media only screen and (min-width: 821px) {
@@ -179,9 +182,9 @@
 }
 
 /* 平板 size */
-@media only screen and (max-width: 820px) {
-}
+/* @media only screen and (max-width: 820px) {
+} */
 
 /* 手機 size */
-@media only screen and (max-width: 767px) {
-}
+/* @media only screen and (max-width: 767px) {
+} */

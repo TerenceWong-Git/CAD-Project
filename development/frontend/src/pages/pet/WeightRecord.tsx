@@ -74,7 +74,7 @@ function WeightRecord() {
             alt={pets.id}
           />
         ) : (
-          <div className="emtpy-pet-icon"><GiSittingDog className="user-emtpy-pet-icon-dummy"/></div>
+          <div className="emtpy-pet-icon"><GiSittingDog className="user-emtpy-pet-icon-dummy ipad-dummy-pet-icon"/></div>
         )}
 
         <div className="weight-pet-introduction">

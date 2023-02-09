@@ -85,7 +85,7 @@ function PetProfile() {
                 />
               ) : (
                 <div className="empty-pet-icon">
-                  <GiSittingDog className="user-emtpy-pet-icon-dummy username-icon-area" />
+                  <GiSittingDog className="user-emtpy-pet-icon-dummy username-icon-area ipad-dummy-pet-icon" />
                 </div>
               )}
             </div>

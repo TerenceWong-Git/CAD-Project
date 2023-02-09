@@ -50,6 +50,7 @@
     border: 10px solid black;
     background-color: blue;
   }
+
   .weight-container {
     background-color: #f8dbdb;
     width: 70vw;
@@ -251,4 +252,11 @@
 
 .mantine-c7kmxa {
   border-radius: 30px;
+}
+
+
+@media only screen and (min-width: 500px) {
+  .weight-container{
+    padding: 5px;
+  }
 }

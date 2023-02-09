@@ -319,7 +319,7 @@
     height: 100%;
     display: flex;
     justify-content: space-around;
-    padding-top: 10px;
+    /* padding-top: 10px; */
   }
 
   .placeDetailInfoContainer {
@@ -338,10 +338,12 @@
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    width: 100%;
   }
 
   .placeDetailPreviewPicture img {
     width: 470px;
+    height: 200px;
   }
 
   .placeDetailEachComment {
@@ -354,7 +356,7 @@
   }
 
   .placeDetailCommentContainer {
-    width: 470px;
+    width: 200px;
   }
 
   .placeDetailEachCommentName {

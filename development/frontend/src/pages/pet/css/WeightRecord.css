@@ -7,7 +7,8 @@
     align-items: center;
   }
 
-  .weight-body-mid{
+  .weight-body-mid {
+    /* border: 10px solid black; */
     height: 50vh;
   }
   .weight-body {
@@ -51,13 +52,13 @@
   }
   .weight-container {
     background-color: #f8dbdb;
-    width: 90vw;
+    width: 70vw;
     border-radius: 15px;
-    margin-top: 5vmin;
+    margin-top: 2vmin;
     padding: 6vmin 0;
   }
   .weight-container-titte {
-    font-size: 6vmin;
+    font-size: 5vmin;
     display: flex;
     justify-content: space-evenly;
     font-weight: 300;

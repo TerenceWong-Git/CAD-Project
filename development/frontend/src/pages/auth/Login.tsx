@@ -12,10 +12,15 @@ export default function Login() {
   const navigate = useNavigate();
   const form = useForm({
     initialValues: {
-      email: "",
-      password: "",
+      email: "wikipetia123@gmail.com",
+      password: "@Tecky1234",
     },
   });
+
+  const toSomePage = (input: any) => {
+    window.scrollTo(0, 0);
+    navigate(`/${input}`);
+  };
 
   const handleSubmit = async (values: typeof form.values) => {
     const registrationInfo = {
@@ -25,7 +30,7 @@ export default function Login() {
 
     dispatch(loginThunk(registrationInfo))
       .unwrap()
-      .then(() => navigate("/landing"))
+      .then(() => toSomePage("landing"))
       .catch((err) => {
         console.log("err: ", err);
         alert("Unsuccessful login, please check your email and password!");
@@ -43,27 +48,10 @@ export default function Login() {
           <div className="loginLogo">
             <img height={150} src={`/uploads/smallLogo.png`} alt={""} />
           </div>
-          <Box
-            style={{ width: "65%" }}
-            component="form"
-            onSubmit={form.onSubmit(handleSubmit)}
-          >
-            <TextInput
-              id="email"
-              label="電郵"
-              placeholder="Email"
-              withAsterisk
-              mt="md"
-              {...form.getInputProps("email")}
-            />
+          <Box style={{ width: "65%" }} component="form" onSubmit={form.onSubmit(handleSubmit)}>
+            <TextInput id="email" label="電郵" placeholder="Email" withAsterisk mt="md" {...form.getInputProps("email")} />
 
-            <PasswordInput
-              label="密碼"
-              placeholder="Password"
-              withAsterisk
-              mt="md"
-              {...form.getInputProps("password")}
-            />
+            <PasswordInput label="密碼" placeholder="Password" withAsterisk mt="md" {...form.getInputProps("password")} />
 
             <Group position="center" mt="md">
               <Button className="login-submit-button" type="submit">
@@ -72,11 +60,7 @@ export default function Login() {
             </Group>
           </Box>
           <div className="goRegister">尚未註冊?</div>
-          <Button
-            className="login-submit-button"
-            type="submit"
-            onClick={goRegister}
-          >
+          <Button className="login-submit-button" type="submit" onClick={goRegister}>
             點此創建帳號
           </Button>
         </div>

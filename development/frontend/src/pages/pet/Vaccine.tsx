@@ -28,7 +28,7 @@ function VaccinePage() {
       setVaccine(data.at(-1));
     }
     loadData();
-  }, [jwt,petId.id]);
+  }, [jwt, petId.id]);
 
   return (
     <div className="vaccine-page">
@@ -38,37 +38,8 @@ function VaccinePage() {
 
         <div>
           {/* {vaccine?.name} */}
-          <img className="vaccine" width="300" height="300" src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${vaccine?.name}`} alt={""} />
+          <img className="vaccine" src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${vaccine?.name}`} alt={""} />
         </div>
-        {/* <Modal opened={opened} onClose={() => setOpened(false)} title="新增針卡" overlayOpacity={0.3}
-      overlayBlur={1}>
-          {
-            <form
-              onSubmit={handleSubmit(async (data) => {
-                const formData = new FormData();
-                formData.append("file", data.file[0]);
-                const res = await fetch(`${path}/pet/uploadVaccine/${petId.id}`, {
-                  method: "POST",
-                  body: formData,
-                });
-                console.log(res);
-                if (res.status === 201) {
-                  const getRes = await fetch(`${path}/pet/vaccine/${petId.id}`, { headers: { Authorization: `Bearer ${jwt}` } });
-                  const json = await getRes.json();
-                  setVaccine(json.at(-1));
-                  setOpened(false);
-                }
-              })}
-            >
-              <div>
-                <label id="file">
-                  upload photo
-                  <input type="file" {...register("file")} />
-                </label>
-              </div>
-            </form>
-          }
-        </Modal> */}
 
         <Modal centered className="vaccine-upload-tille" opened={opened} overlayOpacity={0.55} overlayBlur={1} onClose={() => setOpened(false)}>
           {

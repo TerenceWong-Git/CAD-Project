@@ -196,13 +196,9 @@
   }
 
   .user-card {
-    display: flex;
-    justify-content: center;
-    /* background-color: #f7f1f0;
-    box-shadow: 0px 4px 16px rgba(0, 38, 82, 0.2); */
+    /* border: 3px solid black; */
     border-radius: 150px;
     width: 50vw;
-    margin: 5%;
   }
   .username-name {
     font-weight: 200;
@@ -214,22 +210,13 @@
     flex-direction: column;
     align-items: center;
     /* margin: 3%; */
-    font-size: 7vmin;
+    font-size: 5vmin;
     font-weight: 300;
   }
 
   .user-card > div:nth-child(1) {
     border: 1px solid #eee;
     border-radius: 50%;
-  }
-
-  .username {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 3%;
-    font-size: 7vmin;
-    font-weight: 300;
   }
 
   .user-pet-profile-container {

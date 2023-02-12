@@ -417,12 +417,12 @@
   }
 
   .comment-card-container {
-    width: 60vw;
+    width: 45vw;
   }
 
   .comment-create-form {
-    width: 90vw;
-    height: 80vh;
+    width: 45vw;
+    height: 75vh;
     border-radius: 15px;
     padding-top: 15px;
     overflow: scroll;

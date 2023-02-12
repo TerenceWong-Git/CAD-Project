@@ -96,7 +96,7 @@ function PetProfile() {
           </div>
         </div>
 
-        <div style={{ width: "100vw" }}>
+        <div className="pet-profile-area">
           <div className="pet-profile-container">
             <Link to={`/weight/${petId.id}`}>
               <div className="pet-profile">

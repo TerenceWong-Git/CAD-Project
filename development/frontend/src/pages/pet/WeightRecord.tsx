@@ -81,13 +81,7 @@ function WeightRecord() {
 
             <div className="weight-pet-introduction">
               <div className="weight-pet-name">{pets.name}</div>
-              {pets.dateBirth ? (
-                <div className="weight-pet-age">
-                  {age(pets.dateBirth)}&nbsp;歲
-                </div>
-              ) : (
-                <div></div>
-              )}
+              {pets.dateBirth ? <div className="weight-pet-age">{age(pets.dateBirth)}&nbsp;歲</div> : <div></div>}
             </div>
           </div>
           <div className="weight-container-body">
@@ -101,12 +95,8 @@ function WeightRecord() {
                   {fiveRecord.map((item: any, index: number) => (
                     <div key={index} className="weight-record">
                       {/* <div className="weight-record-date">{item.createdAt.slice(0, 10)}</div> */}
-                      <div className="weight-record-date">
-                        {moment(item.createdAt).format("l")}
-                      </div>
-                      <div className="weight-record-weight">
-                        {item.weight}&nbsp;KG
-                      </div>
+                      <div className="weight-record-date">{moment(item.createdAt).format("l")}</div>
+                      <div className="weight-record-weight">{item.weight}&nbsp;KG</div>
                     </div>
                   ))}
                 </div>
@@ -125,32 +115,24 @@ function WeightRecord() {
                 className="weight-modal"
                 opened={opened}
                 onClose={() => setOpened(false)}
-                title="輸入體重">
+                title="輸入體重"
+              >
                 {
                   <form
                     onSubmit={handleSubmit(async (data) => {
-                      const res = await fetch(
-                        `${path}/pet/addWeight/${petId.id}`,
-                        {
-                          method: "POST",
-                          headers: {
-                            "content-type": "application/json; charset=utf-8",
-                          },
-                          body: JSON.stringify(data),
-                          // body: formData
-                        }
-                      );
+                      const res = await fetch(`${path}/pet/addWeight/${petId.id}`, {
+                        method: "POST",
+                        headers: {
+                          "content-type": "application/json; charset=utf-8",
+                        },
+                        body: JSON.stringify(data),
+                        // body: formData
+                      });
 
                       if (res.ok) {
-                        const getRes = await fetch(
-                          `${path}/pet/petProfile/${petId.id}`,
-                          { headers: { Authorization: `Bearer ${jwt}` } }
-                        );
+                        const getRes = await fetch(`${path}/pet/petProfile/${petId.id}`, { headers: { Authorization: `Bearer ${jwt}` } });
                         const json = await getRes.json();
-                        const getRes2 = await fetch(
-                          `${path}/pet/petWeight/${petId.id}`,
-                          { headers: { Authorization: `Bearer ${jwt}` } }
-                        );
+                        const getRes2 = await fetch(`${path}/pet/petWeight/${petId.id}`, { headers: { Authorization: `Bearer ${jwt}` } });
                         const json2 = await getRes2.json();
 
                         setPets(json[0]);
@@ -158,15 +140,11 @@ function WeightRecord() {
                         setOpened(false);
                       }
                       console.log(pets.PetWeight);
-                    })}>
+                    })}
+                  >
                     <div className="weight-input-box">
                       <label className="weight-input-text">
-                        <input
-                          type="text"
-                          {...register("weight")}
-                          className="weight-input-text-box"
-                          placeholder="KG"
-                        />
+                        <input type="text" {...register("weight")} className="weight-input-text-box" placeholder="KG" />
                       </label>
                       <div>
                         {/* <input type="submit" value="輸入" /> */}
@@ -181,15 +159,12 @@ function WeightRecord() {
             </div>
 
             <Group position="center">
-              <Button
-                className="weight-input-button"
-                onClick={() => setOpened(true)}>
+              <Button className="weight-input-button" onClick={() => setOpened(true)}>
                 輸入體重
               </Button>
             </Group>
-          
+          </div>
         </div>
-      </div>
       </div>
       <Footer />
     </div>

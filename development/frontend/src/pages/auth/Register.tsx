@@ -1,5 +1,5 @@
 import { useForm, isEmail, isInRange, hasLength, matches } from "@mantine/form";
-import { Button, Group, TextInput, NumberInput, Box, Select } from "@mantine/core";
+import { Button, Group, TextInput, NumberInput, Box, Select, PasswordInput } from "@mantine/core";
 import { useNavigate } from "react-router";
 import "./css/Register.css";
 import Header from "../../components/Header";
@@ -73,7 +73,7 @@ export default function Register() {
           <Box component="form" maw={400} onSubmit={form.onSubmit(handleSubmit)}>
             <TextInput id="email" label="電郵" placeholder="Email" withAsterisk mt="md" {...form.getInputProps("email")} />
             <TextInput id="username" label="用戶名稱" placeholder="Username" withAsterisk mt="md" {...form.getInputProps("username")} />
-            <TextInput id="password" label="密碼" placeholder="Password" withAsterisk mt="md" {...form.getInputProps("password")} />
+            <PasswordInput id="password" label="密碼" placeholder="Password" withAsterisk mt="md" {...form.getInputProps("password")} />
             <NumberInput
               hideControls
               id="phoneNumber"

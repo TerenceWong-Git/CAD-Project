@@ -17,25 +17,30 @@
   .user-card {
     display: flex;
     justify-content: center;
-    background-color: #fef7f6;
-    box-shadow: 0px 4px 16px rgba(0, 38, 82, 0.2);
+    /* background-color: #fef7f6;
+    box-shadow: 0px 4px 16px rgba(0, 38, 82, 0.2); */
     border-radius: 50px;
-    margin: 2%;
-    width: 85vw;
-    height: 12vh;
+    margin: 3%;
   }
 
   .username {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
-    margin: 3%;
+    /* margin: 3%; */
     font-size: 7vmin;
     font-weight: 300;
   }
-
+  /* .username-icon-area{
+  margin: 10px;
+} */
+  .username-name {
+    font-size: 4vmax;
+    font-weight: 200;
+  }
   .user-pet-profile-container {
-    height: 73vh;
+    height: 65vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -59,16 +64,16 @@
 
   .user-pet-profile {
     background-color: #f9f2f1;
-    width: 85vw;
+    width: 65vw;
     box-shadow: 0px 4px 16px rgba(0, 38, 82, 0.1);
-    border-radius: 65px;
+    border-radius: 40px;
     display: flex;
     flex-direction: row;
     margin: 2% 0;
   }
 
   .pet-name {
-    font-size: 6vmin;
+    font-size: 7vmin;
     font-weight: 250;
     margin: 2px;
   }
@@ -99,11 +104,11 @@
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     background-color: rgba(216, 209, 209, 0.411);
   }
-  .user-emtpy-pet-icon-dummy{
+  .user-emtpy-pet-icon-dummy {
     font-size: 80px;
     color: white;
   }
@@ -133,28 +138,29 @@
 
   .pet-species-tag-chi {
     background-color: #ffebcd;
-    font-size: 15px;
+    font-size: 10px;
     color: #9b8769;
     border-radius: 30px;
     height: 20px;
-    padding: 6px 14px 7px;
+    padding: 6px 14px 6px;
   }
 
   .pet-tag-gender {
     background-color: #ffebcd;
-    font-size: 15px;
+    font-size: 10px;
     color: #9b8769;
     border-radius: 30px;
     height: 20px;
-    padding: 6px 14px 7px;
+    padding: 6px 14px 6px;
+    margin-left: 5px;
   }
 
   .pet-age {
     background-color: #e0cdff;
     border-radius: 30px;
-    font-size: 15px;
+    font-size: 10px;
     height: 20px;
-    padding: 6px 14px 7px;
+    padding: 6px 14px 6px;
     color: #7c699b;
   }
 
@@ -177,29 +183,6 @@
 }
 
 /* -----------------------------  Pad Ver. ----------------------------- */
-
-@media only screen and (min-width: 500px) {
-  .user-card {
-    width: 70vw;
-    height: 19vh;
-    border-radius: 150px;
-  }
-  .user-pet-profile {
-    border-radius: 150px;
-    width: 70vw;
-    height: 20vh;
-  }
-  .user-add-pet-container {
-    width: 70vw;
-    border-radius: 150px;
-  }
-
-  .user-add-pet {
-    height: 20vh;
-  }
-}
-
-/* -----------------------------  Pad Ver. ----------------------------- */
 @media only screen and (min-width: 821px) {
   .user-profile-page {
     height: 100vh;
@@ -213,14 +196,22 @@
   }
 
   .user-card {
-    display: flex;
-    justify-content: center;
-    background-color: #f7f1f0;
-    box-shadow: 0px 4px 16px rgba(0, 38, 82, 0.2);
+    /* border: 3px solid black; */
     border-radius: 150px;
     width: 50vw;
-    margin: 2%;
-  
+  }
+  .username-name {
+    font-weight: 200;
+  }
+
+  .username {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    /* margin: 3%; */
+    font-size: 5vmin;
+    font-weight: 300;
   }
 
   .user-card > div:nth-child(1) {
@@ -228,17 +219,8 @@
     border-radius: 50%;
   }
 
-  .username {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 3%;
-    font-size: 7vmin;
-    font-weight: 300;
-  }
-
   .user-pet-profile-container {
-    height: 80vh;
+    height: 65vh;
     width: 60vw;
     display: flex;
     flex-direction: column;
@@ -265,14 +247,14 @@
     background-color: #f7f1f0;
     width: 50vw;
     box-shadow: 0px 4px 16px rgba(0, 38, 82, 0.1);
-    border-radius: 65px;
+    border-radius: 40px;
     display: flex;
     flex-direction: row;
     margin: 2% 0;
   }
 
   .pet-name {
-    font-size: 6vmin;
+    font-size: 7vmin;
     font-weight: 250;
     margin: 2px;
   }
@@ -307,8 +289,8 @@
     height: 100px;
     background-color: rgba(216, 209, 209, 0.411);
   }
-  .user-emtpy-pet-icon-dummy{
-    font-size: 80px;
+  .user-emtpy-pet-icon-dummy {
+    font-size: 20vw;
     color: white;
   }
 
@@ -337,20 +319,20 @@
 
   .pet-species-tag-chi {
     background-color: #ffebcd;
-    font-size: 15px;
+    font-size: 10px;
     color: #9b8769;
     border-radius: 30px;
     height: 20px;
-    padding: 6px 14px 7px;
+    padding: 6px 14px 6px;
   }
 
   .pet-tag-gender {
     background-color: #ffebcd;
-    font-size: 15px;
+    font-size: 10px;
     color: #9b8769;
     border-radius: 30px;
     height: 20px;
-    padding: 6px 14px 7px;
+    padding: 6px 14px 6px;
   }
 
   .pet-age {

@@ -18,15 +18,15 @@
 }
 
 .comment-button-area > button {
-  background-color: #f2968f;
-  color: #fcfcfc;
+  background-color: #eacfcc;
+  color: #9b6972;
   border-radius: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: none;
   margin: 3px;
 }
 
 .comment-button-area > button:hover {
-  background: #e4655c;
+  background: #efa39a;
 }
 
 .comment-body {
@@ -163,7 +163,8 @@
 }
 
 .comment-detail-noImage {
-  width: 343px;
+  /* width: 343px; */
+  width: 100%;
   height: 360px;
   display: flex;
   justify-content: center;
@@ -243,8 +244,10 @@
   background-color: white;
   margin: 3%;
   width: 90vw;
+  height: 80vh;
   border-radius: 15px;
   padding-top: 15px;
+  overflow: scroll;
 }
 
 .comment-edit-mapName {
@@ -271,18 +274,31 @@
 
 .comment-select {
   width: 293px;
+  height: 40px;
   border-radius: 8px;
   border: 1px solid #c3a6a0;
+  margin: 5px 0;
 }
 
 .comment-form-text {
   border: 1px solid #c3a6a0;
+  width: 293px;
+  height: 40px;
   border-radius: 8px;
+  margin: 5px 0;
+}
+
+.comment-form-textarea {
+  border: 1px solid #c3a6a0;
+  width: 293px;
+  border-radius: 8px;
+  margin: 5px 0;
 }
 
 .comment-form-text:focus,
+.comment-form-textarea:focus,
 .comment-select:focus {
-  outline: 1px#b74829;
+  outline: 1px solid #83544c;
 }
 
 .image-item {
@@ -395,12 +411,20 @@
   }
 }
 
-@media only screen and (min-width: 821px){
+@media only screen and (min-width: 821px) {
   .comment-card {
     height: 30vh;
   }
 
   .comment-card-container {
-    width: 60vw;
+    width: 45vw;
+  }
+
+  .comment-create-form {
+    width: 45vw;
+    height: 75vh;
+    border-radius: 15px;
+    padding-top: 15px;
+    overflow: scroll;
   }
 }

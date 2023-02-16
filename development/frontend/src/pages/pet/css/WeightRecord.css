@@ -7,6 +7,10 @@
     align-items: center;
   }
 
+  .weight-body-mid {
+    /* border: 10px solid black; */
+    height: 50vh;
+  }
   .weight-body {
     padding-top: 2%;
     text-align: center;
@@ -46,15 +50,16 @@
     border: 10px solid black;
     background-color: blue;
   }
+
   .weight-container {
     background-color: #f8dbdb;
-    width: 90vw;
+    width: 70vw;
     border-radius: 15px;
-    margin-top: 5vmin;
+    margin-top: 2vmin;
     padding: 6vmin 0;
   }
   .weight-container-titte {
-    font-size: 6vmin;
+    font-size: 5vmin;
     display: flex;
     justify-content: space-evenly;
     font-weight: 300;
@@ -116,8 +121,8 @@
   }
   .emtpy-pet-icon {
     border-radius: 50%;
-    width: 20vmin;
-    height: 20vmin;
+    width: 22vmin;
+    height: 22vmin;
     background-color: #f0dcda;
   }
 }
@@ -134,14 +139,21 @@
   }
 
   .weight-body {
-    margin: 8vmin;
+    /* border: 3px solid black; */
+    width: 821px;
+    height: 600px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
   }
 
   .weight-profile {
+    /* border: 3px solid black; */
     display: flex;
     justify-content: center;
-    flex-direction: row;
+    width: 100%;
   }
   .weight-pet-introduction {
     display: flex;
@@ -150,7 +162,7 @@
     margin-left: 15%;
   }
   .weight-pet-name {
-    font-size: 10vmin;
+    font-size: 6vmin;
     font-weight: 230;
   }
 
@@ -158,7 +170,11 @@
     background-color: #e0cdff;
     border-radius: 30px;
     font-size: 15px;
-    height: 20px;
+    height: 30px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 6px 14px 7px;
     color: #7c699b;
     margin: 10px;
@@ -171,10 +187,12 @@
     background-color: blue;
   }
   .weight-container {
+    /* border: 3px solid black; */
     background-color: #f8dbdb;
     border-radius: 15px;
     margin-top: 5vmin;
     padding: 6vmin 0;
+    width: 50vw;
   }
   .weight-container-titte {
     font-size: 6vmin;
@@ -238,12 +256,18 @@
   }
   .emtpy-pet-icon {
     border-radius: 50%;
-    width: 35vmin;
-    height: 35vmin;
+    width: 25vmin;
+    height: 25vmin;
     background-color: #f0dcda;
   }
 }
 
 .mantine-c7kmxa {
   border-radius: 30px;
+}
+
+@media only screen and (min-width: 500px) {
+  .weight-container {
+    padding: 5px;
+  }
 }

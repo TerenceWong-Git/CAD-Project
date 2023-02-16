@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./css/UserProfile.css";
 import { FaPlus } from "react-icons/fa";
+
 import Footer from "../../components/Footer";
 import { RiUser3Line } from "react-icons/ri";
 import { GiSittingDog } from "react-icons/gi";
@@ -68,8 +69,12 @@ function UserProfile() {
             </div> */}
             {/* <div className="user-icon">{name.userIcon}</div> */}
             <div className="username">
-              <RiUser3Line size={"40%"}/> &nbsp;
+              <div className="user-emtpy-pet-icon">
+              <RiUser3Line className="user-emtpy-pet-icon-dummy username-icon-area"/>
+              </div>
+              <div className="username-name">
               {name.username}
+              </div>
             </div>
           </div>
         </div>

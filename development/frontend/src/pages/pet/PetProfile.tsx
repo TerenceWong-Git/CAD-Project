@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import "./css/PetProfile.css";
 import { TiTree } from "react-icons/ti";
 import { BsCardList } from "react-icons/bs";
+import { GiSittingDog } from "react-icons/gi";
 
 function PetProfile() {
   const jwt = localStorage.getItem("token");
@@ -37,13 +38,14 @@ function PetProfile() {
       setPets(json[0]);
     }
     loadData();
-  }, [petId,jwt,path]);
+  }, [petId, jwt, path]);
   if (pets) {
     console.log("weight12321", pets.PetWeight);
     console.log("pets: ", pets);
 
     // const petWeight = pets.PetWeight;
   }
+
   const age = (dob1: any) => {
     if (dob1 === null) {
       return;
@@ -58,6 +60,13 @@ function PetProfile() {
     console.log(age_now);
     return age_now;
   };
+
+  const navigate = useNavigate();
+  const toSomePage = (input: any) => {
+    window.scrollTo(0, 0);
+    navigate(`/${input}`);
+  };
+
   return (
     <div className="pet-profile-page">
       <Header />
@@ -75,32 +84,26 @@ function PetProfile() {
                   alt={pets.id}
                 />
               ) : (
-                <div className="empty-pet-icon"></div>
+                <div className="empty-pet-icon">
+                  <GiSittingDog className="user-emtpy-pet-icon-dummy username-icon-area ipad-dummy-pet-icon" />
+                </div>
               )}
             </div>
             <div className="pet-introduction">
               <div className="pet-info-name">{pets.name}</div>
-              {pets.dateBirth ? (
-                <div className="pet-info-age">
-                  {age(pets.dateBirth)}&nbsp;歲
-                </div>
-              ) : (
-                <div></div>
-              )}
+              {pets.dateBirth ? <div className="pet-info-age">{age(pets.dateBirth)}&nbsp;歲</div> : <div></div>}
             </div>
           </div>
         </div>
 
-        <div style={{width:"100vw"}}>
+        <div className="pet-profile-area">
           <div className="pet-profile-container">
             <Link to={`/weight/${petId.id}`}>
               <div className="pet-profile">
                 {pets.PetWeight?.length > 0 ? (
                   <div className="pet-profile-weight-container">
                     <div>體重</div>
-                    <div className="pet-profile-weight">
-                      {pets.PetWeight?.at(-1).weight}&nbsp;KG
-                    </div>
+                    <div className="pet-profile-weight">{pets.PetWeight?.at(-1).weight}&nbsp;KG</div>
                   </div>
                 ) : (
                   <div>
@@ -112,13 +115,22 @@ function PetProfile() {
             </Link>
           </div>
 
-          <div className="pet-profile-container">
-            <Link to={`/growtree/${petId.id}`}>
-              <div className="pet-profile">
-                <TiTree color="#013328" />
-                &nbsp;成長樹
-              </div>
-            </Link>
+          <div
+            className="pet-profile-container"
+            onClick={() => {
+              toSomePage(`growtree/${petId.id}`);
+            }}
+            style={{
+              textDecoration: "none",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div className="pet-profile">
+              <TiTree color="#013328" />
+              &nbsp;成長樹
+            </div>
           </div>
 
           <div className="pet-profile-container">

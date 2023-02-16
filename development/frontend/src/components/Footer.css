@@ -12,6 +12,7 @@
     font-size: 4vmin;
     font-style: white !important;
     border-radius: 40px;
+    z-index: 11;
   }
 
   .footer > div {
@@ -38,6 +39,7 @@
     font-size: 4vmin;
     font-style: white !important;
     border-radius: 40px;
+    z-index: 11;
   }
   .footer > div {
     display: flex;
@@ -63,6 +65,7 @@
     font-size: 5vmin;
     font-style: white !important;
     border-radius: 40px;
+    z-index: 11;
   }
   .footer > div {
     display: flex;
@@ -70,4 +73,6 @@
     height: 80%;
     width: 13%;
   }
+
+  
 }

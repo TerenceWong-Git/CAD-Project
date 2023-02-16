@@ -5,7 +5,7 @@ import "./css/GrowTree.css";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
-import { AiOutlinePlusSquare } from "react-icons/ai";
+import { AiFillPlusCircle } from "react-icons/ai";
 
 export default function GrowTree() {
   const petId = useParams();
@@ -22,7 +22,7 @@ export default function GrowTree() {
       });
       const json = await res.json();
       setImg(json);
-      setImgForGrow(json.slice(0, 4));
+      setImgForGrow(json.slice(0, 3));
     }
     loadData();
   }, [petId]);
@@ -39,7 +39,7 @@ export default function GrowTree() {
   // }, []);
   // console.log("reOrder: ", reOrder);
 
-  const [continueGrowIndex, setContinueGrowIndex] = useState(4);
+  const [continueGrowIndex, setContinueGrowIndex] = useState(3);
   const [hasMore, setHasMore] = useState(true);
 
   const continueGrow = async () => {
@@ -52,37 +52,22 @@ export default function GrowTree() {
 
   const renderContinueGrow = () =>
     imgForGrow.map((img: any, index: any) => {
-      if (!img.isPrivate && img.id % 2 === 0) {
+      if (index % 2 !== 0) {
         return (
-          <div className="paw" key={index}>
-            <div className="leftPhoto inner">
-              <div className="bottom">
-                <img
-                  className="left"
-                  // style={{
-                  //   backgroundImage: url(`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`),
-                  //   backgroundPosition: "center",
-                  //   backgroundSize: "cover",
-                  // }}
-                  src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`}
-                  alt={img.engName}
-                />
+          <div key={index} className="growPictureRight">
+            <div className="paw leftPhoto">
+              <div className=" inner">
+                <img className="left" src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`} alt={img.engName} />
               </div>
             </div>
           </div>
         );
       } else {
         return (
-          <div className="paw" key={index}>
-            <div className="rightPhoto inner">
-              <div className="bottom">
-                {/* <img
-                  className="right"
-                  style={{ backgroundImage: "url(" + `${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}` + ")" }}
-                  src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`}
-                  alt={img.engName}
-                /> */}
-                <img className="right" key={img.name} src={"/dog-cat-gfb55af861_1920.jpg"} alt={img.engName} />
+          <div key={index} className="growPictureLeft">
+            <div className="paw rightPhoto">
+              <div className=" inner" key={index}>
+                <img className="right" src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${img.name}`} alt={img.engName} />
               </div>
             </div>
           </div>
@@ -92,32 +77,45 @@ export default function GrowTree() {
 
   return (
     <div>
-      <Header />
+      <div className="growTreePage">
+        <Header />
+        <div className="grow-tree-body">
+          <div className="tree-top-area">
+            <div className="tree-title">
+              <img src="/uploads/growTreeDog.png" alt=""></img>
+              <img src="/uploads/growTreeCat.png" alt=""></img>
+            </div>
 
-      <div className="growTreePageContainer">
-        <div className="treeContainer">
-          Our Journey Starts Here
-          <div>
-            <Link to={`/uploadGrowTree/${petId.id}`}>
-              <AiOutlinePlusSquare />
-            </Link>
+            <div className="tree-upload-grow-tree">
+              <Link to={`/uploadGrowTree/${petId.id}`}>
+                <AiFillPlusCircle className="tree-upload-grow-tree" />
+              </Link>
+            </div>
           </div>
-          <InfiniteScroll
-            dataLength={imgForGrow.length}
-            next={continueGrow}
-            hasMore={hasMore}
-            loader={<div></div>}
-            endMessage={
-              <p style={{ textAlign: "center" }}>
-                <b>To be continued ~ </b>
-              </p>
-            }
-          >
-            {renderContinueGrow()}
-          </InfiniteScroll>
+          <div className="grow-tree-mid">
+            <div className="growTreePageContainer">
+              <div className="treeContainer">
+                <InfiniteScroll
+                  dataLength={imgForGrow.length}
+                  next={continueGrow}
+                  hasMore={hasMore}
+                  loader={<div></div>}
+                  endMessage={
+                    <p style={{ textAlign: "center" }}>
+                      <b>To be continued ~ </b>
+                    </p>
+                  }
+                >
+                  {renderContinueGrow()}
+                </InfiniteScroll>
+              </div>
+            </div>
+          </div>
+          <div className="growTreeFooter">
+            <Footer />
+          </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

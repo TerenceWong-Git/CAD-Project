@@ -13,47 +13,50 @@ env:
   BUCKET_NAME: cas-react-development
   CLOUDFRONT_DISTRIBUTION: E10KX1B5YIW1RZ
   AWS_DEFAULT_REGION: ap-southeast-1
+  POSTGRES_DB: ${{secrets.POSTGRES_DB}}
+  POSTGRES_USER: ${{secrets.POSTGRES_USER}}
+  POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASSWORD}}
 
 jobs:
   test-and-build-backend:
     runs-on: ubuntu-latest
     container: node:latest
-    # services:
-    #   db:
-    #     image: postgres:latest
-    #     env:
-    #       POSTGRES_DB: ${{env.POSTGRES_DB}}
-    #       POSTGRES_USER: ${{env.POSTGRES_USER}}
-    #       POSTGRES_PASSWORD: ${{env.POSTGRES_PASSWORD}}
-    #     ports:
-    #       - 5432:5432
-    # env:
-    #   PORT: 80
-    #   DB_HOST: db
-    #   DB_PORT: 5432
+    services:
+      db:
+        image: postgres:latest
+        env:
+          POSTGRES_DB: ${{env.POSTGRES_DB}}
+          POSTGRES_USER: ${{env.POSTGRES_USER}}
+          POSTGRES_PASSWORD: ${{env.POSTGRES_PASSWORD}}
+        ports:
+          - 5432:5432
+    env:
+      PORT: 80
+      DB_HOST: db
+      DB_PORT: 5432
     steps:
       - uses: actions/checkout@v3
       - name: Install yarn deps
-        working-directory: backend
+        working-directory: development/backend
         run: |
           yarn
       - name: Migrate database with prisma
-        working-directory: backend
+        working-directory: development/backend
         run: |
           yarn prisma generate && yarn migrate:dev && yarn seed:prod
       - name: Build project
-        working-directory: backend
+        working-directory: development/backend
         run: |
           yarn build
       - name: Run testing
-        working-directory: backend
+        working-directory: development/backend
         run: |
           yarn start:prod
       - name: archive built files
         uses: actions/upload-artifact@v3
         with:
           name: dist
-          path: backend/dist
+          path: development/backend/dist
 
   deploy-server-to-docker:
     needs: test-and-build-backend
@@ -65,9 +68,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: dist
-          path: backend/dist
+          path: development/backend/dist
       - name: Build docker image for backend
-        working-directory: backend
+        working-directory: development/backend
         run: |
           docker build -t cas-server .
       - name: Login to Docker Hub
@@ -76,7 +79,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Do Docker tag and push
-        working-directory: backend
+        working-directory: development/backend
         run: |
           docker tag cas-server:latest ${{ env.DOCKER_REPO_NAME }}
           docker push ${{ env.DOCKER_REPO_NAME }}
@@ -106,22 +109,23 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install yarn deps
-        working-directory: frontend
+        working-directory: development/frontend
         run: yarn
       # - name: run testing
-      #   working-directory: frontend
+      #   working-directory: development/frontend
       #   run: yarn run test
       - name: Build frontend project
-        working-directory: frontend
+        working-directory: development/frontend
         env:
           REACT_APP_GOOGLE_MAPS_API_KEY: ${{ secrets.REACT_APP_GOOGLE_MAPS_API_KEY }}
           REACT_APP_BACKEND_URL: https://backend.wikipetia.me
+          REACT_APP_S3_UPLOAD_URL: http://upload.wikipetia.me
         run: yarn run build
       - name: Archive react built files
         uses: actions/upload-artifact@v3
         with:
           name: build
-          path: frontend/build
+          path: development/frontend/build
 
   deploy-react-to-aws:
     needs:
@@ -133,9 +137,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build
-          path: frontend/build
+          path: development/frontend/build
       - name: Check built files in server
-        working-directory: frontend
+        working-directory: development/frontend
         run: |
           ls build/index.html
       - uses: actions/setup-python@v4
@@ -144,7 +148,7 @@ jobs:
           cache: "pip"
       - run: pip install -r requirements.txt
       - name: Deploy to s3 and cloudfront
-        working-directory: frontend
+        working-directory: development/frontend
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

@@ -20,7 +20,6 @@ export class AddWeightDto {
 // }
 export class UploadPetImgDto {
   @IsString()
-  @MaxLength(20)
   tag?: string;
 
   @Transform(({ value }) => {

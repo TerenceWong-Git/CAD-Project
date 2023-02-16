@@ -1,32 +1,43 @@
-.register-body{
-    text-align: center;
-    font-weight: 300;
-}
-
-.register-title{
-    margin-top: 5vmin;
-}
-
-.register-form{
+@media only screen and (min-width: 821px) {
+  .register-body {
+    /* border: 3px solid black; */
+    height: 90vh;
+    width: 821px;
+    overflow: scroll;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    /* border:5px solid black; */
-    margin: 5vmin;
-    padding: 4vmin;
-    border-radius: 30px;
-    background-color: white;
+  }
 }
-.register-submit-button{
-    background: #f2968f;
-    border-radius: 30px;
 
+.register-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
 }
-.mantine-1g14e8k,.mantine-ye2q1m {
-    border: 1px solid #c3a6a0;
-    border-radius: 8px;
+
+.register-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  /* border:5px solid black; */
+  margin: 4vmin;
+  padding: 3%;
+  border-radius: 30px;
+  /* background-color: white; */
+}
+.register-submit-button {
+  background: #f2968f;
+  border-radius: 30px;
+}
+.mantine-1g14e8k,
+.mantine-ye2q1m {
+  border: 1px solid #c3a6a0;
+  border-radius: 8px;
 }
 .mantine-titt6i {
-    border: 1px solid #c3a6a0;
-    border-radius: 8px;
+  border: 1px solid #c3a6a0;
+  border-radius: 8px;
 }

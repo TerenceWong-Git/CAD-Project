@@ -1,5 +1,9 @@
 import React from "react";
 
 export default function NotFound() {
-  return <div>404NotFound</div>;
+  return (
+    <div>
+      <img src="/uploads/NotFound.jpg" alt=""></img>
+    </div>
+  );
 }

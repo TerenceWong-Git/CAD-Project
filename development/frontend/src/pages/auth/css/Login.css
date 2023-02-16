@@ -1,3 +1,6 @@
+.loginFormContainer > button:hover {
+  background-color: #ad524b;
+}
 @media only screen and (min-width: 821px) {
   .loginContainer {
     /* border: 2px solid rgba(0, 0, 0, 0.2); */
@@ -28,7 +31,9 @@
 .login-submit-button{
   background: #f2968f;
   border-radius: 30px;
-
+}
+.login-submit-button:hover{
+  background: #661d18;
 }
 
 /* ----------------------------- Laptop Ver. ----------------------------- */
@@ -61,7 +66,9 @@
   .login-submit-button{
     background: #f2968f;
     border-radius: 30px;
-  
+  }
+  .login-submit-button:hover{
+    background: #661d18;
   }
 }
 
@@ -93,4 +100,10 @@
     border-radius: 30px;
   
   }
+
+  .login-submit-button:hover{
+    background: #661d18;
+
+  }
+  
 }

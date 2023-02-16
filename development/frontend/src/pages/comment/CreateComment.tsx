@@ -76,7 +76,7 @@ function CreateComment() {
         <div className="comment-form-input">
           <div>
             <label>
-              地點
+              地點<span style={{color:"#fa5252"}}>*</span>
               <br></br>
               <select
                 className="comment-select"
@@ -100,12 +100,13 @@ function CreateComment() {
 
           <div>
             <label>
-              標題
+              標題<span style={{color:"#fa5252"}}>*</span>
               <br></br>
               <input
                 type="text"
                 className="comment-form-text"
-                size={42}
+                placeholder="   請填寫標題"
+                // size={42}
                 {...register("title", { required: true, maxLength: 50 })}
               ></input>
               <br></br>
@@ -119,12 +120,13 @@ function CreateComment() {
 
           <div>
             <label>
-              內容
+              內容<span style={{color:"#fa5252"}}>*</span>
               <br></br>
               <textarea
-                className="comment-form-text"
+                className="comment-form-textarea"
                 rows={10}
                 cols={35}
+                placeholder=" 請填寫內文"
                 {...register("content", { required: true })}
               ></textarea>
               <br></br>

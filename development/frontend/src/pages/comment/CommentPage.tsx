@@ -39,13 +39,13 @@ function CommentPage() {
       <DefaultHeader />
       <div className="comment-button-area">
         <button>
-          <Link to={"createComment"} style={{ color: "#FCFCFC" }}>
+          <Link to={"createComment"} style={{ color: "#9b6972" }}>
             建立
           </Link>
         </button>
 
         <button>
-          <Link to={`myComments`} style={{ color: "#FCFCFC" }}>
+          <Link to={`myComments`} style={{ color: "#9b6972" }}>
             我的評論
           </Link>
         </button>

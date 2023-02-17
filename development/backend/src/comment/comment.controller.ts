@@ -79,6 +79,7 @@ export class CommentController {
       commentDto,
       arrayOfFileNames,
     );
+    return { message: 'success' };
   }
 
   @Patch('update/:id')

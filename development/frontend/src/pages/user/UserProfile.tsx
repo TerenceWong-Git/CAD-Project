@@ -9,12 +9,13 @@ import { GiSittingDog } from "react-icons/gi";
 import DefaultHeader from "../../components/DefaultHeader";
 
 function UserProfile() {
-  const path = process.env.REACT_APP_BACKEND_URL;
-  const jwt = localStorage.getItem("token");
   const [pets, setPets] = useState<any[]>([]);
   const [name, setName] = useState<any>([]);
 
   useEffect(() => {
+    const path = process.env.REACT_APP_BACKEND_URL;
+    const jwt = localStorage.getItem("token");
+
     async function loadData() {
       const res = await fetch(`${path}/pet/me`, {
         headers: { Authorization: `Bearer ${jwt}` },
@@ -33,7 +34,7 @@ function UserProfile() {
     }
     loadName();
     loadData();
-  }, [jwt,path]);
+  }, []);
 
   console.log(pets);
   console.log(name);
@@ -56,7 +57,7 @@ function UserProfile() {
       <DefaultHeader />
       {/* UserProfile */}
       <div className="user-profile-body">
-        <div style={{display:"flex",justifyContent:"center"}}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
           <div className="user-card">
             {/* <div>
               <img
@@ -70,11 +71,9 @@ function UserProfile() {
             {/* <div className="user-icon">{name.userIcon}</div> */}
             <div className="username">
               <div className="user-emtpy-pet-icon">
-              <RiUser3Line className="user-emtpy-pet-icon-dummy username-icon-area"/>
+                <RiUser3Line className="user-emtpy-pet-icon-dummy username-icon-area" />
               </div>
-              <div className="username-name">
-              {name.username}
-              </div>
+              <div className="username-name">{name.username}</div>
             </div>
           </div>
         </div>
@@ -97,7 +96,9 @@ function UserProfile() {
                       alt={pet.id}
                     />
                   ) : (
-                    <div className="user-emtpy-pet-icon"><GiSittingDog className="user-emtpy-pet-icon-dummy"/></div>
+                    <div className="user-emtpy-pet-icon">
+                      <GiSittingDog className="user-emtpy-pet-icon-dummy" />
+                    </div>
                   )}
                 </div>
                 <div className="pet-detail">

@@ -7,6 +7,7 @@ import { RxUpdate } from "react-icons/rx";
 import { AiOutlineDelete } from "react-icons/ai";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
+import { getCommentMapAPI, submitCommentAPI } from "../../api/comment";
 
 function CreateComment() {
   const {
@@ -19,30 +20,20 @@ function CreateComment() {
   const [images, setImages] = React.useState([]);
 
   const onChange = (imageList: any, addUpdateIndex: any) => {
-    // data for submit
-    console.log(imageList, addUpdateIndex);
     setImages(imageList);
   };
-  console.log("img: ", images);
 
   const [maps, setMaps] = useState<any[]>([]);
 
   useEffect(() => {
     async function loadData() {
-      const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/comment/map`
-      );
-      const data = await res.json();
-      console.log(data);
-
+      const data = await getCommentMapAPI();
       setMaps(data);
     }
     loadData();
   }, []);
 
   const newFile = images.map((item: any) => item.file);
-  console.log("newFile: ", newFile);
-  console.log("errors: ", errors);
 
   return (
     <div className="comment-create-page">
@@ -50,33 +41,20 @@ function CreateComment() {
       <form
         className="comment-create-form"
         onSubmit={handleSubmit(async (data) => {
-          console.log(data);
-          const jwt = localStorage.getItem("token");
-          const formData = new FormData();
-          formData.append("mapId", data.mapId);
-          formData.append("title", data.title);
-          formData.append("content", data.content);
-          formData.append("isThumb", data.isThumb);
-
-          for (const img of newFile) {
-            formData.append("files", img);
-          }
-
-          await fetch(`${process.env.REACT_APP_BACKEND_URL}/comment/create`, {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-            },
-            body: formData,
+          await submitCommentAPI({
+            mapId: data.mapId,
+            title: data.title,
+            content: data.content,
+            isThumb: data.isThumb,
+            files: newFile,
           });
-
           navigate("/comments");
         })}
       >
         <div className="comment-form-input">
           <div>
             <label>
-              地點<span style={{color:"#fa5252"}}>*</span>
+              地點<span style={{ color: "#fa5252" }}>*</span>
               <br></br>
               <select
                 className="comment-select"
@@ -100,7 +78,7 @@ function CreateComment() {
 
           <div>
             <label>
-              標題<span style={{color:"#fa5252"}}>*</span>
+              標題<span style={{ color: "#fa5252" }}>*</span>
               <br></br>
               <input
                 type="text"
@@ -120,7 +98,7 @@ function CreateComment() {
 
           <div>
             <label>
-              內容<span style={{color:"#fa5252"}}>*</span>
+              內容<span style={{ color: "#fa5252" }}>*</span>
               <br></br>
               <textarea
                 className="comment-form-textarea"

@@ -4,8 +4,6 @@ import Masonry from "react-masonry-css";
 import DefaultHeader from "../components/DefaultHeader";
 import Footer from "../components/Footer";
 import { tags } from "../components/pet/PetTag";
-// import Footer from "../components/Footer";
-// import Header from "../components/Header";
 import "./LandingPage.css";
 
 export default function LandingPage() {
@@ -23,7 +21,9 @@ export default function LandingPage() {
 
   useEffect(() => {
     async function getLanding() {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/landing`);
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/user/landing`
+      );
       const json = await res.json();
 
       setAllPicture(json);
@@ -33,7 +33,7 @@ export default function LandingPage() {
   }, []);
 
   const notYetFilteredLandingPicture = async () => {
-    if (!isFiltered) {
+    if (!isFiltered && allPicture[indexA]) {
       setInitialPicture([...initialPicture, allPicture[indexA]]);
       if (allPicture.length - initialPicture.length < 2) {
         setInitialHasMore(false);
@@ -45,7 +45,9 @@ export default function LandingPage() {
   /////////////////////////////////////   Category   /////////////////////////////////////
 
   const [filteredPicture, setFilteredPicture] = useState<any>([]);
-  const [isShownFilteredPicture, setIsShownFilteredPicture] = useState<any[]>([]);
+  const [isShownFilteredPicture, setIsShownFilteredPicture] = useState<any[]>(
+    []
+  );
 
   const [hasMore, setHasMore] = useState(true);
   const [indexB, setIndexB] = useState(8);
@@ -76,7 +78,10 @@ export default function LandingPage() {
 
   const filteredLandingPicture = async () => {
     if (isFiltered) {
-      setIsShownFilteredPicture([...isShownFilteredPicture, filteredPicture[indexB]]);
+      setIsShownFilteredPicture([
+        ...isShownFilteredPicture,
+        filteredPicture[indexB],
+      ]);
       if (filteredPicture.length - isShownFilteredPicture.length < 2) {
         setHasMore(false);
       }
@@ -85,19 +90,6 @@ export default function LandingPage() {
   };
 
   /////////////////////////////////////   Category   /////////////////////////////////////
-
-  ///////////////////////////////////// Click photo //////////////////////////////////////
-  const [isClick, setIsClick] = useState<any>(false);
-  const click = (input: any) => {
-    console.log("input: ", input);
-    setIsClick(true);
-    return (
-      <div className="photoWithDetail">
-        <img src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${input}`} alt={""} />
-      </div>
-    );
-  };
-  ///////////////////////////////////// Click photo //////////////////////////////////////
 
   console.log("拎左幾多野", allPicture);
   console.log("一開頭show左幾多野", initialPicture);
@@ -114,14 +106,19 @@ export default function LandingPage() {
 
         <div className="landingPageInfiniteScroll">
           <div className="landingPageTags">
-            <div className="allButtonInLanding" style={{ marginLeft: "1vw", marginRight: "2vw" }}>
+            <div
+              className="allButtonInLanding"
+              style={{ marginLeft: "1vw", marginRight: "2vw" }}
+            >
               <button onClick={() => clearTag()}>All</button>
             </div>
             <div className="tagButtonInLanding">
               {tags.map((tag) => {
                 return (
                   <div key={tag.value}>
-                    <button onClick={() => getTag(tag.value)}>{tag.label}</button>
+                    <button onClick={() => getTag(tag.value)}>
+                      {tag.label}
+                    </button>
                   </div>
                 );
               })}
@@ -140,11 +137,19 @@ export default function LandingPage() {
                 </p>
               }
             >
-              <Masonry breakpointCols={breakpointColumnsObj} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
+              <Masonry
+                breakpointCols={breakpointColumnsObj}
+                className="my-masonry-grid"
+                columnClassName="my-masonry-grid_column"
+              >
                 {isShownFilteredPicture.map((item: any) => {
+                  console.log(item);
                   return (
                     <div key={item.name}>
-                      <img src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${item.name}`} alt={item.name} />
+                      <img
+                        src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${item.name}`}
+                        alt={item.name}
+                      />
                     </div>
                   );
                 })}
@@ -162,14 +167,15 @@ export default function LandingPage() {
                 </p>
               }
             >
-              <Masonry breakpointCols={breakpointColumnsObj} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
+              <Masonry
+                breakpointCols={breakpointColumnsObj}
+                className="my-masonry-grid"
+                columnClassName="my-masonry-grid_column"
+              >
                 {initialPicture.map((item: any) => {
                   return (
                     <div key={item.name}>
                       <img
-                        onClick={() => {
-                          click(item.name);
-                        }}
                         src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${item.name}`}
                         alt={item.name}
                       />

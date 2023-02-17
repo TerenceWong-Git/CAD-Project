@@ -19,9 +19,7 @@ function CommentPage() {
   }, []);
   console.log(comments);
 
-  const [filter, setFilter] = useState<{
-    isThumb?: boolean;
-  }>({});
+  const [filter, setFilter] = useState<{ isThumb?: boolean }>({});
   const filteredComments = comments.filter((comment) => {
     let isFiltered = true;
     for (let key in filter) {
@@ -52,12 +50,16 @@ function CommentPage() {
 
         <button onClick={() => setFilter((filter) => ({}))}>全部</button>
 
-        <button onClick={() => setFilter((filter) => ({ ...filter, isThumb: true }))}>
+        <button
+          onClick={() => setFilter((filter) => ({ ...filter, isThumb: true }))}
+        >
           <MdOutlineThumbUpOffAlt />
           好評
         </button>
 
-        <button onClick={() => setFilter((filter) => ({ ...filter, isThumb: false }))}>
+        <button
+          onClick={() => setFilter((filter) => ({ ...filter, isThumb: false }))}
+        >
           <MdOutlineThumbDown />
           差評
         </button>
@@ -65,10 +67,14 @@ function CommentPage() {
       <div className="comment-body">
         {filteredComments.map((comment) => (
           <div className="comment-card-container" key={comment.id}>
-            <Link to={`commentDetail/${comment.id}`} style={{ color: "#262220" }} className="comment-card">
+            <Link
+              to={`commentDetail/${comment.id}`}
+              style={{ color: "#262220" }}
+              className="comment-card"
+            >
               {comment.CommentImg.length > 0 ? (
                 <div className="comment-image">
-                   <img
+                  <img
                     // src={`${comment.CommentImg?.[0].name}`}
                     src={`${process.env.REACT_APP_S3_UPLOAD_URL}/${comment.CommentImg?.[0].name}`}
                     alt=""

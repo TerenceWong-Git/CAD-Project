@@ -34,10 +34,19 @@ export default function App() {
         <Route path="/landing" element={<LandingPage />} index></Route>
 
         <Route path="comments" element={<CommentPage />}></Route>
-        <Route path="comments/commentDetail/:id" element={<CommentDetail />}></Route>
-        <Route path="comments/createComment" element={<CreateComment />}></Route>
+        <Route
+          path="comments/commentDetail/:id"
+          element={<CommentDetail />}
+        ></Route>
+        <Route
+          path="comments/createComment"
+          element={<CreateComment />}
+        ></Route>
         <Route path="comments/myComments" element={<UserComment />}></Route>
-        <Route path="comments/editComment/:id" element={<EditComment />}></Route>
+        <Route
+          path="comments/editComment/:id"
+          element={<EditComment />}
+        ></Route>
 
         <Route path="map" element={<Map />}></Route>
         <Route path="list" element={<List />}></Route>

@@ -89,8 +89,11 @@ export class PetController {
     @Body() addPetDto: AddPetDto,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    const filename = `${uuid()}${extname(file.originalname)}`;
-    await this.s3uploadService.upload(file, filename);
+    let filename: string | null = null;
+    if (file) {
+      filename = `${uuid()}${extname(file.originalname)}`;
+      await this.s3uploadService.upload(file, filename);
+    }
     await this.petService.addPet(userId, addPetDto, filename);
 
     return { message: 'success' };

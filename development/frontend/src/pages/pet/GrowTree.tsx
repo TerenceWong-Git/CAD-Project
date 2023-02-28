@@ -43,11 +43,13 @@ export default function GrowTree() {
   const [hasMore, setHasMore] = useState(true);
 
   const continueGrow = async () => {
-    setImgForGrow([...imgForGrow, petImg[continueGrowIndex]]);
-    if (petImg.length - imgForGrow.length < 2) {
-      setHasMore(false);
+    if (petImg[continueGrowIndex]) {
+      setImgForGrow([...imgForGrow, petImg[continueGrowIndex]]);
+      if (petImg.length - imgForGrow.length < 2) {
+        setHasMore(false);
+      }
+      setContinueGrowIndex(continueGrowIndex + 1);
     }
-    setContinueGrowIndex(continueGrowIndex + 1);
   };
 
   const renderContinueGrow = () =>

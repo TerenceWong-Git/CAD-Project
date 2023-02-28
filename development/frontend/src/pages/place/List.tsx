@@ -87,7 +87,7 @@ export default function List() {
   const [hasMore, setHasMore] = useState(false);
 
   const notYetFilteredInfiniteScroll = async () => {
-    if (!isFiltered) {
+    if (!isFiltered && allPlaceItems[notYetFilteredDataIndex]) {
       setNotYetFilteredPlaceCard([...notYetFilteredPlaceCard, allPlaceItems[notYetFilteredDataIndex]]);
       if (allPlaceItems.length - notYetFilteredPlaceCard.length === 0 || allPlaceItems.length - notYetFilteredPlaceCard.length < 2) {
         setInitialHasMore(false);
